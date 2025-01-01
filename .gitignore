@@ -1,0 +1,6 @@
+#example.txt
+#/folder_directory/
+#*.log    ignores file type
+#!debug.log   if log is ignored this keeps debug 
+
+/node_modules/
