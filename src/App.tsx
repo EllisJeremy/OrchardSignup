@@ -1,12 +1,13 @@
-import DayOfWeek from './components/DayOfWeek.tsx';
 
+import Header from './components/Header/Header.tsx';
 
 
 export default function App() {
   
   return (
     <>
-      <DayOfWeek />
+      <Header />
+      
     </>
   );
 }

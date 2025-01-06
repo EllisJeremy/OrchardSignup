@@ -1,6 +1,6 @@
 function startingDay(month: number, year:number){
   //Zeller's Congruence
-  
+
   if (month <= 2){
     month += 12;
     year -= 1;
@@ -19,7 +19,7 @@ function startingDay(month: number, year:number){
 export default function DayOfWeek(){
   return(
     <>
-      <p>{startingDay(1, 2025)}</p>
+      <p>{startingDay(2, 2024)}</p>
       <p>it should be 1</p>
     </>
   )

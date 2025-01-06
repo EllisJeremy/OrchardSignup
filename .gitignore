@@ -4,3 +4,4 @@
 #!debug.log   if log is ignored this keeps debug 
 
 /node_modules/
+/public/
