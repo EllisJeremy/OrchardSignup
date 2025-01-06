@@ -1,9 +1,10 @@
 
 import Header from './components/Header/Header.tsx';
-import CalendarHeader from './components/CalendarHeader/CalendarHeader.tsx';
+import CalendarHeaderMonths from './components/CalendarHeaderMonths/CalendarHeaderMonths.tsx'; 
+import CalendarHeaderDays from './components/CalendarHeaderDays/CalendarHeaderDays.tsx';
 import Calendar from './components/Calendar/Calendar.tsx';
 
-
+// 
 
 export default function App() {
   
@@ -11,7 +12,8 @@ export default function App() {
     <>
       <Header />
       <div className='calendar'>
-        <CalendarHeader />
+        <CalendarHeaderMonths />
+        <CalendarHeaderDays /> 
         <Calendar />
       </div>
     </>
