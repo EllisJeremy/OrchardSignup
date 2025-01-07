@@ -1,9 +1,11 @@
 
 .calendarDiv{
-  background-color: rgb(255, 255, 255);
+  background-color: hsl(0, 0%, 100%);
   display: grid;
   
   grid-template-columns: repeat(7, 1fr);
+  border-right: 1px solid hsl(228, 20%, 90%);
+  border-left: 1px solid hsl(228, 20%, 90%);
   
   
 }
