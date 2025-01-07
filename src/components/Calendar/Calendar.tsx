@@ -9,7 +9,7 @@ export default function Calendar(){
 
       {/*create blank cells to ensure the first real day is on the correct day of the week */}
       {Array.from({ length: startingDay(1, 2025) }, (_, i) => (
-          <div key={"blank" + i}>
+          <div className={styles.dayDiv} key={"blank" + i}>
              
           </div>
         ))}

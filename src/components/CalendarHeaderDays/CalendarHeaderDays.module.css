@@ -5,10 +5,12 @@
   grid-template-columns: repeat(7, 1fr);
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
+  grid-column-gap: 2px;
+  grid-row-gap: 2px;
   
   
-  
-  border: 1px solid  hsl(228, 20%, 90%) ;
+  border: 2px solid  hsl(228, 20%, 90%) ;
+  border-top: 2px solid  hsl(228, 20%, 90%) ;
   border-bottom: none;
   
 }
