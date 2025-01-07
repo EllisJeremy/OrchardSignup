@@ -64,18 +64,18 @@
 .buttonLogin{
   background-color: rgb(255,255,255);
   border-style: none;
-  box-shadow: 0px 0px 8px .75px rgba(0, 0, 0,.3);
+  box-shadow: 0px 0px 8px 1.25px hsl(229, 22%, 85%);
   font-size: 22px;
   border-radius: 15px;
   width: 80px;
   height: 45px;
   margin-right: 20px;
-  transition: background-color .4s, box-shadow .6s;
+  transition: background-color .4s, box-shadow .75s;
 }
 
 
 .buttonLogin:hover{
-  background-color: rgba(0, 0, 0, .1 );
+  background-color: hsl(229, 22%, 90%);
   box-shadow: 0px 0px 8px .75px rgba(0, 0, 0, 0);
   cursor: pointer;
   
@@ -83,7 +83,7 @@
 }
 
 .buttonLogin:active{
-  background-color: rgba(0, 0, 0, .15 );
+  background-color: hsl(229, 22%, 85%);
   transition: background-color .1s ;
   
 }

@@ -3,7 +3,7 @@ import styles from './CalendarHeaderDays.module.css'
 export default function CalendarHeader(){
   return(
       <div className={styles.daysDiv}>
-        <div className={styles.dayDiv}>
+        <div className={styles.dayDivSun}>
           SUN
         </div>
         <div className={styles.dayDiv}>
@@ -21,7 +21,7 @@ export default function CalendarHeader(){
         <div className={styles.dayDiv}>
           FRI
         </div>
-        <div className={styles.dayDiv}>
+        <div className={styles.dayDivSat}>
           SAT
         </div>
       </div>
