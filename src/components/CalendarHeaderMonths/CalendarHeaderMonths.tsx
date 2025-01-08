@@ -7,7 +7,7 @@ export default function CalendarHeader(){
         <div className={styles.changeMonthDiv}>
 
           <button className={styles.buttonLeft}>
-            <img className={styles.arrow} src={'public/arrowLeft.svg'}/> 
+            <img className={styles.arrow} src={'/arrowLeft.svg'}/> 
           </button>
 
           <p className={styles.monthText}>
@@ -15,7 +15,7 @@ export default function CalendarHeader(){
           </p>
 
           <button className={styles.buttonRight}>
-          <img className={styles.arrow} src={'public/arrowRight.svg'}/> 
+          <img className={styles.arrow} src={'/arrowRight.svg'}/> 
           </button>
 
         </div>

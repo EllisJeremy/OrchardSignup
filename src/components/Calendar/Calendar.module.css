@@ -5,9 +5,11 @@
   grid-column-gap: 2px;
   grid-row-gap: 2px;
   grid-template-columns: repeat(7, 1fr);
-  border-right: 2px solid hsl(228, 20%, 90%);
-  border-left: 2px solid hsl(228, 20%, 90%);
   
+  border: 2px solid hsl(228, 20%, 90%);
+  border-top: none;
+
+  height: 700px;
   
 }
 
@@ -28,7 +30,7 @@
   
   
   
-  height: 140px;
+  
   display: flex;
   justify-content: center; 
   
