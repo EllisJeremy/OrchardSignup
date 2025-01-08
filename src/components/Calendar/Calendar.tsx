@@ -29,7 +29,17 @@ export default function Calendar(){
       {/*create all the cells for each day of the month */}
       {Array.from({ length: daysInMonth }, (_, i) => (
         <div className={styles.dayDiv} key={"day" + i} >
-          {i + 1}
+          <div className={styles.dayNumberDiv}>
+           {i + 1}
+          </ div>
+          <div className={styles.dayContentDiv}>
+            <div className={styles.dayContentChildDiv}>
+              <p className={styles.taskLabel1}>task 1</p>
+            </div>
+            <div className={styles.dayContentChildDiv}>
+              <p className={styles.taskLabel2}>task 2</p>
+            </div>
+          </div>  
         </div>
       ))}
 

@@ -15,11 +15,11 @@
 
 .dayDiv{
   /* Default: font size adjusts with viewport width */
-  font-size: 1.5vw;
+  font-size: 1.3vw;
 
   /* On larger screens (e.g., width greater than 1200px), reduce the font size */
   @media (min-width: 1200px) {
-    font-size: .7vw;
+    font-size: .6vw;
   }
 
   /* On smaller screens (e.g., width less than 600px), increase the font size */
@@ -31,7 +31,37 @@
   
   
   
-  display: flex;
-  justify-content: center; 
+  
   
 }
+
+.dayNumberDiv{
+  padding-top: 5px;
+  text-align: center;
+}
+
+.dayContentDiv{
+  
+
+}
+
+.dayContentChildDiv{
+  text-align: center;
+  padding: 2px;
+  
+}
+
+.taskLabel1, .taskLabel2{
+  margin: 0px;
+  border-radius: 3px;
+  padding: 2px;
+}
+
+.taskLabel1{
+  background-color: rgb(42, 157, 165);
+}
+
+.taskLabel2{
+  background-color: hsl(46, 100%, 41%);
+}
+

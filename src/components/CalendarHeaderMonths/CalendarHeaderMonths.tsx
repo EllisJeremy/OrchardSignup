@@ -11,7 +11,7 @@ export default function CalendarHeader(){
           </button>
 
           <p className={styles.monthText}>
-             January 2025 
+            January 2025 
           </p>
 
           <button className={styles.buttonRight}>
