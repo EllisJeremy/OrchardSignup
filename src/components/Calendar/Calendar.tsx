@@ -32,6 +32,7 @@ export default function Calendar(){
           <div className={styles.dayNumberDiv}>
            {i + 1}
           </ div>
+
           <div className={styles.dayContentDiv}>
             <div className={styles.dayContentChildDiv}>
               <p className={styles.taskLabel1}>task 1</p>
@@ -39,7 +40,12 @@ export default function Calendar(){
             <div className={styles.dayContentChildDiv}>
               <p className={styles.taskLabel2}>task 2</p>
             </div>
-          </div>  
+          </div> 
+
+          
+
+          
+           
         </div>
       ))}
 
