@@ -17,17 +17,19 @@
 
 .dayDiv, .dayDivSun, .dayDivSat{
   /* Default: font size adjusts with viewport width */
-  font-size: 1.3vw;
+  font-size: 13px;
 
-  /* On larger screens (e.g., width greater than 1200px), reduce the font size */
+  /* On larger screens (e.g., width greater than 1200px), reduce the font size 
   @media (min-width: 1200px) {
     font-size: .6vw;
   }
-
-  /* On smaller screens (e.g., width less than 600px), increase the font size */
+  */
+  /* On smaller screens (e.g., width less than 600px), increase the font size 
   @media (max-width: 600px) {
     font-size: 2vw;
   }
+  */
+
   background-color: rgb(255, 255, 255);
   padding-top: 5px;
   padding-bottom: 0px;

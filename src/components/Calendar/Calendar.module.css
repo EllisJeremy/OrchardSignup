@@ -15,17 +15,18 @@
 
 .dayDiv{
   /* Default: font size adjusts with viewport width */
-  font-size: 1.3vw;
+  font-size: 13px;
 
-  /* On larger screens (e.g., width greater than 1200px), reduce the font size */
+  /* On larger screens (e.g., width greater than 1200px), reduce the font size 
   @media (min-width: 1200px) {
     font-size: .6vw;
   }
-
-  /* On smaller screens (e.g., width less than 600px), increase the font size */
+  */
+  /* On smaller screens (e.g., width less than 600px), increase the font size 
   @media (max-width: 600px) {
     font-size: 2vw;
   }
+  */
   background-color: rgb(255, 255, 255);
   
   
@@ -42,19 +43,26 @@
 
 .dayContentDiv{
   
-
+  /* this is how much hight it needs to not cover up the bottom gap*/
+  height: 95px;
+  
+  justify-items: center;
 }
 
 .dayContentChildDiv{
   text-align: center;
   padding: 2px;
-  
+  width: 11vw;
 }
 
 .taskLabel1, .taskLabel2{
   margin: 0px;
   border-radius: 3px;
   padding: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+  
 }
 
 .taskLabel1{
