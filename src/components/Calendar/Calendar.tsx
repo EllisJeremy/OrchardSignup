@@ -1,5 +1,6 @@
 import styles from './Calendar.module.css'
 import {getStartingDay, getEndingDay, getDaysInMonth} from './calendarFunctions'
+import { dateStore } from '../../store'
 
 export default function Calendar(){
 
@@ -9,9 +10,7 @@ export default function Calendar(){
   const month: number = 1;*/
 
   //automatic way of setting date
-  const now = new Date();
-  const year: number = now.getFullYear();
-  const month = now.getMonth() + 1;
+  const { month, year} = dateStore();
   const daysInMonth: number = getDaysInMonth(year, month)
 
   
@@ -28,9 +27,9 @@ export default function Calendar(){
 
       {/*create all the cells for each day of the month */}
       {Array.from({ length: daysInMonth }, (_, i) => (
-        <div className={styles.dayDiv} key={"day" + i} >
+        <div className={styles.dayDiv} key={month.toString()+ "/" + (i + 1) + "/" + year.toString()} >
           <div className={styles.dayNumberDiv}>
-           {i + 1}
+           {i + 1} 
           </ div>
 
           <div className={styles.dayContentDiv}>
