@@ -3,8 +3,8 @@ import Header from './components/Header/Header.tsx';
 import CalendarHeaderMonths from './components/CalendarHeaderMonths/CalendarHeaderMonths.tsx'; 
 import CalendarHeaderDays from './components/CalendarHeaderDays/CalendarHeaderDays.tsx';
 import Calendar from './components/Calendar/Calendar.tsx';
+import TaskModal from './components/TaskModal/TaskModal.tsx';
 
-// 
 
 export default function App() {
   
@@ -15,6 +15,7 @@ export default function App() {
         <CalendarHeaderMonths />
         <CalendarHeaderDays /> 
         <Calendar />
+        <TaskModal />
       </div>
     </>
   );

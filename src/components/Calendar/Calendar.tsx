@@ -1,6 +1,6 @@
 import styles from './Calendar.module.css'
 import {getStartingDay, getEndingDay, getDaysInMonth} from './calendarFunctions'
-import { dateStore } from '../../store'
+import { dateStore, modalStore } from '../../store'
 
 export default function Calendar(){
 
@@ -13,6 +13,7 @@ export default function Calendar(){
   const { month, year} = dateStore();
   const daysInMonth: number = getDaysInMonth(year, month)
 
+  const {openCloseTaskModal} = modalStore();
   
   return(
     <div className={styles.calendarDiv}>
@@ -27,7 +28,13 @@ export default function Calendar(){
 
       {/*create all the cells for each day of the month */}
       {Array.from({ length: daysInMonth }, (_, i) => (
-        <div className={styles.dayDiv} key={month.toString()+ "/" + (i + 1) + "/" + year.toString()} >
+        <div 
+        className={styles.dayDiv} 
+        key={month.toString()+ "/" + (i + 1) + "/" + year.toString()} 
+        onClick={openCloseTaskModal}
+        >
+
+          
           <div className={styles.dayNumberDiv}>
            {i + 1} 
           </ div>
@@ -41,6 +48,9 @@ export default function Calendar(){
             </div>
             <div className={styles.dayContentChildDiv}>
               <p className={styles.taskLabel1}>task 3</p>
+            </div>
+            <div className={styles.dayContentChildDiv}>
+              <p className={styles.taskLabel2}>+ x more</p>
             </div>
             <div className={styles.dayContentChildDiv}>
               <p className={styles.taskLabel2}>+ x more</p>
