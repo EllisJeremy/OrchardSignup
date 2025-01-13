@@ -20,7 +20,7 @@ export default function Calendar(){
 
       {/*create blank cells to ensure the first real day is on the correct day of the week */}
       {Array.from({ length: getStartingDay(month, year) }, (_, i) => (
-        <div className={styles.dayDiv} key={"blank" + i}>
+        <div className={styles.dayDivBlank} key={"blank" + i}>
             
         </div>
       ))}
@@ -50,7 +50,7 @@ export default function Calendar(){
 
       {/*create blank cells to fill the extra slots and the end */}
       {Array.from({ length: getEndingDay(getStartingDay(month, year), daysInMonth) }, (_, i) => (
-        <div className={styles.dayDiv} key={"blank" + i}>
+        <div className={styles.dayDivBlank} key={"blank" + i}>
             
         </div>
       ))}

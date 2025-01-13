@@ -13,6 +13,10 @@
   
 }
 
+.dayDivBlank{
+  background-color: rgb(255,255,255);
+}
+
 .dayDiv{
   
   font-size: 13px;
@@ -24,6 +28,13 @@
   
   
   background-color: rgb(240, 241, 245); 
+  transition: background-color .1255s;
+}
+
+.dayDiv:active{
+  
+  
+  background-color: rgb(224, 226, 238) ; 
   
 }
 
