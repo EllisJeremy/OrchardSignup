@@ -3,10 +3,11 @@ import { create } from "zustand";
 export interface dateStoreType{
  
   
-  day: number;
+  currentDay: number;
   month: number;
   year: number;
 
+  setCurrentDay: (currentDay: number) => void;
   incrementMonth: () => void;
   decrementMonth: () => void;
 }
@@ -15,9 +16,12 @@ const now = new Date();
 
 export const dateStore = create<dateStoreType>((set) => ({
   
-  day: 1,
+  currentDay: 1,
   month: now.getMonth() + 1,
   year: now.getFullYear(),
+  
+  setCurrentDay : (currentDay: number) => set(() => ({currentDay})),
+  
 
   incrementMonth: () => {set((state) => {
     if (state.month === 12) {

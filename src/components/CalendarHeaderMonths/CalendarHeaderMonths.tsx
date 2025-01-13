@@ -21,7 +21,7 @@ export default function CalendarHeader(){
           </p>
 
           <button className={styles.buttonRight} onClick={incrementMonth}>
-          <img className={styles.arrow} src={'/arrowRight.svg'}/> 
+            <img className={styles.arrow} src={'/arrowRight.svg'}/> 
           </button>
 
         </div>

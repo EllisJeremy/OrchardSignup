@@ -14,25 +14,16 @@
 }
 
 .dayDiv{
-  /* Default: font size adjusts with viewport width */
+  
   font-size: 13px;
+  background-color: rgb(255, 255, 255);  
+  transition: background-color .25s;
+}
 
-  /* On larger screens (e.g., width greater than 1200px), reduce the font size 
-  @media (min-width: 1200px) {
-    font-size: .6vw;
-  }
-  */
-  /* On smaller screens (e.g., width less than 600px), increase the font size 
-  @media (max-width: 600px) {
-    font-size: 2vw;
-  }
-  */
-  background-color: rgb(255, 255, 255);
+.dayDiv:hover{
   
   
-  
-  
-  
+  background-color: rgb(240, 241, 245); 
   
 }
 
@@ -55,6 +46,9 @@
   width: 11vw;
 }
 
+
+
+
 .taskLabel1, .taskLabel2{
   margin: 0px;
   border-radius: 3px;
@@ -64,6 +58,8 @@
   white-space: nowrap; 
   
 }
+
+
 
 .taskLabel1{
   background-color: rgb(42, 157, 165);
