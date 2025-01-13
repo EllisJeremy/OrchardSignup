@@ -1,4 +1,5 @@
 import styles from './TaskModal.module.css'
+import TaskCreator from './subComponenets/TaskCreator';
 import { dateStore, modalStore } from "../../store"
 import monthToString from '../../globalTypescript/monthToString';
 //import styles2 from '../Calendar/Calendar.module.css'
@@ -20,9 +21,13 @@ export default function TaskModal() {
             <img className={styles.X} src={'/X.svg'}/>
           </button>
         </div>
+        
 
+        <div className={styles.contentDiv}>
+          <TaskCreator />
+          
 
-        <div className={styles.contentDiv}>content</div>
+        </div>
       </div>
     </>
   )

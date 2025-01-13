@@ -1,0 +1,45 @@
+.taskCreatorDiv{
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 1px 1px .5px rgb(225, 226, 230);
+  margin: 5px;
+
+  display: grid;
+  grid-template-columns: 33% 66%;
+  grid-template-rows: 25px 25px 25px;
+  gap: 5px;
+  
+}
+
+.descriptionInput {
+  grid-row-start: 1;
+  grid-row-end: 4;
+  grid-column-start: 2;
+  grid-column-end: 2;
+  font-family: Arial;
+  resize: none;
+
+  
+}
+
+.titleInput, .dueTimeInput, .createButton, .descriptionInput {
+  border:2px solid rgb(225, 226, 231);
+  border-radius: 5px;
+}
+
+.titleInput:focus, .dueTimeInput:focus, .descriptionInput:focus {
+  border-color: rgb(175, 176, 191);
+  outline: none;
+}
+
+
+.createButton{
+  background-color: rgb(240, 241, 245);
+  text-align: left;
+}
+.createButton:active{
+  border-color: rgb(175, 176, 191);
+  
+}
+
