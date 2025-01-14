@@ -23,7 +23,7 @@
   
 }
 
-.titleInput, .dueTimeInput, .createButton, .descriptionInput {
+.titleInput, .dueTimeInput, .descriptionInput {
   border:2px solid rgb(225, 226, 231);
   border-radius: 5px;
 }
@@ -35,11 +35,31 @@
 
 
 .createButton{
-  background-color: rgb(240, 241, 245);
-  text-align: left;
+  background-color: rgb(255, 255, 255);
+  
+  border:2px solid rgb(225, 226, 231);
+  
+  border-radius: 5px;
+  
+  
+ 
+  transition: background-color .4s, border-color .4s;
 }
-.createButton:active{
-  border-color: rgb(175, 176, 191);
+
+
+.createButton:hover{
+  background-color: hsl(229, 22%, 90%);
+  border-color: rgb(255,255,255);
+  cursor: pointer;
+  
   
 }
 
+.createButton:active{
+  padding: 3px;
+  
+}
+
+.plus{
+  height: 90%;
+}
