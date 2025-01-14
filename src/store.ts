@@ -97,6 +97,7 @@ export interface taskStoreType{
   setColor: (dueTime: string) => void;
   setOwner: (description: string) => void;
 
+  resetTaskVariables: () => void;
   setTaskDatabase: (date: string, title: string, dueTime: string, description: string, color: string) => void;
   
 }
@@ -110,7 +111,7 @@ export const taskStore = create<taskStoreType>((set) => ({
   color: 'Red',
   owner: 'owner',
 
-  taskDatabase: [['title','date', 'dueTime', 'description' , 'color', 'owner']],
+  taskDatabase: [[]],
 
   setTitle : (title: string) => set(() => ({title})),
   setDate : (date: string) => set(() => ({date})),
@@ -118,6 +119,13 @@ export const taskStore = create<taskStoreType>((set) => ({
   setDescription : (description: string) => set(() => ({description})),
   setColor : (color: string) => set(() => ({color})),
   setOwner : (owner: string) => set(() => ({owner})),
+
+  resetTaskVariables: ( ) => 
+    set(() => {
+      
+  
+      return { title: '',dueTime: '',description: '', color: 'Red'};
+    }),
  
   setTaskDatabase: ( title: string, date: string, dueTime: string, description: string, color: string) => 
     set((state) => {

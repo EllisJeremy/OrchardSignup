@@ -4,17 +4,12 @@ import { dateStore, modalStore, taskStore } from '../../store'
 
 export default function Calendar(){
 
-  //manual way of setting date 
-  /*const daysInMonth: number = 31;
-  const year: number = 2025;
-  const month: number = 1;*/
-
-  //automatic way of setting date
+ 
   const { month, year, setCurrentDay} = dateStore();
   const daysInMonth: number = getDaysInMonth(year, month,)
 
   const {openCloseTaskModal} = modalStore();
-  const {setDate} = taskStore();
+  const {setDate, resetTaskVariables} = taskStore();
   
   return(
     <div className={styles.calendarDiv}>
@@ -32,7 +27,7 @@ export default function Calendar(){
         <div 
         className={styles.dayDiv} 
         key={month.toString()+ "/" + (i + 1) + "/" + year.toString()} 
-        onClick={() => {openCloseTaskModal(); setCurrentDay(i+1); setDate(month.toString()+ "/" + (i + 1) + "/" + year.toString())}}
+        onClick={() => {openCloseTaskModal(); setCurrentDay(i+1); resetTaskVariables(); setDate(month.toString()+ "/" + (i + 1) + "/" + year.toString())}}
         >
           
           
