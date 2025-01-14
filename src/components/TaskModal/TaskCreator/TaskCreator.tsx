@@ -4,7 +4,7 @@ import { taskStore } from '../../../store'
 
 export default function TaskCreator() {
 
-  const {setTitle, setDueTime, setDescription} = taskStore();
+  const {setTitle, setDueTime, setDescription, setColor} = taskStore();
 
   return (
     <div className={styles.taskCreatorDiv}>
@@ -23,7 +23,7 @@ export default function TaskCreator() {
       <button className={styles.createButton} >
         <img className={styles.plus} src='/+.svg'/>
       </button>
-      <select id="options" className={styles.colorSelect}>
+      <select id="options" className={styles.colorSelect} onChange={(e) => setColor(e.target.value)}>
         <option value="Red">
           Red
         </option>

@@ -1,6 +1,6 @@
 import styles from './Calendar.module.css'
 import {getStartingDay, getEndingDay, getDaysInMonth} from './calendarFunctions'
-import { dateStore, modalStore } from '../../store'
+import { dateStore, modalStore, taskStore } from '../../store'
 
 export default function Calendar(){
 
@@ -14,6 +14,7 @@ export default function Calendar(){
   const daysInMonth: number = getDaysInMonth(year, month,)
 
   const {openCloseTaskModal} = modalStore();
+  const {setDate} = taskStore();
   
   return(
     <div className={styles.calendarDiv}>
@@ -31,7 +32,7 @@ export default function Calendar(){
         <div 
         className={styles.dayDiv} 
         key={month.toString()+ "/" + (i + 1) + "/" + year.toString()} 
-        onClick={() => {openCloseTaskModal(); setCurrentDay(i+1)}}
+        onClick={() => {openCloseTaskModal(); setCurrentDay(i+1); setDate(month.toString()+ "/" + (i + 1) + "/" + year.toString())}}
         >
           
           

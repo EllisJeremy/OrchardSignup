@@ -17,14 +17,15 @@
   left: 50%;
   transform: translate(-50%,-50%);
   z-index: 1000;
-
+  
 
   height: 420px;
   width: 520px;
   padding: 10px;
 
   
-  background-color: rgb(240, 241, 245);
+  background-color: rgba(240, 241, 245, 1);
+  
   border-radius: 20px;
   
   
@@ -39,13 +40,12 @@
 
 
 
-/* Scrollbar customization for WebKit browsers (Chrome, Edge, Safari) */
 
 
 
 
 
-/* Firefox scrollbar customization */
+
 .modalDiv {
     scrollbar-width: thin; /* Makes the scrollbar thinner */
     scrollbar-color: rgb(210, 210, 220) #f1f1f1; /* thumb color and track color */

@@ -81,25 +81,55 @@ export const modalStore = create<modalStoreType>((set) => ({
 //task store
 
 export interface taskStoreType{
+  date: string;
   title: string;
   dueTime: string;
   description: string;
+  color: string;
+  owner: string;
 
-  setTitle: (title: string) => void;
-  setDueTime: (title: string) => void;
-  setDescription: (title: string) => void;
+  taskDatabase: string[][];
+
+  setDate: (title: string) => void;
+  setTitle: (setTime: string) => void;
+  setDueTime: (dueTime: string) => void;
+  setDescription: (description: string) => void;
+  setColor: (dueTime: string) => void;
+  setOwner: (description: string) => void;
+
+  setTaskDatabase: (taskDatabase: string[][]) => void;
+  
 }
 
 
 export const taskStore = create<taskStoreType>((set) => ({
-  
+  date: 'date',
   title: 'Title',
   dueTime: 'Due Time',
   description: 'Description',
+  color: 'color',
+  owner: 'owner',
 
+  taskDatabase: [['dayKey'],['title'],['dueTime'],['description'],['color'],['owner'],
+                 ['dayKey'],['title'],['dueTime'],['description'],['color'],['owner']],
+
+  setDate : (date: string) => set(() => ({date})),
   setTitle : (title: string) => set(() => ({title})),
   setDueTime : (dueTime: string) => set(() => ({dueTime})),
   setDescription : (description: string) => set(() => ({description})),
+  setColor : (color: string) => set(() => ({color})),
+  setOwner : (owner: string) => set(() => ({owner})),
  
+  setTaskDatabase : (taskDatabase: string[][]) => set(() => ({
+    
+    
+    
+    
+    taskDatabase
+  
+  
+  
+  
+  })),
 
 }));
