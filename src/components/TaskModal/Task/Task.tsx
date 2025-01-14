@@ -1,14 +1,25 @@
 import styles from './Task.module.css'
-
+import { taskStore } from '../../../store'
 
 export default function TaskCreator() {
+
+  const {title, dueTime, description} = taskStore();
+
   return (
     <div className={styles.taskCreatorDiv}>
       
-      <input className={styles.titleInput} placeholder='title'></input>
-      <input className={styles.dueTimeInput} placeholder='due time'></input>
-      <textarea className={styles.descriptionInput} placeholder='description'></textarea>
-      <button className={styles.createButton}>
+      <p className={styles.title}>
+        {title}
+      </p>
+
+      <p className={styles.dueTime}>
+        {dueTime}
+      </p>
+
+      <p className={styles.description} >
+        {description}
+      </p>
+      <button className={styles.selectButton}>
         <img className={styles.plus} src='/check.svg'/> 
       </button>
       

@@ -1,5 +1,10 @@
 import { create } from "zustand";
 
+
+
+
+//date store
+
 export interface dateStoreType{
  
   
@@ -49,6 +54,10 @@ export const dateStore = create<dateStoreType>((set) => ({
 }));
 
 
+
+
+//modal store
+
 export interface modalStoreType{
  
   taskModal: boolean;
@@ -65,5 +74,32 @@ export const modalStore = create<modalStoreType>((set) => ({
     taskModal: !state.taskModal,
 
     }))},
+
+}));
+
+
+//task store
+
+export interface taskStoreType{
+  title: string;
+  dueTime: string;
+  description: string;
+
+  setTitle: (title: string) => void;
+  setDueTime: (title: string) => void;
+  setDescription: (title: string) => void;
+}
+
+
+export const taskStore = create<taskStoreType>((set) => ({
+  
+  title: 'Title',
+  dueTime: 'Due Time',
+  description: 'Description',
+
+  setTitle : (title: string) => set(() => ({title})),
+  setDueTime : (dueTime: string) => set(() => ({dueTime})),
+  setDescription : (description: string) => set(() => ({description})),
+ 
 
 }));

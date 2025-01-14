@@ -1,12 +1,16 @@
 import styles from './TaskCreator.module.css'
+import { taskStore } from '../../../store'
 
 
 export default function TaskCreator() {
+
+  const {setTitle, setDueTime, setDescription} = taskStore();
+
   return (
     <div className={styles.taskCreatorDiv}>
       
-      <input className={styles.titleInput} placeholder='title'></input>
-      <input className={styles.dueTimeInput} placeholder='due time'></input>
+      <input className={styles.titleInput} onChange={(e) => setTitle(e.target.value)} placeholder='title'></input>
+      <input className={styles.dueTimeInput} onChange={(e) => setDueTime(e.target.value)} placeholder='due time'></input>
 
       <div className={styles.eventDiv}>event:
         <label className={styles.switch}>
@@ -15,8 +19,8 @@ export default function TaskCreator() {
         </label>
       </div>
 
-      <textarea className={styles.descriptionInput} placeholder='description'></textarea>
-      <button className={styles.createButton}>
+      <textarea className={styles.descriptionInput}  onChange={(e) => setDescription(e.target.value)} placeholder='description'></textarea>
+      <button className={styles.createButton} >
         <img className={styles.plus} src='/+.svg'/>
       </button>
       <select id="options" className={styles.colorSelect}>

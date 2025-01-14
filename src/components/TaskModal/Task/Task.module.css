@@ -1,5 +1,5 @@
 .taskCreatorDiv{
-  background-color: rgb(106, 184, 125);
+  background-color: rgb(255, 255, 255);
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0px 1px 1px .5px rgb(225, 226, 230);
@@ -8,41 +8,54 @@
 
   display: grid;
   grid-template-columns: 24% 24% 24% 24%;
-  grid-template-rows: 25px 25px 25px 25px;
+  grid-template-rows: 25px 75px;
   gap: 5px;
   
 }
 
-.descriptionInput {
+.description {
   grid-column: 1 / span 3;
-  grid-row: 2 / span 4;
+  margin: 0px;
   font-family: Arial;
+  font-size: 13px;
   resize: none;
+  padding: 3px;
+  overflow-y: auto;
 }
 
-.titleInput{
+.title{
+  margin: 0px;
   grid-column: 1 / span 3;
   grid-row: 1;
+  font-size: 15px;
+  padding: 3px;
+  line-height: 100%;
+  overflow: hidden;
 }
 
-.dueTimeInput{
+.dueTime{
+  margin: 0px;
   grid-column: 4;
   grid-row: 1;
+  font-size: 15px;
+  padding: 3px;
+  line-height: 100%;
+  overflow: hidden;
 }
 
-.titleInput, .dueTimeInput, .descriptionInput{
-  border:2px solid rgb(225, 226, 231);
+.title, .dueTime, .description{
+  border: 2px solid rgb(225, 226, 231);
   border-radius: 5px;
 }
 
-.titleInput:focus, .dueTimeInput:focus, .descriptionInput:focus{
+.title:focus, .dueTime:focus, .description:focus{
   border-color: rgb(175, 176, 191);
   outline: none;
 }
 
 
-.createButton{
-  grid-row: 2 / span 3;
+.selectButton{
+  
   background-color: rgb(255, 255, 255);
   
   border:2px solid rgb(225, 226, 231);
@@ -55,15 +68,15 @@
 }
 
 
-.createButton:hover{
-  background-color: hsl(229, 22%, 90%);
+.selectButton:hover{
+  background-color: hsl(138, 100%, 40%);
   border-color: rgb(255,255,255);
   cursor: pointer;
   
   
 }
 
-.createButton:active{
+.selectButton:active{
   padding: 3px;
   
 }
