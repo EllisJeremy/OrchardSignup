@@ -97,39 +97,34 @@ export interface taskStoreType{
   setColor: (dueTime: string) => void;
   setOwner: (description: string) => void;
 
-  setTaskDatabase: (taskDatabase: string[][]) => void;
+  setTaskDatabase: (date: string, title: string, dueTime: string, description: string, color: string) => void;
   
 }
 
 
 export const taskStore = create<taskStoreType>((set) => ({
-  date: 'date',
   title: 'Title',
+  date: 'date',
   dueTime: 'Due Time',
   description: 'Description',
-  color: 'color',
+  color: 'Red',
   owner: 'owner',
 
-  taskDatabase: [['dayKey'],['title'],['dueTime'],['description'],['color'],['owner'],
-                 ['dayKey'],['title'],['dueTime'],['description'],['color'],['owner']],
+  taskDatabase: [['title','date', 'dueTime', 'description' , 'color', 'owner']],
 
-  setDate : (date: string) => set(() => ({date})),
   setTitle : (title: string) => set(() => ({title})),
+  setDate : (date: string) => set(() => ({date})),
   setDueTime : (dueTime: string) => set(() => ({dueTime})),
   setDescription : (description: string) => set(() => ({description})),
   setColor : (color: string) => set(() => ({color})),
   setOwner : (owner: string) => set(() => ({owner})),
  
-  setTaskDatabase : (taskDatabase: string[][]) => set(() => ({
-    
-    
-    
-    
-    taskDatabase
+  setTaskDatabase: ( title: string, date: string, dueTime: string, description: string, color: string) => 
+    set((state) => {
+      const newTask = [title, date, dueTime, description, color, 'blank for now'];
+      const updatedTaskDatabase = [...state.taskDatabase, newTask];
   
-  
-  
-  
-  })),
+      return { taskDatabase: updatedTaskDatabase };
+    }),
 
 }));

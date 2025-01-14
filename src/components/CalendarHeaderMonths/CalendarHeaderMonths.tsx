@@ -1,9 +1,11 @@
 import styles from './CalendarHeaderMonths.module.css'
 import { dateStore } from '../../store'
 import monthToString from '../../globalTypescript/monthToString';
-
+import { taskStore } from '../../store';
 
 export default function CalendarHeader(){
+
+  const {taskDatabase} = taskStore();
 
   const {month, year, decrementMonth, incrementMonth} = dateStore();
 
@@ -27,7 +29,7 @@ export default function CalendarHeader(){
         </div>
           
         <div className={styles.logInDiv}>
-          <button className={styles.buttonLogin}>
+          <button className={styles.buttonLogin} onClick={() => console.log(taskDatabase)}>
             login
           </button>
         </div>

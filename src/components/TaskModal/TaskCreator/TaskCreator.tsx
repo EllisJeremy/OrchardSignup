@@ -4,7 +4,7 @@ import { taskStore } from '../../../store'
 
 export default function TaskCreator() {
 
-  const {setTitle, setDueTime, setDescription, setColor} = taskStore();
+  const {title, date, dueTime, description, color, setTitle, setDueTime, setDescription, setColor, setTaskDatabase} = taskStore();
 
   return (
     <div className={styles.taskCreatorDiv}>
@@ -20,7 +20,7 @@ export default function TaskCreator() {
       </div>
 
       <textarea className={styles.descriptionInput}  onChange={(e) => setDescription(e.target.value)} placeholder='description'></textarea>
-      <button className={styles.createButton} >
+      <button className={styles.createButton} onClick={() => setTaskDatabase(title, date, dueTime, description, color)}>
         <img className={styles.plus} src='/+.svg'/>
       </button>
       <select id="options" className={styles.colorSelect} onChange={(e) => setColor(e.target.value)}>
