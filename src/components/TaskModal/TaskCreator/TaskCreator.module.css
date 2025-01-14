@@ -20,12 +20,12 @@
   resize: none;
 }
 
-.titleInput, .dueTimeInput{
+.titleInput{
   grid-column: 1 / span 2;
   
 }
 
-.titleInput, .dueTimeInput, .descriptionInput, .colorSelect {
+.titleInput, .dueTimeInput, .descriptionInput, .colorSelect, .eventDiv{
   border:2px solid rgb(225, 226, 231);
   border-radius: 5px;
 }
@@ -34,6 +34,17 @@
   border-color: rgb(175, 176, 191);
   outline: none;
 }
+
+.eventDiv{
+  color: rgb(123, 123, 123);
+  font-size: 13px;
+  padding-left: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
 
 
 .createButton{

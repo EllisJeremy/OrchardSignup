@@ -1,5 +1,5 @@
 .taskCreatorDiv{
-  background-color: white;
+  background-color: rgb(106, 184, 125);
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0px 1px 1px .5px rgb(225, 226, 230);
@@ -7,22 +7,27 @@
   
 
   display: grid;
-  grid-template-columns: 19.5% 19.5% 59%;
-  grid-template-rows: 25px 25px 25px;
+  grid-template-columns: 24% 24% 24% 24%;
+  grid-template-rows: 25px 25px 25px 25px;
   gap: 5px;
   
 }
 
 .descriptionInput {
-  grid-column: 3;
-  grid-row: 1 / span 3 ;
+  grid-column: 1 / span 3;
+  grid-row: 2 / span 4;
   font-family: Arial;
   resize: none;
 }
 
-.titleInput, .dueTimeInput{
-  grid-column: 1 / span 2;
-  
+.titleInput{
+  grid-column: 1 / span 3;
+  grid-row: 1;
+}
+
+.dueTimeInput{
+  grid-column: 4;
+  grid-row: 1;
 }
 
 .titleInput, .dueTimeInput, .descriptionInput{
@@ -37,7 +42,7 @@
 
 
 .createButton{
-  grid-column: 1 / span 2;
+  grid-row: 2 / span 3;
   background-color: rgb(255, 255, 255);
   
   border:2px solid rgb(225, 226, 231);
@@ -64,6 +69,6 @@
 }
 
 .plus{
-  height: 90%;
+  height: 60%;
 }
 

@@ -7,6 +7,14 @@ export default function TaskCreator() {
       
       <input className={styles.titleInput} placeholder='title'></input>
       <input className={styles.dueTimeInput} placeholder='due time'></input>
+
+      <div className={styles.eventDiv}>event:
+        <label className={styles.switch}>
+          <input type="checkbox" />
+          <span className={styles.slider}></span>
+        </label>
+      </div>
+
       <textarea className={styles.descriptionInput} placeholder='description'></textarea>
       <button className={styles.createButton}>
         <img className={styles.plus} src='/+.svg'/>

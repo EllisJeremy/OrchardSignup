@@ -9,7 +9,7 @@ export default function TaskCreator() {
       <input className={styles.dueTimeInput} placeholder='due time'></input>
       <textarea className={styles.descriptionInput} placeholder='description'></textarea>
       <button className={styles.createButton}>
-        <img className={styles.plus} src='/+.svg'/>
+        <img className={styles.plus} src='/check.svg'/> 
       </button>
       
       
