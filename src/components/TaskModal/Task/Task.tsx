@@ -1,4 +1,4 @@
-import styles from './taskCreator.module.css'
+import styles from './Task.module.css'
 
 
 export default function TaskCreator() {
@@ -11,6 +11,7 @@ export default function TaskCreator() {
       <button className={styles.createButton}>
         <img className={styles.plus} src='/+.svg'/>
       </button>
+      
       
     </div>
   )

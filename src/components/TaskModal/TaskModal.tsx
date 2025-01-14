@@ -1,5 +1,6 @@
 import styles from './TaskModal.module.css'
-import TaskCreator from './subComponenets/TaskCreator';
+import TaskCreator from './TaskCreator/TaskCreator';
+import Task from './Task/Task';
 import { dateStore, modalStore } from "../../store"
 import monthToString from '../../globalTypescript/monthToString';
 //import styles2 from '../Calendar/Calendar.module.css'
@@ -23,11 +24,12 @@ export default function TaskModal() {
         </div>
         
 
-        <div className={styles.contentDiv}>
+          <Task />
           <TaskCreator />
           
+          
 
-        </div>
+        
       </div>
     </>
   )
