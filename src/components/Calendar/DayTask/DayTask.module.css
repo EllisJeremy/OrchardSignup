@@ -11,8 +11,9 @@
   margin: 0px;
   border-radius: 3px;
   padding: 2px;
+  
   overflow: hidden;
-  text-overflow: ellipsis;
+  
   white-space: nowrap; 
   
 }
