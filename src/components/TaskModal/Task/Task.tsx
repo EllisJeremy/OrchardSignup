@@ -1,6 +1,29 @@
 import styles from './Task.module.css'
 import { taskStore } from '../../../store'
 
+
+const colorMap: Record<string, React.CSSProperties> = {
+  Red: {
+    backgroundColor: "rgb(255, 0, 0)"
+  },
+  Orange: {
+    backgroundColor: "rgb(255, 123, 0)"
+  },
+  Yellow: {
+    backgroundColor: "rgb(247, 190, 39)"
+  },
+  Green: {
+    backgroundColor: "rgb(0, 124, 37)"
+  },
+  Blue: {
+    backgroundColor: "rgb(0, 180, 255)"
+  },
+  Purple: {
+    backgroundColor: "rgb(138, 100, 226)"
+  },
+  
+}
+
 export default function TaskCreator() {
 
   const {date, taskDatabase} = taskStore();
@@ -13,7 +36,7 @@ export default function TaskCreator() {
       return (
         <>
           {tasks.map((tasks, index) => (  
-            <div key={index} className={styles.taskCreatorDiv}>
+            <div key={index} className={styles.taskCreatorDiv} style={colorMap[tasks.color]}>
           
             <p className={styles.title}>
               {tasks.title}

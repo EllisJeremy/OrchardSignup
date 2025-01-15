@@ -149,6 +149,9 @@ export const taskStore = create<taskStoreType>((set) => ({
  
   setTaskDatabase: ( date: string, title: string , dueTime: string, description: string, color: string, owner: string) => 
     set((state) => {
+      if (title === ''){
+        title = 'No Title'
+      }
       // Create the new task entry
       const task = new TaskClass(date, title, dueTime, description, color, owner);
 

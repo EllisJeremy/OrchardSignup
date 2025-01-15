@@ -11,21 +11,17 @@
   margin: 0px;
   border-radius: 3px;
   padding: 2px;
-  
   overflow: hidden;
-  
   white-space: nowrap; 
-  
+  color: white;
 }
 
 
 
-.taskLabel{
-  background-color: rgb(140, 179, 180);
-}
+
 
 .overflowLabel{
-  
+  color: black;
   background-color: rgb(224, 225, 235);
 }
 
