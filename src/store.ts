@@ -124,8 +124,8 @@ export interface taskStoreType{
 
 
 export const taskStore = create<taskStoreType>((set) => ({
-  title: 'Title',
   date: 'date',
+  title: 'Title',
   dueTime: 'Due Time',
   description: 'Description',
   color: 'Red',
@@ -133,8 +133,8 @@ export const taskStore = create<taskStoreType>((set) => ({
 
   taskDatabase: new Map(),
 
-  setTitle : (title: string) => set(() => ({title})),
   setDate : (date: string) => set(() => ({date})),
+  setTitle : (title: string) => set(() => ({title})),
   setDueTime : (dueTime: string) => set(() => ({dueTime})),
   setDescription : (description: string) => set(() => ({description})),
   setColor : (color: string) => set(() => ({color})),

@@ -1,6 +1,7 @@
 import styles from './Calendar.module.css'
 import {getStartingDay, getEndingDay, getDaysInMonth} from './calendarFunctions'
 import { dateStore, modalStore, taskStore } from '../../store'
+import DayTask from './DayTask/DayTask';
 
 export default function Calendar(){
 
@@ -35,12 +36,10 @@ export default function Calendar(){
            {i + 1} 
           </ div>
           
-          
-          
-          
+          <div className={styles.dayContentDiv}>
+            <DayTask cellDate = {month.toString()+ "/" + (i + 1) + "/" + year.toString()}/>
+          </ div>
 
-          
-           
         </div>
       ))}
 

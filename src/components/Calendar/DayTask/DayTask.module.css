@@ -1,0 +1,28 @@
+.dayContentChildDiv{
+  text-align: center;
+  padding: 2px;
+  width: 11vw;
+}
+
+
+
+
+.taskLabel1, .taskLabel2{
+  margin: 0px;
+  border-radius: 3px;
+  padding: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+  
+}
+
+
+
+.taskLabel1{
+  background-color: rgb(42, 157, 165);
+}
+
+.taskLabel2{
+  background-color: hsl(46, 100%, 41%);
+}
