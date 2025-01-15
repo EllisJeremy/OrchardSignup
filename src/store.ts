@@ -77,6 +77,26 @@ export const modalStore = create<modalStoreType>((set) => ({
 
 }));
 
+//task class
+
+class TaskClass{
+  public readonly date: string;
+  public readonly title: string;
+  public readonly dueTime: string;
+  public readonly description: string;
+  public readonly color: string;
+  public readonly owner: string;
+
+  constructor(date: string, title: string, dueTime: string, description: string, color: string, owner: string){
+    this.date = date;
+    this.title = title;
+    this.dueTime = dueTime;
+    this.description = description;
+    this.color = color;
+    this.owner = owner;
+  }
+}
+
 
 //task store
 
@@ -88,7 +108,7 @@ export interface taskStoreType{
   color: string;
   owner: string;
 
-  taskDatabase: string[][];
+  taskDatabase: Map<string, TaskClass[]>;
 
   setDate: (title: string) => void;
   setTitle: (setTime: string) => void;
@@ -98,7 +118,7 @@ export interface taskStoreType{
   setOwner: (description: string) => void;
 
   resetTaskVariables: () => void;
-  setTaskDatabase: (date: string, title: string, dueTime: string, description: string, color: string) => void;
+  setTaskDatabase: (date: string, title: string, dueTime: string, description: string, color: string, owner: string) => void;
   
 }
 
@@ -111,7 +131,7 @@ export const taskStore = create<taskStoreType>((set) => ({
   color: 'Red',
   owner: 'owner',
 
-  taskDatabase: [[]],
+  taskDatabase: new Map(),
 
   setTitle : (title: string) => set(() => ({title})),
   setDate : (date: string) => set(() => ({date})),
@@ -127,12 +147,20 @@ export const taskStore = create<taskStoreType>((set) => ({
       return { title: '',dueTime: '',description: '', color: 'Red'};
     }),
  
-  setTaskDatabase: ( title: string, date: string, dueTime: string, description: string, color: string) => 
+  setTaskDatabase: ( date: string, title: string , dueTime: string, description: string, color: string, owner: string) => 
     set((state) => {
-      const newTask = [title, date, dueTime, description, color, 'blank for now'];
-      const updatedTaskDatabase = [...state.taskDatabase, newTask];
+      // Create the new task entry
+      const task = new TaskClass(date, title, dueTime, description, color, owner);
+
+      // Create a new Map to ensure immutability
+      const updatedDatabase = new Map(state.taskDatabase);
+
+      // Get the existing tasks for the date or initialize with an empty array
+      const existingTasks = updatedDatabase.get(date) || [];
+
+      updatedDatabase.set(date, [...existingTasks, task]);
   
-      return { taskDatabase: updatedTaskDatabase };
+      return { taskDatabase: updatedDatabase  };
     }),
 
 }));

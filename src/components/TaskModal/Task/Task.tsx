@@ -3,7 +3,7 @@ import { taskStore } from '../../../store'
 
 export default function TaskCreator() {
 
-  const {title, dueTime, description} = taskStore();
+  const {date} = taskStore();
 
   return (
     <div className={styles.taskCreatorDiv}>
