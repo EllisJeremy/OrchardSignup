@@ -54,7 +54,7 @@
 }
 
 
-.selectButton{
+.selectButton, .trashButton{
   
   background-color: rgb(255, 255, 255);
   
@@ -68,15 +68,13 @@
 }
 
 
-.selectButton:hover{
+.selectButton:hover, .trashButton:hover{
   background-color: hsl(138, 100%, 40%);
   border-color: rgb(255,255,255);
   cursor: pointer;
-  
-  
 }
 
-.selectButton:active{
+.selectButton:active ,.trashButton:active{
   padding: 3px;
   
 }
@@ -85,3 +83,15 @@
   height: 60%;
 }
 
+.trashButton:hover{
+  background-color: rgb(255, 53, 53);
+}
+
+.trashButton:active{
+  padding: 2px;
+  
+}
+
+.trash{
+  height: 100%;
+}

@@ -101,6 +101,8 @@ class TaskClass{
 //task store
 
 export interface taskStoreType{
+  admin: boolean;
+
   date: string;
   title: string;
   dueTime: string;
@@ -109,6 +111,8 @@ export interface taskStoreType{
   owner: string;
 
   taskDatabase: Map<string, TaskClass[]>;
+
+  setAdmin: () => void;
 
   setDate: (title: string) => void;
   setTitle: (setTime: string) => void;
@@ -119,11 +123,13 @@ export interface taskStoreType{
 
   resetTaskVariables: () => void;
   setTaskDatabase: (date: string, title: string, dueTime: string, description: string, color: string, owner: string) => void;
-  
+  removeTask: (key: string, taskIndex: number) => void;
 }
 
 
 export const taskStore = create<taskStoreType>((set) => ({
+  admin: false,
+
   date: 'date',
   title: 'Title',
   dueTime: 'Due Time',
@@ -132,6 +138,8 @@ export const taskStore = create<taskStoreType>((set) => ({
   owner: 'owner',
 
   taskDatabase: new Map(),
+
+  setAdmin: () => set((state) => ({ admin: !state.admin })),
 
   setDate : (date: string) => set(() => ({date})),
   setTitle : (title: string) => set(() => ({title})),
@@ -165,5 +173,18 @@ export const taskStore = create<taskStoreType>((set) => ({
   
       return { taskDatabase: updatedDatabase  };
     }),
+
+    removeTask: (key: string, taskIndex: number) =>
+      set((state) => {
+        const updatedDatabase = new Map(state.taskDatabase);
+        const tasks = updatedDatabase.get(key)!;
+    
+        updatedDatabase.set(
+          key,
+          tasks.filter((_, index) => index !== taskIndex)
+        );
+    
+        return { taskDatabase: updatedDatabase };
+      })
 
 }));

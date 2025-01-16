@@ -8,25 +8,27 @@ interface propsType {
 
 const colorMap: Record<string, React.CSSProperties> = {
   Red: {
-    backgroundColor: "rgb(255, 0, 0)"
+    backgroundColor: "rgba(255, 0, 0, .5)"
   },
   Orange: {
-    backgroundColor: "rgb(255, 123, 0)"
+    backgroundColor: "rgba(255, 123, 0, .5)"
   },
   Yellow: {
-    backgroundColor: "rgb(247, 190, 39)"
+    backgroundColor: "rgba(247, 190, 39, .5)"
   },
   Green: {
-    backgroundColor: "rgb(0, 124, 37)"
+    backgroundColor: "rgba(39, 163, 76, .5)"
   },
   Blue: {
-    backgroundColor: "rgb(0, 180, 255)"
+    backgroundColor: "rgba(0, 180, 255, .5)"
   },
   Purple: {
-    backgroundColor: "rgb(138, 100, 226)"
+    backgroundColor: "rgba(149, 123, 211, .5)"
   },
   
 }
+
+
 
 export default function DayTask(props: propsType) {
 

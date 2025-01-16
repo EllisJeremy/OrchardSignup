@@ -5,7 +5,7 @@ import { taskStore } from '../../store';
 
 export default function CalendarHeader(){
 
-  const {taskDatabase} = taskStore();
+  const {setAdmin} = taskStore();
 
   const {month, year, decrementMonth, incrementMonth} = dateStore();
 
@@ -29,7 +29,7 @@ export default function CalendarHeader(){
         </div>
           
         <div className={styles.logInDiv}>
-          <button className={styles.buttonLogin} onClick={() => console.log(taskDatabase)}>
+          <button className={styles.buttonLogin} onClick={setAdmin}>
             login
           </button>
         </div>
