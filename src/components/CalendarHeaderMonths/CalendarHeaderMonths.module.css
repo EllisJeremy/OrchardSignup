@@ -68,12 +68,17 @@
   background-color: rgb(255,255,255);
   border-style: none;
   box-shadow: 0px 0px 8px 1.25px hsl(229, 22%, 85%);
-  font-size: 22px;
+  font-size: 15px;
   border-radius: 15px;
-  width: 80px;
+  width: 120px;
   height: 45px;
   margin-right: 20px;
   transition: background-color .4s, box-shadow .75s;
+
+  color: black; 
+  -webkit-appearance: none; 
+  -moz-appearance: none;
+  appearance: none;
 }
 
 

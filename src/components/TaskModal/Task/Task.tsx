@@ -1,5 +1,7 @@
 import styles from './Task.module.css'
 import { taskStore } from '../../../store'
+import trash from '../../.././assets/trash.svg'
+import check from '../../.././assets/check.svg'
 
 
 const colorMap: Record<string, React.CSSProperties> = {
@@ -46,16 +48,17 @@ export default function TaskCreator() {
             {tasks.map((tasks, index) => (  
               
               
-              <div key={index} className={styles.taskCreatorDiv} onClick={()=>(removeTask(date,index))} >
+              <div key={index} className={styles.taskCreatorDiv} >
                 
-              <button className={styles.trashButton}>
-                <img className={styles.trash} src='/trash.svg'/> 
+              <button className={styles.trashButton} onClick={()=>(removeTask(date,index))}>
+                <img className={styles.trash} src={trash}/> 
               </button>
 
               <p className={styles.title} style={{ ...colorMap[tasks.color], ...adminTitle }} >
                 {tasks.title}
               </p>
-
+              
+              
               <p className={styles.dueTime}>
                 {tasks.dueTime}
               </p>
@@ -64,7 +67,7 @@ export default function TaskCreator() {
                 {tasks.description}
               </p>
               <button className={styles.selectButton}>
-                <img className={styles.plus} src='/check.svg'/> 
+                <img className={styles.plus} src={check}/> 
               </button>
             
               </div>
@@ -95,7 +98,7 @@ export default function TaskCreator() {
                 {tasks.description}
               </p>
               <button className={styles.selectButton}>
-                <img className={styles.plus} src='/check.svg'/> 
+                <img className={styles.plus} src={check}/> 
               </button>
             
               </div>

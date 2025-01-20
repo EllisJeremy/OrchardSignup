@@ -2,6 +2,8 @@ import styles from './CalendarHeaderMonths.module.css'
 import { dateStore } from '../../store'
 import monthToString from '../../globalTypescript/monthToString';
 import { taskStore } from '../../store';
+import arrowLeft from '../.././assets/arrowLeft.svg'
+import arrowRight from '../.././assets/arrowRight.svg'
 
 export default function CalendarHeader(){
 
@@ -15,7 +17,7 @@ export default function CalendarHeader(){
         <div className={styles.changeMonthDiv}>
 
           <button className={styles.buttonLeft} onClick={decrementMonth}>
-            <img className={styles.arrow} src={'/arrowLeft.svg'}/> 
+            <img className={styles.arrow} src={arrowLeft}/> 
           </button>
 
           <p className={styles.monthText}>
@@ -23,14 +25,14 @@ export default function CalendarHeader(){
           </p>
 
           <button className={styles.buttonRight} onClick={incrementMonth}>
-            <img className={styles.arrow} src={'/arrowRight.svg'}/> 
+            <img className={styles.arrow} src={arrowRight}/> 
           </button>
 
         </div>
           
         <div className={styles.logInDiv}>
           <button className={styles.buttonLogin} onClick={setAdmin}>
-            login
+            Toggle Admin
           </button>
         </div>
 

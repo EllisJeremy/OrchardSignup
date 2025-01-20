@@ -128,7 +128,7 @@ export interface taskStoreType{
 
 
 export const taskStore = create<taskStoreType>((set) => ({
-  admin: false,
+  admin: true,
 
   date: 'date',
   title: 'Title',

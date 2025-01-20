@@ -1,6 +1,6 @@
 import styles from './TaskCreator.module.css'
 import { taskStore } from '../../../store'
-
+import plus from '../../.././assets/+.svg'
 
 export default function TaskCreator() {
 
@@ -21,7 +21,7 @@ export default function TaskCreator() {
 
         <textarea className={styles.descriptionInput}  onChange={(e) => setDescription(e.target.value)} placeholder='description'></textarea>
         <button className={styles.createButton} onClick={() => {setTaskDatabase(date, title, dueTime, description, color,'')}}>
-          <img className={styles.plus} src='/+.svg'/>
+          <img className={styles.plus} src={plus}/>
         </button>
         <select id="options" className={styles.colorSelect} onChange={(e) => setColor(e.target.value)}>
           <option value="Red">

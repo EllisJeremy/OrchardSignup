@@ -3,7 +3,8 @@ import TaskCreator from './TaskCreator/TaskCreator';
 import Task from './Task/Task';
 import { dateStore, modalStore } from "../../store"
 import monthToString from '../../globalTypescript/monthToString';
-//import styles2 from '../Calendar/Calendar.module.css'
+import x from '../.././assets/X.svg'
+
 export default function TaskModal() {
 
   const {taskModal, openCloseTaskModal} = modalStore();
@@ -19,7 +20,7 @@ export default function TaskModal() {
         <div className={styles.headerDiv}>
           {monthToString(month)} {currentDay}
           <button className={styles.buttonExit} onClick={openCloseTaskModal}>
-            <img className={styles.X} src={'/X.svg'}/>
+            <img className={styles.X} src={x}/>
           </button>
         </div>
         
