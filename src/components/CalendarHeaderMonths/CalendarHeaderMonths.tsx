@@ -7,7 +7,7 @@ import arrowRight from '../.././assets/arrowRight.svg'
 
 export default function CalendarHeader(){
 
-  const {setAdmin, taskDatabase} = taskStore();
+  const {setAdmin, setOwner, taskDatabase} = taskStore();
 
   const {month, year, decrementMonth, incrementMonth} = dateStore();
 
@@ -31,7 +31,7 @@ export default function CalendarHeader(){
         </div>
           
         <div className={styles.logInDiv}>
-          <button className={styles.buttonLogin} onClick={() => {setAdmin(); console.log(taskDatabase)}}>
+          <button className={styles.buttonLogin} onClick={() => {setAdmin(); console.log(taskDatabase); setOwner('jeremy')}}>
             Toggle Admin
           </button>
         </div>

@@ -134,12 +134,12 @@ export interface taskStoreType{
 export const taskStore = create<taskStoreType>((set) => ({
   admin: true,
 
-  date: 'date',
-  title: 'Title',
-  dueTime: 'Due Time',
-  description: 'Description',
+  date: '',
+  title: '',
+  dueTime: '',
+  description: '',
   color: 'Red',
-  owner: 'owner',
+  owner: '',
   signup: false,
 
   taskDatabase: new Map(),
