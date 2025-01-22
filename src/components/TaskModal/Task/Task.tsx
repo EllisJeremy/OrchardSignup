@@ -32,7 +32,9 @@ const colorMap: Record<string, React.CSSProperties> = {
   
 }
 
-const adminTitle: React.CSSProperties = {gridColumn: "2 / span 2"}
+const adminTitle: React.CSSProperties = {gridColumn: "2 / span 2"};
+
+
 
 export default function TaskCreator() {
 
@@ -42,74 +44,33 @@ export default function TaskCreator() {
   if (taskDatabase.has(date)){
     const tasks = taskDatabase.get(date)!;
     
-      if (admin){
-        return (
-          <>
-            {tasks.map((tasks, index) => (  
-              
-              
-              <div key={index} className={styles.taskCreatorDiv} >
-                
-              <button className={styles.trashButton} onClick={()=>(removeTask(date,index))}>
-                <img className={styles.trash} src={trash}/> 
+    return (
+      <>
+        {tasks.map((task, index) => (
+          <div key={index} className={styles.taskCreatorDiv}>
+            {admin && (
+              <button className={styles.trashButton} onClick={() => removeTask(date, index)}>
+                <img className={styles.trash} src={trash} />
               </button>
-
-              <p className={styles.title} style={{ ...colorMap[tasks.color], ...adminTitle }} >
-                {tasks.title}
-              </p>
-              
-              
-              <p className={styles.dueTime}>
-                {tasks.dueTime}
-              </p>
-
-              <p className={styles.description} >
-                {tasks.description}
-              </p>
-              <button className={styles.selectButton}>
-                <img className={styles.plus} src={check}/> 
-              </button>
+            )}
+    
+            <p
+              className={styles.title}
+              style={admin ? { ...colorMap[task.color], ...adminTitle } : colorMap[task.color]}
+            >
+              {task.title}
+            </p>
+    
+            <p className={styles.dueTime}>{task.dueTime}</p>
+            <p className={styles.description} style={task.signup ? {} : {gridColumn: "1 / span 4"} }>{task.description}</p>
             
-              </div>
-              ))}
-          </>
-      
-
-        )
-
-      
-      }
-
-      else{
-        return (
-          <>
-            {tasks.map((tasks, index) => (  
-              <div key={index} className={styles.taskCreatorDiv} >
-            
-              <p className={styles.title} style={colorMap[tasks.color]}>
-                {tasks.title}
-              </p>
-
-              <p className={styles.dueTime}>
-                {tasks.dueTime}
-              </p>
-
-              <p className={styles.description} >
-                {tasks.description}
-              </p>
-              <button className={styles.selectButton}>
-                <img className={styles.plus} src={check}/> 
-              </button>
-            
-              </div>
-              ))}
-          </>
-      
-
-        )
-
-      
-      }
+            {task.signup &&(<button className={styles.selectButton}>
+              <img className={styles.plus} src={check} />
+            </button>)}
+          </div>
+        ))}
+      </>
+    );
     
   }
 

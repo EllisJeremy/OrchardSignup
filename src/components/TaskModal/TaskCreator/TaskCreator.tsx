@@ -4,7 +4,7 @@ import plus from '../../.././assets/+.svg'
 
 export default function TaskCreator() {
 
-  const {title, date, dueTime, description, color, admin, setTitle, setDueTime, setDescription, setColor, setTaskDatabase} = taskStore();
+  const {title, date, dueTime, description, color, signup, admin, setTitle, setDueTime, setDescription, setColor, setTaskDatabase, setSignup} = taskStore();
   if (admin){
     return (
       <div className={styles.taskCreatorDiv}>
@@ -12,15 +12,15 @@ export default function TaskCreator() {
         <input className={styles.titleInput} onChange={(e) => setTitle(e.target.value)} placeholder='title'></input>
         <input className={styles.dueTimeInput} onChange={(e) => setDueTime(e.target.value)} placeholder='due time'></input>
 
-        <div className={styles.eventDiv}>event:
-          <label className={styles.switch}>
+        <div className={styles.signupDiv}>signup:
+          <label className={styles.switch} onChange={setSignup}>
             <input type="checkbox" />
             <span className={styles.slider}></span>
           </label>
         </div>
 
         <textarea className={styles.descriptionInput}  onChange={(e) => setDescription(e.target.value)} placeholder='description'></textarea>
-        <button className={styles.createButton} onClick={() => {setTaskDatabase(date, title, dueTime, description, color,'')}}>
+        <button className={styles.createButton} onClick={() => {setTaskDatabase(date, title, dueTime, description, color,'',signup)}}>
           <img className={styles.plus} src={plus}/>
         </button>
         <select id="options" className={styles.colorSelect} onChange={(e) => setColor(e.target.value)}>

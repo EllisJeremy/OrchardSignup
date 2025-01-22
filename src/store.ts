@@ -86,14 +86,16 @@ class TaskClass{
   public readonly description: string;
   public readonly color: string;
   public readonly owner: string;
+  public readonly signup: boolean;
 
-  constructor(date: string, title: string, dueTime: string, description: string, color: string, owner: string){
+  constructor(date: string, title: string, dueTime: string, description: string, color: string, owner: string, event: boolean){
     this.date = date;
     this.title = title;
     this.dueTime = dueTime;
     this.description = description;
     this.color = color;
     this.owner = owner;
+    this.signup = event;
   }
 }
 
@@ -109,6 +111,7 @@ export interface taskStoreType{
   description: string;
   color: string;
   owner: string;
+  signup: boolean;
 
   taskDatabase: Map<string, TaskClass[]>;
 
@@ -120,9 +123,10 @@ export interface taskStoreType{
   setDescription: (description: string) => void;
   setColor: (dueTime: string) => void;
   setOwner: (description: string) => void;
+  setSignup: () => void;
 
   resetTaskVariables: () => void;
-  setTaskDatabase: (date: string, title: string, dueTime: string, description: string, color: string, owner: string) => void;
+  setTaskDatabase: (date: string, title: string, dueTime: string, description: string, color: string, owner: string, event: boolean) => void;
   removeTask: (key: string, taskIndex: number) => void;
 }
 
@@ -136,6 +140,7 @@ export const taskStore = create<taskStoreType>((set) => ({
   description: 'Description',
   color: 'Red',
   owner: 'owner',
+  signup: false,
 
   taskDatabase: new Map(),
 
@@ -147,21 +152,22 @@ export const taskStore = create<taskStoreType>((set) => ({
   setDescription : (description: string) => set(() => ({description})),
   setColor : (color: string) => set(() => ({color})),
   setOwner : (owner: string) => set(() => ({owner})),
+  setSignup : () => set((state) => ({signup: !state.signup})),
 
   resetTaskVariables: ( ) => 
     set(() => {
       
   
-      return { title: '',dueTime: '',description: '', color: 'Red'};
+      return { title: '',dueTime: '',description: '', color: 'Red', signup: false};
     }),
  
-  setTaskDatabase: ( date: string, title: string , dueTime: string, description: string, color: string, owner: string) => 
+  setTaskDatabase: ( date: string, title: string , dueTime: string, description: string, color: string, owner: string, event: boolean) => 
     set((state) => {
       if (title === ''){
         title = 'No Title'
       }
       // Create the new task entry
-      const task = new TaskClass(date, title, dueTime, description, color, owner);
+      const task = new TaskClass(date, title, dueTime, description, color, owner, event);
 
       // Create a new Map to ensure immutability
       const updatedDatabase = new Map(state.taskDatabase);
