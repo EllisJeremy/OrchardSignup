@@ -4,7 +4,7 @@ import plus from '../../.././assets/+.svg'
 
 export default function TaskCreator() {
 
-  const {title, date, dueTime, description, color, signup, admin, owner, setTitle, setDueTime, setDescription, setColor, setTaskDatabase, setSignup} = taskStore();
+  const {title, date, dueTime, description, color, signup, admin, setTitle, setDueTime, setDescription, setColor, setTaskDatabase, setSignup} = taskStore();
   if (admin){
     return (
       <div className={styles.taskCreatorDiv}>
@@ -20,7 +20,7 @@ export default function TaskCreator() {
         </div>
 
         <textarea className={styles.descriptionInput}  onChange={(e) => setDescription(e.target.value)} placeholder='description'></textarea>
-        <button className={styles.createButton} onClick={() => {setTaskDatabase(date, title, dueTime, description, color, owner, signup)}}>
+        <button className={styles.createButton} onClick={() => {setTaskDatabase(date, title, dueTime, description, color, '', signup)}}>
           <img className={styles.plus} src={plus}/>
         </button>
         <select id="options" className={styles.colorSelect} onChange={(e) => setColor(e.target.value)}>

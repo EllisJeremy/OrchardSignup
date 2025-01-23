@@ -85,7 +85,7 @@ class TaskClass{
   public readonly dueTime: string;
   public readonly description: string;
   public readonly color: string;
-  public readonly owner: string;
+  public owner: string;
   public readonly signup: boolean;
 
   constructor(date: string, title: string, dueTime: string, description: string, color: string, owner: string, event: boolean){
@@ -112,8 +112,11 @@ export interface taskStoreType{
   color: string;
   owner: string;
   signup: boolean;
+  render: boolean;
 
   taskDatabase: Map<string, TaskClass[]>;
+
+  
 
   setAdmin: () => void;
 
@@ -124,6 +127,7 @@ export interface taskStoreType{
   setColor: (dueTime: string) => void;
   setOwner: (description: string) => void;
   setSignup: () => void;
+  setRender: () => void;
 
   resetTaskVariables: () => void;
   setTaskDatabase: (date: string, title: string, dueTime: string, description: string, color: string, owner: string, event: boolean) => void;
@@ -141,8 +145,11 @@ export const taskStore = create<taskStoreType>((set) => ({
   color: 'Red',
   owner: '',
   signup: false,
-
+  render: true,
+  
   taskDatabase: new Map(),
+
+  
 
   setAdmin: () => set((state) => ({ admin: !state.admin })),
 
@@ -153,6 +160,7 @@ export const taskStore = create<taskStoreType>((set) => ({
   setColor : (color: string) => set(() => ({color})),
   setOwner : (owner: string) => set(() => ({owner})),
   setSignup : () => set((state) => ({signup: !state.signup})),
+  setRender : () => set((state) => ({render: !state.render})),
 
   resetTaskVariables: ( ) => 
     set(() => {

@@ -2,6 +2,7 @@ import styles from './Task.module.css'
 import { taskStore } from '../../../store'
 import trash from '../../.././assets/trash.svg'
 import check from '../../.././assets/check.svg'
+import XFat from '../../.././assets/XFat.svg'
 
 
 const colorMap: Record<string, React.CSSProperties> = {
@@ -38,7 +39,7 @@ const adminTitle: React.CSSProperties = {gridColumn: "2 / span 2"};
 
 export default function TaskCreator() {
 
-  const {date, taskDatabase, admin, removeTask} = taskStore();
+  const {date, taskDatabase, admin, owner, removeTask, setRender} = taskStore();
 
 
   if (taskDatabase.has(date)){
@@ -64,9 +65,27 @@ export default function TaskCreator() {
             <p className={styles.dueTime}>{task.dueTime}</p>
             <p className={styles.description} style={task.signup ? {} : {gridColumn: "1 / span 4"} }>{task.description}</p>
             
-            {task.signup &&(<button className={styles.selectButton}>
-              <img className={styles.plus} src={check} />
-            </button>)}
+            
+
+            {task.signup && taskDatabase.get(date)![index].owner === '' &&(
+              <button className={styles.selectButton}  onClick={() => {taskDatabase.get(date)![index].owner = owner; setRender()}}>
+                <img className={styles.plus} src={check} />
+              </button>
+            
+            )}
+
+            {task.signup && taskDatabase.get(date)![index].owner !== '' &&(
+              <>
+                <p className={styles.owner}>
+                  {taskDatabase.get(date)![index].owner}
+                </p>
+                <button className={styles.unSelectButton}  onClick={() => {taskDatabase.get(date)![index].owner = ''; setRender()}}>
+                  <img className={styles.XFat} src={XFat} />
+                </button>
+              </>
+            )}
+              
+              
           </div>
         ))}
       </>

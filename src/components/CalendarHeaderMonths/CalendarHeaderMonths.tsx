@@ -24,14 +24,14 @@ export default function CalendarHeader(){
             {monthToString(month)} {year}
           </p>
 
-          <button className={styles.buttonRight} onClick={incrementMonth}>
+          <button className={styles.buttonRight} onClick={() => {incrementMonth(); setOwner('jeremy')}}>
             <img className={styles.arrow} src={arrowRight}/> 
           </button>
 
         </div>
           
         <div className={styles.logInDiv}>
-          <button className={styles.buttonLogin} onClick={() => {setAdmin(); console.log(taskDatabase); setOwner('jeremy')}}>
+          <button className={styles.buttonLogin} onClick={() => {setAdmin(); console.log(taskDatabase)}}>
             Toggle Admin
           </button>
         </div>
