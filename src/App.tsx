@@ -4,7 +4,7 @@ import CalendarHeaderMonths from './components/CalendarHeaderMonths/CalendarHead
 import CalendarHeaderDays from './components/CalendarHeaderDays/CalendarHeaderDays.tsx';
 import Calendar from './components/Calendar/Calendar.tsx';
 import TaskModal from './components/TaskModal/TaskModal.tsx';
-
+import LoginModal from './components/LoginModal/LoginModal.tsx';
 
 export default function App() {
   
@@ -16,6 +16,7 @@ export default function App() {
         <CalendarHeaderDays /> 
         <Calendar />
         <TaskModal />
+        <LoginModal />
       </div>
     </>
   );

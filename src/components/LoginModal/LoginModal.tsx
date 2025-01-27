@@ -1,13 +1,13 @@
 import styles from './LoginModal.module.css'
 
-import { dateStore, modalStore } from "../../store"
-import monthToString from '../../globalTypescript/monthToString';
+import {  modalStore } from "../../store"
+
 import x from '../.././assets/X.svg'
 
-export default function TaskModal() {
+export default function LoginModal() {
 
   const {loginModal, openCloseLoginModal} = modalStore();
-  const {currentDay, month} = dateStore();
+
 
   if (!loginModal) {
     return null
@@ -17,10 +17,22 @@ export default function TaskModal() {
       <div className={styles.overlayDiv} onClick={() => {openCloseLoginModal()}} />
       <div className={styles.modalDiv}>
         <div className={styles.headerDiv}>
-          {monthToString(month)} {currentDay}
+           &nbsp;
           <button className={styles.buttonExit} onClick={openCloseLoginModal}>
             <img className={styles.X} src={x}/>
           </button>
+        </div>
+
+        <div className={styles.loginDiv}>
+          <h2 className={styles.title}>Login</h2>
+          <input className={styles.input} placeholder='username'/>
+          <input className={styles.input} placeholder='password'/>
+        </div>
+
+        <div className={styles.signupDiv}>
+          <h2 className={styles.title}>Signup </h2>
+          <input className={styles.input} placeholder='username'/>
+          <input className={styles.input} placeholder='password'/>
         </div>
         
 

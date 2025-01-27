@@ -78,7 +78,7 @@ export const modalStore = create<modalStoreType>((set) => ({
 
     }))},
   openCloseLoginModal: () => {set((state) => ({
-    taskModal: !state.taskModal,
+    loginModal: !state.loginModal,
 
     }))},
 
