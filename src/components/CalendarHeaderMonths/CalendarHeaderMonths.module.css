@@ -68,9 +68,9 @@
   background-color: rgb(255,255,255);
   border-style: none;
   box-shadow: 0px 0px 8px 1.25px hsl(229, 22%, 85%);
-  font-size: 15px;
+  font-size: 18px;
   border-radius: 15px;
-  width: 120px;
+  width: 80px;
   height: 45px;
   margin-right: 20px;
   transition: background-color .4s, box-shadow .75s;

@@ -1,15 +1,16 @@
 import styles from './CalendarHeaderMonths.module.css'
-import { dateStore } from '../../store'
+import { dateStore, taskStore, modalStore} from '../../store'
 import monthToString from '../../globalTypescript/monthToString';
-import { taskStore } from '../../store';
 import arrowLeft from '../.././assets/arrowLeft.svg'
 import arrowRight from '../.././assets/arrowRight.svg'
 
 export default function CalendarHeader(){
 
-  const {setAdmin, setOwner, taskDatabase} = taskStore();
+  const {setOwner} = taskStore();
 
   const {month, year, decrementMonth, incrementMonth} = dateStore();
+
+  const {openCloseLoginModal} = modalStore();
 
   return(
       <div className={styles.monthsDiv}>
@@ -31,8 +32,8 @@ export default function CalendarHeader(){
         </div>
           
         <div className={styles.logInDiv}>
-          <button className={styles.buttonLogin} onClick={() => {setAdmin(); console.log(taskDatabase)}}>
-            Toggle Admin
+          <button className={styles.buttonLogin} onClick={openCloseLoginModal}>
+            Login
           </button>
         </div>
 
