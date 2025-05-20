@@ -4,7 +4,7 @@ import plus from '../../.././assets/+.svg'
 
 export default function TaskCreator() {
 
-  const { title, date, dueTime, description, color, signup, admin, setTitle, setDueTime, setDescription, setColor, setTaskDatabase, setSignup } = taskStore();
+  const { title, date, hour, minute, dueTime, description, color, signup, admin, setTitle, setHour, setMinute, setMeridiem, setDueTime, setDescription, setColor, setTaskDatabase, setSignup } = taskStore();
   if (admin) {
     return (
       <div className={styles.taskCreatorDiv}>
@@ -13,11 +13,11 @@ export default function TaskCreator() {
         {/* <input className={styles.dueTimeInput} onChange={(e) => setDueTime(e.target.value)} placeholder='due time'></input> */}
 
         <div className={styles.timeDive}>
-          <input className={styles.dueTimeInput} maxLength={2} onChange={(e) => setDueTime(e.target.value)}></input>
+          <input className={styles.dueTimeInput} maxLength={2} onChange={(e) => {setHour(e.target.value); setDueTime()}} value={hour}></input>
 
-          <input className={styles.dueTimeInput} maxLength={2} onChange={(e) => setDueTime(e.target.value)}></input>
+          <input className={styles.dueTimeInput} maxLength={2} onChange={(e) => {setMinute(e.target.value); setDueTime()}} value={minute}></input>
 
-          <select id="options" className={styles.dueTimeInput} onChange={(e) => setColor(e.target.value)}>
+          <select id="options" className={styles.dueTimeInput} onChange={(e) => {setMeridiem(e.target.value); setDueTime()}}>
             <option value="Red">
               AM
             </option>
