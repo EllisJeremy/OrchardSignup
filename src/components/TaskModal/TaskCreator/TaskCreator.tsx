@@ -1,10 +1,11 @@
 import styles from './TaskCreator.module.css'
 import { taskStore } from '../../../store'
 import plus from '../../.././assets/+.svg'
+import { formatHour, formatMinute } from './TimeFormatter'
 
 export default function TaskCreator() {
+  const { title, date, hour, minute, dueTime, description, color, signup, admin, setTitle, setMeridiem, setDueTime, setDescription, setColor, setTaskDatabase, setSignup } = taskStore();
 
-  const { title, date, hour, minute, dueTime, description, color, signup, admin, setTitle, setHour, setMinute, setMeridiem, setDueTime, setDescription, setColor, setTaskDatabase, setSignup } = taskStore();
   if (admin) {
     return (
       <div className={styles.taskCreatorDiv}>
@@ -13,15 +14,15 @@ export default function TaskCreator() {
         {/* <input className={styles.dueTimeInput} onChange={(e) => setDueTime(e.target.value)} placeholder='due time'></input> */}
 
         <div className={styles.timeDive}>
-          <input className={styles.dueTimeInput} maxLength={2} onChange={(e) => {setHour(e.target.value); setDueTime()}} value={hour}></input>
+          <input className={styles.dueTimeInput} inputMode="numeric" maxLength={2} onChange={(e) => formatHour(e.target.value)} value={hour}></input>
 
-          <input className={styles.dueTimeInput} maxLength={2} onChange={(e) => {setMinute(e.target.value); setDueTime()}} value={minute}></input>
+          <input className={styles.dueTimeInput} inputMode="numeric" maxLength={2} onChange={(e) => formatMinute(e.target.value)} value={minute}></input>
 
-          <select id="options" className={styles.dueTimeInput} onChange={(e) => {setMeridiem(e.target.value); setDueTime()}}>
-            <option value="Red">
+          <select id="options" className={styles.dueTimeInput} onChange={(e) => { setMeridiem(e.target.value); setDueTime() }}>
+            <option value="AM">
               AM
             </option>
-            <option value="Orange">
+            <option value="PM">
               PM
             </option>
           </select>
@@ -35,7 +36,7 @@ export default function TaskCreator() {
           </label>
         </div>
 
-        <textarea className={styles.descriptionInput} onChange={(e) => setDescription(e.target.value)} placeholder='description'></textarea>
+        <textarea className={styles.descriptionInput} onChange={(e) => setDescription(e.target.value)} placeholder="description"></textarea>
         <button className={styles.createButton} onClick={() => { setTaskDatabase(date, title, dueTime, description, color, '', signup) }}>
           <img className={styles.plus} src={plus} />
         </button>
