@@ -25,18 +25,40 @@
 
 }
 
-.timeDive {
+.timeDiv {
   display: grid;
 
   grid-template-columns: 24% 24% 48%;
 
 }
 
-.dueTimeInput {
+.meridiem {
   border-width: 0px;
+  border-bottom: 2px solid white;
 }
 
-.timeDive,
+.meridiem:focus {
+  outline: none;
+}
+
+.hourInput {
+  border-width: 0px;
+  border-bottom: 2px solid rgba(0, 150, 255, .5);
+  border-bottom-left-radius: 2px;
+}
+
+.minuteInput {
+  border-width: 0px;
+  border-bottom: 2px solid rgba(0, 150, 255, .5);
+}
+
+.minuteInput:focus,
+.hourInput:focus {
+  outline: none;
+  border-color: rgba(0, 150, 255, 1);
+}
+
+.timeDiv,
 .titleInput,
 .descriptionInput,
 .colorSelect,
@@ -45,7 +67,6 @@
   border-radius: 5px;
 }
 
-.dueTimeInput:focus,
 .titleInput:focus,
 .descriptionInput:focus,
 .colorSelect:focus {

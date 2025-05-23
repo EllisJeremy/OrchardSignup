@@ -182,7 +182,7 @@ export const taskStore = create<taskStoreType>((set) => ({
   setHour: (hour: string) => set(() => ({ hour })),
   setMinute: (minute: string) => set(() => ({ minute })),
   setMeridiem: (meridiem: string) => set(() => ({ meridiem })),
-  setDueTime: () => set((state) => ({ dueTime: state.hour + ":" + state.minute + state.meridiem })),
+  setDueTime: () => set((state) => ({ dueTime: state.hour + ":" + state.minute + " " + state.meridiem })),
   setDescription: (description: string) => set(() => ({ description })),
   setColor: (color: string) => set(() => ({ color })),
   setOwner: (owner: string) => set(() => ({ owner })),
