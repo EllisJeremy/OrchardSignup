@@ -125,7 +125,6 @@ export interface taskStoreType {
   hour: string;
   minute: string;
   meridiem: string;
-  dueTime: string;
   description: string;
   color: string;
   owner: string;
@@ -143,7 +142,6 @@ export interface taskStoreType {
   setHour: (hour: string) => void;
   setMinute: (minute: string) => void;
   setMeridiem: (meridiem: string) => void;
-  setDueTime: () => void;
   setDescription: (description: string) => void;
   setColor: (dueTime: string) => void;
   setOwner: (description: string) => void;
@@ -164,7 +162,6 @@ export const taskStore = create<taskStoreType>((set) => ({
   hour: '12',
   minute: '00',
   meridiem: 'AM',
-  dueTime: '',
   description: '',
   color: 'Red',
   owner: '',
@@ -182,7 +179,6 @@ export const taskStore = create<taskStoreType>((set) => ({
   setHour: (hour: string) => set(() => ({ hour })),
   setMinute: (minute: string) => set(() => ({ minute })),
   setMeridiem: (meridiem: string) => set(() => ({ meridiem })),
-  setDueTime: () => set((state) => ({ dueTime: state.hour + ":" + state.minute + " " + state.meridiem })),
   setDescription: (description: string) => set(() => ({ description })),
   setColor: (color: string) => set(() => ({ color })),
   setOwner: (owner: string) => set(() => ({ owner })),

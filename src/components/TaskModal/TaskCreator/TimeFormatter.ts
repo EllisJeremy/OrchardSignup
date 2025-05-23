@@ -1,5 +1,5 @@
 import { taskStore } from '../../../store';
-const { setHour, setMinute, setDueTime } = taskStore.getState();
+const { setHour, setMinute } = taskStore.getState();
 
 // hour formatter
 export const formatHour = (input: string) => {
@@ -11,7 +11,6 @@ export const formatHour = (input: string) => {
     setHour('12'); // default fallback
   }
 
-  setDueTime();
 };
 
 // minute formatter
@@ -24,5 +23,4 @@ export const formatMinute = (input: string) => {
     setMinute('00'); // default fallback
   }
 
-  setDueTime();
 };
