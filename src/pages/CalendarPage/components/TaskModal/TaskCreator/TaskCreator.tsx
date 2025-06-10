@@ -45,9 +45,11 @@ export default function TaskCreator() {
             }}
 
             onChange={(e) => {
-              const val = e.target.value.replace(/\D/g, '');
+              const val = e.target.value.replace(/\D/g, '').slice(0, 2);
               formatHour(val);
-              if (val.length === 2) {
+
+              // Auto-advance rules
+              if (val.length === 2 || (val.length === 1 && parseInt(val) >= 3)) {
                 minuteInputRef.current?.focus();
               }
             }}
