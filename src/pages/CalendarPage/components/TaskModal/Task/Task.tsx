@@ -1,5 +1,5 @@
 import styles from './Task.module.css'
-import { taskStore } from '../../../store'
+import { taskStore } from '../../../calendarStore'
 import trash from '../../.././assets/trash.svg'
 import check from '../../.././assets/check.svg'
 import XFat from '../../.././assets/XFat.svg'
@@ -30,21 +30,21 @@ const colorMap: Record<string, React.CSSProperties> = {
     backgroundColor: "rgba(138, 100, 226, .5)",
     borderColor: "rgba(138, 100, 226, 0)"
   },
-  
+
 }
 
-const adminTitle: React.CSSProperties = {gridColumn: "2 / span 2"};
+const adminTitle: React.CSSProperties = { gridColumn: "2 / span 2" };
 
 
 
 export default function TaskCreator() {
 
-  const {date, taskDatabase, admin, owner, removeTask, setRender} = taskStore();
+  const { date, taskDatabase, admin, owner, removeTask, setRender } = taskStore();
 
 
-  if (taskDatabase.has(date)){
+  if (taskDatabase.has(date)) {
     const tasks = taskDatabase.get(date)!;
-    
+
     return (
       <>
         {tasks.map((task, index) => (
@@ -54,45 +54,45 @@ export default function TaskCreator() {
                 <img className={styles.trash} src={trash} />
               </button>
             )}
-    
+
             <p
               className={styles.title}
               style={admin ? { ...colorMap[task.color], ...adminTitle } : colorMap[task.color]}
             >
               {task.title}
             </p>
-    
-            <p className={styles.dueTime}>{task.dueTime}</p>
-            <p className={styles.description} style={task.signup ? {} : {gridColumn: "1 / span 4"} }>{task.description}</p>
-            
-            
 
-            {task.signup && taskDatabase.get(date)![index].owner === '' &&(
-              <button className={styles.selectButton}  onClick={() => {taskDatabase.get(date)![index].owner = owner; setRender()}}>
+            <p className={styles.dueTime}>{task.dueTime}</p>
+            <p className={styles.description} style={task.signup ? {} : { gridColumn: "1 / span 4" }}>{task.description}</p>
+
+
+
+            {task.signup && taskDatabase.get(date)![index].owner === '' && (
+              <button className={styles.selectButton} onClick={() => { taskDatabase.get(date)![index].owner = owner; setRender() }}>
                 <img className={styles.plus} src={check} />
               </button>
-            
+
             )}
 
-            {task.signup && taskDatabase.get(date)![index].owner !== '' &&(
+            {task.signup && taskDatabase.get(date)![index].owner !== '' && (
               <>
                 <p className={styles.owner}>
                   {taskDatabase.get(date)![index].owner}
                 </p>
-                <button className={styles.unSelectButton}  onClick={() => {taskDatabase.get(date)![index].owner = ''; setRender()}}>
+                <button className={styles.unSelectButton} onClick={() => { taskDatabase.get(date)![index].owner = ''; setRender() }}>
                   <img className={styles.XFat} src={XFat} />
                 </button>
               </>
             )}
-              
-              
+
+
           </div>
         ))}
       </>
     );
-    
+
   }
 
 
-  
+
 }

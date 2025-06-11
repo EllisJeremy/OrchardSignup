@@ -1,5 +1,5 @@
 import styles from './TaskCreator.module.css'
-import { taskStore } from '../../../store'
+import { taskStore } from '../../../calendarStore'
 import plus from '../../.././assets/+.svg'
 import { formatHour, formatMinute } from './TimeFormatter'
 import { useRef } from 'react';
