@@ -1,8 +1,8 @@
 import styles from './CalendarHeaderMonths.module.css'
 import { dateStore, taskStore, modalStore } from '../../calendarStore'
 import monthToString from '../../globalTypescript/monthToString';
-import arrowLeft from '../.././assets/arrowLeft.svg'
-import arrowRight from '../.././assets/arrowRight.svg'
+import arrowLeft from '../../../../assets/arrowLeft.svg'
+import arrowRight from '../../../../assets/arrowRight.svg'
 
 export default function CalendarHeader() {
 

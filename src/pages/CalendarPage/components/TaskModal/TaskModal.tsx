@@ -3,7 +3,7 @@ import TaskCreator from './TaskCreator/TaskCreator';
 import Task from './Task/Task';
 import { dateStore, modalStore } from "../../calendarStore"
 import monthToString from '../../globalTypescript/monthToString';
-import x from '../.././assets/X.svg'
+import x from '../../../../assets/X.svg'
 
 export default function TaskModal() {
 

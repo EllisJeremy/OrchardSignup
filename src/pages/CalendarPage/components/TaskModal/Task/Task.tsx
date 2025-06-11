@@ -1,8 +1,8 @@
 import styles from './Task.module.css'
 import { taskStore } from '../../../calendarStore'
-import trash from '../../.././assets/trash.svg'
-import check from '../../.././assets/check.svg'
-import XFat from '../../.././assets/XFat.svg'
+import trash from '../../../../../assets/trash.svg'
+import check from '../../../../../assets/check.svg'
+import XFat from '../../../../../assets/XFat.svg'
 
 
 const colorMap: Record<string, React.CSSProperties> = {

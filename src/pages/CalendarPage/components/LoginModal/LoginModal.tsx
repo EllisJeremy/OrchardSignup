@@ -2,7 +2,7 @@ import styles from './LoginModal.module.css'
 
 import { modalStore } from "../../calendarStore"
 
-import x from '../.././assets/X.svg'
+import x from '../../../../assets/X.svg'
 
 export default function LoginModal() {
 
