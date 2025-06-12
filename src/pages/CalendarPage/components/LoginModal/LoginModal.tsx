@@ -35,12 +35,6 @@ export default function LoginModal() {
           <input className={styles.input} placeholder='password' />
         </div>
 
-
-
-
-
-
-
       </div>
     </>
   )
