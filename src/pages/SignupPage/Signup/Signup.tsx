@@ -4,10 +4,14 @@ import orchardLogo from "../../../assets/OrchardLogoGray.png"
 import { Link } from "react-router-dom";
 
 export default function Login() {
-  const { email, password1, password2, showPassword, focusPassword1, focusPassword2, valid, setEmail, setPassword1, setPassword2, setShowPassword, setFocusPassword1, setFocusPassword2, setValid } = signupStore();
+  const { 
+    email, password1, password2, showPassword, focusPassword1, focusPassword2, valid, passwordError,
+    setEmail, setPassword1, setPassword2, setShowPassword, setFocusPassword1, setFocusPassword2, setValid, setPasswordError
+  } = signupStore();
   const testSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (valid) {
-      e.preventDefault();
+      
       console.log(email, password1, password2)
     }
   }
@@ -22,11 +26,12 @@ export default function Login() {
     const n: number = password1.length;
     
     if (n < 8){
-      console.log("too short ")
-      return "Password must be at least 8 characters long.";
+      setPasswordError("Password must be at least 8 characters long.");
+      return 
     }
     else if (n > 64){
-      return "Password must be less than 65 characters long";
+      setPasswordError("Password must be less than 65 characters long");
+      return
     }
     const hasUpper: boolean = regexUpper.test(password1);
     const hasLower: boolean = regexLower.test(password1);
@@ -36,6 +41,7 @@ export default function Login() {
     if (!hasUpper || !hasLower || !hasNumber || !hasSpecial) {
       const errorList: string[] = [];
       if (!hasUpper) {
+        console.log("too short ")
         errorList.push("uppercase letter");
       }
       if (!hasLower) {
@@ -47,14 +53,10 @@ export default function Login() {
       if (!hasSpecial) {
         errorList.push("special character");
       }
-      
-
-
-      return errorList
+      setPasswordError(errorList.join("")) 
     }
-
     else {
-      setValid(true)
+      setPasswordError("") 
     }
 
 
@@ -72,19 +74,24 @@ export default function Login() {
           <div className={styles.spacerDiv} />
           <input 
             className={styles.password} placeholder="Password" type={showPassword ? "text": "password"} autoComplete="current-password" 
+            style={{borderColor: passwordError === "" ? "rgb(225, 226, 231)" : "red"}}
             onChange={(e) => setPassword1(e.target.value)} onFocus={() => setFocusPassword1(true)} 
-            onBlur={(e) =>{ setFocusPassword1(false); validPassword(e.target.value)}  }
+            onBlur={(e) =>{ setFocusPassword1(false); validPassword(e.target.value)}}
           />
-          <button className={focusPassword1 ? styles.showPasswordButtonFocus: styles.showPasswordButton} onClick={setShowPassword}>
+          <button type="button" className={focusPassword1 ? styles.showPasswordButtonFocus: styles.showPasswordButton} onClick={setShowPassword}>
             {showPassword ? "Hide": "Show"}
           </button>
-          <div className={styles.spacerDiv} />
+          {
+            passwordError === "" 
+            ? <div className={styles.spacerDiv} />
+            : <p className={styles.error}>{passwordError}</p>
+          }
           <input 
             className={styles.password} placeholder="Repeat Password" type={showPassword ? "text": "password"} autoComplete="current-password" 
             onChange={(e) => setPassword2(e.target.value)} onFocus={() => setFocusPassword2(true)} 
             onBlur={() => setFocusPassword2(false)}
           />
-          <button className={focusPassword2 ? styles.showPasswordButtonFocus: styles.showPasswordButton} onClick={setShowPassword}>
+          <button type="button" className={focusPassword2 ? styles.showPasswordButtonFocus: styles.showPasswordButton} onClick={setShowPassword}>
             {showPassword ? "Hide": "Show"}
           </button>
 

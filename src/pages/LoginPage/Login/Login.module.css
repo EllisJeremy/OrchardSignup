@@ -138,3 +138,11 @@
   border-color: rgb(175, 176, 191);
   outline: none;
 }
+
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 13px;
+}

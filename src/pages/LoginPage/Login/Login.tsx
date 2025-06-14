@@ -25,7 +25,7 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)} onFocus={() => setFocusPassword(true)} 
             onBlur={() => setFocusPassword(false)}
           />
-          <button className={focusPassword ? styles.showPasswordButtonFocus: styles.showPasswordButton} onClick={setShowPassword}>
+          <button type="button" className={focusPassword ? styles.showPasswordButtonFocus: styles.showPasswordButton} onClick={setShowPassword}>
             {showPassword ? "Hide": "Show"}
           </button>
 

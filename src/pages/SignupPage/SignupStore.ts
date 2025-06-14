@@ -8,6 +8,8 @@ export interface SignupStoreType {
   focusPassword1: boolean;
   focusPassword2: boolean;
   valid: boolean;
+  passwordError: string;
+  //touchPassword: false;
 
   setEmail: (email: string) => void;
   setPassword1: (password: string) => void;
@@ -16,6 +18,7 @@ export interface SignupStoreType {
   setFocusPassword1: (focusPassword1: boolean) => void;
   setFocusPassword2: (focusPassword2: boolean) => void;
   setValid: (valid: boolean) => void;
+  setPasswordError: (passwordError: string) => void;
 }
 
 export const signupStore = create<SignupStoreType>((set) => ({
@@ -26,6 +29,7 @@ export const signupStore = create<SignupStoreType>((set) => ({
   focusPassword1: false,
   focusPassword2: false,
   valid: false,
+  passwordError: "",
 
   setEmail: (email: string) => set(() => ({ email })),
   setPassword1: (password1: string) => set(() => ({ password1 })),
@@ -38,4 +42,5 @@ export const signupStore = create<SignupStoreType>((set) => ({
   setFocusPassword1: (focusPassword1) => set({ focusPassword1 }),
   setFocusPassword2: (focusPassword2) => set({ focusPassword2 }),
   setValid: (valid) => set({ valid }),
+  setPasswordError: (passwordError: string) => set(() => ({ passwordError })),
 }));
