@@ -1,6 +1,7 @@
 import styles from './Login.module.css'
 import { loginStore } from '../LoginStore';
 import orchardLogo from "../../../assets/OrchardLogoGray.png"
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const { email, password, showPassword, focusPassword, setEmail, setPassword, setShowPassword, setFocusPassword } = loginStore();
@@ -17,10 +18,10 @@ export default function Login() {
           <img className={styles.orchardLogo} src={orchardLogo} />
         </div>
         <form onSubmit={testSubmit} >
-          <input className={styles.username} placeholder='Email' onChange={(e) => setEmail(e.target.value)} />
+          <input className={styles.username} type="email" placeholder="Email" autoComplete="email" onChange={(e) => setEmail(e.target.value)} />
           <div className={styles.spacerDiv} />
           <input 
-            className={styles.password} placeholder="Password" type={showPassword ? "text": "password"}
+            className={styles.password} placeholder="Password" type={showPassword ? "text": "password"} autoComplete="current-password" 
             onChange={(e) => setPassword(e.target.value)} onFocus={() => setFocusPassword(true)} 
             onBlur={() => setFocusPassword(false)}
           />
@@ -35,7 +36,7 @@ export default function Login() {
       </div>
 
       <div className={styles.signupDiv}>
-        <button className={styles.loginButton} >Sign up</button>
+        <Link className={styles.loginButton} to="/signup">Sign up</Link>
         <div className={styles.spacerDiv} />
         <button className={styles.loginButton} >Continue as Guest</button>
       </div>
