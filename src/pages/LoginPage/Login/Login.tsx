@@ -38,7 +38,7 @@ export default function Login() {
       <div className={styles.signupDiv}>
         <Link className={styles.loginButton} to="/signup">Sign up</Link>
         <div className={styles.spacerDiv} />
-        <button className={styles.loginButton} >Continue as Guest</button>
+        <Link className={styles.loginButton} to="/menu">Continue as Guest</Link>
       </div>
     </div>
   );
