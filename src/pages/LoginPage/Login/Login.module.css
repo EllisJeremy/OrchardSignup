@@ -4,9 +4,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-
-
-
   width: 450px;
   padding: 10px;
 
@@ -57,13 +54,15 @@
   text-align: center;
 }
 
-.loginDiv {}
-
-.signupDiv {}
+.spacerDiv {
+  height: 6px;
+}
 
 .username,
 .password,
-.loginButton {
+.loginButton,
+.showPasswordButton,
+.showPasswordButtonFocus {
   box-sizing: border-box;
   width: 100%;
   height: 40px;
@@ -72,14 +71,57 @@
   padding-left: 10px;
 }
 
-.username,
 .password {
-  margin-bottom: 3px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-right: 0px;
+  width: 80%;
 }
 
-.password,
+.showPasswordButton,
+.showPasswordButtonFocus {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-left: 0px;
+  width: 20%;
+  background-color: white;
+}
+
+.showPasswordButton:hover,
+.showPasswordButtonFocus:hover {
+  cursor: pointer;
+  color: rgb(140, 140, 140);
+}
+
+.showPasswordButtonFocus{
+  border-color: rgb(175, 176, 191);
+}
+
+
+
+
 .loginButton {
+  background-color: rgb(240, 241, 245);
+  border-width: 0px;
+  transition: .125s;
+}
+
+.loginButton:hover {
+  cursor: pointer;
+  background-color: rgb(224, 226, 238);
+  transition: .125s;
+}
+
+.loginButton:active {
+  height: 34px;
+  width: 360px;
+  margin-left: 5px;
+  margin-right: 5px;
   margin-top: 3px;
+  margin-bottom: 3px;
+  transition: .1;
+  font-size: 12.5px;
+  background-color: rgb(224, 226, 238);
 }
 
 .username:focus,
