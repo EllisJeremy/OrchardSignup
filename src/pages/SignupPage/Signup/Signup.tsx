@@ -33,7 +33,18 @@ export default function Login() {
   // submit
   const testSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (valid) {
+    // MUST ADD CASE WHERE EMAIL IS ALREADY USED
+    if (
+      // fields are not blank
+      email !== "" &&
+      password1 !== "" &&
+      password2 !== "" &&
+      // no email error MISSING
+      // no password error
+      passwordError === "" &&
+      // passwords match
+      password1 === password2
+    ) {
       console.log(email, password1, password2);
     }
   };
@@ -101,13 +112,20 @@ export default function Login() {
 
   // border color if error
   const getBorderColor = (
+    firstEdit: boolean,
     compare1: string | boolean,
     compare2: string | boolean,
+    compare3: string | boolean,
+    compare4: string | boolean,
     focus: boolean,
   ) => {
     // error
-    if (compare1 !== compare2) {
-      return "red";
+    if (compare1 !== compare2 || compare3 !== compare4) {
+      return "rgb(255, 53, 53)";
+    }
+    // correct
+    if (!firstEdit) {
+      return "hsl(138, 100%, 40%)";
     }
     // focus
     else if (focus) {
@@ -138,7 +156,14 @@ export default function Login() {
             type={showPassword ? "text" : "password"}
             autoComplete="current-password"
             style={{
-              borderColor: getBorderColor(passwordError, "", focusPassword1),
+              borderColor: getBorderColor(
+                firstEdit1,
+                passwordError,
+                "",
+                passwordError,
+                "",
+                focusPassword1,
+              ),
             }}
             onChange={(e) => {
               const newPassword1 = e.target.value;
@@ -156,7 +181,14 @@ export default function Login() {
           <button
             type="button"
             style={{
-              borderColor: getBorderColor(passwordError, "", focusPassword1),
+              borderColor: getBorderColor(
+                firstEdit1,
+                passwordError,
+                "",
+                passwordError,
+                "",
+                focusPassword1,
+              ),
             }}
             className={styles.showPasswordButton}
             onClick={setShowPassword}
@@ -169,7 +201,16 @@ export default function Login() {
             <p className={styles.error}>{passwordError}</p>
           )}
           <input
-            style={{ borderColor: getBorderColor(match, true, focusPassword2) }}
+            style={{
+              borderColor: getBorderColor(
+                firstEdit2,
+                match,
+                true,
+                passwordError,
+                "",
+                focusPassword2,
+              ),
+            }}
             className={styles.password}
             placeholder="Repeat Password"
             type={showPassword ? "text" : "password"}
@@ -188,7 +229,16 @@ export default function Login() {
           />
           <button
             type="button"
-            style={{ borderColor: getBorderColor(match, true, focusPassword2) }}
+            style={{
+              borderColor: getBorderColor(
+                firstEdit2,
+                match,
+                true,
+                passwordError,
+                "",
+                focusPassword2,
+              ),
+            }}
             className={styles.showPasswordButton}
             onClick={setShowPassword}
           >
