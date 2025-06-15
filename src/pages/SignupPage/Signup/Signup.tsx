@@ -4,10 +4,13 @@ import orchardLogo from "../../../assets/OrchardLogoGray.png"
 import { Link } from "react-router-dom";
 
 export default function Login() {
+  // store
   const { 
-    email, password1, password2, showPassword, focusPassword1, focusPassword2, valid, passwordError,
-    setEmail, setPassword1, setPassword2, setShowPassword, setFocusPassword1, setFocusPassword2, setValid, setPasswordError
+    email, password1, password2, showPassword, focusPassword1, focusPassword2, valid, passwordError, match, 
+    setEmail, setPassword1, setPassword2, setShowPassword, setFocusPassword1, setFocusPassword2, setValid, setPasswordError, setMatch
   } = signupStore();
+
+  // submit
   const testSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (valid) {
@@ -16,7 +19,7 @@ export default function Login() {
     }
   }
 
-  // regex
+  // valid password 
   const regexUpper = /[A-Z]/;
   const regexLower = /[a-z]/;
   const regexNumber = /[0-9]/;
@@ -58,9 +61,22 @@ export default function Login() {
     else {
       setPasswordError("") 
     }
-
-
   }
+
+  // border color if error
+  const getBorderColor = (compare1: string | boolean, compare2: string | boolean, focus: boolean) => {
+    // error
+    if (compare1 !== compare2) { 
+      return "red";
+    }
+    // focus
+    else if (focus) {
+      return "rgb(175, 176, 191)";
+    }
+    // normal
+    return "rgb(225, 226, 231)";
+  };
+  
 
   return (
     <div className={styles.mainDiv}>
@@ -74,29 +90,34 @@ export default function Login() {
           <div className={styles.spacerDiv} />
           <input 
             className={styles.password} placeholder="Password" type={showPassword ? "text": "password"} autoComplete="current-password" 
-            style={{borderColor: passwordError === "" ? "rgb(225, 226, 231)" : "red"}}
+            style={{borderColor: getBorderColor(password1, "", focusPassword1)}}
             onChange={(e) => setPassword1(e.target.value)} onFocus={() => setFocusPassword1(true)} 
             onBlur={(e) =>{ setFocusPassword1(false); validPassword(e.target.value)}}
           />
-          <button type="button" className={focusPassword1 ? styles.showPasswordButtonFocus: styles.showPasswordButton} onClick={setShowPassword}>
+          <button style={{borderColor: getBorderColor(password1, "", focusPassword1)}} className={styles.showPasswordButton} 
+            onClick={setShowPassword} type="button">
             {showPassword ? "Hide": "Show"}
           </button>
           {
-            passwordError === "" 
+            passwordError === ""
             ? <div className={styles.spacerDiv} />
             : <p className={styles.error}>{passwordError}</p>
           }
           <input 
+            style={{borderColor: getBorderColor(match, true, focusPassword2)}}
             className={styles.password} placeholder="Repeat Password" type={showPassword ? "text": "password"} autoComplete="current-password" 
             onChange={(e) => setPassword2(e.target.value)} onFocus={() => setFocusPassword2(true)} 
-            onBlur={() => setFocusPassword2(false)}
+            onBlur={() => {setFocusPassword2(false); setMatch(password1 === password2)}}
           />
-          <button type="button" className={focusPassword2 ? styles.showPasswordButtonFocus: styles.showPasswordButton} onClick={setShowPassword}>
+          <button  style={{borderColor: getBorderColor(match, true, focusPassword2)}} className={styles.showPasswordButton} 
+            onClick={setShowPassword}>
             {showPassword ? "Hide": "Show"}
           </button>
-
-
-          <div className={styles.spacerDiv} />
+          {
+            match === true
+            ? <div className={styles.spacerDiv} />
+            : <p className={styles.error}>Passwords do not match.</p>
+          }
           <button className={styles.loginButton} type="submit" >Sign up</button>
         </form>
       </div>

@@ -84,8 +84,7 @@
   width: 80%;
 }
 
-.showPasswordButton,
-.showPasswordButtonFocus {
+.showPasswordButton {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   border-left: 0px;
@@ -99,9 +98,6 @@
   color: rgb(140, 140, 140);
 }
 
-.showPasswordButtonFocus{
-  border-color: rgb(175, 176, 191);
-}
 
 
 .loginButton {
