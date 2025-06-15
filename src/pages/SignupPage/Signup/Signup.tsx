@@ -9,25 +9,27 @@ export default function Login() {
     email,
     password1,
     password2,
+    emailValid,
     showPassword,
     focusPassword1,
     focusPassword2,
-    valid,
     passwordError,
     match,
     firstEdit1,
     firstEdit2,
+    firstEditEmail,
     setEmail,
     setPassword1,
     setPassword2,
+    setEmailValid,
     setShowPassword,
     setFocusPassword1,
     setFocusPassword2,
-    setValid,
     setPasswordError,
     setMatch,
     setFirstEdit1,
     setFirstEdit2,
+    setFirstEditEmail,
   } = signupStore();
 
   // submit
@@ -112,7 +114,8 @@ export default function Login() {
 
   // border color if error
   const getBorderColor = (
-    firstEdit: boolean,
+    firstEdit1: boolean,
+    firstEdit2: boolean,
     compare1: string | boolean,
     compare2: string | boolean,
     compare3: string | boolean,
@@ -124,12 +127,26 @@ export default function Login() {
       return "rgb(255, 53, 53)";
     }
     // correct
-    if (!firstEdit) {
+    if (!firstEdit1 && !firstEdit2) {
       return "hsl(138, 100%, 40%)";
     }
     // focus
     else if (focus) {
       return "rgb(175, 176, 191)";
+    }
+    // normal
+    return "rgb(225, 226, 231)";
+  };
+
+  // border color if error
+  const getBorderColorSimple = (firstEdit1: boolean, compare1: boolean) => {
+    // error
+    if (compare1 === false) {
+      return "rgb(255, 53, 53)";
+    }
+    // correct
+    if (!firstEdit1) {
+      return "hsl(138, 100%, 40%)";
     }
     // normal
     return "rgb(225, 226, 231)";
@@ -141,15 +158,30 @@ export default function Login() {
         <div className={styles.headerDiv}>
           <img className={styles.orchardLogo} src={orchardLogo} />
         </div>
-        <form onSubmit={testSubmit}>
+        <form onSubmit={testSubmit} noValidate>
           <input
             className={styles.username}
             type="email"
             placeholder="Email"
             autoComplete="email"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              const newEmail = e.target.value;
+              setEmail(newEmail);
+              if (!firstEditEmail) setEmailValid(e.target.validity.valid);
+            }}
+            onBlur={(e) => {
+              setFirstEditEmail(false);
+              setEmailValid(e.target.validity.valid);
+            }}
+            style={{
+              borderColor: getBorderColorSimple(firstEditEmail, emailValid),
+            }}
           />
-          <div className={styles.spacerDiv} />
+          {emailValid === true ? (
+            <div className={styles.spacerDiv} />
+          ) : (
+            <p className={styles.error}>Please enter a valid email address.</p>
+          )}
           <input
             className={styles.password}
             placeholder="Password"
@@ -157,6 +189,7 @@ export default function Login() {
             autoComplete="current-password"
             style={{
               borderColor: getBorderColor(
+                firstEdit1,
                 firstEdit1,
                 passwordError,
                 "",
@@ -183,6 +216,7 @@ export default function Login() {
             style={{
               borderColor: getBorderColor(
                 firstEdit1,
+                firstEdit1,
                 passwordError,
                 "",
                 passwordError,
@@ -203,6 +237,7 @@ export default function Login() {
           <input
             style={{
               borderColor: getBorderColor(
+                firstEdit1,
                 firstEdit2,
                 match,
                 true,
@@ -231,6 +266,7 @@ export default function Login() {
             type="button"
             style={{
               borderColor: getBorderColor(
+                firstEdit1,
                 firstEdit2,
                 match,
                 true,

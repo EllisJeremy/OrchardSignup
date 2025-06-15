@@ -127,7 +127,7 @@
 }
 
 .error {
-  color: red;
+  color: rgb(255, 53, 53);
   text-align: center;
   margin-top: 5px;
   margin-bottom: 5px;
