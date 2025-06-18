@@ -3,7 +3,6 @@ import { taskStore } from "../../../calendarStore";
 import trash from "../../../../../assets/trash.svg";
 import check from "../../../../../assets/check.svg";
 import XFat from "../../../../../assets/XFat.svg";
-//test
 
 const colorMap: Record<string, React.CSSProperties> = {
   Red: {

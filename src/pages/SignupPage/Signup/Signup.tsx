@@ -173,9 +173,6 @@ export default function Login() {
         <form
           onSubmit={(e) => {
             testSubmit(e);
-            //setFirstEdit1(false);
-            //setFirstEdit2(false);
-            //setFirstEditEmail(false);
           }}
           noValidate
         >

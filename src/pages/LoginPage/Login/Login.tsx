@@ -69,15 +69,15 @@ export default function Login() {
       </div>
 
       <div className={styles.signupDiv}>
-        <Link className={styles.loginButton} to="/">
+        <Link className={styles.loginButton} to="/ForgotPassword">
           Forgot Password
         </Link>
         <div className={styles.spacerDiv} />
-        <Link className={styles.loginButton} to="/signup">
+        <Link className={styles.loginButton} to="/Signup">
           Sign up
         </Link>
         <div className={styles.spacerDiv} />
-        <Link className={styles.loginButton} to="/menu">
+        <Link className={styles.loginButton} to="/Menu">
           Continue as Guest
         </Link>
       </div>
