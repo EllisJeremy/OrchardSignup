@@ -26,6 +26,8 @@ export interface SignupStoreType {
   setFirstEdit1: (firstEdit1: boolean) => void;
   setFirstEdit2: (firstEdit2: boolean) => void;
   setFirstEditEmail: (firstEditEmail: boolean) => void;
+
+  reset: () => void; // <-- add this line
 }
 
 export const signupStore = create<SignupStoreType>((set) => ({
@@ -58,4 +60,20 @@ export const signupStore = create<SignupStoreType>((set) => ({
   setFirstEdit1: (firstEdit1) => set({ firstEdit1 }),
   setFirstEdit2: (firstEdit2) => set({ firstEdit2 }),
   setFirstEditEmail: (firstEditEmail) => set({ firstEditEmail }),
+
+  reset: () =>
+    set({
+      email: "",
+      password1: "",
+      password2: "",
+      emailValid: true,
+      showPassword: false,
+      focusPassword1: false,
+      focusPassword2: false,
+      passwordError: "",
+      match: true,
+      firstEdit1: true,
+      firstEdit2: true,
+      firstEditEmail: true,
+    }),
 }));

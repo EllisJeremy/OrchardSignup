@@ -48,7 +48,7 @@
   height: 6px;
 }
 
-.username,
+.email,
 .password,
 .loginButton,
 .showPasswordButton,
@@ -120,7 +120,7 @@
   line-height: 34px;
 }
 
-.username:focus,
+.email:focus,
 .password:focus {
   border-color: rgb(175, 176, 191);
   outline: none;
@@ -132,4 +132,17 @@
   margin-top: 5px;
   margin-bottom: 5px;
   font-size: 13px;
+}
+
+.eye {
+  height: 50%;
+}
+
+.showPasswordButton:hover .eye {
+  filter: invert(40%);
+}
+
+.inputDiv {
+  display: flex;
+  width: 100%;
 }

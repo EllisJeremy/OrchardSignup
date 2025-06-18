@@ -2,6 +2,8 @@ import styles from "./Login.module.css";
 import { loginStore } from "../LoginStore";
 import orchardLogo from "../../../assets/OrchardLogoGray.png";
 import { Link } from "react-router-dom";
+import eye from "../../../assets/eye.svg";
+import eyeClosed from "../../../assets/eyeClosed.svg";
 
 export default function Login() {
   const {
@@ -27,34 +29,38 @@ export default function Login() {
         </div>
         <form onSubmit={testSubmit}>
           <input
-            className={styles.username}
+            className={styles.email}
             type="email"
             placeholder="Email"
             autoComplete="email"
             onChange={(e) => setEmail(e.target.value)}
           />
           <div className={styles.spacerDiv} />
-          <input
-            className={styles.password}
-            placeholder="Password"
-            type={showPassword ? "text" : "password"}
-            autoComplete="current-password"
-            onChange={(e) => setPassword(e.target.value)}
-            onFocus={() => setFocusPassword(true)}
-            onBlur={() => setFocusPassword(false)}
-          />
-          <button
-            type="button"
-            className={
-              focusPassword
-                ? styles.showPasswordButtonFocus
-                : styles.showPasswordButton
-            }
-            onClick={setShowPassword}
-          >
-            {showPassword ? "Hide" : "Show"}
-          </button>
-
+          <div className={styles.inputDiv}>
+            <input
+              className={styles.password}
+              placeholder="Password"
+              type={showPassword ? "text" : "password"}
+              autoComplete="current-password"
+              onChange={(e) => setPassword(e.target.value)}
+              onFocus={() => setFocusPassword(true)}
+              onBlur={() => setFocusPassword(false)}
+            />
+            <button
+              type="button"
+              className={
+                focusPassword
+                  ? styles.showPasswordButtonFocus
+                  : styles.showPasswordButton
+              }
+              onClick={setShowPassword}
+            >
+              <img
+                className={styles.eye}
+                src={showPassword ? eye : eyeClosed}
+              />
+            </button>
+          </div>
           <div className={styles.spacerDiv} />
           <button className={styles.loginButton} type="submit">
             Log in

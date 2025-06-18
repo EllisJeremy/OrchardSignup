@@ -2,6 +2,9 @@ import styles from "../../LoginPage/Login/Login.module.css";
 import { signupStore } from "../SignupStore";
 import orchardLogo from "../../../assets/OrchardLogoGray.png";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import eye from "../../../assets/eye.svg";
+import eyeClosed from "../../../assets/eyeClosed.svg";
 
 export default function Login() {
   // store
@@ -41,7 +44,8 @@ export default function Login() {
       email !== "" &&
       password1 !== "" &&
       password2 !== "" &&
-      // no email error MISSING
+      // no email error
+      emailValid === true &&
       // no password error
       passwordError === "" &&
       // passwords match
@@ -152,16 +156,33 @@ export default function Login() {
     return "rgb(225, 226, 231)";
   };
 
+  // reset state on page leave
+  const reset = signupStore((state) => state.reset);
+  useEffect(() => {
+    return () => {
+      reset();
+    };
+  }, []);
+
   return (
     <div className={styles.mainDiv}>
       <div className={styles.loginDiv}>
         <div className={styles.headerDiv}>
           <img className={styles.orchardLogo} src={orchardLogo} />
         </div>
-        <form onSubmit={testSubmit} noValidate>
+        <form
+          onSubmit={(e) => {
+            testSubmit(e);
+            //setFirstEdit1(false);
+            //setFirstEdit2(false);
+            //setFirstEditEmail(false);
+          }}
+          noValidate
+        >
           <input
-            className={styles.username}
+            className={styles.email}
             type="email"
+            required
             placeholder="Email"
             autoComplete="email"
             onChange={(e) => {
@@ -182,104 +203,114 @@ export default function Login() {
           ) : (
             <p className={styles.error}>Please enter a valid email address.</p>
           )}
-          <input
-            className={styles.password}
-            placeholder="Password"
-            type={showPassword ? "text" : "password"}
-            autoComplete="current-password"
-            style={{
-              borderColor: getBorderColor(
-                firstEdit1,
-                firstEdit1,
-                passwordError,
-                "",
-                passwordError,
-                "",
-                focusPassword1,
-              ),
-            }}
-            onChange={(e) => {
-              const newPassword1 = e.target.value;
-              setPassword1(newPassword1);
-              if (!firstEdit1) validPassword(newPassword1);
-              if (!firstEdit2) setMatch(newPassword1 === password2);
-            }}
-            onFocus={() => setFocusPassword1(true)}
-            onBlur={(e) => {
-              setFocusPassword1(false);
-              validPassword(e.target.value);
-              setFirstEdit1(false);
-            }}
-          />
-          <button
-            type="button"
-            style={{
-              borderColor: getBorderColor(
-                firstEdit1,
-                firstEdit1,
-                passwordError,
-                "",
-                passwordError,
-                "",
-                focusPassword1,
-              ),
-            }}
-            className={styles.showPasswordButton}
-            onClick={setShowPassword}
-          >
-            {showPassword ? "Hide" : "Show"}
-          </button>
+          <div className={styles.inputDiv}>
+            <input
+              className={styles.password}
+              placeholder="Password"
+              type={showPassword ? "text" : "password"}
+              autoComplete="current-password"
+              style={{
+                borderColor: getBorderColor(
+                  firstEdit1,
+                  firstEdit1,
+                  passwordError,
+                  "",
+                  passwordError,
+                  "",
+                  focusPassword1,
+                ),
+              }}
+              onChange={(e) => {
+                const newPassword1 = e.target.value;
+                setPassword1(newPassword1);
+                if (!firstEdit1) validPassword(newPassword1);
+                if (!firstEdit2) setMatch(newPassword1 === password2);
+              }}
+              onFocus={() => setFocusPassword1(true)}
+              onBlur={(e) => {
+                setFocusPassword1(false);
+                validPassword(e.target.value);
+                setFirstEdit1(false);
+              }}
+            />
+            <button
+              type="button"
+              style={{
+                borderColor: getBorderColor(
+                  firstEdit1,
+                  firstEdit1,
+                  passwordError,
+                  "",
+                  passwordError,
+                  "",
+                  focusPassword1,
+                ),
+              }}
+              className={styles.showPasswordButton}
+              onClick={setShowPassword}
+            >
+              <img
+                className={styles.eye}
+                src={showPassword ? eye : eyeClosed}
+              />
+            </button>
+          </div>
           {passwordError === "" ? (
             <div className={styles.spacerDiv} />
           ) : (
             <p className={styles.error}>{passwordError}</p>
           )}
-          <input
-            style={{
-              borderColor: getBorderColor(
-                firstEdit1,
-                firstEdit2,
-                match,
-                true,
-                passwordError,
-                "",
-                focusPassword2,
-              ),
-            }}
-            className={styles.password}
-            placeholder="Repeat Password"
-            type={showPassword ? "text" : "password"}
-            autoComplete="current-password"
-            onChange={(e) => {
-              const newPassword2 = e.target.value;
-              setPassword2(newPassword2);
-              if (!firstEdit2) setMatch(password1 === newPassword2);
-            }}
-            onFocus={() => setFocusPassword2(true)}
-            onBlur={() => {
-              setFocusPassword2(false);
-              setMatch(password1 === password2);
-              setFirstEdit2(false);
-            }}
-          />
-          <button
-            type="button"
-            style={{
-              borderColor: getBorderColor(
-                firstEdit1,
-                firstEdit2,
-                match,
-                true,
-                passwordError,
-                "",
-                focusPassword2,
-              ),
-            }}
-            className={styles.showPasswordButton}
-            onClick={setShowPassword}
-          >
-            {showPassword ? "Hide" : "Show"}
-          </button>
+          <div className={styles.inputDiv}>
+            <input
+              style={{
+                borderColor: getBorderColor(
+                  firstEdit1,
+                  firstEdit2,
+                  match,
+                  true,
+                  passwordError,
+                  "",
+                  focusPassword2,
+                ),
+              }}
+              className={styles.password}
+              placeholder="Repeat Password"
+              type={showPassword ? "text" : "password"}
+              autoComplete="current-password"
+              onChange={(e) => {
+                const newPassword2 = e.target.value;
+                setPassword2(newPassword2);
+                if (!firstEdit2) setMatch(password1 === newPassword2);
+              }}
+              onFocus={() => setFocusPassword2(true)}
+              onBlur={() => {
+                setFocusPassword2(false);
+                setMatch(password1 === password2);
+                setFirstEdit2(false);
+              }}
+            />
+            <button
+              type="button"
+              style={{
+                borderColor: getBorderColor(
+                  firstEdit1,
+                  firstEdit2,
+                  match,
+                  true,
+                  passwordError,
+                  "",
+                  focusPassword2,
+                ),
+              }}
+              className={styles.showPasswordButton}
+              onClick={setShowPassword}
+            >
+              <img
+                className={styles.eye}
+                src={showPassword ? eye : eyeClosed}
+              />
+            </button>
+          </div>
           {match === true ? (
             <div className={styles.spacerDiv} />
           ) : (
