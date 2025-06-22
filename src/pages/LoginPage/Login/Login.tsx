@@ -4,6 +4,7 @@ import orchardLogo from "../../../assets/OrchardLogoGray.png";
 import { Link } from "react-router-dom";
 import eye from "../../../assets/eye.svg";
 import eyeClosed from "../../../assets/eyeClosed.svg";
+import { EmailInput } from "../Components/EmailInput";
 
 export default function Login() {
   const {
@@ -11,11 +12,16 @@ export default function Login() {
     password,
     showPassword,
     focusPassword,
+    firstEditEmail,
+    emailValid,
     setEmail,
     setPassword,
     setShowPassword,
     setFocusPassword,
+    setFirstEditEmail,
+    setEmailValid,
   } = loginStore();
+
   const testSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(email, password);
@@ -27,15 +33,21 @@ export default function Login() {
         <div className={styles.headerDiv}>
           <img className={styles.orchardLogo} src={orchardLogo} />
         </div>
-        <form onSubmit={testSubmit}>
-          <input
-            className={styles.email}
-            type="email"
-            placeholder="Email"
-            autoComplete="email"
-            onChange={(e) => setEmail(e.target.value)}
+        <form
+          onSubmit={(e) => {
+            testSubmit(e);
+          }}
+          noValidate
+        >
+          <EmailInput
+            value={email}
+            onChange={setEmail}
+            onValidChange={setEmailValid}
+            firstEdit={firstEditEmail}
+            setFirstEdit={setFirstEditEmail}
+            emailValid={emailValid}
           />
-          <div className={styles.spacerDiv} />
+
           <div className={styles.inputDiv}>
             <input
               className={styles.password}
@@ -48,17 +60,10 @@ export default function Login() {
             />
             <button
               type="button"
-              className={
-                focusPassword
-                  ? styles.showPasswordButtonFocus
-                  : styles.showPasswordButton
-              }
+              className={focusPassword ? styles.showPasswordButtonFocus : styles.showPasswordButton}
               onClick={setShowPassword}
             >
-              <img
-                className={styles.eye}
-                src={showPassword ? eye : eyeClosed}
-              />
+              <img className={styles.eye} src={showPassword ? eye : eyeClosed} />
             </button>
           </div>
           <div className={styles.spacerDiv} />
