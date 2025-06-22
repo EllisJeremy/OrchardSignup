@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import eye from "../../../assets/eye.svg";
 import eyeClosed from "../../../assets/eyeClosed.svg";
 import { EmailInput } from "../Components/EmailInput";
+import { useEffect } from "react";
 
 export default function Login() {
   const {
@@ -26,6 +27,14 @@ export default function Login() {
     e.preventDefault();
     console.log(email, password);
   };
+
+  // reset state on page leave
+  const reset = loginStore((state) => state.reset);
+  useEffect(() => {
+    return () => {
+      reset();
+    };
+  }, []);
 
   return (
     <div className={styles.mainDiv}>
