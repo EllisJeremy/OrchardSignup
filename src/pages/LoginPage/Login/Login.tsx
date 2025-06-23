@@ -21,6 +21,7 @@ export default function Login() {
     setFocusPassword,
     setFirstEditEmail,
     setEmailValid,
+    reset,
   } = loginStore();
 
   const testSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -28,13 +29,9 @@ export default function Login() {
     console.log(email, password);
   };
 
-  // reset state on page leave
-  const reset = loginStore((state) => state.reset);
   useEffect(() => {
-    return () => {
-      reset();
-    };
-  }, []);
+    return () => reset();
+  }, [reset]);
 
   return (
     <div className={styles.mainDiv}>

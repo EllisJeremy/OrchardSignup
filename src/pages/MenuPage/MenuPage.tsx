@@ -1,9 +1,9 @@
-
+import Menu from "./Menu/Menu";
 
 export default function MenuPage() {
   return (
     <div>
-      testing2
+      <Menu />
     </div>
-  )
+  );
 }

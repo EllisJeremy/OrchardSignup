@@ -34,6 +34,7 @@ export default function Login() {
     setFirstEdit1,
     setFirstEdit2,
     setFirstEditEmail,
+    reset,
   } = signupStore();
 
   // submit
@@ -137,12 +138,9 @@ export default function Login() {
   };
 
   // reset state on page leave
-  const reset = signupStore((state) => state.reset);
   useEffect(() => {
-    return () => {
-      reset();
-    };
-  }, []);
+    return () => reset();
+  }, [reset]);
 
   return (
     <div className={styles.mainDiv}>

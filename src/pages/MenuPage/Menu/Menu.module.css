@@ -3,7 +3,7 @@
   margin-top: 100px;
   left: 50%;
   transform: translateX(-50%);
-  width: 450px;
+  width: 950px;
   padding: 10px;
   background-color: rgba(240, 241, 245, 1);
   border-radius: 20px;
@@ -44,10 +44,6 @@
   text-align: center;
 }
 
-.spacerDiv {
-  height: 6px;
-}
-
 .email,
 .password,
 .loginButton,
@@ -63,32 +59,6 @@
   padding-left: 10px;
   text-decoration: none;
   font-size: 13;
-}
-
-.password {
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  border-right: 0px;
-  width: 80%;
-}
-
-.showPasswordButton,
-.showPasswordButtonFocus {
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-  border-left: 0px;
-  width: 20%;
-  background-color: white;
-}
-
-.showPasswordButton:hover,
-.showPasswordButtonFocus:hover {
-  cursor: pointer;
-  color: rgb(140, 140, 140);
-}
-
-.showPasswordButtonFocus {
-  border-color: rgb(175, 176, 191);
 }
 
 .loginButton {
@@ -108,34 +78,14 @@
 }
 
 .loginButton:active {
-  transform: scale(0.97);
-  transition: 0.125;
+  height: 34px;
+  width: 97%;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  transition: 0.1;
+  font-size: 12.5px;
   background-color: rgb(224, 226, 238);
-}
-
-.email:focus,
-.password:focus {
-  border-color: rgb(175, 176, 191);
-  outline: none;
-}
-
-.error {
-  color: rgb(255, 53, 53);
-  text-align: center;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  font-size: 13px;
-}
-
-.eye {
-  height: 50%;
-}
-
-.showPasswordButton:hover .eye {
-  filter: invert(40%);
-}
-
-.inputDiv {
-  display: flex;
-  width: 100%;
+  line-height: 34px;
 }
