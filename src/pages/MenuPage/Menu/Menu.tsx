@@ -17,7 +17,7 @@ export default function Menu() {
         </div>
 
         <div className={styles.financeDiv}>
-          <div className={styles.headerDiv} style={{ justifyContent: "center" }}>
+          <div className={styles.headerDiv} style={{ justifyContent: "right" }}>
             <h2>Finances</h2>
             <h3></h3>
           </div>
@@ -45,34 +45,18 @@ export default function Menu() {
             <h3></h3>
           </div>
         </div>
+        <div className={styles.messagesDiv}></div>
         <div className={styles.adminDiv}>
-          <div className={styles.headerDiv} style={{ justifyContent: "center" }}>
+          <div className={styles.headerDiv} style={{ justifyContent: "right" }}>
             <h2>Admin</h2>
             <h3></h3>
           </div>
           <div className={styles.adminContainerDiv}>
-            <div className={styles.adminSplitDiv}>
-              <div className={styles.adminItemLeftDiv}>
-                <div className={styles.adminItemTitleDiv}>Financial Summary</div>
-              </div>
-              <div className={styles.adminItemLeftDiv}>
-                <div className={styles.adminItemTitleDiv}>Weekly Contributions Summary</div>
-              </div>
-              <div className={styles.adminItemLeftDiv}>
-                <div className={styles.adminItemTitleDiv}>Budget Status</div>
-              </div>
-            </div>
-            <div className={styles.adminSplitDiv}>
-              <div className={styles.adminItemRightDiv}>
-                <div className={styles.adminItemTitleDiv}>Financial Summary</div>
-              </div>
-              <div className={styles.adminItemRightDiv}>
-                <div className={styles.adminItemTitleDiv}>Weekly Contributions Summary</div>
-              </div>
-              <div className={styles.adminItemRightDiv}>
-                <div className={styles.adminItemTitleDiv}>Budget Status</div>
-              </div>
-            </div>
+            <div className={styles.adminItemDiv}>View Contributions</div>
+            <div className={styles.adminItemDiv}>Approve Disbursements</div>
+            <div className={styles.adminItemDiv}>Pay Disbursements</div>
+            <div className={styles.adminItemDiv}>Review Disbursements</div>
+            <div className={styles.adminItemDiv}>Review Payments</div>
           </div>
         </div>
       </div>
