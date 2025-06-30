@@ -5,52 +5,95 @@
 }
 
 .mainDiv {
-  width: 950px;
-  padding: 10px;
-  background-color: rgba(240, 241, 245, 1);
-  border-radius: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 500px 140px 140px;
+  width: 1200px;
   max-width: 85%;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+/* tiles */
+
+.calendarDiv,
+.financeDiv,
+.requestDiv,
+.bylawsDiv,
+.adminDiv {
+  transition: 0.25s;
+  border-radius: 15px;
+}
+
+.calendarDiv:hover,
+.financeDiv:hover,
+.requestDiv:hover,
+.bylawsDiv:hover,
+.adminDiv:hover {
+  transition: 0.25s;
+  border-radius: 15px;
+}
+
+.calendarDiv {
+  grid-column: span 2;
+  background-color: rgba(0, 180, 255, 0.25);
+}
+.calendarDiv:hover {
+  background-color: rgba(0, 180, 255, 0.3);
   box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
 }
 
-.headerDiv {
+.financeDiv {
+  height: 100%;
+  background-color: rgba(39, 163, 76, 0.25);
+}
+.financeDiv:hover {
+  background-color: rgba(39, 163, 76, 0.3);
+  box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
+}
+
+.requestDiv {
+  background-color: rgba(247, 190, 39, 0.25);
+  grid-column: 1;
+}
+.requestDiv:hover {
+  background-color: rgba(247, 190, 39, 0.3);
+  box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
+}
+
+.bylawsDiv {
+  background-color: rgba(255, 123, 0, 0.25);
+  grid-column: 1;
+}
+.bylawsDiv:hover {
+  background-color: rgba(255, 123, 0, 0.3);
+  box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
+}
+
+.adminDiv {
+  background-color: rgba(255, 0, 0, 0.25);
+  grid-column: 2 / 4;
+  grid-row: 2 / 4;
+}
+.adminDiv:hover {
+  background-color: rgba(255, 0, 0, 0.3);
+  box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
+}
+
+/* calendar */
+.calendarHeaderDiv {
   display: flex;
-  height: 50px;
-  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
 }
 
-.gridDiv {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 175px;
-  gap: 10px;
+h2,
+h3 {
+  margin: 0px;
+  font-weight: normal;
 }
 
-.sectionDiv {
-  background-color: white;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0px 1px 1px 0.5px rgb(225, 226, 230);
-  margin: 10px;
-  gap: 5px;
-}
-.title {
-  display: inline-block;
-  margin: 10px;
-}
-
-.tile {
-  background-color: rgb(240, 241, 245);
-  border-width: 0px;
-  transition: 0.125s;
-  text-decoration: none;
-  color: black;
-  padding: 0px;
-  font-size: 13px;
-  justify-content: center;
-  border-radius: 5px;
-}
-
-.logo {
-  height: 60%;
+.calendarPictureDiv {
+  margin: 20px;
 }
