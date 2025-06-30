@@ -82,7 +82,7 @@
 }
 
 /* calendar */
-.calendarHeaderDiv {
+.headerDiv {
   display: flex;
   justify-content: space-between;
   padding: 20px;
@@ -96,4 +96,98 @@ h3 {
 
 .calendarPictureDiv {
   margin: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.calendarPicture {
+  width: 100px;
+}
+
+.financeContainerDiv {
+  height: 392.5px;
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.financeItemDiv {
+  height: 120px;
+  background-color: rgba(39, 163, 76, 0.25);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  margin-left: 40px;
+  transition: 0.25s;
+}
+
+.financeItemDiv:hover {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: rgba(39, 163, 76, 0.35);
+  cursor: pointer;
+}
+
+.financeItemDiv:active {
+  transform: scale(0.98);
+  transform-origin: right;
+}
+
+.financeItemTitleDiv {
+  width: 50%;
+  padding: 20px;
+  font-size: large;
+}
+
+.adminContainerDiv {
+  height: 222.5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.adminItemRightDiv {
+  height: 30%;
+  background-color: rgba(255, 0, 0, 0.25);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  transition: 0.25s;
+}
+
+.adminItemLeftDiv {
+  height: 30%;
+  background-color: rgba(255, 0, 0, 0.25);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  transition: 0.25s;
+}
+
+.adminItemRightDiv:hover {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: rgba(255, 0, 0, 0.35);
+  cursor: pointer;
+}
+
+.adminItemRightDiv:active {
+  transform: scale(0.98);
+  transform-origin: right;
+}
+
+.adminItemTitleDiv {
+  width: 50%;
+  padding: 20px;
+  font-size: large;
+}
+
+.adminSplitDiv {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
 }
