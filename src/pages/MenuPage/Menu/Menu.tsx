@@ -18,15 +18,22 @@ export default function Menu() {
         </div>
 
         {/* Purple / Messages */}
-        <div className={styles.messagesDiv}></div>
+        <div className={styles.messagesDiv}>
+          <div className={styles.messagesItemDiv}>
+            <div className={styles.financeItemTitleDiv}>Past Message</div>
+          </div>
+          <div className={styles.messagesItemDiv}>
+            <div className={styles.financeItemTitleDiv}>Most Recent Message</div>
+          </div>
+        </div>
 
         {/* Finance */}
         <div className={styles.financeDiv}>
-          <div className={styles.headerDiv} style={{ justifyContent: "right" }}>
+          <div className={styles.headerDiv}>
             <h2>Finances</h2>
             <h3></h3>
           </div>
-          <div className={styles.financeContainerDiv}>
+          <div className={styles.ContainerDiv}>
             <div className={styles.financeItemDiv}>
               <div className={styles.financeItemTitleDiv}>Financial Summary</div>
             </div>
@@ -42,7 +49,7 @@ export default function Menu() {
         {/* Requests */}
         <div className={styles.requestDiv}>
           <div className={styles.headerDiv}>
-            <h2 style={{ fontSize: "20px" }}>Requests</h2>
+            <h2 style={{ fontSize: "20px" }}>Requests Disbursements</h2>
             <h3></h3>
           </div>
         </div>
@@ -61,7 +68,7 @@ export default function Menu() {
             <h2>Admin</h2>
             <h3></h3>
           </div>
-          <div className={styles.adminContainerDiv}>
+          <div className={styles.ContainerDiv}>
             <div className={styles.adminItemDiv}>View Contributions</div>
             <div className={styles.adminItemDiv}>Approve Disbursements</div>
             <div className={styles.adminItemDiv}>Pay Disbursements</div>
