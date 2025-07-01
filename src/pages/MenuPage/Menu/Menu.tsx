@@ -1,5 +1,24 @@
 import styles from "./Menu.module.css";
 import calendarScreenshot from "../../../assets/calendarScreenshot.png";
+import clock from "../../../assets/clock.svg";
+import all from "../../../assets/all.svg";
+
+import logIn from "../../../assets/logIn.svg";
+import signUp from "../../../assets/signUp.svg";
+import dollar from "../../../assets/dollar.svg";
+import week from "../../../assets/week.svg";
+import paper from "../../../assets/paper.svg";
+import refund from "../../../assets/refund.svg";
+import handMoney from "../../../assets/handMoney.svg";
+import check from "../../../assets/check.svg";
+import review from "../../../assets/review.svg";
+import review2 from "../../../assets/review2.svg";
+
+import scroll from "../../../assets/scroll.svg";
+import calendar from "../../../assets/calendar.svg";
+
+import recentMessage from "../../../assets/recentMessage.jpg";
+
 import { Link } from "react-router-dom";
 
 export default function Menu() {
@@ -10,7 +29,7 @@ export default function Menu() {
         <div className={styles.calendarDiv}>
           <div className={styles.headerDiv}>
             <h2>Calendar</h2>
-            <h3>View events and sign up for tasks</h3>
+            <img src={calendar}></img>
           </div>
           <div className={styles.calendarPictureDiv}>
             <img className={styles.calendarPicture} src={calendarScreenshot} alt="Calendar" />
@@ -21,25 +40,33 @@ export default function Menu() {
         <div className={styles.accountContainerDiv}>
           <div className={styles.accountDiv}>
             <div className={styles.headerDiv}>
-              <h2 style={{ fontSize: "20px" }}>Log in</h2>
-              <h3></h3>
+              <img src={logIn}></img>
+              <h2>Log in</h2>
             </div>
           </div>
           <div className={styles.accountDiv}>
             <div className={styles.headerDiv}>
-              <h2 style={{ fontSize: "20px" }}>Sign up</h2>
-              <h3></h3>
+              <img src={signUp}></img>
+              <h2>Sign up</h2>
             </div>
           </div>
         </div>
 
         {/* Purple / Messages */}
         <div className={styles.messagesDiv}>
-          <div className={styles.messagesItem1Div}>
-            <div className={styles.financeItemTitleDiv}>Past Message</div>
+          <div className={styles.headerDiv}>
+            <img src={all}></img>
+            <h2>All Messages</h2>
           </div>
-          <div className={styles.messagesItem2Div}>
-            <div className={styles.financeItemTitleDiv}>Most Recent Message</div>
+        </div>
+
+        <div className={styles.messagesDiv}>
+          <div className={styles.headerDiv}>
+            <img src={clock}></img>
+            <h2>Recent Message</h2>
+          </div>
+          <div className={styles.messagePictureDiv}>
+            <img className={styles.calendarPicture} src={recentMessage} alt="Calendar" />
           </div>
         </div>
 
@@ -47,17 +74,19 @@ export default function Menu() {
         <div className={styles.financeDiv}>
           <div className={styles.headerDiv}>
             <h2>Finances</h2>
-            <h3></h3>
           </div>
           <div className={styles.ContainerDiv}>
             <div className={styles.financeItemDiv}>
-              <div className={styles.financeItemTitleDiv}>Financial Summary</div>
+              <h2 style={{ fontSize: "20px" }}>Financial Summary</h2>
+              <img src={dollar} style={{ height: "50%" }}></img>
             </div>
             <div className={styles.financeItemDiv}>
-              <div className={styles.financeItemTitleDiv}>Weekly Contributions</div>
+              <h2 style={{ fontSize: "20px" }}>Weekly Contributions</h2>
+              <img src={week} style={{ height: "50%" }}></img>
             </div>
             <div className={styles.financeItemDiv}>
-              <div className={styles.financeItemTitleDiv}>Budget Status</div>
+              <h2 style={{ fontSize: "20px" }}>Budget Status</h2>
+              <img src={paper} style={{ height: "50%" }}></img>
             </div>
           </div>
         </div>
@@ -65,16 +94,16 @@ export default function Menu() {
         {/* Requests */}
         <div className={styles.requestDiv}>
           <div className={styles.headerDiv}>
-            <h2 style={{ fontSize: "20px" }}>Requests Disbursements</h2>
-            <h3></h3>
+            <h2>Requests Disbursements</h2>
+            <img src={refund}></img>
           </div>
         </div>
 
         {/* Bylaws */}
         <div className={styles.bylawsDiv}>
           <div className={styles.headerDiv}>
-            <h2 style={{ fontSize: "20px" }}>Bylaws</h2>
-            <h3></h3>
+            <h2>Bylaws</h2>
+            <img src={scroll}></img>
           </div>
         </div>
 
@@ -82,14 +111,28 @@ export default function Menu() {
         <div className={styles.adminDiv}>
           <div className={styles.headerDiv} style={{ justifyContent: "right" }}>
             <h2>Admin</h2>
-            <h3></h3>
           </div>
           <div className={styles.ContainerDiv}>
-            <div className={styles.adminItemDiv}>View Contributions</div>
-            <div className={styles.adminItemDiv}>Approve Disbursements</div>
-            <div className={styles.adminItemDiv}>Pay Disbursements</div>
-            <div className={styles.adminItemDiv}>Review Disbursements</div>
-            <div className={styles.adminItemDiv}>Review Payments</div>
+            <div className={styles.adminItemDiv}>
+              <img src={refund} style={{ height: "60%" }}></img>
+              View Contributions
+            </div>
+            <div className={styles.adminItemDiv}>
+              <img src={check} style={{ height: "60%" }}></img>
+              Approve Disbursements
+            </div>
+            <div className={styles.adminItemDiv}>
+              <img src={handMoney} style={{ height: "60%" }}></img>
+              Pay Disbursements
+            </div>
+            <div className={styles.adminItemDiv}>
+              <img src={review} style={{ height: "60%" }}></img>
+              Review Disbursements
+            </div>
+            <div className={styles.adminItemDiv}>
+              <img src={review2} style={{ height: "60%" }}></img>
+              Review Payments
+            </div>
           </div>
         </div>
       </div>

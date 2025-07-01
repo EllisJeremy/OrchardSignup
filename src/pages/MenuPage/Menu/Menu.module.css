@@ -7,7 +7,7 @@
 .mainDiv {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 70px 400px 140px 140px;
+  grid-template-rows: 70px 140px 290px 140px 140px;
   width: 1200px;
   max-width: 85%;
   gap: 10px;
@@ -31,7 +31,8 @@
 .calendarDiv:hover,
 .requestDiv:hover,
 .bylawsDiv:hover,
-.accountDiv:hover {
+.accountDiv:hover,
+.messagesDiv:hover {
   box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
   cursor: pointer;
   border-radius: 10px;
@@ -39,13 +40,14 @@
 
 .requestDiv:active,
 .bylawsDiv:active,
-.accountDiv:active {
+.accountDiv:active,
+.messagesDiv:active {
   transform: scale(0.98);
 }
 
 .calendarDiv {
   grid-column: span 2;
-  grid-row: span 2;
+  grid-row: span 3;
   background-color: rgba(0, 180, 255, 0.25);
 }
 .calendarDiv:hover {
@@ -57,11 +59,9 @@
 }
 
 .financeDiv {
-  grid-row: 3 / 5;
+  grid-row: 4 / 6;
   border: 2px solid rgba(39, 163, 76, 0.25);
   background-color: rgba(39, 163, 76, 0.05);
-}
-.financeDiv:hover {
 }
 
 .requestDiv {
@@ -79,19 +79,22 @@
 }
 
 .messagesDiv {
-  background-color: rgba(138, 100, 226, 0.1);
-  border: 2px solid rgba(138, 100, 226, 0.25);
+  background-color: rgba(138, 100, 226, 0.25);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
 }
 
+.messagesDiv:hover {
+  background-color: rgba(138, 100, 226, 0.35);
+}
+
 .adminDiv {
   border: 2px solid rgba(255, 0, 0, 0.25);
   background-color: rgba(255, 0, 0, 0.05);
   grid-column: 3 / 4;
-  grid-row: 3 / 5;
+  grid-row: 4 / 6;
   overflow: hidden;
 }
 .adminDiv:hover {
@@ -102,6 +105,8 @@
   display: flex;
   justify-content: space-between;
   padding: 20px;
+  height: 30px;
+  align-items: center;
 }
 
 h2,
@@ -145,6 +150,9 @@ h3 {
   border-left: none;
   display: flex;
   padding-left: 20px;
+  padding-right: 20px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .financeItemDiv:hover {
@@ -183,8 +191,10 @@ h3 {
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
   margin-left: 40px;
-  padding-left: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
   transition: 0.25s;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -260,4 +270,20 @@ h3 {
 
 .accountDiv:hover {
   background-color: white;
+}
+
+img {
+  height: 100%;
+}
+
+.messagePictureDiv {
+  margin: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 200px;
+}
+
+.messagesDiv:hover .calendarPicture {
+  transition: 0.5s;
+  transform: scale(1.05);
 }
