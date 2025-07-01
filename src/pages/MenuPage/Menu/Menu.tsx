@@ -17,6 +17,22 @@ export default function Menu() {
           </div>
         </div>
 
+        {/* log in */}
+        <div className={styles.accountContainerDiv}>
+          <div className={styles.accountDiv}>
+            <div className={styles.headerDiv}>
+              <h2 style={{ fontSize: "20px" }}>Log in</h2>
+              <h3></h3>
+            </div>
+          </div>
+          <div className={styles.accountDiv}>
+            <div className={styles.headerDiv}>
+              <h2 style={{ fontSize: "20px" }}>Sign up</h2>
+              <h3></h3>
+            </div>
+          </div>
+        </div>
+
         {/* Purple / Messages */}
         <div className={styles.messagesDiv}>
           <div className={styles.messagesItem1Div}>

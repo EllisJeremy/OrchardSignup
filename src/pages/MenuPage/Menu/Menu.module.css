@@ -7,7 +7,7 @@
 .mainDiv {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 500px 140px 140px;
+  grid-template-rows: 70px 400px 140px 140px;
   width: 1200px;
   max-width: 85%;
   gap: 10px;
@@ -22,30 +22,34 @@
 .requestDiv,
 .bylawsDiv,
 .messagesDiv,
-.adminDiv {
+.adminDiv,
+.accountDiv {
   transition: 0.25s;
   border-radius: 20px;
 }
 
 .calendarDiv:hover,
 .requestDiv:hover,
-.bylawsDiv:hover {
+.bylawsDiv:hover,
+.accountDiv:hover {
   box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
   cursor: pointer;
   border-radius: 10px;
 }
 
 .requestDiv:active,
-.bylawsDiv:active {
+.bylawsDiv:active,
+.accountDiv:active {
   transform: scale(0.98);
 }
 
 .calendarDiv {
   grid-column: span 2;
+  grid-row: span 2;
   background-color: rgba(0, 180, 255, 0.25);
 }
 .calendarDiv:hover {
-  background-color: rgba(0, 180, 255, 0.3);
+  background-color: rgba(0, 180, 255, 0.35);
 }
 
 .calendarDiv:active {
@@ -53,7 +57,7 @@
 }
 
 .financeDiv {
-  grid-row: 2 / 4;
+  grid-row: 3 / 5;
   border: 2px solid rgba(39, 163, 76, 0.25);
   background-color: rgba(39, 163, 76, 0.05);
 }
@@ -64,14 +68,14 @@
   background-color: rgba(247, 190, 39, 0.25);
 }
 .requestDiv:hover {
-  background-color: rgba(247, 190, 39, 0.3);
+  background-color: rgba(247, 190, 39, 0.35);
 }
 
 .bylawsDiv {
   background-color: rgba(255, 123, 0, 0.25);
 }
 .bylawsDiv:hover {
-  background-color: rgba(255, 123, 0, 0.3);
+  background-color: rgba(255, 123, 0, 0.35);
 }
 
 .messagesDiv {
@@ -87,7 +91,7 @@
   border: 2px solid rgba(255, 0, 0, 0.25);
   background-color: rgba(255, 0, 0, 0.05);
   grid-column: 3 / 4;
-  grid-row: 2 / 4;
+  grid-row: 3 / 5;
   overflow: hidden;
 }
 .adminDiv:hover {
@@ -133,7 +137,7 @@ h3 {
 
 .financeItemDiv {
   height: 30%;
-  background-color: rgba(39, 163, 76, 0.25);
+  background-color: rgba(39, 163, 76, 0.2);
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   margin-right: 40px;
@@ -146,7 +150,7 @@ h3 {
 .financeItemDiv:hover {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-  background-color: rgba(39, 163, 76, 0.4);
+  background-color: rgba(39, 163, 76, 0.3);
   cursor: pointer;
 
   box-shadow: -2px 0px 0px 0px rgba(39, 163, 76, 0.2);
@@ -175,7 +179,7 @@ h3 {
 .adminItemDiv {
   display: flex;
   height: 17%;
-  background-color: rgba(255, 0, 0, 0.25);
+  background-color: rgba(255, 0, 0, 0.2);
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
   margin-left: 40px;
@@ -187,7 +191,7 @@ h3 {
 .adminItemDiv:hover {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  background-color: rgba(255, 0, 0, 0.4);
+  background-color: rgba(255, 0, 0, 0.3);
   cursor: pointer;
 
   box-shadow:
@@ -201,7 +205,7 @@ h3 {
 }
 .messagesItem1Div,
 .messagesItem2Div {
-  background-color: rgba(138, 100, 226, 0.25);
+  background-color: rgba(138, 100, 226, 0.2);
 
   margin-left: 40px;
   transition: 0.25s;
@@ -223,7 +227,7 @@ h3 {
 
 .messagesItem1Div:hover,
 .messagesItem2Div:hover {
-  background-color: rgba(138, 100, 226, 0.35);
+  background-color: rgba(138, 100, 226, 0.3);
   cursor: pointer;
   box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
 }
@@ -243,4 +247,17 @@ h3 {
 .messagesItem2Div:active {
   transform: scale(0.99);
   transform-origin: bottom right;
+}
+.accountContainerDiv {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.accountDiv {
+  width: 50%;
+  background-color: rgb(224, 226, 238);
+}
+
+.accountDiv:hover {
+  background-color: white;
 }
