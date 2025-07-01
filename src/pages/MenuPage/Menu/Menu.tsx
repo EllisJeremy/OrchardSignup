@@ -20,7 +20,7 @@ import calendar from "../../../assets/calendar.svg";
 import recentMessage from "../../../assets/recentMessage.jpg";
 
 import { Link } from "react-router-dom";
-
+const admin: boolean = false;
 export default function Menu() {
   return (
     <div className={styles.bodyDiv}>
@@ -35,7 +35,6 @@ export default function Menu() {
             <img className={styles.calendarPicture} src={calendarScreenshot} alt="Calendar" />
           </div>
         </div>
-
         {/* log in */}
         <div className={styles.accountContainerDiv}>
           <div className={styles.accountDiv}>
@@ -51,7 +50,6 @@ export default function Menu() {
             </div>
           </div>
         </div>
-
         {/* Purple / Messages */}
         <div className={styles.messagesDiv}>
           <div className={styles.headerDiv}>
@@ -59,7 +57,6 @@ export default function Menu() {
             <h2>All Messages</h2>
           </div>
         </div>
-
         <div className={styles.messagesDiv}>
           <div className={styles.headerDiv}>
             <img src={clock}></img>
@@ -69,7 +66,6 @@ export default function Menu() {
             <img className={styles.calendarPicture} src={recentMessage} alt="Calendar" />
           </div>
         </div>
-
         {/* Finance */}
         <div className={styles.financeDiv}>
           <div className={styles.headerDiv}>
@@ -90,7 +86,6 @@ export default function Menu() {
             </div>
           </div>
         </div>
-
         {/* Requests */}
         <div className={styles.requestDiv}>
           <div className={styles.headerDiv}>
@@ -98,7 +93,6 @@ export default function Menu() {
             <img src={refund}></img>
           </div>
         </div>
-
         {/* Bylaws */}
         <div className={styles.bylawsDiv}>
           <div className={styles.headerDiv}>
@@ -106,8 +100,12 @@ export default function Menu() {
             <img src={scroll}></img>
           </div>
         </div>
-
         {/* Admin */}
+        {admin && (
+          <div className={styles.adminAuthDiv}>
+            <h2>You do not have admin access</h2>
+          </div>
+        )}
         <div className={styles.adminDiv}>
           <div className={styles.headerDiv} style={{ justifyContent: "right" }}>
             <h2>Admin</h2>
