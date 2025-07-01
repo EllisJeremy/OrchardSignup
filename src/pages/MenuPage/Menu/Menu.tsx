@@ -6,16 +6,21 @@ export default function Menu() {
   return (
     <div className={styles.bodyDiv}>
       <div className={styles.mainDiv}>
+        {/* Calendar */}
         <div className={styles.calendarDiv}>
           <div className={styles.headerDiv}>
             <h2>Calendar</h2>
             <h3>View events and sign up for tasks</h3>
           </div>
           <div className={styles.calendarPictureDiv}>
-            <img className={styles.calendarPicture} src={calendarScreenshot}></img>
+            <img className={styles.calendarPicture} src={calendarScreenshot} alt="Calendar" />
           </div>
         </div>
 
+        {/* Purple / Messages */}
+        <div className={styles.messagesDiv}></div>
+
+        {/* Finance */}
         <div className={styles.financeDiv}>
           <div className={styles.headerDiv} style={{ justifyContent: "right" }}>
             <h2>Finances</h2>
@@ -26,26 +31,31 @@ export default function Menu() {
               <div className={styles.financeItemTitleDiv}>Financial Summary</div>
             </div>
             <div className={styles.financeItemDiv}>
-              <div className={styles.financeItemTitleDiv}>Weekly Contributions Summary</div>
+              <div className={styles.financeItemTitleDiv}>Weekly Contributions</div>
             </div>
             <div className={styles.financeItemDiv}>
               <div className={styles.financeItemTitleDiv}>Budget Status</div>
             </div>
           </div>
         </div>
+
+        {/* Requests */}
         <div className={styles.requestDiv}>
           <div className={styles.headerDiv}>
             <h2 style={{ fontSize: "20px" }}>Requests</h2>
             <h3></h3>
           </div>
         </div>
+
+        {/* Bylaws */}
         <div className={styles.bylawsDiv}>
           <div className={styles.headerDiv}>
             <h2 style={{ fontSize: "20px" }}>Bylaws</h2>
             <h3></h3>
           </div>
         </div>
-        <div className={styles.messagesDiv}></div>
+
+        {/* Admin */}
         <div className={styles.adminDiv}>
           <div className={styles.headerDiv} style={{ justifyContent: "right" }}>
             <h2>Admin</h2>
