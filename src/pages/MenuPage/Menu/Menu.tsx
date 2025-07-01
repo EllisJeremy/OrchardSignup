@@ -19,10 +19,10 @@ export default function Menu() {
 
         {/* Purple / Messages */}
         <div className={styles.messagesDiv}>
-          <div className={styles.messagesItemDiv}>
+          <div className={styles.messagesItem1Div}>
             <div className={styles.financeItemTitleDiv}>Past Message</div>
           </div>
-          <div className={styles.messagesItemDiv}>
+          <div className={styles.messagesItem2Div}>
             <div className={styles.financeItemTitleDiv}>Most Recent Message</div>
           </div>
         </div>
