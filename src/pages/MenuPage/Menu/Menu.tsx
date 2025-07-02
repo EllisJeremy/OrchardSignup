@@ -56,6 +56,7 @@ export default function Menu() {
             <img src={all}></img>
             <h2>All Messages</h2>
           </div>
+          <h3 style={{ textAlign: "right" }}> View past weeks sermons</h3>
         </div>
         <div className={styles.messagesDiv}>
           <div className={styles.headerDiv}>
@@ -92,6 +93,7 @@ export default function Menu() {
             <h2>Requests Disbursements</h2>
             <img src={refund}></img>
           </div>
+          <h3>Get a refund for your donation</h3>
         </div>
         {/* Bylaws */}
         <div className={styles.bylawsDiv}>
@@ -99,6 +101,7 @@ export default function Menu() {
             <h2>Bylaws</h2>
             <img src={scroll}></img>
           </div>
+          <h3>View the rules of the church</h3>
         </div>
         {/* Admin */}
         {admin && (
