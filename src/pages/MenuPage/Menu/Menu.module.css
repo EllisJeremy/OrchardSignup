@@ -1,7 +1,7 @@
 .bodyDiv {
   display: flex;
   justify-content: center;
-  padding-top: 50px;
+  padding-top: 20px;
 }
 
 .mainDiv {
@@ -38,6 +38,7 @@
   box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
   cursor: pointer;
   border-radius: 20px;
+  transform: scale(1.01);
 }
 
 .requestDiv:active,
@@ -54,6 +55,7 @@
 }
 .calendarDiv:hover {
   background-color: rgba(0, 180, 255, 0.35);
+  transform: scale(1.005);
 }
 
 .calendarDiv:active {
@@ -171,6 +173,7 @@ h3 {
 
   box-shadow: -2px 0px 0px 0px rgba(39, 163, 76, 0.2);
   box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
+  transform: scale(1.01);
 }
 
 .financeItemDiv:active {
@@ -213,7 +216,7 @@ h3 {
   border-bottom-left-radius: 10px;
   background-color: rgba(255, 0, 0, 0.3);
   cursor: pointer;
-
+  transform: scale(1.015);
   box-shadow:
     2px 0px 0px 0px rgba(255, 0, 0, 0.2),
     0px 2px 5px 1px rgb(195, 196, 200);
@@ -310,4 +313,171 @@ img {
   display: flex;
   justify-content: center;
   padding: 20px;
+}
+
+/*
+
+all green 
+.calendarDiv {
+  grid-column: span 2;
+  grid-row: span 3;
+  background-color: rgba(39, 163, 76, 0.1);
+}
+.calendarDiv:hover {
+  background-color: rgba(39, 163, 76, 0.2);
+}
+
+.financeDiv {
+  grid-row: 4 / 6;
+  border: 2px solid rgba(39, 163, 76, 0.25);
+  background-color: rgba(39, 163, 76, 0.05);
+}
+
+.requestDiv {
+  background-color: rgba(39, 163, 76, 0.15);
+}
+.requestDiv:hover {
+  background-color: rgba(39, 163, 76, 0.25);
+}
+
+.bylawsDiv {
+  background-color: rgba(39, 163, 76, 0.15);
+}
+.bylawsDiv:hover {
+  background-color: rgba(39, 163, 76, 0.25);
+}
+
+.messagesDiv {
+  background-color: rgba(39, 163, 76, 0.15);
+}
+
+.messagesDiv:hover {
+  background-color: rgba(39, 163, 76, 0.25);
+}
+
+.adminDiv {
+  border: 2px solid rgba(39, 163, 76, 0.2);
+  background-color: rgba(39, 163, 76, 0.05);
+}
+
+.financeItemDiv {
+  background-color: rgba(39, 163, 76, 0.2);
+}
+.financeItemDiv:hover {
+  background-color: rgba(39, 163, 76, 0.3);
+  box-shadow: 0px 2px 5px 1px rgba(39, 163, 76, 0.2);
+}
+
+.adminItemDiv {
+  background-color: rgba(39, 163, 76, 0.2);
+}
+.adminItemDiv:hover {
+  background-color: rgba(39, 163, 76, 0.3);
+  box-shadow:
+    2px 0px 0px 0px rgba(39, 163, 76, 0.2),
+    0px 2px 5px 1px rgba(39, 163, 76, 0.3);
+}
+
+.messagesItem1Div,
+.messagesItem2Div {
+  background-color: rgba(39, 163, 76, 0.2);
+}
+.messagesItem1Div:hover,
+.messagesItem2Div:hover {
+  background-color: rgba(39, 163, 76, 0.3);
+  box-shadow: 0px 2px 5px 1px rgba(39, 163, 76, 0.3);
+}
+
+.adminAuthDiv {
+  background-color: rgba(39, 163, 76, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+*/
+.calendarDiv {
+  grid-column: span 2;
+  grid-row: span 3;
+  background-color: #f0f8ff;
+  border: 2px solid #d0eeff;
+}
+.calendarDiv:hover {
+  background-color: #d0eeff;
+}
+
+.financeDiv {
+  grid-row: 4 / 6;
+  background-color: #ebf5ec;
+  border: 2px solid #d1ead3;
+}
+
+.requestDiv {
+  background-color: #fff8e1;
+  border: 2px solid #ffe9b3;
+}
+.requestDiv:hover {
+  background-color: #ffe9b3;
+}
+
+.bylawsDiv {
+  background-color: #fff0e0;
+  border: 2px solid #ffdab5;
+}
+.bylawsDiv:hover {
+  background-color: #ffdab5;
+}
+
+.messagesDiv {
+  background-color: #f3f0ff;
+  border: 2px solid #e0daff;
+}
+
+.messagesDiv:hover {
+  background-color: #e0daff;
+}
+
+.adminDiv {
+  background-color: #ffeded;
+  border: 2px solid #ffd3d3;
+}
+
+.financeItemDiv {
+  background-color: #d1ead3;
+  border: 2px solid #bfe1c4;
+}
+.financeItemDiv:hover {
+  background-color: #bfe1c4;
+}
+
+.adminItemDiv {
+  background-color: #ffd3d3;
+  border: 2px solid #ffbaba;
+}
+.adminItemDiv:hover {
+  background-color: #ffbaba;
+}
+
+.messagesItem1Div,
+.messagesItem2Div {
+  background-color: #e0daff;
+  border: 2px solid #d1c8ff;
+}
+.messagesItem1Div:hover,
+.messagesItem2Div:hover {
+  background-color: #d1c8ff;
+}
+
+.accountDiv {
+  background-color: #f5f5f5;
+  border: 2px solid #e8e8e8;
+}
+.accountDiv:hover {
+  background-color: #e8e8e8;
+}
+
+.adminAuthDiv {
+  background-color: #ffd3d3;
+  border: 2px solid #ffbaba;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
