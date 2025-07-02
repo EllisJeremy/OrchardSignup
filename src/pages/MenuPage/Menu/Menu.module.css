@@ -26,6 +26,8 @@
 .accountDiv {
   transition: 0.25s;
   border-radius: 20px;
+  text-decoration: none;
+  color: inherit;
 }
 
 .calendarDiv:hover,
@@ -157,6 +159,8 @@ h3 {
   padding-right: 20px;
   justify-content: space-between;
   align-items: center;
+  text-decoration: none;
+  color: inherit;
 }
 
 .financeItemDiv:hover {
@@ -200,6 +204,8 @@ h3 {
   transition: 0.25s;
   justify-content: space-between;
   align-items: center;
+  text-decoration: none;
+  color: inherit;
 }
 
 .adminItemDiv:hover {
@@ -284,7 +290,7 @@ img {
   margin-top: 10px;
   border-radius: 10px;
   overflow: hidden;
-  height: 200px;
+  height: 190px;
 }
 
 .messagesDiv:hover .calendarPicture {
