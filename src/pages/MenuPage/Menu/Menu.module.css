@@ -38,7 +38,6 @@
   box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
   cursor: pointer;
   border-radius: 20px;
-  transform: scale(1.01);
 }
 
 .requestDiv:active,
@@ -55,7 +54,6 @@
 }
 .calendarDiv:hover {
   background-color: rgba(0, 180, 255, 0.35);
-  transform: scale(1.005);
 }
 
 .calendarDiv:active {
@@ -64,7 +62,6 @@
 
 .financeDiv {
   grid-row: 4 / 6;
-  border: 2px solid rgba(39, 163, 76, 0.25);
   background-color: rgba(39, 163, 76, 0.05);
 }
 
@@ -93,7 +90,6 @@
 }
 
 .adminDiv {
-  border: 2px solid rgba(255, 0, 0, 0.25);
   background-color: rgba(255, 0, 0, 0.05);
   grid-column: 3 / 4;
   grid-row: 4 / 6;
@@ -127,7 +123,9 @@ h3 {
   margin-top: 10px;
   border-radius: 10px;
   overflow: hidden;
-  height: 420px;
+  height: 410px;
+  border: 2px solid #d0eeff;
+  box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
 }
 
 .calendarPicture {
@@ -173,12 +171,11 @@ h3 {
 
   box-shadow: -2px 0px 0px 0px rgba(39, 163, 76, 0.2);
   box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
-  transform: scale(1.01);
 }
 
 .financeItemDiv:active {
-  transform: scale(0.98);
   transform-origin: left;
+  transform: scale(0.985);
 }
 
 .financeItemTitleDiv {
@@ -203,6 +200,7 @@ h3 {
   border-bottom-left-radius: 15px;
   margin-left: 40px;
   padding-left: 20px;
+
   padding-right: 20px;
   transition: 0.25s;
   justify-content: space-between;
@@ -216,7 +214,6 @@ h3 {
   border-bottom-left-radius: 10px;
   background-color: rgba(255, 0, 0, 0.3);
   cursor: pointer;
-  transform: scale(1.015);
   box-shadow:
     2px 0px 0px 0px rgba(255, 0, 0, 0.2),
     0px 2px 5px 1px rgb(195, 196, 200);
@@ -263,11 +260,9 @@ h3 {
 }
 
 .messagesItem1Div:active {
-  transform: scale(0.99);
   transform-origin: top right;
 }
 .messagesItem2Div:active {
-  transform: scale(0.99);
   transform-origin: bottom right;
 }
 .accountContainerDiv {
@@ -293,7 +288,9 @@ img {
   margin-top: 10px;
   border-radius: 10px;
   overflow: hidden;
-  height: 190px;
+  height: 180px;
+  border: 2px solid #e0daff;
+  box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
 }
 
 .messagesDiv:hover .calendarPicture {
@@ -315,86 +312,6 @@ img {
   padding: 20px;
 }
 
-/*
-
-all green 
-.calendarDiv {
-  grid-column: span 2;
-  grid-row: span 3;
-  background-color: rgba(39, 163, 76, 0.1);
-}
-.calendarDiv:hover {
-  background-color: rgba(39, 163, 76, 0.2);
-}
-
-.financeDiv {
-  grid-row: 4 / 6;
-  border: 2px solid rgba(39, 163, 76, 0.25);
-  background-color: rgba(39, 163, 76, 0.05);
-}
-
-.requestDiv {
-  background-color: rgba(39, 163, 76, 0.15);
-}
-.requestDiv:hover {
-  background-color: rgba(39, 163, 76, 0.25);
-}
-
-.bylawsDiv {
-  background-color: rgba(39, 163, 76, 0.15);
-}
-.bylawsDiv:hover {
-  background-color: rgba(39, 163, 76, 0.25);
-}
-
-.messagesDiv {
-  background-color: rgba(39, 163, 76, 0.15);
-}
-
-.messagesDiv:hover {
-  background-color: rgba(39, 163, 76, 0.25);
-}
-
-.adminDiv {
-  border: 2px solid rgba(39, 163, 76, 0.2);
-  background-color: rgba(39, 163, 76, 0.05);
-}
-
-.financeItemDiv {
-  background-color: rgba(39, 163, 76, 0.2);
-}
-.financeItemDiv:hover {
-  background-color: rgba(39, 163, 76, 0.3);
-  box-shadow: 0px 2px 5px 1px rgba(39, 163, 76, 0.2);
-}
-
-.adminItemDiv {
-  background-color: rgba(39, 163, 76, 0.2);
-}
-.adminItemDiv:hover {
-  background-color: rgba(39, 163, 76, 0.3);
-  box-shadow:
-    2px 0px 0px 0px rgba(39, 163, 76, 0.2),
-    0px 2px 5px 1px rgba(39, 163, 76, 0.3);
-}
-
-.messagesItem1Div,
-.messagesItem2Div {
-  background-color: rgba(39, 163, 76, 0.2);
-}
-.messagesItem1Div:hover,
-.messagesItem2Div:hover {
-  background-color: rgba(39, 163, 76, 0.3);
-  box-shadow: 0px 2px 5px 1px rgba(39, 163, 76, 0.3);
-}
-
-.adminAuthDiv {
-  background-color: rgba(39, 163, 76, 0.2);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-*/
 .calendarDiv {
   grid-column: span 2;
   grid-row: span 3;
@@ -408,7 +325,10 @@ all green
 .financeDiv {
   grid-row: 4 / 6;
   background-color: #ebf5ec;
-  border: 2px solid #d1ead3;
+  border: none;
+}
+.financeDiv:hover {
+  background-color: #ebf5ec;
 }
 
 .requestDiv {
@@ -431,14 +351,16 @@ all green
   background-color: #f3f0ff;
   border: 2px solid #e0daff;
 }
-
 .messagesDiv:hover {
   background-color: #e0daff;
 }
 
 .adminDiv {
   background-color: #ffeded;
-  border: 2px solid #ffd3d3;
+  border: none;
+}
+.adminDiv:hover {
+  background-color: #ffeded;
 }
 
 .financeItemDiv {
