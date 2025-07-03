@@ -33,8 +33,9 @@ export default function Menu() {
             <h2>Calendar</h2>
             <img src={calendar} />
           </div>
-          <div className={styles.calendarPictureDiv}>
-            <img className={styles.calendarPicture} src={calendarScreenshot} alt="Calendar" />
+
+          <div className={styles.calendarImageDiv}>
+            <img className={styles.calendarImage} src={calendarScreenshot} alt="Calendar" />
           </div>
         </Link>
 
@@ -55,28 +56,26 @@ export default function Menu() {
         </div>
 
         {/* Messages */}
-        <Link to="/menu/calendar" className={styles.messagesDiv}>
-          <div className={styles.headerDiv}>
-            <img src={all} />
-            <h2>All Messages</h2>
-          </div>
-          <h3 style={{ textAlign: "right" }}>View past week's sermons</h3>
-        </Link>
 
-        <Link to="/menu/calendar" className={styles.messagesDiv}>
-          <div className={styles.headerDiv}>
-            <img src={clock} />
-            <h2>Recent Message</h2>
+        <div className={styles.messagesDiv} style={{ justifyContent: "right" }}>
+          <div className={styles.headerDiv} style={{ justifyContent: "right" }}>
+            <h2>Messages</h2>
           </div>
-          <div className={styles.messagePictureDiv}>
-            <img className={styles.calendarPicture} src={recentMessage} alt="Calendar" />
+          <div className={styles.ContainerDiv} style={{ height: "260px" }}>
+            <Link to="/menu/calendar" className={styles.messagesItemDiv}>
+              <div className={styles.messageImageDiv}>
+                <img className={styles.calendarImage} src={recentMessage} alt="Calendar" />
+              </div>
+            </Link>
           </div>
-        </Link>
+        </div>
+
+        {/* Finance */}
 
         {/* Finance */}
         <div className={styles.financeDiv}>
           <div className={styles.headerDiv}>
-            <h2>Finances</h2>
+            <h2 style={{ marginLeft: "10px" }}>Finances</h2>
           </div>
           <div className={styles.ContainerDiv}>
             <Link to="/menu/calendar" className={styles.financeItemDiv}>
@@ -94,23 +93,22 @@ export default function Menu() {
           </div>
         </div>
 
-        {/* Requests */}
-        <Link to="/menu/calendar" className={styles.requestDiv}>
+        {/* Misc */}
+        <div className={styles.miscDiv}>
           <div className={styles.headerDiv}>
-            <h2>Requests Disbursements</h2>
-            <img src={refund} />
+            <h2>Miscellaneous</h2>
           </div>
-          <h3>Get a refund for your donation</h3>
-        </Link>
-
-        {/* Bylaws */}
-        <Link to="/menu/calendar" className={styles.bylawsDiv}>
-          <div className={styles.headerDiv}>
-            <h2>Bylaws</h2>
-            <img src={scroll} />
+          <div className={styles.ContainerDiv}>
+            <Link to="/menu/calendar" className={styles.miscItemDiv}>
+              <h2 style={{ fontSize: "20px" }}>Request Disbursements</h2>
+              <img src={refund} style={{ height: "40%" }} />
+            </Link>
+            <Link to="/menu/calendar" className={styles.miscItemDiv}>
+              <h2 style={{ fontSize: "20px" }}>Bylaws</h2>
+              <img src={scroll} style={{ height: "40%" }} />
+            </Link>
           </div>
-          <h3>View the rules of the church</h3>
-        </Link>
+        </div>
 
         {/* Admin */}
         {admin && (
@@ -121,7 +119,7 @@ export default function Menu() {
 
         <div className={styles.adminDiv}>
           <div className={styles.headerDiv} style={{ justifyContent: "right" }}>
-            <h2>Admin</h2>
+            <h2 style={{ marginRight: "20px" }}>Admin</h2>
           </div>
           <div className={styles.ContainerDiv}>
             <Link to="/menu/calendar" className={styles.adminItemDiv}>

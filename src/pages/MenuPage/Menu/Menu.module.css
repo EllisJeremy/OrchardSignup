@@ -7,7 +7,7 @@
 .mainDiv {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 70px 140px 290px 140px 140px;
+  grid-template-rows: 160px 350px 290px;
   width: 1200px;
   max-width: 85%;
   gap: 10px;
@@ -19,7 +19,7 @@
 
 .calendarDiv,
 .financeDiv,
-.requestDiv,
+.miscDiv,
 .bylawsDiv,
 .messagesDiv,
 .adminDiv,
@@ -30,78 +30,87 @@
   color: inherit;
 }
 
-.calendarDiv:hover,
-.requestDiv:hover,
-.bylawsDiv:hover,
-.accountDiv:hover,
-.messagesDiv:hover {
-  box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
-  cursor: pointer;
-  border-radius: 20px;
-}
-
-.requestDiv:active,
-.bylawsDiv:active,
-.accountDiv:active,
-.messagesDiv:active {
-  transform: scale(0.98);
-}
-
 .calendarDiv {
   grid-column: span 2;
-  grid-row: span 3;
-  background-color: rgba(0, 180, 255, 0.25);
+  grid-row: span 2;
+  background-color: #f0f8ff;
+  border: 2px solid #d0eeff;
 }
 .calendarDiv:hover {
-  background-color: rgba(0, 180, 255, 0.35);
+  background-color: #d0eeff;
 }
-
 .calendarDiv:active {
   transform: scale(0.99);
 }
 
 .financeDiv {
-  grid-row: 4 / 6;
-  background-color: rgba(39, 163, 76, 0.05);
+  background-color: #ebf5ec;
+  border: 2px solid #bfe1c4;
+}
+.financeDiv:hover {
+  background-color: #ebf5ec;
 }
 
-.requestDiv {
-  background-color: rgba(247, 190, 39, 0.25);
-}
-.requestDiv:hover {
-  background-color: rgba(247, 190, 39, 0.35);
+.miscDiv {
+  background-color: #fff8e1;
+  border: 2px solid #ffe9b3;
 }
 
 .bylawsDiv {
-  background-color: rgba(255, 123, 0, 0.25);
+  background-color: #fff0e0;
+  border: 2px solid #ffdab5;
 }
 .bylawsDiv:hover {
-  background-color: rgba(255, 123, 0, 0.35);
+  background-color: #ffdab5;
+}
+.bylawsDiv:active {
+  transform: scale(0.98);
 }
 
 .messagesDiv {
-  background-color: rgba(138, 100, 226, 0.25);
+  background-color: #f3f0ff;
+  border: 2px solid #e0daff;
   justify-content: space-between;
   overflow: hidden;
 }
-
 .messagesDiv:hover {
-  background-color: rgba(138, 100, 226, 0.35);
+  background-color: #e0daff;
+}
+.messagesDiv:active {
+  transform: scale(0.98);
 }
 
 .adminDiv {
-  background-color: rgba(255, 0, 0, 0.05);
-  grid-column: 3 / 4;
-  grid-row: 4 / 6;
+  background-color: #ffeded;
+  border: 2px solid #fec8c8;
   overflow: hidden;
 }
-.adminDiv:hover {
+
+.accountDiv {
+  width: 50%;
+  background-color: #f5f5f5;
+  border: 2px solid #e8e8e8;
+}
+.accountDiv:hover {
+  background-color: #e8e8e8;
+}
+.accountDiv:active {
+  transform: scale(0.98);
+}
+
+.calendarDiv:hover .calendarImage {
+  transition: 0.25s;
+  transform: scale(1.025);
+}
+
+.messagesDiv:hover .calendarImage {
+  transition: 0.25s;
+  transform: scale(1.05);
 }
 
 /* calendar */
 .headerDiv {
   display: flex;
-  justify-content: space-between;
   padding: 20px;
   height: 30px;
   align-items: center;
@@ -113,12 +122,7 @@ h3 {
   font-weight: normal;
 }
 
-h3 {
-  margin-right: 20px;
-  margin-left: 20px;
-}
-
-.calendarPictureDiv {
+.calendarImageDiv {
   margin: 20px;
   margin-top: 10px;
   border-radius: 10px;
@@ -128,30 +132,18 @@ h3 {
   box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
 }
 
-.calendarPicture {
+.calendarImage {
   transition: 0.25s;
   width: 100%;
 }
 
-.calendarDiv:hover .calendarPicture {
-  transition: 0.25s;
-  transform: scale(1.025);
-}
-
-.financeContainerDiv {
-  height: 392.5px;
-  padding-bottom: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.financeItemDiv {
-  height: 30%;
-  background-color: rgba(39, 163, 76, 0.2);
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  margin-right: 40px;
+.financeItemDiv,
+.miscItemDiv,
+.adminItemDiv,
+.messagesItemDiv {
+  border-radius: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
   transition: 0.25s;
   border-left: none;
   display: flex;
@@ -161,28 +153,50 @@ h3 {
   align-items: center;
   text-decoration: none;
   color: inherit;
-}
-
-.financeItemDiv:hover {
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  background-color: rgba(39, 163, 76, 0.3);
-  cursor: pointer;
-
-  box-shadow: -2px 0px 0px 0px rgba(39, 163, 76, 0.2);
   box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
 }
 
-.financeItemDiv:active {
-  transform-origin: left;
-  transform: scale(0.985);
+.financeItemDiv {
+  height: 27%;
+  background-color: #d1ead3;
+  border: 2px solid #bfe1c4;
 }
 
-.financeItemTitleDiv {
-  width: 50%;
-  font-size: large;
-  display: flex;
-  align-items: center;
+.messagesItemDiv {
+  height: 100%;
+  padding: 0px;
+  overflow: hidden;
+  border: 2px solid #e0daff;
+}
+
+.miscItemDiv {
+  height: 44%;
+  background-color: #fff1c1;
+  border: 2px solid #ffe9b3;
+}
+
+.miscItemDiv:hover {
+  background-color: #ffe9b3;
+  border-radius: 10px;
+}
+
+.miscItemDiv:active {
+  transform: scale(0.98);
+}
+
+.adminItemDiv {
+  height: 14%;
+  background-color: #ffd3d3;
+  border: 2px solid #fec8c8;
+}
+
+.financeItemDiv:hover {
+  border-radius: 10px;
+  background-color: #bfe1c4;
+}
+
+.financeItemDiv:active {
+  transform: scale(0.985);
 }
 
 .ContainerDiv {
@@ -192,46 +206,26 @@ h3 {
   justify-content: space-between;
 }
 
-.adminItemDiv {
-  display: flex;
-  height: 17%;
-  background-color: rgba(255, 0, 0, 0.2);
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-  margin-left: 40px;
-  padding-left: 20px;
-
-  padding-right: 20px;
-  transition: 0.25s;
-  justify-content: space-between;
-  align-items: center;
-  text-decoration: none;
-  color: inherit;
-}
-
 .adminItemDiv:hover {
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  background-color: rgba(255, 0, 0, 0.3);
-  cursor: pointer;
-  box-shadow:
-    2px 0px 0px 0px rgba(255, 0, 0, 0.2),
-    0px 2px 5px 1px rgb(195, 196, 200);
+  border-radius: 10px;
+  background-color: #fec8c8;
 }
 
 .adminItemDiv:active {
   transform: scale(0.99);
-  transform-origin: right;
 }
+
 .messagesItem1Div,
 .messagesItem2Div {
-  background-color: rgba(138, 100, 226, 0.2);
+  background-color: #e0daff;
+  border: 2px solid #d1c8ff;
   margin-left: 40px;
   transition: 0.25s;
   border-left: none;
   display: flex;
   padding-left: 20px;
 }
+
 .messagesItem1Div {
   height: 40%;
   border-top-left-radius: 0px;
@@ -246,7 +240,7 @@ h3 {
 
 .messagesItem1Div:hover,
 .messagesItem2Div:hover {
-  background-color: rgba(138, 100, 226, 0.3);
+  background-color: #d1c8ff;
   cursor: pointer;
   box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
 }
@@ -265,141 +259,33 @@ h3 {
 .messagesItem2Div:active {
   transform-origin: bottom right;
 }
+
 .accountContainerDiv {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-}
-.accountDiv {
-  width: 50%;
-  background-color: rgb(224, 226, 238);
-}
-
-.accountDiv:hover {
-  background-color: white;
 }
 
 img {
   height: 100%;
 }
 
-.messagePictureDiv {
-  margin: 20px;
+.messageImageDiv {
   margin-top: 10px;
-  border-radius: 10px;
   overflow: hidden;
-  height: 180px;
-  border: 2px solid #e0daff;
-  box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
+  width: 100%;
 }
 
-.messagesDiv:hover .calendarPicture {
-  transition: 0.25s;
-  transform: scale(1.05);
-}
-
-.adminAuthDiv {
-  background-color: rgba(255, 0, 0, 0.05);
-  grid-column: 3 / 4;
-  grid-row: 4 / 6;
-  overflow: hidden;
-  background: rgba(255, 0, 0, 0.2);
+ness .adminAuthDiv {
+  background-color: #ffd3d3;
+  border: 2px solid #ffbaba;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 20px;
   display: flex;
   justify-content: center;
   padding: 20px;
-}
-
-.calendarDiv {
-  grid-column: span 2;
-  grid-row: span 3;
-  background-color: #f0f8ff;
-  border: 2px solid #d0eeff;
-}
-.calendarDiv:hover {
-  background-color: #d0eeff;
-}
-
-.financeDiv {
+  grid-column: 3 / 4;
   grid-row: 4 / 6;
-  background-color: #ebf5ec;
-  border: none;
-}
-.financeDiv:hover {
-  background-color: #ebf5ec;
-}
-
-.requestDiv {
-  background-color: #fff8e1;
-  border: 2px solid #ffe9b3;
-}
-.requestDiv:hover {
-  background-color: #ffe9b3;
-}
-
-.bylawsDiv {
-  background-color: #fff0e0;
-  border: 2px solid #ffdab5;
-}
-.bylawsDiv:hover {
-  background-color: #ffdab5;
-}
-
-.messagesDiv {
-  background-color: #f3f0ff;
-  border: 2px solid #e0daff;
-}
-.messagesDiv:hover {
-  background-color: #e0daff;
-}
-
-.adminDiv {
-  background-color: #ffeded;
-  border: none;
-}
-.adminDiv:hover {
-  background-color: #ffeded;
-}
-
-.financeItemDiv {
-  background-color: #d1ead3;
-  border: 2px solid #bfe1c4;
-}
-.financeItemDiv:hover {
-  background-color: #bfe1c4;
-}
-
-.adminItemDiv {
-  background-color: #ffd3d3;
-  border: 2px solid #ffbaba;
-}
-.adminItemDiv:hover {
-  background-color: #ffbaba;
-}
-
-.messagesItem1Div,
-.messagesItem2Div {
-  background-color: #e0daff;
-  border: 2px solid #d1c8ff;
-}
-.messagesItem1Div:hover,
-.messagesItem2Div:hover {
-  background-color: #d1c8ff;
-}
-
-.accountDiv {
-  background-color: #f5f5f5;
-  border: 2px solid #e8e8e8;
-}
-.accountDiv:hover {
-  background-color: #e8e8e8;
-}
-
-.adminAuthDiv {
-  background-color: #ffd3d3;
-  border: 2px solid #ffbaba;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
 }
