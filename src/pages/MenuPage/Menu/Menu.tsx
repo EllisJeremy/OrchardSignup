@@ -22,6 +22,7 @@ import recentMessage from "../../../assets/recentMessage.jpg";
 import { Link } from "react-router-dom";
 
 const admin: boolean = false;
+const guest: boolean = true;
 let mostRecentMessage: string = "A Summer Series on James";
 if (mostRecentMessage.length >= 30) {
   mostRecentMessage = mostRecentMessage.slice(0, 27) + "...";
@@ -46,11 +47,42 @@ export default function Menu() {
 
         {/* Log in / Sign up */}
 
-        <Link to="/" className={styles.accountDiv}>
+        <div className={styles.accountDiv}>
           <div className={styles.headerDiv}>
             <h2 style={{ textAlign: "right" }}>Account</h2>
           </div>
-        </Link>
+          <div
+            className={styles.ContainerDiv}
+            style={{ height: "calc(100% - 50px)", flexDirection: "row" }}
+          >
+            {
+              // if a user is a guest give these options
+              guest ? (
+                <>
+                  <Link to="/" className={styles.accountItemDiv}>
+                    <img src={logIn} style={{ height: "30%" }} />
+                    <h2 style={{ fontSize: "20px" }}>Log In</h2>
+                  </Link>
+                  <Link to="/signUp" className={styles.accountItemDiv}>
+                    <img src={signUp} style={{ height: "30%" }} />
+                    <h2 style={{ fontSize: "20px" }}>Sign Up</h2>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/"
+                    className={styles.accountItemDiv}
+                    style={{ fontSize: "20px", width: "100%" }}
+                  >
+                    <img src={logIn} style={{ height: "30%" }} />
+                    <h2 style={{ fontSize: "20px" }}>Log Out</h2>
+                  </Link>
+                </>
+              )
+            }
+          </div>
+        </div>
 
         {/* Messages */}
 
@@ -66,7 +98,7 @@ export default function Menu() {
             <Link to="/menu/calendar" className={styles.messagesItemDiv}>
               <img src={clock} style={{ height: "40%" }} />
               <div className={styles.doubleHeaderDiv}>
-                <h2 style={{ fontSize: "20px" }}>Most Recent Message</h2>
+                <h2 style={{ fontSize: "20px" }}>Recent Message</h2>
                 <h2 style={{ fontSize: "15px" }}>{mostRecentMessage}</h2>
               </div>
             </Link>

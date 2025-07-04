@@ -76,7 +76,8 @@
 }
 
 .accountDiv {
-  background-color: #eff1f5;
+  margin-top: 70px;
+  background-color: hsl(220, 23%, 96.5%);
   border: 2px solid rgb(224, 226, 238);
 }
 
@@ -113,7 +114,8 @@ h3 {
 .financeItemDiv,
 .miscItemDiv,
 .adminItemDiv,
-.messagesItemDiv {
+.messagesItemDiv,
+.accountItemDiv {
   border-radius: 15px;
   transition: 0.25s;
   display: flex;
@@ -138,6 +140,20 @@ h3 {
 }
 
 .messagesItemDiv:active {
+  transform: scale(0.98);
+}
+
+.accountItemDiv {
+  background-color: hsl(220, 23%, 93%);
+  width: 36%;
+}
+
+.accountItemDiv:hover {
+  background-color: rgb(224, 226, 238);
+  border-radius: 10px;
+}
+
+.accountItemDiv:active {
   transform: scale(0.98);
 }
 
