@@ -28,6 +28,7 @@
   border-radius: 20px;
   text-decoration: none;
   color: inherit;
+  padding: 20px;
 }
 
 .calendarDiv {
@@ -35,12 +36,6 @@
   grid-row: span 2;
   background-color: #f0f8ff;
   border: 2px solid #d0eeff;
-}
-.calendarDiv:hover {
-  background-color: #d0eeff;
-}
-.calendarDiv:active {
-  transform: scale(0.99);
 }
 
 .financeDiv {
@@ -73,12 +68,6 @@
   justify-content: space-between;
   overflow: hidden;
 }
-.messagesDiv:hover {
-  background-color: #e0daff;
-}
-.messagesDiv:active {
-  transform: scale(0.98);
-}
 
 .adminDiv {
   background-color: #ffeded;
@@ -103,17 +92,15 @@
   transform: scale(1.025);
 }
 
-.messagesDiv:hover .calendarImage {
+.bigMessagesItemDiv:hover .calendarImage {
   transition: 0.25s;
   transform: scale(1.05);
 }
 
 /* calendar */
 .headerDiv {
-  display: flex;
-  padding: 20px;
+  margin-bottom: 20px;
   height: 30px;
-  align-items: center;
 }
 
 h2,
@@ -123,11 +110,9 @@ h3 {
 }
 
 .calendarImageDiv {
-  margin: 20px;
-  margin-top: 10px;
   border-radius: 10px;
   overflow: hidden;
-  height: 410px;
+  height: calc(100% - 50px - 4px);
   border: 2px solid #d0eeff;
   box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
 }
@@ -142,10 +127,7 @@ h3 {
 .adminItemDiv,
 .messagesItemDiv {
   border-radius: 20px;
-  margin-right: 20px;
-  margin-left: 20px;
   transition: 0.25s;
-  border-left: none;
   display: flex;
   padding-left: 20px;
   padding-right: 20px;
@@ -156,17 +138,26 @@ h3 {
   box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
 }
 
+.messagesItemDiv {
+  height: 20%;
+}
+
 .financeItemDiv {
   height: 27%;
   background-color: #d1ead3;
   border: 2px solid #bfe1c4;
 }
 
-.messagesItemDiv {
-  height: 100%;
-  padding: 0px;
+.bigMessagesItemDiv {
+  height: 70%;
+  text-decoration: none;
+  color: inherit;
   overflow: hidden;
   border: 2px solid #e0daff;
+  justify-content: flex-start;
+  align-items: top;
+  border-radius: 20px;
+  box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
 }
 
 .miscItemDiv {
@@ -200,7 +191,7 @@ h3 {
 }
 
 .ContainerDiv {
-  height: 200px;
+  height: calc(100% - 50px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -213,29 +204,6 @@ h3 {
 
 .adminItemDiv:active {
   transform: scale(0.99);
-}
-
-.messagesItem1Div,
-.messagesItem2Div {
-  background-color: #e0daff;
-  border: 2px solid #d1c8ff;
-  margin-left: 40px;
-  transition: 0.25s;
-  border-left: none;
-  display: flex;
-  padding-left: 20px;
-}
-
-.messagesItem1Div {
-  height: 40%;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 20px;
-}
-
-.messagesItem2Div {
-  height: 60%;
-  margin-top: 20px;
-  border-top-left-radius: 20px;
 }
 
 .messagesItem1Div:hover,
@@ -259,7 +227,14 @@ h3 {
 .messagesItem2Div:active {
   transform-origin: bottom right;
 }
-
+.headerMessagesDiv {
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 58.9px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .accountContainerDiv {
   display: flex;
   justify-content: space-between;
@@ -271,7 +246,6 @@ img {
 }
 
 .messageImageDiv {
-  margin-top: 10px;
   overflow: hidden;
   width: 100%;
 }
