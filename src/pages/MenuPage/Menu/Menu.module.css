@@ -80,11 +80,6 @@
   border: 2px solid rgb(224, 226, 238);
 }
 
-.calendarDiv:hover .calendarImage {
-  transition: 0.25s;
-  transform: scale(1.025);
-}
-
 /* calendar */
 
 .headerDiv {
@@ -107,16 +102,47 @@ h3 {
 }
 
 .calendarImageDiv {
-  border-radius: 10px;
+  border-radius: 15px;
   overflow: hidden;
   height: calc(100% - 50px - 4px);
   border: 2px solid #d0eeff;
   box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
+  position: relative;
+}
+
+.calendarHeaderDiv {
+  padding: 20px;
+  position: absolute;
+  z-index: 1;
+  backdrop-filter: blur(10px);
+  background-color: rgba(209, 238, 255, 0.5);
+  border: 2px solid #d0eeff;
+  border-top: none;
+  border-left: none;
+  border-bottom-right-radius: 15px;
+
+  transition: 0.5s;
+  display: flex;
+  align-items: center;
+}
+.calendarImageDiv:active {
+  transition: 0.25s;
+  transform: scale(0.99);
 }
 
 .calendarImage {
   transition: 0.25s;
   width: 100%;
+}
+
+.calendarImage:hover {
+  transform: scale(1.025);
+}
+
+.calendarImageDiv:hover .calendarHeaderDiv {
+  background-color: rgba(208, 238, 255, 1);
+  transition: 0.5s;
+  border-bottom-right-radius: 10px;
 }
 
 .financeItemDiv,

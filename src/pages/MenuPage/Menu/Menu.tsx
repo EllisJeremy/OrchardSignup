@@ -14,6 +14,8 @@ import check from "../../../assets/check.svg";
 import review from "../../../assets/review.svg";
 import unlock from "../../../assets/unlock.svg";
 import paperStack from "../../../assets/paperStack.svg";
+import dollarBill from "../../../assets/dollarBill.svg";
+import calendar from "../../../assets/calendar.svg";
 
 import scroll from "../../../assets/scroll.svg";
 import mag from "../../../assets/mag.svg";
@@ -36,10 +38,14 @@ export default function Menu() {
         {/* Calendar */}
         <div className={styles.calendarDiv}>
           <div className={styles.headerDiv}>
-            <h2>Calendar</h2>
+            <h2>Events and Tasks</h2>
           </div>
 
           <div className={styles.calendarImageDiv}>
+            <div className={styles.calendarHeaderDiv}>
+              <h2>Calendar</h2>
+              <img src={calendar} style={{ height: "27px", marginLeft: "40px" }} />
+            </div>
             <Link to="/menu/calendar">
               <img className={styles.calendarImage} src={calendarScreenshot} alt="Calendar" />
             </Link>
@@ -91,7 +97,7 @@ export default function Menu() {
           </div>
           <div className={styles.ContainerDiv} style={{ height: "calc(100% - 50px)" }}>
             <Link to="/menu/calendar" className={styles.messagesItemDiv}>
-              <img src={all} style={{ height: "40%" }} />
+              <img src={paperStack} style={{ height: "40%" }} />
               <h2 style={{ fontSize: "20px" }}>All Messages</h2>
             </Link>
             <Link to="/menu/calendar" className={styles.messagesItemDiv}>
@@ -157,23 +163,23 @@ export default function Menu() {
           </div>
           <div className={styles.ContainerDiv}>
             <Link to="/menu/calendar" className={styles.adminItemDiv}>
-              <img src={mag} style={{ height: "60%" }} />
+              <img src={mag} style={{ height: "80%" }} />
               View Contributions
             </Link>
             <Link to="/menu/calendar" className={styles.adminItemDiv}>
-              <img src={check} style={{ height: "60%" }} />
+              <img src={check} style={{ height: "80%" }} />
               Approve Disbursements
             </Link>
             <Link to="/menu/calendar" className={styles.adminItemDiv}>
-              <img src={handMoney} style={{ height: "60%" }} />
+              <img src={handMoney} style={{ height: "80%" }} />
               Pay Disbursements
             </Link>
             <Link to="/menu/calendar" className={styles.adminItemDiv}>
-              <img src={review} style={{ height: "60%" }} />
+              <img src={review} style={{ height: "80%" }} />
               Review Disbursements
             </Link>
             <Link to="/menu/calendar" className={styles.adminItemDiv}>
-              <img src={paperStack} style={{ height: "60%" }} />
+              <img src={dollarBill} style={{ height: "80%" }} />
               Review Payments
             </Link>
           </div>
