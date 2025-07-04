@@ -22,6 +22,10 @@ import recentMessage from "../../../assets/recentMessage.jpg";
 import { Link } from "react-router-dom";
 
 const admin: boolean = false;
+let mostRecentMessage: string = "A Summer Series on James";
+if (mostRecentMessage.length >= 30) {
+  mostRecentMessage = mostRecentMessage.slice(0, 27) + "...";
+}
 
 export default function Menu() {
   return (
@@ -34,25 +38,19 @@ export default function Menu() {
           </div>
 
           <div className={styles.calendarImageDiv}>
-            <img className={styles.calendarImage} src={calendarScreenshot} alt="Calendar" />
+            <Link to="/menu/calendar">
+              <img className={styles.calendarImage} src={calendarScreenshot} alt="Calendar" />
+            </Link>
           </div>
         </div>
 
         {/* Log in / Sign up */}
-        <div className={styles.accountContainerDiv}>
-          <Link to="/" className={styles.accountDiv}>
-            <div className={styles.headerDiv}>
-              <img src={logIn} />
-              <h2>Log in</h2>
-            </div>
-          </Link>
-          <Link to="/signup" className={styles.accountDiv}>
-            <div className={styles.headerDiv}>
-              <img src={signUp} />
-              <h2>Sign up</h2>
-            </div>
-          </Link>
-        </div>
+
+        <Link to="/" className={styles.accountDiv}>
+          <div className={styles.headerDiv}>
+            <h2 style={{ textAlign: "right" }}>Account</h2>
+          </div>
+        </Link>
 
         {/* Messages */}
 
@@ -62,17 +60,14 @@ export default function Menu() {
           </div>
           <div className={styles.ContainerDiv} style={{ height: "calc(100% - 50px)" }}>
             <Link to="/menu/calendar" className={styles.messagesItemDiv}>
-              <img src={all} style={{ height: "50%" }} />
+              <img src={all} style={{ height: "40%" }} />
               <h2 style={{ fontSize: "20px" }}>All Messages</h2>
             </Link>
-
-            <Link to="/menu/calendar" className={styles.bigMessagesItemDiv}>
-              <div className={styles.headerMessagesDiv}>
-                <img src={clock} style={{ height: "50%" }} />
-                <h2 style={{ fontSize: "20px", zIndex: "2" }}>Most Recent Message</h2>
-              </div>
-              <div className={styles.messageImageDiv}>
-                <img className={styles.calendarImage} src={recentMessage} alt="Calendar" />
+            <Link to="/menu/calendar" className={styles.messagesItemDiv}>
+              <img src={clock} style={{ height: "40%" }} />
+              <div className={styles.doubleHeaderDiv}>
+                <h2 style={{ fontSize: "20px" }}>Most Recent Message</h2>
+                <h2 style={{ fontSize: "15px" }}>{mostRecentMessage}</h2>
               </div>
             </Link>
           </div>

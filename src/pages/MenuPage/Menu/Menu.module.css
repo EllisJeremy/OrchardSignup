@@ -3,11 +3,11 @@
   justify-content: center;
   padding-top: 20px;
 }
-
+/*160px 350px 290px; */
 .mainDiv {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 160px 350px 290px;
+  grid-template-rows: 220px 290px 290px;
   width: 1200px;
   max-width: 85%;
   gap: 10px;
@@ -76,25 +76,13 @@
 }
 
 .accountDiv {
-  width: 50%;
-  background-color: #f5f5f5;
-  border: 2px solid #e8e8e8;
-}
-.accountDiv:hover {
-  background-color: #e8e8e8;
-}
-.accountDiv:active {
-  transform: scale(0.98);
+  background-color: #eff1f5;
+  border: 2px solid rgb(224, 226, 238);
 }
 
 .calendarDiv:hover .calendarImage {
   transition: 0.25s;
   transform: scale(1.025);
-}
-
-.bigMessagesItemDiv:hover .calendarImage {
-  transition: 0.25s;
-  transform: scale(1.05);
 }
 
 /* calendar */
@@ -126,7 +114,7 @@ h3 {
 .miscItemDiv,
 .adminItemDiv,
 .messagesItemDiv {
-  border-radius: 20px;
+  border-radius: 15px;
   transition: 0.25s;
   display: flex;
   padding-left: 20px;
@@ -139,7 +127,18 @@ h3 {
 }
 
 .messagesItemDiv {
-  height: 55px;
+  height: 45%;
+  background-color: #e7e1ff;
+  border: 2px solid #e0daff;
+}
+
+.messagesItemDiv:hover {
+  background-color: #e0daff;
+  border-radius: 10px;
+}
+
+.messagesItemDiv:active {
+  transform: scale(0.98);
 }
 
 .financeItemDiv {
@@ -148,20 +147,8 @@ h3 {
   border: 2px solid #bfe1c4;
 }
 
-.bigMessagesItemDiv {
-  height: 180px;
-  text-decoration: none;
-  color: inherit;
-  overflow: hidden;
-  border: 2px solid #e0daff;
-  justify-content: flex-start;
-  align-items: top;
-  border-radius: 20px;
-  box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
-}
-
 .miscItemDiv {
-  height: 44%;
+  height: 45%;
   background-color: #fff1c1;
   border: 2px solid #ffe9b3;
 }
@@ -206,26 +193,6 @@ h3 {
   transform: scale(0.99);
 }
 
-.headerMessagesDiv {
-  padding-left: 20px;
-  padding-right: 20px;
-  height: 55px;
-  width: 305.34px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  backdrop-filter: blur(10px);
-  position: absolute;
-  z-index: 1;
-  border-radius: 18.5px 18.5px 0px 0;
-
-  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-}
-
-.headerMessagesDiv:hover {
-}
-
 .accountContainerDiv {
   display: flex;
   justify-content: space-between;
@@ -234,11 +201,6 @@ h3 {
 
 img {
   height: 100%;
-}
-
-.messageImageDiv {
-  overflow: hidden;
-  width: 100%;
 }
 
 .adminAuthDiv {
@@ -253,4 +215,11 @@ img {
   grid-column: 3 / 4;
   grid-row: 4 / 6;
   overflow: hidden;
+}
+
+.doubleHeaderDiv {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
