@@ -69,9 +69,8 @@ export default function Menu() {
             <Link to="/menu/calendar" className={styles.bigMessagesItemDiv}>
               <div className={styles.headerMessagesDiv}>
                 <img src={clock} style={{ height: "50%" }} />
-                <h2 style={{ fontSize: "20px" }}>Most Recent Message</h2>
+                <h2 style={{ fontSize: "20px", zIndex: "2" }}>Most Recent Message</h2>
               </div>
-
               <div className={styles.messageImageDiv}>
                 <img className={styles.calendarImage} src={recentMessage} alt="Calendar" />
               </div>

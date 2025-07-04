@@ -139,7 +139,7 @@ h3 {
 }
 
 .messagesItemDiv {
-  height: 20%;
+  height: 55px;
 }
 
 .financeItemDiv {
@@ -149,7 +149,7 @@ h3 {
 }
 
 .bigMessagesItemDiv {
-  height: 70%;
+  height: 180px;
   text-decoration: none;
   color: inherit;
   overflow: hidden;
@@ -206,35 +206,26 @@ h3 {
   transform: scale(0.99);
 }
 
-.messagesItem1Div:hover,
-.messagesItem2Div:hover {
-  background-color: #d1c8ff;
-  cursor: pointer;
-  box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
-}
-
-.messagesItem1Div:hover {
-  border-bottom-left-radius: 10px;
-}
-
-.messagesItem2Div:hover {
-  border-top-left-radius: 10px;
-}
-
-.messagesItem1Div:active {
-  transform-origin: top right;
-}
-.messagesItem2Div:active {
-  transform-origin: bottom right;
-}
 .headerMessagesDiv {
-  margin-left: 20px;
-  margin-right: 20px;
-  height: 58.9px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 55px;
+  width: 305.34px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  backdrop-filter: blur(10px);
+  position: absolute;
+  z-index: 1;
+  border-radius: 18.5px 18.5px 0px 0;
+
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
 }
+
+.headerMessagesDiv:hover {
+}
+
 .accountContainerDiv {
   display: flex;
   justify-content: space-between;
@@ -250,7 +241,7 @@ img {
   width: 100%;
 }
 
-ness .adminAuthDiv {
+.adminAuthDiv {
   background-color: #ffd3d3;
   border: 2px solid #ffbaba;
   backdrop-filter: blur(10px);
