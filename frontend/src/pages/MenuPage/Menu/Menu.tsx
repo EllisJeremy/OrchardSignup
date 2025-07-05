@@ -1,8 +1,6 @@
 import styles from "./Menu.module.css";
 import calendarScreenshot from "../../../assets/calendarScreenshot.png";
 import clock from "../../../assets/clock.svg";
-import all from "../../../assets/all.svg";
-
 import logIn from "../../../assets/logIn.svg";
 import signUp from "../../../assets/signUp.svg";
 import dollar from "../../../assets/dollar.svg";
@@ -17,11 +15,8 @@ import paperStack from "../../../assets/paperStack.svg";
 import dollarBill from "../../../assets/dollarBill.svg";
 import calendar from "../../../assets/calendar.svg";
 import x from "../../../assets/x.svg";
-
 import scroll from "../../../assets/scroll.svg";
 import mag from "../../../assets/mag.svg";
-
-import recentMessage from "../../../assets/recentMessage.jpg";
 
 import { Link } from "react-router-dom";
 
