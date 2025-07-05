@@ -1,5 +1,5 @@
-import styles from './Header.module.css'
-import orchardLogo from '../../assets/OrchardLogoHeader.png'
+import styles from "./Header.module.css";
+import orchardLogo from "../../assets/OrchardLogoHeader.png";
 export default function Header() {
   return (
     <div className={styles.headerDiv}>
@@ -7,6 +7,5 @@ export default function Header() {
         <img className={styles.headerLogo} src={orchardLogo} />
       </div>
     </div>
-  )
-
+  );
 }

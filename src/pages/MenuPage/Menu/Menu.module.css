@@ -73,6 +73,8 @@
   background-color: #ffeded;
   border: 2px solid #fec8c8;
   overflow: hidden;
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
 }
 
 .accountDiv {
@@ -114,8 +116,8 @@ h3 {
   padding: 20px;
   position: absolute;
   z-index: 1;
-  backdrop-filter: blur(10px);
-  background-color: rgba(209, 238, 255, 0.5);
+  box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
+  background-color: hsl(202, 100%, 94%);
   border: 2px solid #d0eeff;
   border-top: none;
   border-left: none;
@@ -140,9 +142,10 @@ h3 {
 }
 
 .calendarImageDiv:hover .calendarHeaderDiv {
-  background-color: rgba(208, 238, 255, 1);
+  background-color: #d0eeff;
   transition: 0.5s;
   border-bottom-right-radius: 10px;
+  box-shadow: none;
 }
 
 .financeItemDiv,
@@ -254,15 +257,89 @@ img {
 }
 
 .adminAuthDiv {
-  background-color: #ffd3d3;
+  background-color: rgba(255, 211, 211, 0.5);
   border: 2px solid #ffbaba;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  padding: 20px;
+
   grid-column: 3 / 4;
-  grid-row: 4 / 6;
+  grid-row: 3 / 4;
   overflow: hidden;
 }
+
+.authHeaderDiv {
+  text-align: right;
+  padding: 20px;
+
+  background-color: rgb(255, 211, 211);
+  border-radius: 20px;
+}
+
+/*
+@media (max-width: 1000px) {
+  .mainDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .calendarDiv,
+  .financeDiv,
+  .miscDiv,
+  .bylawsDiv,
+  .messagesDiv,
+  .adminDiv,
+  .accountDiv,
+  .adminAuthDiv {
+    width: 90%;
+    margin-bottom: 20px;
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+
+  .adminAuthDiv {
+    backdrop-filter: blur(5px);
+    padding: 10px;
+  }
+
+  .calendarImageDiv {
+    height: auto;
+  }
+
+  .calendarHeaderDiv {
+    position: static;
+    box-shadow: none;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  .calendarImage {
+    transform: none !important;
+  }
+
+  .ContainerDiv {
+    height: auto;
+  }
+  .financeItemDiv img,
+  .miscItemDiv img,
+  .adminItemDiv img,
+  .messagesItemDiv img,
+  .accountItemDiv img {
+    height: 5px;
+  }
+
+  .calendarHeaderDiv img {
+    height: 5px;
+  }
+
+  .adminAuthDiv img {
+    height: 50px;
+  }
+
+  .messagesItemDiv .doubleHeaderDiv h2 {
+    font-size: 14px;
+  }
+}
+*/

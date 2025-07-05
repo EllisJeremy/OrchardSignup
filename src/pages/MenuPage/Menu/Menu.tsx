@@ -16,6 +16,7 @@ import unlock from "../../../assets/unlock.svg";
 import paperStack from "../../../assets/paperStack.svg";
 import dollarBill from "../../../assets/dollarBill.svg";
 import calendar from "../../../assets/calendar.svg";
+import x from "../../../assets/x.svg";
 
 import scroll from "../../../assets/scroll.svg";
 import mag from "../../../assets/mag.svg";
@@ -24,7 +25,7 @@ import recentMessage from "../../../assets/recentMessage.jpg";
 
 import { Link } from "react-router-dom";
 
-const admin: boolean = false;
+const admin: boolean = true;
 const guest: boolean = false;
 let mostRecentMessage: string = "A Summer Series on James";
 if (mostRecentMessage.length >= 30) {
@@ -151,9 +152,14 @@ export default function Menu() {
         </div>
 
         {/* Admin */}
-        {admin && (
+        {!admin && (
           <div className={styles.adminAuthDiv}>
-            <h2>You do not have admin access</h2>
+            <div className={styles.authHeaderDiv}>
+              <h2>Admin Access Required to Use</h2>
+            </div>
+            <div className={styles.ContainerDiv} style={{ paddingTop: "50px" }}>
+              <img src={x} style={{ height: "40%" }} />
+            </div>
           </div>
         )}
 
