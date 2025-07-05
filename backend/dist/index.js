@@ -7,8 +7,8 @@ const express_1 = __importDefault(require("express"));
 const port = 3000;
 const app = (0, express_1.default)();
 app.get("/", (req, res) => {
-    res.send("hello not ts yet");
+    res.send("hello noasdt ts yet");
 });
 app.listen(port, () => {
-    console.log("this string  matter");
+    console.log("this string dsadas matter");
 });
