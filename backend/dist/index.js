@@ -6,16 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
+const posts_1 = __importDefault(require("./routes/posts"));
 const port = process.env.PORT || 8000;
 const app = (0, express_1.default)();
-let posts = [
-    { id: 1, title: "post 1" },
-    { id: 2, title: "post 2" },
-    { id: 3, title: "post 3" },
-];
-app.get("/json", (req, res) => {
-    res.json(posts);
-});
+// Routes
+app.use(posts_1.default);
 // start server
 app.listen(port, () => {
     console.log("starting server...");

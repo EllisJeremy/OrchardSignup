@@ -1,19 +1,13 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 dotenv.config();
-
+import posts from "./routes/posts";
 const port = process.env.PORT || 8000;
+
 const app = express();
 
-let posts = [
-  { id: 1, title: "post 1" },
-  { id: 2, title: "post 2" },
-  { id: 3, title: "post 3" },
-];
-
-app.get("/json", (req: Request, res: Response) => {
-  res.json(posts);
-});
+// Routes
+app.use(posts);
 
 // start server
 app.listen(port, () => {
