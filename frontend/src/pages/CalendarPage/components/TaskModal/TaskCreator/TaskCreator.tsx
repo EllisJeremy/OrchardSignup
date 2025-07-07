@@ -38,9 +38,13 @@ export default function TaskCreator() {
             inputMode="numeric"
             maxLength={2}
             onKeyDown={(e) => {
-              const allowedKeys = ["Backspace", "Tab", "ArrowLeft", "ArrowRight"];
+              const allowedKeys = ["Backspace", "Tab", "ArrowLeft", "ArrowRight", "Delete"];
               const isDigit = /^[0-9]$/.test(e.key);
               const current = e.currentTarget.value;
+              if (e.key === "ArrowRight" && e.currentTarget.selectionStart === 1) {
+                hourInputRef.current?.focus();
+                return;
+              }
 
               if (!isDigit && !allowedKeys.includes(e.key)) {
                 e.preventDefault();
@@ -56,13 +60,18 @@ export default function TaskCreator() {
                   }
                 }
               }
+
+              if (current === "1" && parseInt(e.key) > 2) {
+                minuteInputRef.current?.focus();
+                minuteInputRef.current!.value = e.key;
+              }
             }}
             onChange={(e) => {
               const val = e.target.value.replace(/\D/g, "").slice(0, 2);
               formatHour(val);
 
               // Auto-advance rules
-              if (val.length === 2 || (val.length === 1 && parseInt(val) >= 3)) {
+              if (val.length === 2 || (val.length === 1 && parseInt(val) >= 2)) {
                 minuteInputRef.current?.focus();
               }
             }}
@@ -74,12 +83,17 @@ export default function TaskCreator() {
             inputMode="numeric"
             maxLength={2}
             onKeyDown={(e) => {
-              const allowedKeys = ["Backspace", "Tab", "ArrowLeft", "ArrowRight"];
+              const allowedKeys = ["Backspace", "Tab", "ArrowLeft", "ArrowRight", "Delete"];
               const isDigit = /^[0-9]$/.test(e.key);
               const current = e.currentTarget.value;
 
               // Move focus back to hour if backspacing from empty field
               if (e.key === "Backspace" && current.length === 0) {
+                hourInputRef.current?.focus();
+                return;
+              }
+
+              if (e.key === "ArrowLeft" && e.currentTarget.selectionStart === 0) {
                 hourInputRef.current?.focus();
                 return;
               }

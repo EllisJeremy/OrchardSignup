@@ -21,18 +21,18 @@ export default function Calendar() {
       {Array.from({ length: daysInMonth }, (_, i) => (
         <div
           className={styles.dayDiv}
-          key={month.toString() + "/" + (i + 1) + "/" + year.toString()}
+          key={year.toString() + "-" + month.toString() + "-" + (i + 1)}
           onClick={() => {
             openCloseTaskModal();
             setCurrentDay(i + 1);
             resetTaskVariables();
-            setDate(month.toString() + "/" + (i + 1) + "/" + year.toString());
+            setDate(year.toString() + "-" + month.toString() + "-" + (i + 1));
           }}
         >
           <div className={styles.dayNumberDiv}>{i + 1}</div>
 
           <div className={styles.dayContentDiv}>
-            <DayTask cellDate={month.toString() + "/" + (i + 1) + "/" + year.toString()} />
+            <DayTask cellDate={year.toString() + "-" + month.toString() + "-" + (i + 1)} />
           </div>
         </div>
       ))}
