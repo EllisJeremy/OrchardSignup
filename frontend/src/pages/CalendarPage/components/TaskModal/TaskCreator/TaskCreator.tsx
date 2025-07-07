@@ -11,17 +11,23 @@ export default function TaskCreator() {
     color,
     signup,
     admin,
-    hour,
-    minute,
-    meridiem,
+    startHour,
+    startMinute,
+    startMeridiem,
+    endHour,
+    endMinute,
+    endMeridiem,
     setTitle,
     setDescription,
     setColor,
     setTaskDatabase,
     setSignup,
-    setHour,
-    setMinute,
-    setMeridiem,
+    setStartHour,
+    setStartMinute,
+    setStartMeridiem,
+    setEndHour,
+    setEndMinute,
+    setEndMeridiem,
   } = taskStore();
 
   if (admin) {
@@ -49,21 +55,21 @@ export default function TaskCreator() {
         </div>
 
         <TimeInput
-          hour={hour}
-          minute={minute}
-          meridiem={meridiem}
-          setHour={setHour}
-          setMinute={setMinute}
-          setMeridiem={setMeridiem}
+          hour={startHour}
+          minute={startMinute}
+          meridiem={startMeridiem}
+          setHour={setStartHour}
+          setMinute={setStartMinute}
+          setMeridiem={setStartMeridiem}
         />
 
         <TimeInput
-          hour={hour}
-          minute={minute}
-          meridiem={meridiem}
-          setHour={setHour}
-          setMinute={setMinute}
-          setMeridiem={setMeridiem}
+          hour={endHour}
+          minute={endMinute}
+          meridiem={endMeridiem}
+          setHour={setEndHour}
+          setMinute={setEndMinute}
+          setMeridiem={setEndMeridiem}
         />
 
         <textarea
@@ -74,10 +80,14 @@ export default function TaskCreator() {
         <button
           className={styles.createButton}
           onClick={() => {
-            const { hour = "12", minute = "00", meridiem = "AM" } = taskStore.getState();
-            const dueTime = `${hour}:${minute} ${meridiem}`;
-            console.log(date, title, dueTime, description, color, "", signup);
-            setTaskDatabase(date, title, dueTime, description, color, "", signup);
+            if (startHour === "" || startMinute === "" || endHour === "" || endMinute === "") {
+              console.log("not valid");
+              return;
+            }
+            const startTime = `${startHour}:${startMinute} ${startMeridiem}`;
+            const endTime = `${endHour}:${endMinute} ${endMeridiem}`;
+            console.log(date, title, startTime, endTime, description, color, "", signup);
+            setTaskDatabase(date, title, startTime, endTime, description, color, "", signup);
           }}
         >
           <img className={styles.plus} src={plus} />

@@ -73,7 +73,8 @@ export const modalStore = create<modalStoreType>((set) => ({
 class TaskClass {
   public readonly date: string;
   public readonly title: string;
-  public readonly dueTime: string;
+  public readonly startTime: string;
+  public readonly endTime: string;
   public readonly description: string;
   public readonly color: string;
   public owner: string;
@@ -82,7 +83,8 @@ class TaskClass {
   constructor(
     date: string,
     title: string,
-    dueTime: string,
+    startTime: string,
+    endTime: string,
     description: string,
     color: string,
     owner: string,
@@ -90,7 +92,8 @@ class TaskClass {
   ) {
     this.date = date;
     this.title = title;
-    this.dueTime = dueTime;
+    this.startTime = startTime;
+    this.endTime = endTime;
     this.description = description;
     this.color = color;
     this.owner = owner;
@@ -105,9 +108,12 @@ export interface taskStoreType {
 
   date: string;
   title: string;
-  hour: string;
-  minute: string;
-  meridiem: string;
+  startHour: string;
+  startMinute: string;
+  endHour: string;
+  endMinute: string;
+  startMeridiem: string;
+  endMeridiem: string;
   description: string;
   color: string;
   owner: string;
@@ -120,11 +126,14 @@ export interface taskStoreType {
 
   setDate: (title: string) => void;
   setTitle: (setTime: string) => void;
-  setHour: (hour: string) => void;
-  setMinute: (minute: string) => void;
-  setMeridiem: (meridiem: string) => void;
+  setStartHour: (startHour: string) => void;
+  setStartMinute: (startMinute: string) => void;
+  setEndHour: (endHour: string) => void;
+  setEndMinute: (endMinute: string) => void;
+  setStartMeridiem: (startMeridiem: string) => void;
+  setEndMeridiem: (endMeridiem: string) => void;
   setDescription: (description: string) => void;
-  setColor: (dueTime: string) => void;
+  setColor: (color: string) => void;
   setOwner: (description: string) => void;
   setSignup: () => void;
   setRender: () => void;
@@ -133,7 +142,8 @@ export interface taskStoreType {
   setTaskDatabase: (
     date: string,
     title: string,
-    dueTime: string,
+    startTime: string,
+    endTime: string,
     description: string,
     color: string,
     owner: string,
@@ -144,12 +154,14 @@ export interface taskStoreType {
 
 export const taskStore = create<taskStoreType>((set) => ({
   admin: true,
-
   date: "",
   title: "",
-  hour: "",
-  minute: "",
-  meridiem: "AM",
+  startHour: "",
+  startMinute: "",
+  endHour: "",
+  endMinute: "",
+  startMeridiem: "AM",
+  endMeridiem: "AM",
   description: "",
   color: "Red",
   owner: "",
@@ -162,9 +174,12 @@ export const taskStore = create<taskStoreType>((set) => ({
 
   setDate: (date: string) => set(() => ({ date })),
   setTitle: (title: string) => set(() => ({ title })),
-  setHour: (hour: string) => set(() => ({ hour })),
-  setMinute: (minute: string) => set(() => ({ minute })),
-  setMeridiem: (meridiem: string) => set(() => ({ meridiem })),
+  setStartHour: (startHour: string) => set(() => ({ startHour })),
+  setStartMinute: (startMinute: string) => set(() => ({ startMinute })),
+  setEndHour: (startHour: string) => set(() => ({ startHour })),
+  setEndMinute: (startMinute: string) => set(() => ({ startMinute })),
+  setStartMeridiem: (startMeridiem: string) => set(() => ({ startMeridiem })),
+  setEndMeridiem: (endMeridiem: string) => set(() => ({ endMeridiem })),
   setDescription: (description: string) => set(() => ({ description })),
   setColor: (color: string) => set(() => ({ color })),
   setOwner: (owner: string) => set(() => ({ owner })),
@@ -173,13 +188,21 @@ export const taskStore = create<taskStoreType>((set) => ({
 
   resetTaskVariables: () =>
     set(() => {
-      return { title: "", dueTime: "", description: "", color: "Red", signup: false };
+      return {
+        title: "",
+        startTime: "",
+        endTime: "",
+        description: "",
+        color: "Red",
+        signup: false,
+      };
     }),
 
   setTaskDatabase: (
     date: string,
     title: string,
-    dueTime: string,
+    startTime: string,
+    endTime: string,
     description: string,
     color: string,
     owner: string,
@@ -189,9 +212,8 @@ export const taskStore = create<taskStoreType>((set) => ({
       if (title === "") {
         title = "No Title";
       }
-
       // Create the new task entry
-      const task = new TaskClass(date, title, dueTime, description, color, owner, event);
+      const task = new TaskClass(date, title, startTime, endTime, description, color, owner, event);
 
       // Create a new Map to ensure immutability
       const updatedDatabase = new Map(state.taskDatabase);
