@@ -1,13 +1,8 @@
 import { create } from "zustand";
 
-
-
-
 //date store
 
 export interface dateStoreType {
-
-
   currentDay: number;
   month: number;
   year: number;
@@ -20,50 +15,36 @@ export interface dateStoreType {
 const now = new Date();
 
 export const dateStore = create<dateStoreType>((set) => ({
-
   currentDay: 1,
   month: now.getMonth() + 1,
   year: now.getFullYear(),
 
   setCurrentDay: (currentDay: number) => set(() => ({ currentDay })),
 
-
   incrementMonth: () => {
     set((state) => {
       if (state.month === 12) {
-        return { month: 1, year: state.year + 1, };
+        return { month: 1, year: state.year + 1 };
+      } else {
+        return { month: state.month + 1 };
       }
-
-      else {
-        return { month: state.month + 1, };
-      }
-    })
+    });
   },
 
   decrementMonth: () => {
     set((state) => {
       if (state.month === 1) {
-        return { month: 12, year: state.year - 1, };
+        return { month: 12, year: state.year - 1 };
+      } else {
+        return { month: state.month - 1 };
       }
-
-      else {
-        return { month: state.month - 1, };
-      }
-    })
+    });
   },
-
-
-
-
 }));
-
-
-
 
 //modal store
 
 export interface modalStoreType {
-
   taskModal: boolean;
   loginModal: boolean;
 
@@ -72,24 +53,19 @@ export interface modalStoreType {
 }
 
 export const modalStore = create<modalStoreType>((set) => ({
-
   taskModal: false,
   loginModal: false,
-
 
   openCloseTaskModal: () => {
     set((state) => ({
       taskModal: !state.taskModal,
-
-    }))
+    }));
   },
   openCloseLoginModal: () => {
     set((state) => ({
       loginModal: !state.loginModal,
-
-    }))
+    }));
   },
-
 }));
 
 //task class
@@ -103,7 +79,15 @@ class TaskClass {
   public owner: string;
   public readonly signup: boolean;
 
-  constructor(date: string, title: string, dueTime: string, description: string, color: string, owner: string, event: boolean) {
+  constructor(
+    date: string,
+    title: string,
+    dueTime: string,
+    description: string,
+    color: string,
+    owner: string,
+    event: boolean,
+  ) {
     this.date = date;
     this.title = title;
     this.dueTime = dueTime;
@@ -113,7 +97,6 @@ class TaskClass {
     this.signup = event;
   }
 }
-
 
 //task store
 
@@ -133,8 +116,6 @@ export interface taskStoreType {
 
   taskDatabase: Map<string, TaskClass[]>;
 
-
-
   setAdmin: () => void;
 
   setDate: (title: string) => void;
@@ -149,28 +130,33 @@ export interface taskStoreType {
   setRender: () => void;
 
   resetTaskVariables: () => void;
-  setTaskDatabase: (date: string, title: string, dueTime: string, description: string, color: string, owner: string, event: boolean) => void;
+  setTaskDatabase: (
+    date: string,
+    title: string,
+    dueTime: string,
+    description: string,
+    color: string,
+    owner: string,
+    event: boolean,
+  ) => void;
   removeTask: (key: string, taskIndex: number) => void;
 }
-
 
 export const taskStore = create<taskStoreType>((set) => ({
   admin: true,
 
-  date: '',
-  title: '',
-  hour: '12',
-  minute: '00',
-  meridiem: 'AM',
-  description: '',
-  color: 'Red',
-  owner: '',
+  date: "",
+  title: "",
+  hour: "",
+  minute: "",
+  meridiem: "AM",
+  description: "",
+  color: "Red",
+  owner: "",
   signup: false,
   render: true,
 
   taskDatabase: new Map(),
-
-
 
   setAdmin: () => set((state) => ({ admin: !state.admin })),
 
@@ -187,16 +173,23 @@ export const taskStore = create<taskStoreType>((set) => ({
 
   resetTaskVariables: () =>
     set(() => {
-
-
-      return { title: '', dueTime: '', description: '', color: 'Red', signup: false };
+      return { title: "", dueTime: "", description: "", color: "Red", signup: false };
     }),
 
-  setTaskDatabase: (date: string, title: string, dueTime: string, description: string, color: string, owner: string, event: boolean) =>
+  setTaskDatabase: (
+    date: string,
+    title: string,
+    dueTime: string,
+    description: string,
+    color: string,
+    owner: string,
+    event: boolean,
+  ) =>
     set((state) => {
-      if (title === '') {
-        title = 'No Title'
+      if (title === "") {
+        title = "No Title";
       }
+
       // Create the new task entry
       const task = new TaskClass(date, title, dueTime, description, color, owner, event);
 
@@ -218,10 +211,9 @@ export const taskStore = create<taskStoreType>((set) => ({
 
       updatedDatabase.set(
         key,
-        tasks.filter((_, index) => index !== taskIndex)
+        tasks.filter((_, index) => index !== taskIndex),
       );
 
       return { taskDatabase: updatedDatabase };
-    })
-
+    }),
 }));

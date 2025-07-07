@@ -1,8 +1,7 @@
 import styles from "./TaskCreator.module.css";
 import { taskStore } from "../../../calendarStore";
 import plus from "../../../../../assets/+.svg";
-import { formatHour, formatMinute } from "./TimeFormatter";
-import { useRef } from "react";
+import TimeInput from "./TimeDiv/TimeInput";
 
 export default function TaskCreator() {
   const {
@@ -12,15 +11,18 @@ export default function TaskCreator() {
     color,
     signup,
     admin,
+    hour,
+    minute,
+    meridiem,
     setTitle,
-    setMeridiem,
     setDescription,
     setColor,
     setTaskDatabase,
     setSignup,
+    setHour,
+    setMinute,
+    setMeridiem,
   } = taskStore();
-  const minuteInputRef = useRef<HTMLInputElement>(null);
-  const hourInputRef = useRef<HTMLInputElement>(null);
 
   if (admin) {
     return (
@@ -31,102 +33,6 @@ export default function TaskCreator() {
           placeholder="title"
         ></input>
 
-        <div className={styles.timeDiv}>
-          <input
-            ref={hourInputRef}
-            className={styles.hourInput}
-            inputMode="numeric"
-            maxLength={2}
-            onKeyDown={(e) => {
-              const allowedKeys = ["Backspace", "Tab", "ArrowLeft", "ArrowRight", "Delete"];
-              const isDigit = /^[0-9]$/.test(e.key);
-              const current = e.currentTarget.value;
-              if (e.key === "ArrowRight" && e.currentTarget.selectionStart === 1) {
-                hourInputRef.current?.focus();
-                return;
-              }
-
-              if (!isDigit && !allowedKeys.includes(e.key)) {
-                e.preventDefault();
-                return;
-              }
-
-              if (isDigit) {
-                const next = (current + e.key).slice(0, 2);
-                if (next.length === 2) {
-                  const num = parseInt(next, 10);
-                  if (num < 1 || num > 12) {
-                    e.preventDefault();
-                  }
-                }
-              }
-
-              if (current === "1" && parseInt(e.key) > 2) {
-                minuteInputRef.current?.focus();
-                minuteInputRef.current!.value = e.key;
-              }
-            }}
-            onChange={(e) => {
-              const val = e.target.value.replace(/\D/g, "").slice(0, 2);
-              formatHour(val);
-
-              // Auto-advance rules
-              if (val.length === 2 || (val.length === 1 && parseInt(val) >= 2)) {
-                minuteInputRef.current?.focus();
-              }
-            }}
-          />
-
-          <input
-            ref={minuteInputRef}
-            className={styles.minuteInput}
-            inputMode="numeric"
-            maxLength={2}
-            onKeyDown={(e) => {
-              const allowedKeys = ["Backspace", "Tab", "ArrowLeft", "ArrowRight", "Delete"];
-              const isDigit = /^[0-9]$/.test(e.key);
-              const current = e.currentTarget.value;
-
-              // Move focus back to hour if backspacing from empty field
-              if (e.key === "Backspace" && current.length === 0) {
-                hourInputRef.current?.focus();
-                return;
-              }
-
-              if (e.key === "ArrowLeft" && e.currentTarget.selectionStart === 0) {
-                hourInputRef.current?.focus();
-                return;
-              }
-
-              if (!isDigit && !allowedKeys.includes(e.key)) {
-                e.preventDefault();
-                return;
-              }
-
-              if (isDigit) {
-                const next = (current + e.key).slice(0, 2);
-                const num = parseInt(next, 10);
-                if (num > 59) {
-                  e.preventDefault();
-                }
-              }
-            }}
-            onChange={(e) => {
-              const val = e.target.value.replace(/\D/g, "");
-              formatMinute(val);
-            }}
-          />
-
-          <select
-            id="options"
-            className={styles.meridiem}
-            onChange={(e) => setMeridiem(e.target.value)}
-          >
-            <option value="AM">AM</option>
-            <option value="PM">PM</option>
-          </select>
-        </div>
-
         <div className={styles.signupDiv}>
           signup:
           <label className={styles.switch} onChange={setSignup}>
@@ -134,6 +40,31 @@ export default function TaskCreator() {
             <span className={styles.slider}></span>
           </label>
         </div>
+        <div className={styles.signupDiv}>
+          signup:
+          <label className={styles.switch} onChange={setSignup}>
+            <input type="checkbox" />
+            <span className={styles.slider}></span>
+          </label>
+        </div>
+
+        <TimeInput
+          hour={hour}
+          minute={minute}
+          meridiem={meridiem}
+          setHour={setHour}
+          setMinute={setMinute}
+          setMeridiem={setMeridiem}
+        />
+
+        <TimeInput
+          hour={hour}
+          minute={minute}
+          meridiem={meridiem}
+          setHour={setHour}
+          setMinute={setMinute}
+          setMeridiem={setMeridiem}
+        />
 
         <textarea
           className={styles.descriptionInput}
