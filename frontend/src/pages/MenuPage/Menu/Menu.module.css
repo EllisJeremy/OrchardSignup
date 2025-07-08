@@ -116,7 +116,7 @@ h3 {
   padding: 20px;
   position: absolute;
   z-index: 1;
-  box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
+  box-shadow: 0px 2px 5px 1px rgba(195, 196, 200, 0.5);
   background-color: hsl(202, 100%, 94%);
   border: 2px solid #d0eeff;
   border-top: none;
@@ -208,7 +208,7 @@ h3 {
 }
 
 .miscItemDiv:hover {
-  background-color: #ffe9b3;
+  background-color: hsl(43, 100%, 86%);
   border-radius: 10px;
 }
 
@@ -344,3 +344,65 @@ img {
   }
 }
 */
+
+.calendarImageDiv {
+  box-shadow: 0px 2px 1px 1px rgba(160, 200, 255, 0.8);
+}
+
+.calendarHeaderDiv {
+  box-shadow: 0px 2px 1px 1px rgba(160, 200, 255, 0.8);
+}
+
+.financeItemDiv {
+  box-shadow: 0px 2px 1px 1px rgba(140, 190, 150, 0.8);
+}
+
+.miscItemDiv {
+  box-shadow: 0px 2px 1px 1px rgba(255, 216, 100, 0.8);
+}
+
+.adminItemDiv {
+  box-shadow: 0px 2px 1px 1px rgba(255, 145, 145, 0.8);
+}
+
+.messagesItemDiv {
+  box-shadow: 0px 2px 1px 1px rgba(180, 160, 255, 0.8);
+}
+
+.accountItemDiv {
+  box-shadow: 0px 2px 1px 1px rgba(160, 165, 200, 0.8);
+}
+
+.calendarImageDiv {
+  box-shadow: 0px 2px 1px 1px rgba(160, 200, 255, 0.8);
+}
+
+/*blur*/
+
+.calendarImageDiv {
+  box-shadow: 0px 2px 3px 1px rgba(160, 200, 255, 0.8);
+}
+
+.calendarHeaderDiv {
+  box-shadow: 0px 2px 3px 1px rgba(160, 200, 255, 0.5);
+}
+
+.financeItemDiv {
+  box-shadow: 0px 2px 3px 1px rgba(140, 190, 150, 0.8);
+}
+
+.miscItemDiv {
+  box-shadow: 0px 2px 3px 1px rgba(255, 216, 100, 0.8);
+}
+
+.adminItemDiv {
+  box-shadow: 0px 2px 3px 1px rgba(255, 145, 145, 0.8);
+}
+
+.messagesItemDiv {
+  box-shadow: 0px 2px 3px 1px rgba(180, 160, 255, 0.8);
+}
+
+.accountItemDiv {
+  box-shadow: 0px 2px 3px 1px rgba(160, 165, 200, 0.8);
+}
