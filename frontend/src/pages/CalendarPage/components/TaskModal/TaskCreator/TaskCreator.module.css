@@ -16,10 +16,28 @@
   grid-row: 1 / span 4;
   font-family: Arial;
   resize: none;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgb(225, 226, 231);
+  border-bottom: 2px solid rgb(225, 226, 231);
+}
+
+.descriptionInput:focus {
+  outline: none;
+  transition: 0.25s;
+  border-bottom: 2px solid rgba(0, 180, 255, 1);
 }
 
 .titleInput {
   grid-column: 1 / span 2;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid rgba(0, 180, 255, 0.5);
+}
+
+.titleInput:focus {
+  border-bottom: 2px solid rgba(0, 180, 255, 1);
 }
 
 .timeDiv {
@@ -52,23 +70,20 @@
 
 .minuteInput:focus,
 .hourInput:focus {
+  transition: 0.25s;
   outline: none;
   border-color: rgba(0, 180, 255, 1);
 }
 
 .timeDiv,
-.titleInput,
-.descriptionInput,
 .colorSelect,
 .typeDiv {
   border: 2px solid rgb(225, 226, 231);
+
   border-radius: 5px;
 }
 
-.titleInput:focus,
-.descriptionInput:focus,
 .colorSelect:focus {
-  border-color: rgb(175, 176, 191);
   outline: none;
 }
 

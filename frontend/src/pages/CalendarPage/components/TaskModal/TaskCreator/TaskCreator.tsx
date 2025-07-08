@@ -75,7 +75,7 @@ export default function TaskCreator() {
         <textarea
           className={styles.descriptionInput}
           onChange={(e) => setDescription(e.target.value)}
-          placeholder="description"
+          placeholder="Add description"
         ></textarea>
         <button
           className={styles.createButton}
