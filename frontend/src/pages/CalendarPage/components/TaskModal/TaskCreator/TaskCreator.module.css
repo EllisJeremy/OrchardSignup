@@ -19,7 +19,7 @@
   border: none;
   border-radius: 5px;
   padding: 5px;
-  background-color: rgb(225, 226, 231);
+  background-color: #eff1f5;
   border-bottom: 2px solid rgb(225, 226, 231);
 }
 
@@ -47,7 +47,7 @@
 
 .meridiem {
   border-width: 0px;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid #eff1f5;
 }
 
 .meridiem:focus {
@@ -78,12 +78,19 @@
 .timeDiv,
 .colorSelect,
 .typeDiv {
-  border: 2px solid rgb(225, 226, 231);
-
+  border: none;
   border-radius: 5px;
+  background-color: #eff1f5;
+  border-bottom: 2px solid rgb(225, 226, 231);
+  overflow: hidden;
 }
 
-.colorSelect:focus {
+.minuteInput,
+.hourInput,
+.meridiem {
+  background-color: #eff1f5;
+}
+.meridiem .colorSelect:focus {
   outline: none;
 }
 
@@ -91,12 +98,18 @@
   color: black;
 }
 
+.typeContainerDiv {
+  grid-column: 1 / span 2;
+  display: flex;
+  gap: 10px;
+}
+
 .typeDiv {
   font-size: 13px;
-  padding-left: 3px;
   text-align: center;
   align-content: center;
   border: none;
+  width: 50%;
 }
 
 .typeDiv:hover {

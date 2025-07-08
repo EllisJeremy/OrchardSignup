@@ -39,19 +39,21 @@ export default function TaskCreator() {
           placeholder="title"
         ></input>
 
-        <div
-          className={styles.typeDiv}
-          onClick={() => setType("Event")}
-          style={{ background: type === "Event" ? "rgba(0, 180, 255, .5)" : undefined }}
-        >
-          Event
-        </div>
-        <div
-          className={styles.typeDiv}
-          onClick={() => setType("Task")}
-          style={{ background: type === "Task" ? "rgba(0, 180, 255, .5)" : undefined }}
-        >
-          Task
+        <div className={styles.typeContainerDiv}>
+          <div
+            className={styles.typeDiv}
+            onClick={() => setType("Event")}
+            style={{ background: type === "Event" ? "rgba(0, 180, 255, .5)" : undefined }}
+          >
+            Event
+          </div>
+          <div
+            className={styles.typeDiv}
+            onClick={() => setType("Task")}
+            style={{ background: type === "Task" ? "rgba(0, 180, 255, .5)" : undefined }}
+          >
+            Task
+          </div>
         </div>
 
         <TimeInput
