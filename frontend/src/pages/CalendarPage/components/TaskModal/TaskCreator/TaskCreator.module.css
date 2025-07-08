@@ -8,7 +8,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 3fr;
   grid-template-rows: 25px 25px 25px 25px;
-  gap: 5px;
+  gap: 10px;
 }
 
 .descriptionInput {
@@ -41,26 +41,26 @@
 }
 .hourInput {
   border-width: 0px;
-  border-bottom: 2px solid rgba(0, 150, 255, 0.5);
+  border-bottom: 2px solid rgba(0, 180, 255, 0.5);
   border-bottom-left-radius: 2px;
 }
 
 .minuteInput {
   border-width: 0px;
-  border-bottom: 2px solid rgba(0, 150, 255, 0.5);
+  border-bottom: 2px solid rgba(0, 180, 255, 0.5);
 }
 
 .minuteInput:focus,
 .hourInput:focus {
   outline: none;
-  border-color: rgba(0, 150, 255, 1);
+  border-color: rgba(0, 180, 255, 1);
 }
 
 .timeDiv,
 .titleInput,
 .descriptionInput,
 .colorSelect,
-.signupDiv {
+.typeDiv {
   border: 2px solid rgb(225, 226, 231);
   border-radius: 5px;
 }
@@ -76,12 +76,17 @@
   color: black;
 }
 
-.signupDiv {
+.typeDiv {
   font-size: 13px;
   padding-left: 3px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  text-align: center;
+  align-content: center;
+  border: none;
+}
+
+.typeDiv:hover {
+  cursor: pointer;
+  background-color: #d0eeff;
 }
 
 @media (max-width: 500px) {

@@ -9,7 +9,7 @@ export default function TaskCreator() {
     date,
     description,
     color,
-    signup,
+    type,
     admin,
     startHour,
     startMinute,
@@ -21,7 +21,7 @@ export default function TaskCreator() {
     setDescription,
     setColor,
     setTaskDatabase,
-    setSignup,
+    setType,
     setStartHour,
     setStartMinute,
     setStartMeridiem,
@@ -39,19 +39,19 @@ export default function TaskCreator() {
           placeholder="title"
         ></input>
 
-        <div className={styles.signupDiv}>
-          signup:
-          <label className={styles.switch} onChange={setSignup}>
-            <input type="checkbox" />
-            <span className={styles.slider}></span>
-          </label>
+        <div
+          className={styles.typeDiv}
+          onClick={() => setType("Event")}
+          style={{ background: type === "Event" ? "rgba(0, 180, 255, .5)" : undefined }}
+        >
+          Event
         </div>
-        <div className={styles.signupDiv}>
-          signup:
-          <label className={styles.switch} onChange={setSignup}>
-            <input type="checkbox" />
-            <span className={styles.slider}></span>
-          </label>
+        <div
+          className={styles.typeDiv}
+          onClick={() => setType("Task")}
+          style={{ background: type === "Task" ? "rgba(0, 180, 255, .5)" : undefined }}
+        >
+          Task
         </div>
 
         <TimeInput
@@ -86,8 +86,8 @@ export default function TaskCreator() {
             }
             const startTime = `${startHour}:${startMinute} ${startMeridiem}`;
             const endTime = `${endHour}:${endMinute} ${endMeridiem}`;
-            console.log(date, title, startTime, endTime, description, color, "", signup);
-            setTaskDatabase(date, title, startTime, endTime, description, color, "", signup);
+            console.log(date, title, startTime, endTime, description, color, "", type);
+            setTaskDatabase(date, title, startTime, endTime, description, color, "", type);
           }}
         >
           <img className={styles.plus} src={plus} />

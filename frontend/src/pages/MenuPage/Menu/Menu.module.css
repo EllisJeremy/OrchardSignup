@@ -380,7 +380,7 @@ img {
 /*blur*/
 
 .calendarImageDiv {
-  box-shadow: 0px 2px 3px 1px rgba(160, 200, 255, 0.8);
+  box-shadow: 0px 2px 3px 1px rgba(160, 200, 255, 0.6);
 }
 
 .calendarHeaderDiv {
@@ -388,21 +388,21 @@ img {
 }
 
 .financeItemDiv {
-  box-shadow: 0px 2px 3px 1px rgba(140, 190, 150, 0.8);
+  box-shadow: 0px 2px 3px 1px rgba(140, 190, 150, 0.6);
 }
 
 .miscItemDiv {
-  box-shadow: 0px 2px 3px 1px rgba(255, 216, 100, 0.8);
+  box-shadow: 0px 2px 3px 1px rgba(255, 216, 100, 0.6);
 }
 
 .adminItemDiv {
-  box-shadow: 0px 2px 3px 1px rgba(255, 145, 145, 0.8);
+  box-shadow: 0px 2px 3px 1px rgba(255, 145, 145, 0.6);
 }
 
 .messagesItemDiv {
-  box-shadow: 0px 2px 3px 1px rgba(180, 160, 255, 0.8);
+  box-shadow: 0px 2px 3px 1px rgba(180, 160, 255, 0.6);
 }
 
 .accountItemDiv {
-  box-shadow: 0px 2px 3px 1px rgba(160, 165, 200, 0.8);
+  box-shadow: 0px 2px 3px 1px rgba(160, 165, 200, 0.6);
 }

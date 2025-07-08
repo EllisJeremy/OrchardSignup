@@ -59,12 +59,12 @@ export default function TaskCreator() {
             <p className={styles.dueTime}>{task.startTime}</p>
             <p
               className={styles.description}
-              style={task.signup ? {} : { gridColumn: "1 / span 4" }}
+              style={task.type === "Event" ? {} : { gridColumn: "1 / span 4" }}
             >
               {task.description}
             </p>
 
-            {task.signup && taskDatabase.get(date)![index].owner === "" && (
+            {task.type === "Event" && taskDatabase.get(date)![index].owner === "" && (
               <button
                 className={styles.selectButton}
                 onClick={() => {
@@ -76,7 +76,7 @@ export default function TaskCreator() {
               </button>
             )}
 
-            {task.signup && taskDatabase.get(date)![index].owner !== "" && (
+            {task.type === "Event" && taskDatabase.get(date)![index].owner !== "" && (
               <>
                 <p className={styles.owner}>{taskDatabase.get(date)![index].owner}</p>
                 <button

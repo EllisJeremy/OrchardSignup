@@ -78,7 +78,7 @@ class TaskClass {
   public readonly description: string;
   public readonly color: string;
   public owner: string;
-  public readonly signup: boolean;
+  public readonly type: string;
 
   constructor(
     date: string,
@@ -88,7 +88,7 @@ class TaskClass {
     description: string,
     color: string,
     owner: string,
-    event: boolean,
+    type: string,
   ) {
     this.date = date;
     this.title = title;
@@ -97,7 +97,7 @@ class TaskClass {
     this.description = description;
     this.color = color;
     this.owner = owner;
-    this.signup = event;
+    this.type = type;
   }
 }
 
@@ -117,7 +117,7 @@ export interface taskStoreType {
   description: string;
   color: string;
   owner: string;
-  signup: boolean;
+  type: string;
   render: boolean;
 
   taskDatabase: Map<string, TaskClass[]>;
@@ -135,7 +135,7 @@ export interface taskStoreType {
   setDescription: (description: string) => void;
   setColor: (color: string) => void;
   setOwner: (description: string) => void;
-  setSignup: () => void;
+  setType: (type: string) => void;
   setRender: () => void;
 
   resetTaskVariables: () => void;
@@ -147,7 +147,7 @@ export interface taskStoreType {
     description: string,
     color: string,
     owner: string,
-    event: boolean,
+    type: string,
   ) => void;
   removeTask: (key: string, taskIndex: number) => void;
 }
@@ -165,7 +165,7 @@ export const taskStore = create<taskStoreType>((set) => ({
   description: "",
   color: "Red",
   owner: "",
-  signup: false,
+  type: "Event",
   render: true,
 
   taskDatabase: new Map(),
@@ -183,7 +183,7 @@ export const taskStore = create<taskStoreType>((set) => ({
   setDescription: (description: string) => set(() => ({ description })),
   setColor: (color: string) => set(() => ({ color })),
   setOwner: (owner: string) => set(() => ({ owner })),
-  setSignup: () => set((state) => ({ signup: !state.signup })),
+  setType: (type: string) => set(() => ({ type })),
   setRender: () => set((state) => ({ render: !state.render })),
 
   resetTaskVariables: () =>
@@ -194,7 +194,7 @@ export const taskStore = create<taskStoreType>((set) => ({
         endTime: "",
         description: "",
         color: "Red",
-        signup: false,
+        type: "Event",
       };
     }),
 
@@ -206,14 +206,14 @@ export const taskStore = create<taskStoreType>((set) => ({
     description: string,
     color: string,
     owner: string,
-    event: boolean,
+    type: string,
   ) =>
     set((state) => {
       if (title === "") {
         title = "No Title";
       }
       // Create the new task entry
-      const task = new TaskClass(date, title, startTime, endTime, description, color, owner, event);
+      const task = new TaskClass(date, title, startTime, endTime, description, color, owner, type);
 
       // Create a new Map to ensure immutability
       const updatedDatabase = new Map(state.taskDatabase);
