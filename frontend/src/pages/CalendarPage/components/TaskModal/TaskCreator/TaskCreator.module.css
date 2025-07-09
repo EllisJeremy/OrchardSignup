@@ -6,14 +6,14 @@
   margin: 10px;
 
   display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
-  grid-template-rows: 25px 25px 25px 25px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 25px 25px 25px 25px 45px;
   gap: 10px;
 }
 
 .descriptionInput {
-  grid-column: 3;
-  grid-row: 1 / span 4;
+  grid-column: 3 / 5;
+  grid-row: 1 / 5;
   font-family: Arial;
   resize: none;
   border: none;
@@ -74,12 +74,12 @@
 }
 
 .timeDiv,
-.colorSelect,
-.typeDiv {
+.colorSelect {
   border: none;
   border-radius: 5px;
   background-color: #eff1f5;
   overflow: hidden;
+  outline: none;
 }
 
 .minuteInput,
@@ -95,23 +95,8 @@
   color: black;
 }
 
-.typeContainerDiv {
-  grid-column: 1 / span 2;
-  display: flex;
-  gap: 10px;
-}
-
-.typeDiv {
-  font-size: 13px;
-  text-align: center;
-  align-content: center;
-  border: none;
-  width: 50%;
-}
-
 .typeDiv:hover {
   cursor: pointer;
-  background-color: #d0eeff;
 }
 
 @media (max-width: 500px) {
@@ -121,27 +106,53 @@
 }
 
 .createButton {
-  background-color: rgb(255, 255, 255);
-
-  border: 2px solid rgb(225, 226, 231);
-
+  background-color: #d0eeff;
+  border: none;
+  grid-column: 4;
   border-radius: 5px;
-
-  transition:
-    background-color 0.4s,
-    border-color 0.4s;
+  transition: 0.4s;
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  border-radius: 20px;
+  padding: 0px 10px;
 }
 
 .createButton:hover {
-  background-color: hsl(229, 22%, 90%);
-  border-color: rgb(255, 255, 255);
+  background-color: rgba(0, 180, 255, 0.5);
   cursor: pointer;
 }
 
-.createButton:active {
-  padding: 3px;
+.plus {
+  height: 50%;
 }
 
-.plus {
-  height: 90%;
+.typeContainerDiv {
+  grid-column: 1 / span 2;
+  display: flex;
+  gap: 10px;
+  position: relative;
+}
+
+.typeSlideOverDiv {
+  position: absolute;
+  width: calc(50% - 5px);
+  height: 100%;
+  background-color: #d0eeff;
+  z-index: 0;
+  transition: left 0.3s ease;
+  border-radius: 5px;
+}
+
+.typeDiv {
+  display: flex;
+  width: 50%;
+  border-radius: 5px;
+  z-index: 1;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
 }
