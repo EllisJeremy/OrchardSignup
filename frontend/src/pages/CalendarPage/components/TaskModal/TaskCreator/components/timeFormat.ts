@@ -3,9 +3,8 @@ export const formatHour = (input: string): string => {
 
   if (!isNaN(num) && num >= 1 && num <= 12) {
     return num.toString().padStart(2, "0");
-  } else {
-    return "12";
   }
+  return "";
 };
 
 export const formatMinute = (input: string) => {
@@ -13,7 +12,6 @@ export const formatMinute = (input: string) => {
 
   if (!isNaN(num) && num >= 0 && num <= 59) {
     return num.toString().padStart(2, "0");
-  } else {
-    return "00";
   }
+  return "";
 };

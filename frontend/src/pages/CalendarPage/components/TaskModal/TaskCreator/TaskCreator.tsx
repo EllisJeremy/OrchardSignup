@@ -52,31 +52,49 @@ export default function TaskCreator() {
           </div>
         </div>
 
+        <TimeInput
+          hour={startHour}
+          minute={startMinute}
+          meridiem={startMeridiem}
+          setHour={setStartHour}
+          setMinute={setStartMinute}
+          setMeridiem={setStartMeridiem}
+        />
+
         {type === "Event" ? (
           <TimeInput
-            hour={startHour}
-            minute={startMinute}
-            meridiem={startMeridiem}
-            setHour={setStartHour}
-            setMinute={setStartMinute}
-            setMeridiem={setStartMeridiem}
+            hour={endHour}
+            minute={endMinute}
+            meridiem={endMeridiem}
+            setHour={setEndHour}
+            setMinute={setEndMinute}
+            setMeridiem={setEndMeridiem}
           />
         ) : (
-          <div></div>
+          <select
+            id="options"
+            className={styles.colorSelect}
+            onChange={(e) => setColor(e.target.value)}
+          >
+            <option value="">Anyone</option>
+            <option value="example 1">example 1</option>
+            <option value="example 2">example 2</option>
+          </select>
         )}
-        <TimeInput
-          hour={endHour}
-          minute={endMinute}
-          meridiem={endMeridiem}
-          setHour={setEndHour}
-          setMinute={setEndMinute}
-          setMeridiem={setEndMeridiem}
-        />
         <textarea
           className={styles.descriptionInput}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Add description"
         ></textarea>
+
+        <select
+          id="options"
+          className={styles.colorSelect}
+          onChange={(e) => setColor(e.target.value)}
+        >
+          <option value="no">No repeat</option>
+          <option value="weekly">Repeat weekly</option>
+        </select>
 
         <select
           id="options"
@@ -91,21 +109,15 @@ export default function TaskCreator() {
           <option value="Purple">Purple</option>
         </select>
 
-        <select
-          id="options"
-          className={styles.colorSelect}
-          onChange={(e) => setColor(e.target.value)}
-        >
-          <option value="">Anyone</option>
-          <option value="example 1">example 1</option>
-          <option value="example 2">example 2</option>
-        </select>
-
         <button
           className={styles.createButton}
           onClick={() => {
-            if (startHour === "" || startMinute === "" || endHour === "" || endMinute === "") {
-              console.log("not valid");
+            if (startHour === "" || startMinute === "") {
+              console.log("missing start");
+              return;
+            }
+            if (type == "Event" && (endHour === "" || endMinute === "")) {
+              console.log("missing end");
               return;
             }
             const startTime = `${formatHour(startHour)}:${formatMinute(startMinute)} ${startMeridiem}`;

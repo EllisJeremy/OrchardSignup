@@ -20,7 +20,8 @@ export default function TimeInput({
 }: Props) {
   const minuteInputRef = useRef<HTMLInputElement>(null);
   const hourInputRef = useRef<HTMLInputElement>(null);
-
+  const allowedKeys = ["Backspace", "Tab", "ArrowLeft", "ArrowRight", "Delete"];
+  const digit = /^[0-9]$/;
   return (
     <div className={styles.timeDiv}>
       <input
@@ -37,8 +38,7 @@ export default function TimeInput({
           }
         }}
         onKeyDown={(e) => {
-          const allowedKeys = ["Backspace", "Tab", "ArrowLeft", "ArrowRight", "Delete"];
-          const isDigit = /^[0-9]$/.test(e.key);
+          const isDigit = digit.test(e.key);
           const current = e.currentTarget.value;
           const cursorLocation = e.currentTarget.selectionStart;
 
@@ -72,8 +72,7 @@ export default function TimeInput({
           setMinute(val);
         }}
         onKeyDown={(e) => {
-          const allowedKeys = ["Backspace", "Tab", "ArrowLeft", "ArrowRight", "Delete"];
-          const isDigit = /^[0-9]$/.test(e.key);
+          const isDigit = digit.test(e.key);
           const current = e.currentTarget.value;
           const cursorLocation = e.currentTarget.selectionStart;
 

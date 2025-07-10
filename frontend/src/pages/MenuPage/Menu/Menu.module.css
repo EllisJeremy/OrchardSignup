@@ -345,38 +345,6 @@ img {
 }
 */
 
-.calendarImageDiv {
-  box-shadow: 0px 2px 1px 1px rgba(160, 200, 255, 0.8);
-}
-
-.calendarHeaderDiv {
-  box-shadow: 0px 2px 1px 1px rgba(160, 200, 255, 0.8);
-}
-
-.financeItemDiv {
-  box-shadow: 0px 2px 1px 1px rgba(140, 190, 150, 0.8);
-}
-
-.miscItemDiv {
-  box-shadow: 0px 2px 1px 1px rgba(255, 216, 100, 0.8);
-}
-
-.adminItemDiv {
-  box-shadow: 0px 2px 1px 1px rgba(255, 145, 145, 0.8);
-}
-
-.messagesItemDiv {
-  box-shadow: 0px 2px 1px 1px rgba(180, 160, 255, 0.8);
-}
-
-.accountItemDiv {
-  box-shadow: 0px 2px 1px 1px rgba(160, 165, 200, 0.8);
-}
-
-.calendarImageDiv {
-  box-shadow: 0px 2px 1px 1px rgba(160, 200, 255, 0.8);
-}
-
 /*blur*/
 
 .calendarImageDiv {
@@ -403,6 +371,49 @@ img {
   box-shadow: 0px 2px 3px 1px rgba(180, 160, 255, 0.6);
 }
 
+/*
+
+
+
+
+
+
+
 .accountItemDiv {
   box-shadow: 0px 2px 3px 1px rgba(160, 165, 200, 0.6);
+  background-color: hsl(220, 23%, 93%);
 }
+
+.accountItemDiv:hover {
+  background-color: rgb(224, 226, 238);
+  border-radius: 10px;
+}
+
+.accountDiv {
+  background-color: hsl(220, 23%, 96.5%);
+  border: 2px solid rgb(224, 226, 238);
+}
+
+.calendarDiv,
+.accountDiv,
+.messagesDiv,
+.financeDiv,
+.miscDiv,
+.adminDiv {
+  background-color: rgb(255, 255, 255);
+  border: 2px solid rgb(224, 226, 238);
+  box-shadow: 0px 2px 3px 1px rgba(160, 165, 200, 0.6);
+  border: none;
+}
+
+.accountItemDiv,
+.messagesItemDiv,
+.financeItemDiv,
+.miscItemDiv,
+.adminItemDiv {
+  box-shadow: 0px 2px 3px 1px rgba(160, 165, 200, 0.6);
+  box-shadow: none;
+  border: none;
+  background-color: #eff1f5;
+}
+*/
