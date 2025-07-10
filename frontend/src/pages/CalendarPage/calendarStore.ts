@@ -118,6 +118,8 @@ export interface taskStoreType {
   color: string;
   owner: string;
   type: string;
+
+  taskError: string;
   render: boolean;
 
   taskDatabase: Map<string, TaskClass[]>;
@@ -136,6 +138,8 @@ export interface taskStoreType {
   setColor: (color: string) => void;
   setOwner: (description: string) => void;
   setType: (type: string) => void;
+
+  setTaskError: (type: string) => void;
   setRender: () => void;
 
   resetTaskVariables: () => void;
@@ -166,6 +170,8 @@ export const taskStore = create<taskStoreType>((set) => ({
   color: "Red",
   owner: "",
   type: "Event",
+
+  taskError: "",
   render: true,
 
   taskDatabase: new Map(),
@@ -184,6 +190,8 @@ export const taskStore = create<taskStoreType>((set) => ({
   setColor: (color: string) => set(() => ({ color })),
   setOwner: (owner: string) => set(() => ({ owner })),
   setType: (type: string) => set(() => ({ type })),
+
+  setTaskError: (taskError: string) => set(() => ({ taskError })),
   setRender: () => set((state) => ({ render: !state.render })),
 
   resetTaskVariables: () =>

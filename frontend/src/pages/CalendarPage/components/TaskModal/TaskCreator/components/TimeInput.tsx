@@ -1,6 +1,6 @@
 import styles from "../TaskCreator.module.css";
 import { useRef } from "react";
-
+import { formatMinute } from "./timeFormat";
 type Props = {
   hour: string;
   minute: string;
@@ -61,7 +61,7 @@ export default function TimeInput({
           }
         }}
       />
-
+      <div className={styles.colonDiv}>:</div>
       <input
         ref={minuteInputRef}
         className={styles.minuteInput}
@@ -71,6 +71,7 @@ export default function TimeInput({
           const val = e.target.value.replace(/\D/g, "").slice(0, 2);
           setMinute(val);
         }}
+        onBlur={() => setMinute(formatMinute(minute))}
         onKeyDown={(e) => {
           const isDigit = digit.test(e.key);
           const current = e.currentTarget.value;
@@ -103,7 +104,6 @@ export default function TimeInput({
           }
         }}
       />
-
       <select
         className={styles.meridiem}
         value={meridiem}

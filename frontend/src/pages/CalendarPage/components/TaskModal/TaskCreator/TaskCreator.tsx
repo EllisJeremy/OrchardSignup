@@ -18,6 +18,7 @@ export default function TaskCreator() {
     endHour,
     endMinute,
     endMeridiem,
+    taskError,
     setTitle,
     setDescription,
     setColor,
@@ -29,6 +30,7 @@ export default function TaskCreator() {
     setEndHour,
     setEndMinute,
     setEndMeridiem,
+    setTaskError,
   } = taskStore();
 
   if (admin) {
@@ -109,17 +111,39 @@ export default function TaskCreator() {
           <option value="Purple">Purple</option>
         </select>
 
+        <div className={styles.taskErrorDiv}>{taskError}</div>
+
         <button
           className={styles.createButton}
           onClick={() => {
-            if (startHour === "" || startMinute === "") {
-              console.log("missing start");
+            if (
+              isNaN(parseInt(startHour)) ||
+              isNaN(parseInt(startMinute)) ||
+              parseInt(startHour) < 1 ||
+              parseInt(startHour) > 12 ||
+              parseInt(startMinute) < 0 ||
+              parseInt(startMinute) > 59
+            ) {
+              if (type === "Event") {
+                setTaskError("Enter a valid start time");
+              } else {
+                setTaskError("Enter a valid due time");
+              }
               return;
             }
-            if (type == "Event" && (endHour === "" || endMinute === "")) {
-              console.log("missing end");
+            if (
+              type === "Event" &&
+              (isNaN(parseInt(endHour)) ||
+                isNaN(parseInt(endMinute)) ||
+                parseInt(endHour) < 1 ||
+                parseInt(endHour) > 12 ||
+                parseInt(endMinute) < 0 ||
+                parseInt(endMinute) > 59)
+            ) {
+              setTaskError("Enter a valid end time");
               return;
             }
+            setTaskError("");
             const startTime = `${formatHour(startHour)}:${formatMinute(startMinute)} ${startMeridiem}`;
             const endTime = `${formatHour(endHour)}:${formatMinute(endMinute)} ${endMeridiem}`;
             console.log(date, title, startTime, endTime, description, color, "", type);
