@@ -1,7 +1,8 @@
 import styles from "./TaskCreator.module.css";
 import { taskStore } from "../../../calendarStore";
 import plus from "../../../../../assets/+.svg";
-import TimeInput from "./TimeDiv/TimeInput";
+import TimeInput from "./components/TimeInput";
+import { formatHour, formatMinute } from "./components/timeFormat";
 
 export default function TaskCreator() {
   const {
@@ -107,8 +108,8 @@ export default function TaskCreator() {
               console.log("not valid");
               return;
             }
-            const startTime = `${startHour}:${startMinute} ${startMeridiem}`;
-            const endTime = `${endHour}:${endMinute} ${endMeridiem}`;
+            const startTime = `${formatHour(startHour)}:${formatMinute(startMinute)} ${startMeridiem}`;
+            const endTime = `${formatHour(endHour)}:${formatMinute(endMinute)} ${endMeridiem}`;
             console.log(date, title, startTime, endTime, description, color, "", type);
             setTaskDatabase(date, title, startTime, endTime, description, color, "", type);
           }}

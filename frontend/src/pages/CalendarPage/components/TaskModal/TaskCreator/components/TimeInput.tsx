@@ -40,15 +40,18 @@ export default function TimeInput({
           const allowedKeys = ["Backspace", "Tab", "ArrowLeft", "ArrowRight", "Delete"];
           const isDigit = /^[0-9]$/.test(e.key);
           const current = e.currentTarget.value;
+          const cursorLocation = e.currentTarget.selectionStart;
 
           if (!isDigit && !allowedKeys.includes(e.key)) {
             e.preventDefault();
             return;
           }
 
-          if (e.key === "ArrowRight" && current.length === 1) {
-            hourInputRef.current?.blur();
+          if (e.key === "ArrowRight" && cursorLocation === current.length) {
             minuteInputRef.current?.focus();
+            requestAnimationFrame(() => {
+              minuteInputRef.current?.setSelectionRange(0, 0);
+            });
           }
 
           if (current === "1" && parseInt(e.key) > 2) {
@@ -72,14 +75,21 @@ export default function TimeInput({
           const allowedKeys = ["Backspace", "Tab", "ArrowLeft", "ArrowRight", "Delete"];
           const isDigit = /^[0-9]$/.test(e.key);
           const current = e.currentTarget.value;
+          const cursorLocation = e.currentTarget.selectionStart;
 
           if (!isDigit && !allowedKeys.includes(e.key)) {
             e.preventDefault();
             return;
           }
 
-          if (e.key === "ArrowLeft" && current.length === 0) {
+          if (e.key === "ArrowLeft" && cursorLocation === 0) {
             hourInputRef.current?.focus();
+            requestAnimationFrame(() => {
+              hourInputRef.current?.setSelectionRange(
+                hourInputRef.current?.value.length,
+                hourInputRef.current?.value.length,
+              );
+            });
             return;
           }
           if (e.key === "Backspace" && current.length === 0) {
