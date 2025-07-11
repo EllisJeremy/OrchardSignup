@@ -73,8 +73,8 @@ export const modalStore = create<modalStoreType>((set) => ({
 class TaskClass {
   public readonly date: string;
   public readonly title: string;
-  public readonly startTime: string | null;
-  public readonly endTime: string;
+  public readonly startTime: string;
+  public readonly endTime: string | null;
   public readonly description: string;
   public readonly color: string;
   public readonly owner: string | null;
@@ -84,8 +84,8 @@ class TaskClass {
   constructor(
     date: string,
     title: string,
-    startTime: string | null,
-    endTime: string,
+    startTime: string,
+    endTime: string | null,
     description: string,
     color: string,
     owner: string | null,
@@ -151,8 +151,8 @@ export interface taskStoreType {
   setTaskDatabase: (
     date: string,
     title: string,
-    startTime: string | null,
-    endTime: string,
+    startTime: string,
+    endTime: string | null,
     description: string,
     color: string,
     owner: string | null,
@@ -223,8 +223,8 @@ export const taskStore = create<taskStoreType>((set) => ({
   setTaskDatabase: (
     date: string,
     title: string,
-    startTime: string | null,
-    endTime: string,
+    startTime: string,
+    endTime: string | null,
     description: string,
     color: string,
     owner: string | null,

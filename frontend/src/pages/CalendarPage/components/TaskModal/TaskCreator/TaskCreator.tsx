@@ -158,7 +158,7 @@ export default function TaskCreator() {
 
             setTaskError("");
             const startTime = `${formatHour(startHour)}:${formatMinute(startMinute)} ${startMeridiem}`;
-            const endTime =
+            const endTimeOrNull =
               type === "Event"
                 ? `${formatHour(endHour)}:${formatMinute(endMinute)} ${endMeridiem}`
                 : null;
@@ -168,8 +168,8 @@ export default function TaskCreator() {
             setTaskDatabase(
               date,
               title,
-              startTimeOrNull,
-              endTime,
+              startTime,
+              endTimeOrNull,
               description,
               color,
               ownerOrNull,
