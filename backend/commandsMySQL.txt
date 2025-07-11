@@ -1,3 +1,43 @@
 here is the commands that are used for sql 
 
+task database
 
+CREATE TABLE tasks (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    date DATE NOT NULL,
+    title VARCHAR(50) NOT NULL,
+    startTime TIME NOT NULL,
+    endTime TIME,
+    description VARCHAR(500) NOT NULL, 
+    color VARCHAR(15) NOT NULL, 
+    owner VARCHAR(254),
+    type VARCHAR(15) NOT NULL,
+    repeat VARCHAR(25) 
+);
+
+add enum for type and foreign keys for owner
+
+add to the database
+
+INSERT INTO activities (
+    activityDate,
+    activityTitle,
+    activityStartTime,
+    activityEndTime,
+    activityDescription,
+    activityColor,
+    activityOwner,
+    activityType,
+    activityRepeat
+)
+VALUES (
+    '2025-07-11',
+    'title example',
+    '14:00:00',
+    '15:00:00',
+    'description example.',
+    'blue',
+    NULL,
+    'event',
+    NULL
+);

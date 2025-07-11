@@ -51,12 +51,12 @@ export default function TaskCreator() {
         <div className={styles.typeContainerDiv}>
           <div
             className={styles.typeSlideOverDiv}
-            style={{ left: type === "Task" ? "calc(50% + 5px)" : "0px" }}
+            style={{ left: type === "task" ? "calc(50% + 5px)" : "0px" }}
           ></div>
-          <div className={styles.typeDiv} onClick={() => setType("Event")}>
+          <div className={styles.typeDiv} onClick={() => setType("event")}>
             Event
           </div>
-          <div className={styles.typeDiv} onClick={() => setType("Task")}>
+          <div className={styles.typeDiv} onClick={() => setType("task")}>
             Task
           </div>
         </div>
@@ -70,7 +70,7 @@ export default function TaskCreator() {
           setMeridiem={setStartMeridiem}
         />
 
-        {type === "Event" ? (
+        {type === "event" ? (
           <TimeInput
             hour={endHour}
             minute={endMinute}
@@ -104,8 +104,8 @@ export default function TaskCreator() {
           onChange={(e) => setRepeat(e.target.value)}
           value={repeat}
         >
-          <option value="None">No repeat</option>
-          <option value="Weekly">Repeat weekly</option>
+          <option value="none">No repeat</option>
+          <option value="weekly">Repeat weekly</option>
         </select>
 
         <select
@@ -114,12 +114,12 @@ export default function TaskCreator() {
           onChange={(e) => setColor(e.target.value)}
           value={color}
         >
-          <option value="Red">Red</option>
-          <option value="Orange">Orange</option>
-          <option value="Yellow">Yellow</option>
-          <option value="Green">Green</option>
-          <option value="Blue">Blue</option>
-          <option value="Purple">Purple</option>
+          <option value="red">Red</option>
+          <option value="orange">Orange</option>
+          <option value="yellow">Yellow</option>
+          <option value="green">Green</option>
+          <option value="blue">Blue</option>
+          <option value="purple">Purple</option>
         </select>
 
         <div className={styles.taskErrorDiv}>{taskError}</div>
@@ -136,7 +136,7 @@ export default function TaskCreator() {
               parseInt(startMinute) < 0 ||
               parseInt(startMinute) > 59
             ) {
-              if (type === "Event") {
+              if (type === "event") {
                 setTaskError("Enter a valid start time");
               } else {
                 setTaskError("Enter a valid due time");
@@ -144,7 +144,7 @@ export default function TaskCreator() {
               return;
             }
             if (
-              type === "Event" &&
+              type === "event" &&
               (isNaN(parseInt(endHour)) ||
                 isNaN(parseInt(endMinute)) ||
                 parseInt(endHour) < 1 ||
@@ -159,11 +159,11 @@ export default function TaskCreator() {
             setTaskError("");
             const startTime = `${formatHour(startHour)}:${formatMinute(startMinute)} ${startMeridiem}`;
             const endTimeOrNull =
-              type === "Event"
+              type === "event"
                 ? `${formatHour(endHour)}:${formatMinute(endMinute)} ${endMeridiem}`
                 : null;
-            const ownerOrNull = type === "Task" && owner !== "" ? owner : null;
-            const repeatOrNull = repeat !== "None" ? repeat : null;
+            const ownerOrNull = type === "task" && owner !== "" ? owner : null;
+            const repeatOrNull = repeat !== "none" ? repeat : null;
 
             setTaskDatabase(
               date,
