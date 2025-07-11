@@ -73,24 +73,24 @@ export const modalStore = create<modalStoreType>((set) => ({
 class TaskClass {
   public readonly date: string;
   public readonly title: string;
-  public readonly startTime: string;
+  public readonly startTime: string | null;
   public readonly endTime: string;
   public readonly description: string;
   public readonly color: string;
-  public owner: string;
+  public readonly owner: string | null;
   public readonly type: string;
-  public readonly repeat: string;
+  public readonly repeat: string | null;
 
   constructor(
     date: string,
     title: string,
-    startTime: string,
+    startTime: string | null,
     endTime: string,
     description: string,
     color: string,
-    owner: string,
+    owner: string | null,
     type: string,
-    repeat: string,
+    repeat: string | null,
   ) {
     this.date = date;
     this.title = title;
@@ -151,13 +151,13 @@ export interface taskStoreType {
   setTaskDatabase: (
     date: string,
     title: string,
-    startTime: string,
+    startTime: string | null,
     endTime: string,
     description: string,
     color: string,
-    owner: string,
+    owner: string | null,
     type: string,
-    repeat: string,
+    repeat: string | null,
   ) => void;
   removeTask: (key: string, taskIndex: number) => void;
 }
@@ -206,8 +206,6 @@ export const taskStore = create<taskStoreType>((set) => ({
     set(() => {
       return {
         title: "",
-        startTime: "",
-        endTime: "",
         description: "",
         color: "Red",
         type: "Event",
@@ -217,21 +215,21 @@ export const taskStore = create<taskStoreType>((set) => ({
         startMinute: "",
         endHour: "",
         endMinute: "",
-        startMeridiem: "",
-        endMeridiem: "",
+        startMeridiem: "AM",
+        endMeridiem: "AM",
       };
     }),
 
   setTaskDatabase: (
     date: string,
     title: string,
-    startTime: string,
+    startTime: string | null,
     endTime: string,
     description: string,
     color: string,
-    owner: string,
+    owner: string | null,
     type: string,
-    repeat: string,
+    repeat: string | null,
   ) =>
     set((state) => {
       if (title === "") {

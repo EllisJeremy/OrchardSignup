@@ -127,6 +127,7 @@ export default function TaskCreator() {
         <button
           className={styles.createButton}
           onClick={() => {
+            console.log(taskDatabase);
             if (
               isNaN(parseInt(startHour)) ||
               isNaN(parseInt(startMinute)) ||
@@ -160,21 +161,20 @@ export default function TaskCreator() {
             const endTime =
               type === "Event"
                 ? `${formatHour(endHour)}:${formatMinute(endMinute)} ${endMeridiem}`
-                : "";
-            if (type === "Event") {
-              setOwner("");
-            }
-            console.log(taskDatabase);
+                : null;
+            const ownerOrNull = type === "Task" && owner !== "" ? owner : null;
+            const repeatOrNull = repeat !== "None" ? repeat : null;
+
             setTaskDatabase(
               date,
               title,
-              startTime,
+              startTimeOrNull,
               endTime,
               description,
               color,
-              owner,
+              ownerOrNull,
               type,
-              repeat,
+              repeatOrNull,
             );
             resetTaskVariables();
           }}
