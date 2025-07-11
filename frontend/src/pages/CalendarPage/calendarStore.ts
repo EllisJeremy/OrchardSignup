@@ -79,6 +79,7 @@ class TaskClass {
   public readonly color: string;
   public owner: string;
   public readonly type: string;
+  public readonly repeat: string;
 
   constructor(
     date: string,
@@ -89,6 +90,7 @@ class TaskClass {
     color: string,
     owner: string,
     type: string,
+    repeat: string,
   ) {
     this.date = date;
     this.title = title;
@@ -98,6 +100,7 @@ class TaskClass {
     this.color = color;
     this.owner = owner;
     this.type = type;
+    this.repeat = repeat;
   }
 }
 
@@ -118,6 +121,7 @@ export interface taskStoreType {
   color: string;
   owner: string;
   type: string;
+  repeat: string;
 
   taskError: string;
   render: boolean;
@@ -138,6 +142,7 @@ export interface taskStoreType {
   setColor: (color: string) => void;
   setOwner: (description: string) => void;
   setType: (type: string) => void;
+  setRepeat: (repeat: string) => void;
 
   setTaskError: (type: string) => void;
   setRender: () => void;
@@ -152,6 +157,7 @@ export interface taskStoreType {
     color: string,
     owner: string,
     type: string,
+    repeat: string,
   ) => void;
   removeTask: (key: string, taskIndex: number) => void;
 }
@@ -170,6 +176,7 @@ export const taskStore = create<taskStoreType>((set) => ({
   color: "Red",
   owner: "",
   type: "Event",
+  repeat: "None",
 
   taskError: "",
   render: true,
@@ -190,6 +197,7 @@ export const taskStore = create<taskStoreType>((set) => ({
   setColor: (color: string) => set(() => ({ color })),
   setOwner: (owner: string) => set(() => ({ owner })),
   setType: (type: string) => set(() => ({ type })),
+  setRepeat: (repeat: string) => set(() => ({ repeat })),
 
   setTaskError: (taskError: string) => set(() => ({ taskError })),
   setRender: () => set((state) => ({ render: !state.render })),
@@ -203,6 +211,14 @@ export const taskStore = create<taskStoreType>((set) => ({
         description: "",
         color: "Red",
         type: "Event",
+        repeat: "None",
+        owner: "",
+        startHour: "",
+        startMinute: "",
+        endHour: "",
+        endMinute: "",
+        startMeridiem: "",
+        endMeridiem: "",
       };
     }),
 
@@ -215,13 +231,24 @@ export const taskStore = create<taskStoreType>((set) => ({
     color: string,
     owner: string,
     type: string,
+    repeat: string,
   ) =>
     set((state) => {
       if (title === "") {
         title = "No Title";
       }
       // Create the new task entry
-      const task = new TaskClass(date, title, startTime, endTime, description, color, owner, type);
+      const task = new TaskClass(
+        date,
+        title,
+        startTime,
+        endTime,
+        description,
+        color,
+        owner,
+        type,
+        repeat,
+      );
 
       // Create a new Map to ensure immutability
       const updatedDatabase = new Map(state.taskDatabase);

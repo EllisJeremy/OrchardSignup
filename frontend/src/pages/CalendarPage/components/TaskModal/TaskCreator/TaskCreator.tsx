@@ -19,6 +19,9 @@ export default function TaskCreator() {
     endMinute,
     endMeridiem,
     taskError,
+    repeat,
+    owner,
+    taskDatabase,
     setTitle,
     setDescription,
     setColor,
@@ -31,6 +34,9 @@ export default function TaskCreator() {
     setEndMinute,
     setEndMeridiem,
     setTaskError,
+    setRepeat,
+    setOwner,
+    resetTaskVariables,
   } = taskStore();
 
   if (admin) {
@@ -40,6 +46,7 @@ export default function TaskCreator() {
           className={styles.titleInput}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Add title"
+          value={title}
         ></input>
         <div className={styles.typeContainerDiv}>
           <div
@@ -76,32 +83,36 @@ export default function TaskCreator() {
           <select
             id="options"
             className={styles.colorSelect}
-            onChange={(e) => setColor(e.target.value)}
+            onChange={(e) => setOwner(e.target.value)}
+            value={owner}
           >
             <option value="">Anyone</option>
-            <option value="example 1">example 1</option>
-            <option value="example 2">example 2</option>
+            <option value="john@gmail.com">John Smith</option>
+            <option value="doug@theorchardchurch.net">Doug Ellis</option>
           </select>
         )}
         <textarea
           className={styles.descriptionInput}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Add description"
+          value={description}
         ></textarea>
 
         <select
           id="options"
           className={styles.colorSelect}
-          onChange={(e) => setColor(e.target.value)}
+          onChange={(e) => setRepeat(e.target.value)}
+          value={repeat}
         >
-          <option value="no">No repeat</option>
-          <option value="weekly">Repeat weekly</option>
+          <option value="None">No repeat</option>
+          <option value="Weekly">Repeat weekly</option>
         </select>
 
         <select
           id="options"
           className={styles.colorSelect}
           onChange={(e) => setColor(e.target.value)}
+          value={color}
         >
           <option value="Red">Red</option>
           <option value="Orange">Orange</option>
@@ -143,11 +154,29 @@ export default function TaskCreator() {
               setTaskError("Enter a valid end time");
               return;
             }
+
             setTaskError("");
             const startTime = `${formatHour(startHour)}:${formatMinute(startMinute)} ${startMeridiem}`;
-            const endTime = `${formatHour(endHour)}:${formatMinute(endMinute)} ${endMeridiem}`;
-            console.log(date, title, startTime, endTime, description, color, "", type);
-            setTaskDatabase(date, title, startTime, endTime, description, color, "", type);
+            const endTime =
+              type === "Event"
+                ? `${formatHour(endHour)}:${formatMinute(endMinute)} ${endMeridiem}`
+                : "";
+            if (type === "Event") {
+              setOwner("");
+            }
+            console.log(taskDatabase);
+            setTaskDatabase(
+              date,
+              title,
+              startTime,
+              endTime,
+              description,
+              color,
+              owner,
+              type,
+              repeat,
+            );
+            resetTaskVariables();
           }}
         >
           Create
