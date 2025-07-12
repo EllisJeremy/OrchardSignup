@@ -1,10 +1,14 @@
 import express from "express";
 import mysql from "mysql2/promise";
 import dotenv from "dotenv";
+import cors from "cors";
+
 dotenv.config();
+const port = process.env.PORT || 8000;
 
 const app = express();
-const port = process.env.PORT || 8000;
+app.use(cors());
+app.use(express.json());
 
 const pool = mysql.createPool({
   host: "localhost",
@@ -15,10 +19,8 @@ const pool = mysql.createPool({
 
 app.get("/tasks", async (req, res) => {
   try {
-    let year = req.query.year as string;
-    let month = req.query.month as string;
-    year = "2025";
-    month = "7";
+    const year = req.query.year as string;
+    const month = req.query.month as string;
 
     const start = `${year}-${month}-01`;
 

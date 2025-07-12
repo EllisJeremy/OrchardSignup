@@ -1,11 +1,10 @@
-import styles from './CalendarHeaderMonths.module.css'
-import { dateStore, taskStore, modalStore } from '../../calendarStore'
-import monthToString from '../../globalTypescript/monthToString';
-import arrowLeft from '../../../../assets/arrowLeft.svg'
-import arrowRight from '../../../../assets/arrowRight.svg'
+import styles from "./CalendarHeaderMonths.module.css";
+import { dateStore, taskStore, modalStore } from "../../calendarStore";
+import monthToString from "../../functions/monthToString";
+import arrowLeft from "../../../../assets/arrowLeft.svg";
+import arrowRight from "../../../../assets/arrowRight.svg";
 
 export default function CalendarHeader() {
-
   const { setOwner } = taskStore();
 
   const { month, year, decrementMonth, incrementMonth } = dateStore();
@@ -14,9 +13,7 @@ export default function CalendarHeader() {
 
   return (
     <div className={styles.monthsDiv}>
-
       <div className={styles.changeMonthDiv}>
-
         <button className={styles.buttonLeft} onClick={decrementMonth}>
           <img className={styles.arrow} src={arrowLeft} />
         </button>
@@ -25,10 +22,15 @@ export default function CalendarHeader() {
           {monthToString(month)} {year}
         </p>
 
-        <button className={styles.buttonRight} onClick={() => { incrementMonth(); setOwner('jeremy') }}>
+        <button
+          className={styles.buttonRight}
+          onClick={() => {
+            incrementMonth();
+            setOwner("jeremy");
+          }}
+        >
           <img className={styles.arrow} src={arrowRight} />
         </button>
-
       </div>
 
       <div className={styles.logInDiv}>
@@ -36,7 +38,6 @@ export default function CalendarHeader() {
           Login
         </button>
       </div>
-
     </div>
-  )
+  );
 }

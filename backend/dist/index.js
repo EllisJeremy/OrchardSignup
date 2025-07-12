@@ -15,9 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const promise_1 = __importDefault(require("mysql2/promise"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
-const app = (0, express_1.default)();
 const port = process.env.PORT || 8000;
+const app = (0, express_1.default)();
+app.use((0, cors_1.default)());
+app.use(express_1.default.json());
 const pool = promise_1.default.createPool({
     host: "localhost",
     user: "root",
@@ -26,10 +29,8 @@ const pool = promise_1.default.createPool({
 });
 app.get("/tasks", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let year = req.query.year;
-        let month = req.query.month;
-        year = "2025";
-        month = "7";
+        const year = req.query.year;
+        const month = req.query.month;
         const start = `${year}-${month}-01`;
         const endDate = new Date(Number(year), Number(month), 0);
         const end = endDate.toISOString().split("T")[0];

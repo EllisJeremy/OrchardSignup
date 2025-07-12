@@ -70,7 +70,7 @@ export const modalStore = create<modalStoreType>((set) => ({
 
 //task class
 
-class TaskClass {
+export class TaskClass {
   public readonly date: string;
   public readonly title: string;
   public readonly startTime: string;
@@ -147,19 +147,9 @@ export interface taskStoreType {
   setTaskError: (type: string) => void;
   setRender: () => void;
 
+  setTaskDatabase: (taskDatabase: Map<string, TaskClass[]>) => void;
+
   resetTaskVariables: () => void;
-  setTaskDatabase: (
-    date: string,
-    title: string,
-    startTime: string,
-    endTime: string | null,
-    description: string,
-    color: string,
-    owner: string | null,
-    type: string,
-    repeat: string | null,
-  ) => void;
-  removeTask: (key: string, taskIndex: number) => void;
 }
 
 export const taskStore = create<taskStoreType>((set) => ({
@@ -202,6 +192,8 @@ export const taskStore = create<taskStoreType>((set) => ({
   setTaskError: (taskError: string) => set(() => ({ taskError })),
   setRender: () => set((state) => ({ render: !state.render })),
 
+  setTaskDatabase: (taskDatabase: Map<string, TaskClass[]>) => set(() => ({ taskDatabase })),
+
   resetTaskVariables: () =>
     set(() => {
       return {
@@ -218,57 +210,5 @@ export const taskStore = create<taskStoreType>((set) => ({
         startMeridiem: "AM",
         endMeridiem: "AM",
       };
-    }),
-
-  setTaskDatabase: (
-    date: string,
-    title: string,
-    startTime: string,
-    endTime: string | null,
-    description: string,
-    color: string,
-    owner: string | null,
-    type: string,
-    repeat: string | null,
-  ) =>
-    set((state) => {
-      if (title === "") {
-        title = "No Title";
-      }
-      // Create the new task entry
-      const task = new TaskClass(
-        date,
-        title,
-        startTime,
-        endTime,
-        description,
-        color,
-        owner,
-        type,
-        repeat,
-      );
-
-      // Create a new Map to ensure immutability
-      const updatedDatabase = new Map(state.taskDatabase);
-
-      // Get the existing tasks for the date or initialize with an empty array
-      const existingTasks = updatedDatabase.get(date) || [];
-
-      updatedDatabase.set(date, [...existingTasks, task]);
-
-      return { taskDatabase: updatedDatabase };
-    }),
-
-  removeTask: (key: string, taskIndex: number) =>
-    set((state) => {
-      const updatedDatabase = new Map(state.taskDatabase);
-      const tasks = updatedDatabase.get(key)!;
-
-      updatedDatabase.set(
-        key,
-        tasks.filter((_, index) => index !== taskIndex),
-      );
-
-      return { taskDatabase: updatedDatabase };
     }),
 }));
