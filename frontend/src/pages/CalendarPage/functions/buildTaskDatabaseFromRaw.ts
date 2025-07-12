@@ -6,21 +6,21 @@ export function buildTaskDatabaseFromRaw(rawTasks: RawTask[]): Map<string, TaskC
 
   for (const raw of rawTasks) {
     const {
-      date: taskDate,
-      title: taskTitle,
-      startTime: taskStartTime,
-      endTime: taskEndTime,
-      description: taskDescription,
-      color: taskColor,
-      owner: taskOwner,
-      type: taskType,
-      repeat: taskRepeat,
+      taskDate,
+      taskTitle,
+      taskStartTime,
+      taskEndTime,
+      taskDescription,
+      taskColor,
+      taskOwner,
+      taskType,
+      taskRepeat,
     } = raw;
-    console.log(taskTitle);
+
     const key = taskDate.split("T")[0];
     const task = new TaskClass(
       key,
-      taskTitle || "No Title",
+      taskTitle,
       taskStartTime,
       taskEndTime,
       taskDescription,
@@ -33,6 +33,6 @@ export function buildTaskDatabaseFromRaw(rawTasks: RawTask[]): Map<string, TaskC
     if (!taskMap.has(key)) taskMap.set(key, []);
     taskMap.get(key)!.push(task);
   }
-
+  //console.log(taskMap);
   return taskMap;
 }

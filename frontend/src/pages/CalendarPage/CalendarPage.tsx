@@ -11,7 +11,7 @@ import { RawTask } from "./calendarTypes/rawTask.ts";
 import { buildTaskDatabaseFromRaw } from "./functions/buildTaskDatabaseFromRaw.ts";
 
 export default function CalendarPage() {
-  const { setTaskDatabase } = taskStore();
+  const { taskDatabase, setTaskDatabase } = taskStore();
   const { month, year } = dateStore();
   const padMonth = month.toString().padStart(2, "0");
 
@@ -29,6 +29,7 @@ export default function CalendarPage() {
     };
 
     fetchTasks();
+    console.log(taskDatabase);
     // setTaskDatabase should not be used outside this context, but eslint wants me to add it anyway
   }, [setTaskDatabase, year, month, padMonth]);
 
