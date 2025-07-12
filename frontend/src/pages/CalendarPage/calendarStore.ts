@@ -173,10 +173,10 @@ export const taskStore = create<taskStoreType>((set) => ({
   startMeridiem: "AM",
   endMeridiem: "AM",
   description: "",
-  color: "Red",
+  color: "red",
   owner: "",
-  type: "Event",
-  repeat: "None",
+  type: "event",
+  repeat: "none",
 
   taskError: "",
   render: true,
@@ -207,7 +207,7 @@ export const taskStore = create<taskStoreType>((set) => ({
       return {
         title: "",
         description: "",
-        color: "Red",
+        color: "red",
         type: "Event",
         repeat: "None",
         owner: "",

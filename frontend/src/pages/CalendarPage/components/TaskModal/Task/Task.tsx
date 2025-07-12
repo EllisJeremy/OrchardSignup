@@ -3,33 +3,8 @@ import { taskStore } from "../../../calendarStore";
 import trash from "../../../../../assets/trash.svg";
 import check from "../../../../../assets/check.svg";
 import XFat from "../../../../../assets/XFat.svg";
-
-const colorMap: Record<string, React.CSSProperties> = {
-  red: {
-    backgroundColor: "rgba(255, 0, 0, 0.5)",
-    borderColor: "rgba(255, 0, 0, .0)",
-  },
-  orange: {
-    backgroundColor: "rgba(255, 123, 0, .5)",
-    borderColor: "rgba(255, 123, 0, .0)",
-  },
-  yellow: {
-    backgroundColor: "rgba(247, 190, 39, .5)",
-    borderColor: "rgba(247, 190, 39, .0)",
-  },
-  green: {
-    backgroundColor: "rgba(0, 124, 37, .5)",
-    borderColor: "rgba(0, 124, 37, .0)",
-  },
-  blue: {
-    backgroundColor: "rgba(0, 180, 255, .5)",
-    borderColor: "rgba(0, 180, 255, .0)",
-  },
-  purple: {
-    backgroundColor: "rgba(138, 100, 226, .5)",
-    borderColor: "rgba(138, 100, 226, 0)",
-  },
-};
+import { to12Hour } from "../TaskCreator/components/timeFormat";
+import { colorMap } from "./colorMap";
 
 const adminTitle: React.CSSProperties = { gridColumn: "2 / span 2" };
 
@@ -56,7 +31,7 @@ export default function TaskCreator() {
               {task.title}
             </p>
 
-            <p className={styles.dueTime}>{task.startTime}</p>
+            <p className={styles.dueTime}>{to12Hour(task.startTime)}</p>
             <p
               className={styles.description}
               style={task.type === "Event" ? {} : { gridColumn: "1 / span 4" }}

@@ -2,7 +2,7 @@ import styles from "./TaskCreator.module.css";
 import { taskStore } from "../../../calendarStore";
 import plus from "../../../../../assets/+.svg";
 import TimeInput from "./components/TimeInput";
-import { formatHour, formatMinute } from "./components/timeFormat";
+import { to24Hour } from "./components/timeFormat";
 
 export default function TaskCreator() {
   const {
@@ -157,11 +157,9 @@ export default function TaskCreator() {
             }
 
             setTaskError("");
-            const startTime = `${formatHour(startHour)}:${formatMinute(startMinute)} ${startMeridiem}`;
+            const startTime = to24Hour(startHour, startMinute, startMeridiem);
             const endTimeOrNull =
-              type === "event"
-                ? `${formatHour(endHour)}:${formatMinute(endMinute)} ${endMeridiem}`
-                : null;
+              type === "event" ? to24Hour(endHour, endMinute, endMeridiem) : null;
             const ownerOrNull = type === "task" && owner !== "" ? owner : null;
             const repeatOrNull = repeat !== "none" ? repeat : null;
 
