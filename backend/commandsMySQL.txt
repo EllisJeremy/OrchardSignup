@@ -19,21 +19,21 @@ add enum for type and foreign keys for owner
 
 add to the database
 
-INSERT INTO activities (
-    activityDate,
-    activityTitle,
-    activityStartTime,
-    activityEndTime,
-    activityDescription,
-    activityColor,
-    activityOwner,
-    activityType,
-    activityRepeat
+INSERT INTO tasks (
+    taskDate,
+    taskTitle,
+    taskStartTime,
+    taskEndTime,
+    taskDescription,
+    taskColor,
+    taskOwner,
+    taskType,
+    taskRepeat
 )
 VALUES (
     '2025-07-11',
-    'title example',
-    '14:00:00',
+    'title example 3',
+    '2:00:00',
     '15:00:00',
     'description example.',
     'blue',

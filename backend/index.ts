@@ -1,16 +1,41 @@
-import express, { Express, Request, Response } from "express";
+import express from "express";
+import mysql from "mysql2/promise";
 import dotenv from "dotenv";
 dotenv.config();
-import posts from "./routes/posts";
-const port = process.env.PORT || 8000;
 
 const app = express();
+const port = process.env.PORT || 8000;
 
-// Routes
-app.use(posts);
+const pool = mysql.createPool({
+  host: "localhost",
+  user: "root",
+  password: process.env.mySQLPassword,
+  database: "orchard",
+});
 
-// start server
+app.get("/tasks", async (req, res) => {
+  try {
+    let year = req.query.year as string;
+    let month = req.query.month as string;
+    year = "2025";
+    month = "7";
+
+    const start = `${year}-${month}-01`;
+
+    const endDate = new Date(Number(year), Number(month), 0);
+    const end = endDate.toISOString().split("T")[0];
+
+    const [rows] = await pool.query(
+      "SELECT * FROM tasks WHERE taskDate BETWEEN ? AND ? ORDER BY taskDate, taskStartTime",
+      [start, end]
+    );
+    res.json(rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Database error" });
+  }
+});
+
 app.listen(port, () => {
-  console.log("starting server...");
-  console.log(`running on ${port}`);
+  console.log(`Server running at http://localhost:${port}`);
 });

@@ -11,12 +11,12 @@ INSERT INTO tasks (
 )
 VALUES (
     '2025-07-11',
-    'title example task',
-    '20:00:00',
-    NULL,
-    'description example task.',
+    'title example 3',
+    '2:00:00',
+    '15:00:00',
+    'description example.',
     'blue',
     NULL,
-    'task',
+    'event',
     NULL
 );
