@@ -21,7 +21,6 @@ export default function TaskCreator() {
     taskError,
     repeat,
     owner,
-    taskDatabase,
     setTitle,
     setDescription,
     setColor,
@@ -127,7 +126,6 @@ export default function TaskCreator() {
         <button
           className={styles.createButton}
           onClick={() => {
-            console.log(taskDatabase);
             if (
               isNaN(parseInt(startHour)) ||
               isNaN(parseInt(startMinute)) ||
@@ -163,17 +161,6 @@ export default function TaskCreator() {
             const ownerOrNull = type === "task" && owner !== "" ? owner : null;
             const repeatOrNull = repeat !== "none" ? repeat : null;
 
-            setTaskDatabase(
-              date,
-              title,
-              startTime,
-              endTimeOrNull,
-              description,
-              color,
-              ownerOrNull,
-              type,
-              repeatOrNull,
-            );
             resetTaskVariables();
           }}
         >

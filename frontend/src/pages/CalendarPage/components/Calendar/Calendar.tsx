@@ -10,36 +10,41 @@ export default function Calendar() {
   const { openCloseTaskModal } = modalStore();
   const { setDate, resetTaskVariables } = taskStore();
 
+  const pad = (n: number) => n.toString().padStart(2, "0");
+
   return (
     <div className={styles.calendarDiv}>
-      {/*create blank cells to ensure the first real day is on the correct day of the week */}
+      {/* Create blank cells to ensure the first real day is on the correct day of the week */}
       {Array.from({ length: getStartingDay(month, year) }, (_, i) => (
         <div className={styles.dayDivBlank} key={"blank" + i}></div>
       ))}
 
-      {/*create all the cells for each day of the month */}
-      {Array.from({ length: daysInMonth }, (_, i) => (
-        <div
-          className={styles.dayDiv}
-          key={year.toString() + "-" + month.toString() + "-" + (i + 1)}
-          onClick={() => {
-            openCloseTaskModal();
-            setCurrentDay(i + 1);
-            resetTaskVariables();
-            setDate(year.toString() + "-" + month.toString() + "-" + (i + 1));
-          }}
-        >
-          <div className={styles.dayNumberDiv}>{i + 1}</div>
+      {/* Create all the cells for each day of the month */}
+      {Array.from({ length: daysInMonth }, (_, i) => {
+        const paddedDate = `${year}-${pad(month)}-${pad(i + 1)}`;
+        return (
+          <div
+            className={styles.dayDiv}
+            key={paddedDate}
+            onClick={() => {
+              openCloseTaskModal();
+              setCurrentDay(i + 1);
+              resetTaskVariables();
+              setDate(paddedDate);
+            }}
+          >
+            <div className={styles.dayNumberDiv}>{i + 1}</div>
 
-          <div className={styles.dayContentDiv}>
-            <DayTask cellDate={year.toString() + "-" + month.toString() + "-" + (i + 1)} />
+            <div className={styles.dayContentDiv}>
+              <DayTask cellDate={paddedDate} />
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
 
-      {/*create blank cells to fill the extra slots and the end */}
+      {/* Create blank cells to fill the extra slots at the end */}
       {Array.from({ length: getEndingDay(getStartingDay(month, year), daysInMonth) }, (_, i) => (
-        <div className={styles.dayDivBlank} key={"blank" + i}></div>
+        <div className={styles.dayDivBlank} key={"endblank" + i}></div>
       ))}
     </div>
   );

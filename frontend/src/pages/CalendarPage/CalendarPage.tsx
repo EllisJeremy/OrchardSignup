@@ -29,9 +29,7 @@ export default function CalendarPage() {
     };
 
     fetchTasks();
-    console.log(taskDatabase);
-    // setTaskDatabase should not be used outside this context, but eslint wants me to add it anyway
-  }, [setTaskDatabase, year, month, padMonth]);
+  }, [year, month]);
 
   return (
     <>
