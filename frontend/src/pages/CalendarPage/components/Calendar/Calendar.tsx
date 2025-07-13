@@ -1,5 +1,5 @@
 import styles from "./Calendar.module.css";
-import { getStartingDay, getEndingDay, getDaysInMonth } from "./calendarFunctions";
+import { getStartingDay, getEndingDay, getDaysInMonth } from "../../functions/calendarFunctions";
 import { dateStore, modalStore, taskStore } from "../../calendarStore";
 import DayTask from "./DayTask/DayTask";
 

@@ -24,7 +24,7 @@ export default function TaskCreator() {
     setTitle,
     setDescription,
     setColor,
-    setTaskDatabase,
+
     setType,
     setStartHour,
     setStartMinute,

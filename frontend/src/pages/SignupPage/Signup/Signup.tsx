@@ -40,7 +40,7 @@ export default function Login() {
   // submit
   const testSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // MUST ADD CASE WHERE EMAIL IS ALREADY USED
+    // TODO: MUST ADD CASE WHERE EMAIL IS ALREADY USED
     if (
       // fields are not blank
       email !== "" &&

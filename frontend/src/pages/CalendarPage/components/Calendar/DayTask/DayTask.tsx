@@ -8,7 +8,6 @@ interface propsType {
 
 export default function DayTask(props: propsType) {
   const { taskDatabase } = taskStore();
-  console.log(taskDatabase);
 
   if (taskDatabase.has(props.cellDate)) {
     const tasks = taskDatabase.get(props.cellDate)!;
