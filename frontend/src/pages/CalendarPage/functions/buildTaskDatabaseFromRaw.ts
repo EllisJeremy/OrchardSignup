@@ -33,6 +33,5 @@ export function buildTaskDatabaseFromRaw(rawTasks: RawTask[]): Map<string, TaskC
     if (!taskMap.has(key)) taskMap.set(key, []);
     taskMap.get(key)!.push(task);
   }
-  //console.log(taskMap);
   return taskMap;
 }

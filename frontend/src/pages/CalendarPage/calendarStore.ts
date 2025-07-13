@@ -200,7 +200,7 @@ export const taskStore = create<taskStoreType>((set) => ({
         title: "",
         description: "",
         color: "red",
-        type: "Event",
+        type: "event",
         repeat: "None",
         owner: "",
         startHour: "",
