@@ -71,6 +71,7 @@ export const modalStore = create<modalStoreType>((set) => ({
 //task class
 
 export class TaskClass {
+  public readonly id: number;
   public readonly date: string;
   public readonly title: string;
   public readonly startTime: string;
@@ -82,6 +83,7 @@ export class TaskClass {
   public readonly repeat: string | null;
 
   constructor(
+    id: number,
     date: string,
     title: string,
     startTime: string,
@@ -92,6 +94,7 @@ export class TaskClass {
     type: string,
     repeat: string | null,
   ) {
+    this.id = id;
     this.date = date;
     this.title = title;
     this.startTime = startTime;
@@ -127,6 +130,7 @@ export interface taskStoreType {
   render: boolean;
 
   taskDatabase: Map<string, TaskClass[]>;
+  databaseReload: number;
 
   setAdmin: () => void;
 
@@ -148,6 +152,7 @@ export interface taskStoreType {
   setRender: () => void;
 
   setTaskDatabase: (taskDatabase: Map<string, TaskClass[]>) => void;
+  triggerDatabaseReload: () => void;
 
   resetTaskVariables: () => void;
 }
@@ -172,6 +177,7 @@ export const taskStore = create<taskStoreType>((set) => ({
   render: true,
 
   taskDatabase: new Map(),
+  databaseReload: 0,
 
   setAdmin: () => set((state) => ({ admin: !state.admin })),
 
@@ -193,6 +199,7 @@ export const taskStore = create<taskStoreType>((set) => ({
   setRender: () => set((state) => ({ render: !state.render })),
 
   setTaskDatabase: (taskDatabase: Map<string, TaskClass[]>) => set(() => ({ taskDatabase })),
+  triggerDatabaseReload: () => set((state) => ({ databaseReload: state.databaseReload + 1 })),
 
   resetTaskVariables: () =>
     set(() => {

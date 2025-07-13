@@ -1,4 +1,5 @@
 export interface RawTask {
+  taskId: number;
   taskDate: string;
   taskTitle: string;
   taskStartTime: string;

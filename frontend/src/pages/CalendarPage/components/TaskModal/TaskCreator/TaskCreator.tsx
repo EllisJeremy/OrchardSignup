@@ -24,7 +24,6 @@ export default function TaskCreator() {
     setTitle,
     setDescription,
     setColor,
-
     setType,
     setStartHour,
     setStartMinute,
@@ -35,6 +34,7 @@ export default function TaskCreator() {
     setTaskError,
     setRepeat,
     setOwner,
+    triggerDatabaseReload,
     resetTaskVariables,
   } = taskStore();
 
@@ -125,7 +125,7 @@ export default function TaskCreator() {
 
         <button
           className={styles.createButton}
-          onClick={() => {
+          onClick={async () => {
             if (
               isNaN(parseInt(startHour)) ||
               isNaN(parseInt(startMinute)) ||
@@ -160,7 +160,24 @@ export default function TaskCreator() {
               type === "event" ? to24Hour(endHour, endMinute, endMeridiem) : null;
             const ownerOrNull = type === "task" && owner !== "" ? owner : null;
             const repeatOrNull = repeat !== "none" ? repeat : null;
-
+            await fetch("http://localhost:8080/tasks", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                taskDate: date,
+                taskTitle: title || "No Title",
+                taskStartTime: startTime,
+                taskEndTime: endTimeOrNull,
+                taskDescription: description,
+                taskColor: color,
+                taskOwner: ownerOrNull,
+                taskType: type,
+                taskRepeat: repeatOrNull,
+              }),
+            });
+            triggerDatabaseReload();
             resetTaskVariables();
           }}
         >

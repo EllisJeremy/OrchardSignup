@@ -19,7 +19,7 @@ export default function TaskCreator() {
         {tasks.map((task, index) => (
           <div key={index} className={styles.taskCreatorDiv}>
             {admin && (
-              <button className={styles.trashButton} onClick={() => removeTask(date, index)}>
+              <button className={styles.trashButton} onClick={() => removeTask(date, task.id)}>
                 <img className={styles.trash} src={trash} />
               </button>
             )}
@@ -34,12 +34,12 @@ export default function TaskCreator() {
             <p className={styles.dueTime}>{to12Hour(task.startTime)}</p>
             <p
               className={styles.description}
-              style={task.type === "Event" ? {} : { gridColumn: "1 / span 4" }}
+              style={task.type === "event" ? {} : { gridColumn: "1 / span 4" }}
             >
               {task.description}
             </p>
 
-            {task.type === "Event" && taskDatabase.get(date)![index].owner === "" && (
+            {task.type === "event" && taskDatabase.get(date)![index].owner === "" && (
               <button
                 className={styles.selectButton}
                 onClick={() => {
@@ -51,7 +51,7 @@ export default function TaskCreator() {
               </button>
             )}
 
-            {task.type === "Event" && taskDatabase.get(date)![index].owner !== "" && (
+            {task.type === "event" && taskDatabase.get(date)![index].owner !== "" && (
               <>
                 <p className={styles.owner}>{taskDatabase.get(date)![index].owner}</p>
                 <button

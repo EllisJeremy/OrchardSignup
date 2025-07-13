@@ -23,4 +23,54 @@ router.get("/by-month", async (req, res) => {
   }
 });
 
+router.delete("/:taskId", async (req, res) => {
+  const { taskId } = req.params;
+
+  try {
+    const [result] = await pool.query("DELETE FROM tasks WHERE id = ?", [taskId]);
+    res.sendStatus(204);
+  } catch (error) {
+    console.error("Delete error:", error);
+    res.status(500).json({ success: false, error: "Internal server error" });
+  }
+});
+
+router.post("/", async (req, res) => {
+  const {
+    taskDate,
+    taskTitle,
+    taskStartTime,
+    taskEndTime,
+    taskDescription,
+    taskColor,
+    taskOwner,
+    taskType,
+    taskRepeat,
+  } = req.body;
+
+  try {
+    const [result] = await pool.query(
+      `INSERT INTO tasks 
+        (taskDate, taskTitle, taskStartTime, taskEndTime, taskDescription, taskColor, taskOwner, taskType, taskRepeat) 
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        taskDate,
+        taskTitle,
+        taskStartTime,
+        taskEndTime,
+        taskDescription,
+        taskColor,
+        taskOwner,
+        taskType,
+        taskRepeat,
+      ]
+    );
+
+    res.status(201).json({ success: true, insertId: (result as any).insertId });
+  } catch (error) {
+    console.error("Insert error:", error);
+    res.status(500).json({ success: false, error: "Internal server error" });
+  }
+});
+
 export default router;

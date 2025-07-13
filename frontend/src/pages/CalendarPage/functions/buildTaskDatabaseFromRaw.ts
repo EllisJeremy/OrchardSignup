@@ -6,6 +6,7 @@ export function buildTaskDatabaseFromRaw(rawTasks: RawTask[]): Map<string, TaskC
 
   for (const raw of rawTasks) {
     const {
+      taskId,
       taskDate,
       taskTitle,
       taskStartTime,
@@ -19,6 +20,7 @@ export function buildTaskDatabaseFromRaw(rawTasks: RawTask[]): Map<string, TaskC
 
     const key = taskDate.split("T")[0];
     const task = new TaskClass(
+      taskId,
       key,
       taskTitle,
       taskStartTime,

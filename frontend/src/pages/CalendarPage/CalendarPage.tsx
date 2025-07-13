@@ -11,7 +11,7 @@ import { RawTask } from "./calendarTypes/rawTask.ts";
 import { buildTaskDatabaseFromRaw } from "./functions/buildTaskDatabaseFromRaw.ts";
 
 export default function CalendarPage() {
-  const { setTaskDatabase } = taskStore();
+  const { setTaskDatabase, databaseReload } = taskStore();
   const { month, year } = dateStore();
   const padMonth = month.toString().padStart(2, "0");
 
@@ -31,7 +31,7 @@ export default function CalendarPage() {
     };
 
     fetchTasks();
-  }, [year, month]);
+  }, [year, month, databaseReload]);
 
   return (
     <>

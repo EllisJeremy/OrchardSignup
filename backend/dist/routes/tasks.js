@@ -30,4 +30,38 @@ router.get("/by-month", (req, res) => __awaiter(void 0, void 0, void 0, function
         res.status(500).json({ error: "Database error" });
     }
 }));
+router.delete("/:taskId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { taskId } = req.params;
+    try {
+        const [result] = yield index_1.pool.query("DELETE FROM tasks WHERE id = ?", [taskId]);
+        res.sendStatus(204);
+    }
+    catch (error) {
+        console.error("Delete error:", error);
+        res.status(500).json({ success: false, error: "Internal server error" });
+    }
+}));
+router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { taskDate, taskTitle, taskStartTime, taskEndTime, taskDescription, taskColor, taskOwner, taskType, taskRepeat, } = req.body;
+    try {
+        const [result] = yield index_1.pool.query(`INSERT INTO tasks 
+        (taskDate, taskTitle, taskStartTime, taskEndTime, taskDescription, taskColor, taskOwner, taskType, taskRepeat) 
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`, [
+            taskDate,
+            taskTitle,
+            taskStartTime,
+            taskEndTime,
+            taskDescription,
+            taskColor,
+            taskOwner,
+            taskType,
+            taskRepeat,
+        ]);
+        res.status(201).json({ success: true, insertId: result.insertId });
+    }
+    catch (error) {
+        console.error("Insert error:", error);
+        res.status(500).json({ success: false, error: "Internal server error" });
+    }
+}));
 exports.default = router;
