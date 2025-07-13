@@ -18,7 +18,9 @@ export default function CalendarPage() {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const res = await fetch(`http://localhost:8080/tasks/?year=${year}&month=${padMonth}`);
+        const res = await fetch(
+          `http://localhost:8080/tasks/by-month/?year=${year}&month=${padMonth}`,
+        );
         const data: RawTask[] = await res.json();
 
         const groupedTasks = buildTaskDatabaseFromRaw(data);
