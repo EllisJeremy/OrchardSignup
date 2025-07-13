@@ -7,8 +7,7 @@ import LoginModal from "./components/LoginModal/LoginModal.tsx";
 import { taskStore } from "./calendarStore.ts";
 import { dateStore } from "./calendarStore.ts";
 import { useEffect } from "react";
-import { RawTask } from "./calendarTypes/rawTask.ts";
-import { buildTaskDatabaseFromRaw } from "./functions/buildTaskDatabaseFromRaw.ts";
+import { fetchTasks } from "./functions/network.ts";
 
 export default function CalendarPage() {
   const { setTaskDatabase, databaseReload } = taskStore();
@@ -16,21 +15,7 @@ export default function CalendarPage() {
   const padMonth = month.toString().padStart(2, "0");
 
   useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const res = await fetch(
-          `http://localhost:8080/tasks/by-month/?year=${year}&month=${padMonth}`,
-        );
-        const data: RawTask[] = await res.json();
-
-        const groupedTasks = buildTaskDatabaseFromRaw(data);
-        setTaskDatabase(groupedTasks);
-      } catch (err) {
-        console.error("Failed to load tasks", err);
-      }
-    };
-
-    fetchTasks();
+    fetchTasks(year, padMonth, setTaskDatabase);
   }, [year, month, databaseReload]);
 
   return (
