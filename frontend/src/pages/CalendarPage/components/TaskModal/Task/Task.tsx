@@ -3,7 +3,7 @@ import { taskStore } from "../../../calendarStore";
 import trash from "../../../../../assets/trash.svg";
 import check from "../../../../../assets/check.svg";
 import XFat from "../../../../../assets/XFat.svg";
-import { to12Hour } from "../TaskCreator/components/timeFormat";
+import { to12Hour } from "../../../functions/timeFormat";
 import { colorMap } from "./colorMap";
 
 const adminTitle: React.CSSProperties = { gridColumn: "2 / span 2" };

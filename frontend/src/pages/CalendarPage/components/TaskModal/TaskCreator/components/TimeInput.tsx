@@ -1,6 +1,6 @@
 import styles from "../TaskCreator.module.css";
 import { useRef } from "react";
-import { formatMinute } from "./timeFormat";
+import { formatMinute } from "../../../../functions/timeFormat";
 type Props = {
   hour: string;
   minute: string;

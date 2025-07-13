@@ -2,7 +2,7 @@ import styles from "./TaskCreator.module.css";
 import { taskStore } from "../../../calendarStore";
 import plus from "../../../../../assets/+.svg";
 import TimeInput from "./components/TimeInput";
-import { to24Hour } from "./components/timeFormat";
+import { to24Hour } from "../../../functions/timeFormat";
 
 export default function TaskCreator() {
   const {
