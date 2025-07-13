@@ -33,7 +33,7 @@ router.get("/by-month", (req, res) => __awaiter(void 0, void 0, void 0, function
 router.delete("/:taskId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { taskId } = req.params;
     try {
-        const [result] = yield index_1.pool.query("DELETE FROM tasks WHERE id = ?", [taskId]);
+        const [result] = yield index_1.pool.query("DELETE FROM tasks WHERE taskId = ?", [taskId]);
         res.sendStatus(204);
     }
     catch (error) {

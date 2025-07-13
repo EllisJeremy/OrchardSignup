@@ -17,3 +17,36 @@ export const fetchTasks = async (
     console.error("Failed to load tasks", err);
   }
 };
+
+export async function createTask(task: {
+  taskDate: string;
+  taskTitle: string;
+  taskStartTime: string;
+  taskEndTime: string | null;
+  taskDescription: string;
+  taskColor: string;
+  taskOwner: string | null;
+  taskType: string;
+  taskRepeat: string | null;
+}) {
+  const res = await fetch("http://localhost:8080/tasks", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(task),
+  });
+  if (!res.ok) {
+    throw new Error("Failed to create task");
+  }
+}
+
+export async function deleteTask(taskId: number) {
+  const res = await fetch(`http://localhost:8080/tasks/${taskId}`, {
+    method: "DELETE",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to delete task");
+  }
+}

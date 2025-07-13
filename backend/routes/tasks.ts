@@ -27,7 +27,7 @@ router.delete("/:taskId", async (req, res) => {
   const { taskId } = req.params;
 
   try {
-    const [result] = await pool.query("DELETE FROM tasks WHERE id = ?", [taskId]);
+    const [result] = await pool.query("DELETE FROM tasks WHERE taskId = ?", [taskId]);
     res.sendStatus(204);
   } catch (error) {
     console.error("Delete error:", error);

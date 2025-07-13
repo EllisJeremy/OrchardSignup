@@ -3,6 +3,7 @@ import { taskStore } from "../../../calendarStore";
 import plus from "../../../../../assets/+.svg";
 import TimeInput from "./components/TimeInput";
 import { to24Hour } from "../../../functions/timeFormat";
+import { createTask } from "../../../functions/network";
 
 export default function TaskCreator() {
   const {
@@ -160,23 +161,18 @@ export default function TaskCreator() {
               type === "event" ? to24Hour(endHour, endMinute, endMeridiem) : null;
             const ownerOrNull = type === "task" && owner !== "" ? owner : null;
             const repeatOrNull = repeat !== "none" ? repeat : null;
-            await fetch("http://localhost:8080/tasks", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                taskDate: date,
-                taskTitle: title || "No Title",
-                taskStartTime: startTime,
-                taskEndTime: endTimeOrNull,
-                taskDescription: description,
-                taskColor: color,
-                taskOwner: ownerOrNull,
-                taskType: type,
-                taskRepeat: repeatOrNull,
-              }),
+            await createTask({
+              taskDate: date,
+              taskTitle: title || "No Title",
+              taskStartTime: startTime,
+              taskEndTime: endTimeOrNull,
+              taskDescription: description,
+              taskColor: color,
+              taskOwner: ownerOrNull,
+              taskType: type,
+              taskRepeat: repeatOrNull,
             });
+
             triggerDatabaseReload();
             resetTaskVariables();
           }}

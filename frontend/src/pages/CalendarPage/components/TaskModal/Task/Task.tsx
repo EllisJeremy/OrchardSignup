@@ -5,11 +5,12 @@ import check from "../../../../../assets/check.svg";
 import XFat from "../../../../../assets/XFat.svg";
 import { to12Hour } from "../../../functions/timeFormat";
 import { colorMap } from "./colorMap";
+import { deleteTask } from "../../../functions/network";
 
 const adminTitle: React.CSSProperties = { gridColumn: "2 / span 2" };
 
 export default function TaskCreator() {
-  const { date, taskDatabase, admin, owner, removeTask, setRender } = taskStore();
+  const { date, taskDatabase, admin, owner, setRender, triggerDatabaseReload } = taskStore();
 
   if (taskDatabase.has(date)) {
     const tasks = taskDatabase.get(date)!;
@@ -19,7 +20,14 @@ export default function TaskCreator() {
         {tasks.map((task, index) => (
           <div key={index} className={styles.taskCreatorDiv}>
             {admin && (
-              <button className={styles.trashButton} onClick={() => removeTask(date, task.id)}>
+              <button
+                className={styles.trashButton}
+                onClick={async () => {
+                  await deleteTask(task.id);
+                  triggerDatabaseReload();
+                  console.log(task.id);
+                }}
+              >
                 <img className={styles.trash} src={trash} />
               </button>
             )}
