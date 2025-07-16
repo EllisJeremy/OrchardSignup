@@ -104,7 +104,7 @@ export default function TaskCreator() {
           onChange={(e) => setRepeat(e.target.value)}
           value={repeat}
         >
-          <option value="none">No repeat</option>
+          <option value={"null"}>No repeat</option>
           <option value="weekly">Repeat weekly</option>
         </select>
 
@@ -154,13 +154,13 @@ export default function TaskCreator() {
               setTaskError("Enter a valid end time");
               return;
             }
-
+            console.log(type);
             setTaskError("");
             const startTime = to24Hour(startHour, startMinute, startMeridiem);
             const endTimeOrNull =
               type === "event" ? to24Hour(endHour, endMinute, endMeridiem) : null;
             const ownerOrNull = type === "task" && owner !== "" ? owner : null;
-            const repeatOrNull = repeat !== "none" ? repeat : null;
+            const repeatOrNull = repeat !== "null" ? repeat : null;
             await createTask({
               taskDate: date,
               taskTitle: title || "No Title",

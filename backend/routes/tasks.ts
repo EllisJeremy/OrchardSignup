@@ -47,6 +47,7 @@ router.post("/", async (req, res) => {
     taskType,
     taskRepeat,
   } = req.body;
+  console.log(taskType); //logs event or task in lowercase
 
   try {
     const [result] = await pool.query(

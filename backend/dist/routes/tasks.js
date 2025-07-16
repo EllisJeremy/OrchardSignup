@@ -43,6 +43,7 @@ router.delete("/:taskId", (req, res) => __awaiter(void 0, void 0, void 0, functi
 }));
 router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { taskDate, taskTitle, taskStartTime, taskEndTime, taskDescription, taskColor, taskOwner, taskType, taskRepeat, } = req.body;
+    console.log(taskType); //logs event or task in lowercase
     try {
         const [result] = yield index_1.pool.query(`INSERT INTO tasks 
         (taskDate, taskTitle, taskStartTime, taskEndTime, taskDescription, taskColor, taskOwner, taskType, taskRepeat) 

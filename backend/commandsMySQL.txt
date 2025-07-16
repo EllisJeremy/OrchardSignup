@@ -3,41 +3,17 @@ here is the commands that are used for sql
 task database
 
 CREATE TABLE tasks (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    date DATE NOT NULL,
-    title VARCHAR(50) NOT NULL,
-    startTime TIME NOT NULL,
-    endTime TIME,
-    description VARCHAR(500) NOT NULL, 
-    color VARCHAR(15) NOT NULL, 
-    owner VARCHAR(254),
-    type VARCHAR(15) NOT NULL,
-    repeat VARCHAR(25) 
+    taskId INT PRIMARY KEY AUTO_INCREMENT,
+    taskDate DATE NOT NULL,
+    taskTitle VARCHAR(50) NOT NULL,
+    taskStartTime TIME NOT NULL,
+    taskEndTime TIME,
+    taskDescription VARCHAR(500) NOT NULL, 
+    taskColor VARCHAR(15) NOT NULL, 
+    taskOwner VARCHAR(254),
+    taskType ENUM('event', 'task') NOT NULL,
+    taskRepeat VARCHAR(25) 
 );
 
 add enum for type and foreign keys for owner
 
-add to the database
-
-INSERT INTO tasks (
-    taskDate,
-    taskTitle,
-    taskStartTime,
-    taskEndTime,
-    taskDescription,
-    taskColor,
-    taskOwner,
-    taskType,
-    taskRepeat
-)
-VALUES (
-    '2025-07-11',
-    'title example 3',
-    '2:00:00',
-    '15:00:00',
-    'description example.',
-    'blue',
-    NULL,
-    'event',
-    NULL
-);

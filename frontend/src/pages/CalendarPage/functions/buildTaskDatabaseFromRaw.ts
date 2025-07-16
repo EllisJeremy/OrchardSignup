@@ -17,7 +17,7 @@ export function buildTaskDatabaseFromRaw(rawTasks: RawTask[]): Map<string, TaskC
       taskType,
       taskRepeat,
     } = raw;
-
+    console.log(taskType);
     const key = taskDate.split("T")[0];
     const task = new TaskClass(
       taskId,

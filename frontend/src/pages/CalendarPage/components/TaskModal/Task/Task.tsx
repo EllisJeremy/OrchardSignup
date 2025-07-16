@@ -10,7 +10,7 @@ import { deleteTask } from "../../../functions/network";
 const adminTitle: React.CSSProperties = { gridColumn: "2 / span 2" };
 
 export default function TaskCreator() {
-  const { date, taskDatabase, admin, owner, setRender, triggerDatabaseReload } = taskStore();
+  const { date, taskDatabase, admin, setRender, triggerDatabaseReload } = taskStore();
 
   if (taskDatabase.has(date)) {
     const tasks = taskDatabase.get(date)!;
@@ -46,12 +46,11 @@ export default function TaskCreator() {
             >
               {task.description}
             </p>
-
-            {task.type === "event" && taskDatabase.get(date)![index].owner === "" && (
+            {task.type === "task" && taskDatabase.get(date)![index].owner === null && (
               <button
                 className={styles.selectButton}
                 onClick={() => {
-                  taskDatabase.get(date)![index].owner = owner;
+                  // TODO add user to task
                   setRender();
                 }}
               >
@@ -59,13 +58,13 @@ export default function TaskCreator() {
               </button>
             )}
 
-            {task.type === "event" && taskDatabase.get(date)![index].owner !== "" && (
+            {task.type === "task" && taskDatabase.get(date)![index].owner !== null && (
               <>
                 <p className={styles.owner}>{taskDatabase.get(date)![index].owner}</p>
                 <button
                   className={styles.unSelectButton}
                   onClick={() => {
-                    taskDatabase.get(date)![index].owner = "";
+                    // TODO: remove user from task
                     setRender();
                   }}
                 >
