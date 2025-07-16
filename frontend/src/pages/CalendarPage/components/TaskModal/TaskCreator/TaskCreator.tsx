@@ -154,7 +154,7 @@ export default function TaskCreator() {
               setTaskError("Enter a valid end time");
               return;
             }
-            console.log(type);
+
             setTaskError("");
             const startTime = to24Hour(startHour, startMinute, startMeridiem);
             const endTimeOrNull =

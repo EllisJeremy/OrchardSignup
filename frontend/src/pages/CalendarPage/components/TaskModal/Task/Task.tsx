@@ -25,7 +25,6 @@ export default function TaskCreator() {
                 onClick={async () => {
                   await deleteTask(task.id);
                   triggerDatabaseReload();
-                  console.log(task.id);
                 }}
               >
                 <img className={styles.trash} src={trash} />
