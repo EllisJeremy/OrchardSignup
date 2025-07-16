@@ -41,7 +41,7 @@ export default function TaskCreator() {
             <p className={styles.dueTime}>{to12Hour(task.startTime)}</p>
             <p
               className={styles.description}
-              style={task.type === "event" ? {} : { gridColumn: "1 / span 4" }}
+              style={task.type === "task" ? {} : { gridColumn: "1 / span 4" }}
             >
               {task.description}
             </p>
