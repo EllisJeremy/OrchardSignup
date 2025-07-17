@@ -7,8 +7,6 @@ import { to12Hour } from "../../../functions/timeFormat";
 import { colorMap } from "./colorMap";
 import { deleteTask } from "../../../functions/network";
 
-const adminTitle: React.CSSProperties = { gridColumn: "2 / span 2" };
-
 export default function TaskCreator() {
   const { date, taskDatabase, admin, setRender, triggerDatabaseReload } = taskStore();
 
@@ -19,6 +17,7 @@ export default function TaskCreator() {
       <>
         {tasks.map((task, index) => (
           <div key={index} className={styles.taskCreatorDiv}>
+            {/** 
             {admin && (
               <button
                 className={styles.trashButton}
@@ -30,22 +29,19 @@ export default function TaskCreator() {
                 <img className={styles.trash} src={trash} />
               </button>
             )}
+              */}
 
-            <p
-              className={styles.title}
-              style={admin ? { ...colorMap[task.color], ...adminTitle } : colorMap[task.color]}
-            >
+            <p className={styles.title} style={colorMap[task.color]}>
               {task.title}
             </p>
 
             <p className={styles.dueTime}>{to12Hour(task.startTime)}</p>
-            <p
-              className={styles.description}
-              style={task.type === "task" ? {} : { gridColumn: "1 / span 4" }}
-            >
-              {task.description}
-            </p>
-            {task.type === "task" && taskDatabase.get(date)![index].owner === null && (
+            {task.type === "event" && (
+              <p className={styles.dueTime}>{task.endTime ? to12Hour(task.endTime) : ""}</p>
+            )}
+
+            <p className={styles.description}>{task.description}</p>
+            {task.type === "s" && taskDatabase.get(date)![index].owner === null && (
               <button
                 className={styles.selectButton}
                 onClick={() => {
