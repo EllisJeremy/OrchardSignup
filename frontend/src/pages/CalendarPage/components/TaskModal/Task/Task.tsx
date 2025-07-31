@@ -16,7 +16,11 @@ export default function TaskCreator() {
     return (
       <>
         {tasks.map((task, index) => (
-          <div key={index} className={styles.taskCreatorDiv}>
+          <div
+            key={index}
+            className={styles.taskCreatorDiv}
+            style={task.type === "event" ? { gridTemplateRows: "25px 25px" } : {}}
+          >
             {/** 
             {admin && (
               <button
@@ -35,10 +39,10 @@ export default function TaskCreator() {
               {task.title}
             </p>
 
-            <p className={styles.dueTime}>{to12Hour(task.startTime)}</p>
-            {task.type === "event" && (
-              <p className={styles.dueTime}>{task.endTime ? to12Hour(task.endTime) : ""}</p>
-            )}
+            <div className={styles.time}>
+              {to12Hour(task.startTime)}
+              {task.endTime ? ` - ${to12Hour(task.endTime)}` : ""}
+            </div>
 
             <p className={styles.description}>{task.description}</p>
             {task.type === "s" && taskDatabase.get(date)![index].owner === null && (
