@@ -16,13 +16,8 @@ export default function TaskCreator() {
     return (
       <>
         {tasks.map((task, index) => (
-          <div
-            key={index}
-            className={styles.taskCreatorDiv}
-            style={task.type === "event" ? { gridTemplateRows: "25px 25px" } : {}}
-          >
-            {/** 
-            {admin && (
+          <div key={index} className={styles.taskDiv}>
+            <div className={styles.adminBarDiv}>
               <button
                 className={styles.trashButton}
                 onClick={async () => {
@@ -32,45 +27,48 @@ export default function TaskCreator() {
               >
                 <img className={styles.trash} src={trash} />
               </button>
-            )}
-              */}
-
-            <p className={styles.title} style={colorMap[task.color]}>
-              {task.title}
-            </p>
-
-            <div className={styles.time}>
-              {to12Hour(task.startTime)}
-              {task.endTime ? ` - ${to12Hour(task.endTime)}` : ""}
             </div>
+            <div
+              className={styles.taskGridDiv}
+              style={task.type === "event" ? { gridTemplateRows: "25px 25px" } : {}}
+            >
+              <p className={styles.title} style={colorMap[task.color]}>
+                {task.title}
+              </p>
 
-            <p className={styles.description}>{task.description}</p>
-            {task.type === "s" && taskDatabase.get(date)![index].owner === null && (
-              <button
-                className={styles.selectButton}
-                onClick={() => {
-                  // TODO add user to task
-                  setRender();
-                }}
-              >
-                <img className={styles.plus} src={check} />
-              </button>
-            )}
+              <div className={styles.time}>
+                {to12Hour(task.startTime)}
+                {task.endTime ? ` - ${to12Hour(task.endTime)}` : ""}
+              </div>
 
-            {task.type === "task" && taskDatabase.get(date)![index].owner !== null && (
-              <>
-                <p className={styles.owner}>{taskDatabase.get(date)![index].owner}</p>
+              <p className={styles.description}>{task.description}</p>
+              {task.type === "s" && taskDatabase.get(date)![index].owner === null && (
                 <button
-                  className={styles.unSelectButton}
+                  className={styles.selectButton}
                   onClick={() => {
-                    // TODO: remove user from task
+                    // TODO add user to task
                     setRender();
                   }}
                 >
-                  <img className={styles.XFat} src={XFat} />
+                  <img className={styles.plus} src={check} />
                 </button>
-              </>
-            )}
+              )}
+
+              {task.type === "task" && taskDatabase.get(date)![index].owner !== null && (
+                <>
+                  <p className={styles.owner}>{taskDatabase.get(date)![index].owner}</p>
+                  <button
+                    className={styles.unSelectButton}
+                    onClick={() => {
+                      // TODO: remove user from task
+                      setRender();
+                    }}
+                  >
+                    <img className={styles.XFat} src={XFat} />
+                  </button>
+                </>
+              )}
+            </div>
           </div>
         ))}
       </>

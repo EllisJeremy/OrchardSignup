@@ -1,10 +1,20 @@
-.taskCreatorDiv {
+.taskDiv {
   background-color: rgb(255, 255, 255);
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0px 1px 1px 0.5px rgb(225, 226, 230);
   margin: 10px;
+}
 
+.adminBarDiv {
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.taskGridDiv {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 25px 25px 25px 25px;
@@ -63,7 +73,6 @@
 }
 
 .selectButton,
-.trashButton,
 .unSelectButton {
   background-color: rgb(255, 255, 255);
   border: 2px solid rgb(225, 226, 231);
@@ -74,7 +83,6 @@
 }
 
 .selectButton:hover,
-.trashButton:hover,
 .unSelectButton:hover {
   background-color: hsl(138, 100%, 40%);
   border-color: rgb(255, 255, 255);
@@ -82,7 +90,6 @@
 }
 
 .selectButton:active,
-.trashButton:active,
 .unSelectButton:active {
   padding: 3px;
 }
@@ -98,12 +105,21 @@
 .trashButton:hover,
 .unSelectButton:hover {
   background-color: rgb(255, 53, 53);
-}
-
-.trashButton:active {
-  padding: 2px;
+  cursor: pointer;
 }
 
 .trash {
   height: 100%;
+}
+
+.trashButton {
+  height: 25px;
+  border-radius: 5px;
+  border: none;
+  padding: 2px;
+  transition: 0.25s;
+}
+
+.trashButton:active {
+  transform: scale(0.9);
 }
