@@ -7,10 +7,9 @@
 }
 
 .adminBarDiv {
-  height: 30px;
+  height: 25px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   margin-bottom: 10px;
 }
 
@@ -104,7 +103,7 @@
 
 .trashButton:hover,
 .unSelectButton:hover {
-  background-color: rgb(255, 53, 53);
+  background-color: rgba(255, 0, 0, 0.5);
   cursor: pointer;
 }
 
@@ -112,7 +111,8 @@
   height: 100%;
 }
 
-.trashButton {
+.trashButton,
+.editButton {
   height: 25px;
   border-radius: 5px;
   border: none;
@@ -120,6 +120,14 @@
   transition: 0.25s;
 }
 
-.trashButton:active {
+.trashButton:active,
+.editButton:active {
   transform: scale(0.9);
+}
+.editButton {
+  padding: 4px;
+}
+.editButton:hover {
+  background-color: rgb(208, 238, 255);
+  cursor: pointer;
 }

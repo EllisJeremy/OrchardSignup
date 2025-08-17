@@ -3,6 +3,7 @@ import { taskStore } from "../../../calendarStore";
 import trash from "../../../../../assets/trash.svg";
 import check from "../../../../../assets/check.svg";
 import XFat from "../../../../../assets/XFat.svg";
+import edit from "../../../../../assets/edit.svg";
 import { to12Hour } from "../../../functions/timeFormat";
 import { colorMap } from "./colorMap";
 import { deleteTask } from "../../../functions/network";
@@ -18,6 +19,15 @@ export default function TaskCreator() {
         {tasks.map((task, index) => (
           <div key={index} className={styles.taskDiv}>
             <div className={styles.adminBarDiv}>
+              <button
+                className={styles.editButton}
+                onClick={async () => {
+                  await deleteTask(task.id);
+                  triggerDatabaseReload();
+                }}
+              >
+                <img className={styles.trash} src={edit} />
+              </button>
               <button
                 className={styles.trashButton}
                 onClick={async () => {
