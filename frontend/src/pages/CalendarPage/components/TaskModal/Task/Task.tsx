@@ -8,7 +8,7 @@ import { to12Hour } from "../../../functions/timeFormat";
 import { colorMap } from "./colorMap";
 import { deleteTask } from "../../../functions/network";
 
-export default function TaskCreator() {
+export default function Task() {
   const { date, taskDatabase, admin, setRender, triggerDatabaseReload } = taskStore();
 
   if (taskDatabase.has(date)) {
@@ -21,6 +21,7 @@ export default function TaskCreator() {
             <div className={styles.adminBarDiv}>
               <button
                 className={styles.editButton}
+                title="Edit"
                 onClick={async () => {
                   await deleteTask(task.id);
                   triggerDatabaseReload();
@@ -30,6 +31,7 @@ export default function TaskCreator() {
               </button>
               <button
                 className={styles.trashButton}
+                title="Delate"
                 onClick={async () => {
                   await deleteTask(task.id);
                   triggerDatabaseReload();
