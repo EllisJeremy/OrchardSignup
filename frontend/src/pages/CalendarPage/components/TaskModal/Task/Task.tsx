@@ -62,32 +62,22 @@ export default function Task() {
                   </div>
                   <div className={styles.taskContentDiv}>
                     <p className={styles.description}>{task.description}</p>
-                    {taskDatabase.get(date)![index].owner === null && (
-                      <button
-                        className={styles.selectButton}
-                        onClick={() => {
-                          // TODO add user to task
-                          setRender();
-                        }}
-                      >
-                        <img className={styles.plus} src={check} />
-                      </button>
-                    )}
+                    <div className={styles.signupDiv}>
+                      <p className={styles.owner}>{task.owner ? task.owner : "available"}</p>
 
-                    {task.type === "task" && taskDatabase.get(date)![index].owner !== null && (
-                      <>
-                        <p className={styles.owner}>{taskDatabase.get(date)![index].owner}</p>
+                      {taskDatabase.get(date)![index].owner === null && (
                         <button
-                          className={styles.unSelectButton}
+                          className={styles.selectButton}
                           onClick={() => {
-                            // TODO: remove user from task
+                            // TODO add user to task
                             setRender();
                           }}
                         >
-                          <img className={styles.XFat} src={XFat} />
+                          signup
+                          <img className={styles.plus} src={check} />
                         </button>
-                      </>
-                    )}
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

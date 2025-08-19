@@ -20,46 +20,34 @@
   gap: 10px;
 }
 
-.owner {
-  margin: 0px;
-  grid-column: 4;
-  grid-row: 2;
+.selectButton {
+  display: flex;
+  height: 50px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 10px 0px 10px;
   font-size: 15px;
-  padding: 3px;
-  line-height: 100%;
-  overflow: hidden;
 }
 
-.unSelectButton {
-  height: 50px;
-  width: 50px;
+.selectButton:active {
+  transform: scale(0.97);
+  transition: 0.25s;
 }
 
 .selectButton {
-  height: 50px;
-  width: 50px;
-}
-
-.selectButton,
-.unSelectButton {
   background-color: rgb(255, 255, 255);
-  border: 2px solid rgb(225, 226, 231);
+  border: 2px solid rgb(239, 241, 245);
   border-radius: 5px;
   transition:
     background-color 0.4s,
     border-color 0.4s;
 }
 
-.selectButton:hover,
-.unSelectButton:hover {
-  background-color: hsl(138, 100%, 40%);
+.selectButton:hover {
+  background-color: rgba(0, 204, 61, 0.7);
   border-color: rgb(255, 255, 255);
   cursor: pointer;
-}
-
-.selectButton:active,
-.unSelectButton:active {
-  padding: 3px;
 }
 
 .plus {
@@ -110,12 +98,31 @@
 
 .title,
 .time,
-.description {
+.description,
+.owner {
   margin: 0px 0px;
   padding: 5px 10px;
   border-radius: 5px;
 }
 
 .description {
+  background-color: rgb(239, 241, 245);
+}
+
+.taskContentDiv {
+  display: grid;
+  grid-template-columns: 60% calc(40% - 10px);
+  gap: 10px;
+}
+
+.signupDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.owner {
+  text-align: center;
   background-color: rgb(239, 241, 245);
 }
