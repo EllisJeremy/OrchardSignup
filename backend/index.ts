@@ -3,6 +3,7 @@ import mysql from "mysql2/promise";
 import dotenv from "dotenv";
 import cors from "cors";
 import tasksRoute from "./routes/tasks";
+import accountRoute from "./routes/accounts";
 
 dotenv.config();
 const port = process.env.PORT || 8000;
@@ -19,6 +20,7 @@ export const pool = mysql.createPool({
 });
 
 app.use("/tasks", tasksRoute);
+app.use("/accounts", accountRoute);
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
