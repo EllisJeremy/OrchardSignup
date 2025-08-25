@@ -1,0 +1,30 @@
+this file keeps track of the schema for each database
+this is kind of a crude way of doing this, but it works for a small project like this
+
+CREATE TABLE accounts (
+    accountId INT PRIMARY KEY AUTO_INCREMENT,
+    accountEmail VARCHAR(320) NOT NULL UNIQUE,
+    accountPassword VARCHAR(255) NOT NULL,
+    accountName VARCHAR(64) NOT NULL,
+    accountIsAdmin BOOLEAN NOT NULL DEFAULT FALSE,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE tasks (
+    taskId INT PRIMARY KEY AUTO_INCREMENT,
+    taskDate DATE NOT NULL,
+    taskTitle VARCHAR(50) NOT NULL,
+    taskStartTime TIME NOT NULL,
+    taskEndTime TIME,
+    taskDescription VARCHAR(500) NOT NULL, 
+    taskColor VARCHAR(15) NOT NULL, 
+    taskOwnerId INT NULL, -- foreign key reference to accounts
+    taskType ENUM('event', 'task') NOT NULL,
+    taskRepeat VARCHAR(25),
+    CONSTRAINT fk_task_owner 
+        FOREIGN KEY (taskOwnerId) REFERENCES accounts(accountId)
+        ON DELETE SET NULL
+);
+
+

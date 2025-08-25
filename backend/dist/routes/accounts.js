@@ -26,4 +26,27 @@ router.get("/by-email", (req, res) => __awaiter(void 0, void 0, void 0, function
         res.status(500).json({ error: "Database error" });
     }
 }));
+router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email, password, name, creationDate } = req.body;
+    try {
+        const [result] = yield index_1.pool.query(`INSERT INTO tasks 
+        (taskDate, taskTitle, taskStartTime, taskEndTime, taskDescription, taskColor, taskOwner, taskType, taskRepeat) 
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`, [
+            taskDate,
+            taskTitle,
+            taskStartTime,
+            taskEndTime,
+            taskDescription,
+            taskColor,
+            taskOwner,
+            taskType,
+            taskRepeat,
+        ]);
+        res.status(201).json({ success: true, insertId: result.insertId });
+    }
+    catch (error) {
+        console.error("Insert error:", error);
+        res.status(500).json({ success: false, error: "Internal server error" });
+    }
+}));
 exports.default = router;
