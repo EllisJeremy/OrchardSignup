@@ -1,7 +1,8 @@
-here is the commands that are used for sql 
+this file keeps track of the schema for each database
+this is kind of a crude way of doing this, but it works for a small project like thi
 
 task database
-
+add enum for type and foreign keys for owner
 CREATE TABLE tasks (
     taskId INT PRIMARY KEY AUTO_INCREMENT,
     taskDate DATE NOT NULL,
@@ -15,5 +16,5 @@ CREATE TABLE tasks (
     taskRepeat VARCHAR(25) 
 );
 
-add enum for type and foreign keys for owner
+
 
