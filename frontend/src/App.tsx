@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Layout from "./components/Layout";
+import Layout from "./layout/Layout";
 import CalendarPage from "./pages/CalendarPage/CalendarPage";
 import MenuPage from "./pages/MenuPage/MenuPage";
-import LoginPage from "./pages/LoginPage/LoginPage";
-import SignupPage from "./pages/SignupPage/Signup/Signup";
-import ForgotPasswordPage from "./pages/ForgotPasswordPage/ForgotPasswordPage";
+import LoginPage from "./pages/AccountPages/LoginPage/LoginPage";
+import SignupPage from "./pages/AccountPages/SignupPage/SignupPage";
+import ForgotPasswordPage from "./pages/AccountPages/ForgotPasswordPage/ForgotPasswordPage";
 
 export default function App() {
   return (

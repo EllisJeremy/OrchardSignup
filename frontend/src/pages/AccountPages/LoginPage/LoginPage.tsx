@@ -1,13 +1,13 @@
-import styles from "./Login.module.css";
-import { loginStore } from "../LoginStore";
+import styles from "../accountPages.module.css";
+import { loginStore } from "./LoginStore";
 import orchardLogo from "../../../assets/OrchardLogoGray.png";
 import { Link } from "react-router-dom";
 import eye from "../../../assets/eye.svg";
 import eyeClosed from "../../../assets/eyeClosed.svg";
-import { EmailInput } from "../Components/EmailInput";
+import { EmailInput } from "../components/EmailInput";
 import { useEffect } from "react";
 
-export default function Login() {
+export default function LoginPage() {
   const {
     email,
     password,

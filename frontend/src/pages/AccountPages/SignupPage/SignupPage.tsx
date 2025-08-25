@@ -1,13 +1,13 @@
-import styles from "../../LoginPage/Login/Login.module.css";
-import { signupStore } from "../SignupStore";
+import styles from "../accountPages.module.css";
+import { signupStore } from "./SignupStore";
 import orchardLogo from "../../../assets/OrchardLogoGray.png";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import eye from "../../../assets/eye.svg";
 import eyeClosed from "../../../assets/eyeClosed.svg";
-import { EmailInput } from "../../LoginPage/Components/EmailInput";
+import { EmailInput } from "../components/EmailInput";
 
-export default function Login() {
+export default function SignupPage() {
   // store
   const {
     email,

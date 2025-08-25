@@ -1,4 +1,4 @@
-import styles from "../Login/Login.module.css";
+import styles from "../accountPages.module.css";
 import { getBorderColorSimple } from "../../../functions/formFunctions";
 
 interface Props {

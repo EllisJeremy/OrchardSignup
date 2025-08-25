@@ -1,11 +1,11 @@
-import styles from "../../LoginPage/Login/Login.module.css";
-import { signupStore } from "../ForgotPasswordStore";
+import styles from "../accountPages.module.css";
+import { signupStore } from "./ForgotPasswordStore";
 import orchardLogo from "../../../assets/OrchardLogoGray.png";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { EmailInput } from "../../LoginPage/Components/EmailInput";
+import { EmailInput } from "../components/EmailInput";
 
-export default function Login() {
+export default function ForgotPasswordPage() {
   // store
   const { email, emailValid, firstEditEmail, setEmail, setEmailValid, setFirstEditEmail, reset } =
     signupStore();
