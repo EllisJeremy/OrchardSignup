@@ -2,14 +2,13 @@ import styles from "./Task.module.css";
 import { taskStore } from "../../../calendarStore";
 import trash from "../../../../../assets/trash.svg";
 import check from "../../../../../assets/check.svg";
-import XFat from "../../../../../assets/XFat.svg";
 import edit from "../../../../../assets/edit.svg";
 import { to12Hour } from "../../../functions/timeFormat";
 import { colorMap } from "./colorMap";
 import { deleteTask } from "../../../functions/network";
 
 export default function Task() {
-  const { date, taskDatabase, admin, setRender, triggerDatabaseReload } = taskStore();
+  const { date, taskDatabase, setRender, triggerDatabaseReload } = taskStore();
 
   if (taskDatabase.has(date)) {
     const tasks = taskDatabase.get(date)!;
@@ -63,9 +62,11 @@ export default function Task() {
                   <div className={styles.taskContentDiv}>
                     <p className={styles.description}>{task.description}</p>
                     <div className={styles.signupDiv}>
-                      <p className={styles.owner}>{task.owner ? task.owner : "available"}</p>
+                      <p className={styles.owner}>
+                        {task.ownerName ? task.ownerName : "available"}
+                      </p>
 
-                      {taskDatabase.get(date)![index].owner === null && (
+                      {taskDatabase.get(date)![index].ownerId === null && (
                         <button
                           className={styles.selectButton}
                           onClick={() => {

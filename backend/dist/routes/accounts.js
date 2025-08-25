@@ -15,6 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router();
 const index_1 = require("../index");
+const bcrypt_1 = __importDefault(require("bcrypt"));
+const SALT_ROUNDS = 10;
 router.get("/by-email", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const email = req.query.email;
@@ -27,21 +29,12 @@ router.get("/by-email", (req, res) => __awaiter(void 0, void 0, void 0, function
     }
 }));
 router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { email, password, name, creationDate } = req.body;
+    const { email, password, name } = req.body;
+    const obfuscatedPassword = yield bcrypt_1.default.hash(password, SALT_ROUNDS);
     try {
-        const [result] = yield index_1.pool.query(`INSERT INTO tasks 
-        (taskDate, taskTitle, taskStartTime, taskEndTime, taskDescription, taskColor, taskOwner, taskType, taskRepeat) 
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`, [
-            taskDate,
-            taskTitle,
-            taskStartTime,
-            taskEndTime,
-            taskDescription,
-            taskColor,
-            taskOwner,
-            taskType,
-            taskRepeat,
-        ]);
+        const [result] = yield index_1.pool.query(`INSERT INTO accounts 
+        (accountEmail, accountPassword, accountName) 
+       VALUES (?, ?, ?)`, [email, obfuscatedPassword, name]);
         res.status(201).json({ success: true, insertId: result.insertId });
     }
     catch (error) {
