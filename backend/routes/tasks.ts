@@ -13,7 +13,23 @@ router.get("/by-month", async (req, res) => {
     const end = endDate.toISOString().split("T")[0];
 
     const [rows] = await pool.query(
-      "SELECT * FROM tasks WHERE taskDate BETWEEN ? AND ? ORDER BY taskDate, taskStartTime",
+      `SELECT 
+      t.taskId,
+      t.taskDate,
+      t.taskTitle,
+      t.taskStartTime,
+      t.taskEndTime,
+      t.taskDescription,
+      t.taskColor,
+      t.taskType,
+      t.taskRepeat,
+      a.accountId AS ownerId,
+      a.accountName AS ownerName,
+      a.accountEmail AS ownerEmail
+   FROM tasks t
+   LEFT JOIN accounts a ON t.taskOwnerId = a.accountId
+   WHERE t.taskDate BETWEEN ? AND ?
+   ORDER BY t.taskDate, t.taskStartTime`,
       [start, end]
     );
     res.json(rows);

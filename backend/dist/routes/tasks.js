@@ -22,7 +22,23 @@ router.get("/by-month", (req, res) => __awaiter(void 0, void 0, void 0, function
         const start = `${year}-${month}-01`;
         const endDate = new Date(Number(year), Number(month), 0);
         const end = endDate.toISOString().split("T")[0];
-        const [rows] = yield index_1.pool.query("SELECT * FROM tasks WHERE taskDate BETWEEN ? AND ? ORDER BY taskDate, taskStartTime", [start, end]);
+        const [rows] = yield index_1.pool.query(`SELECT 
+      t.taskId,
+      t.taskDate,
+      t.taskTitle,
+      t.taskStartTime,
+      t.taskEndTime,
+      t.taskDescription,
+      t.taskColor,
+      t.taskType,
+      t.taskRepeat,
+      a.accountId AS ownerId,
+      a.accountName AS ownerName,
+      a.accountEmail AS ownerEmail
+   FROM tasks t
+   LEFT JOIN accounts a ON t.taskOwnerId = a.accountId
+   WHERE t.taskDate BETWEEN ? AND ?
+   ORDER BY t.taskDate, t.taskStartTime`, [start, end]);
         res.json(rows);
     }
     catch (error) {

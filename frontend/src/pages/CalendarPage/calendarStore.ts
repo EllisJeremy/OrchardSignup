@@ -78,9 +78,11 @@ export class TaskClass {
   public readonly endTime: string | null;
   public readonly description: string;
   public readonly color: string;
-  public readonly owner: string | null;
   public readonly type: string;
   public readonly repeat: string | null;
+  public readonly ownerId: number | null;
+  public readonly ownerEmail: string | null;
+  public readonly ownerName: string | null;
 
   constructor(
     id: number,
@@ -90,9 +92,11 @@ export class TaskClass {
     endTime: string | null,
     description: string,
     color: string,
-    owner: string | null,
     type: string,
     repeat: string | null,
+    ownerId: number | null,
+    ownerEmail: string | null,
+    ownerName: string | null,
   ) {
     this.id = id;
     this.date = date;
@@ -101,9 +105,11 @@ export class TaskClass {
     this.endTime = endTime;
     this.description = description;
     this.color = color;
-    this.owner = owner;
     this.type = type;
     this.repeat = repeat;
+    this.ownerId = ownerId;
+    this.ownerEmail = ownerEmail;
+    this.ownerName = ownerName;
   }
 }
 

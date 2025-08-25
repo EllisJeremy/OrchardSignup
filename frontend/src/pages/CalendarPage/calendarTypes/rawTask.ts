@@ -6,7 +6,9 @@ export interface RawTask {
   taskEndTime: string | null;
   taskDescription: string;
   taskColor: string;
-  taskOwner: string | null;
   taskType: string;
   taskRepeat: string | null;
+  ownerId: number | null;
+  ownerEmail: string | null;
+  ownerName: string | null;
 }
