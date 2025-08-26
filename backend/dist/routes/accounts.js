@@ -30,16 +30,26 @@ router.get("/by-email", (req, res) => __awaiter(void 0, void 0, void 0, function
 }));
 router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password, name } = req.body;
-    const obfuscatedPassword = yield bcrypt_1.default.hash(password, SALT_ROUNDS);
     try {
+        const obfuscatedPassword = yield bcrypt_1.default.hash(password, 10);
         const [result] = yield index_1.pool.query(`INSERT INTO accounts 
-        (accountEmail, accountPassword, accountName) 
-       VALUES (?, ?, ?)`, [email, obfuscatedPassword, name]);
+        (accountEmail, accountPassword, accountName, accountIsAdmin) 
+       VALUES (?, ?, ?, ?)`, [email, obfuscatedPassword, name, false]);
         res.status(201).json({ success: true, insertId: result.insertId });
     }
     catch (error) {
-        console.error("Insert error:", error);
-        res.status(500).json({ success: false, error: "Internal server error" });
+        if (error.code === "ER_DUP_ENTRY") {
+            return res.status(400).json({
+                success: false,
+                error: "Email already exists",
+            });
+        }
+        else {
+            res.status(500).json({
+                success: false,
+                error: "Internal server error",
+            });
+        }
     }
 }));
 exports.default = router;

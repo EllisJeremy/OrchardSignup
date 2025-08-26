@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import eye from "../../../assets/eye.svg";
 import eyeClosed from "../../../assets/eyeClosed.svg";
 import { EmailInput } from "../components/EmailInput";
+import { createUser } from "./signupNetwork";
 
 export default function SignupPage() {
   // store
@@ -40,7 +41,6 @@ export default function SignupPage() {
   // submit
   const testSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO: MUST ADD CASE WHERE EMAIL IS ALREADY USED
     if (
       // fields are not blank
       email !== "" &&
@@ -53,7 +53,10 @@ export default function SignupPage() {
       // passwords match
       password1 === password2
     ) {
-      console.log(email, password1, password2);
+      (async () => {
+        const res = await createUser(email, password1, "john");
+        console.log(res);
+      })();
     }
   };
 

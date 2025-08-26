@@ -19,20 +19,30 @@ router.get("/by-email", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const { email, password, name } = req.body;
-  const obfuscatedPassword = await bcrypt.hash(password, SALT_ROUNDS);
 
   try {
+    const obfuscatedPassword = await bcrypt.hash(password, 10);
+
     const [result] = await pool.query(
       `INSERT INTO accounts 
-        (accountEmail, accountPassword, accountName) 
-       VALUES (?, ?, ?)`,
-      [email, obfuscatedPassword, name]
+        (accountEmail, accountPassword, accountName, accountIsAdmin) 
+       VALUES (?, ?, ?, ?)`,
+      [email, obfuscatedPassword, name, false]
     );
 
     res.status(201).json({ success: true, insertId: (result as any).insertId });
-  } catch (error) {
-    console.error("Insert error:", error);
-    res.status(500).json({ success: false, error: "Internal server error" });
+  } catch (error: any) {
+    if (error.code === "ER_DUP_ENTRY") {
+      return res.status(400).json({
+        success: false,
+        error: "Email already exists",
+      });
+    } else {
+      res.status(500).json({
+        success: false,
+        error: "Internal server error",
+      });
+    }
   }
 });
 
