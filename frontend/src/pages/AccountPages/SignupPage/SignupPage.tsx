@@ -14,7 +14,11 @@ export default function SignupPage() {
     email,
     password1,
     password2,
+    firstName,
+    lastName,
     emailValid,
+    firstNameError,
+    lastNameError,
     showPassword,
     focusPassword1,
     focusPassword2,
@@ -23,10 +27,16 @@ export default function SignupPage() {
     firstEdit1,
     firstEdit2,
     firstEditEmail,
+    firstEditFirstName,
+    firstEditLastName,
     setEmail,
     setPassword1,
     setPassword2,
+    setFirstName,
+    setLastName,
     setEmailValid,
+    setFirstNameError,
+    setLastNameError,
     setShowPassword,
     setFocusPassword1,
     setFocusPassword2,
@@ -35,6 +45,8 @@ export default function SignupPage() {
     setFirstEdit1,
     setFirstEdit2,
     setFirstEditEmail,
+    setFirstEditFirstName,
+    setFirstEditLastName,
     reset,
   } = signupStore();
 
@@ -113,7 +125,21 @@ export default function SignupPage() {
     }
   };
 
-  // border color if error
+  const setNameError = (
+    name: string,
+    setNameError: (error: string) => void,
+    nameType: string,
+    firstEdit: boolean,
+  ) => {
+    if (name.length == 0 && !firstEdit) {
+      setNameError(`${nameType} name is required.`);
+    } else if (name.length > 40 && !firstEdit) {
+      setNameError(`${nameType} name must be no longer than 40 characters.`);
+    } else {
+      setNameError("");
+    }
+  };
+
   const getBorderColor = (
     firstEdit1: boolean,
     firstEdit2: boolean,
@@ -139,10 +165,13 @@ export default function SignupPage() {
     return "rgb(225, 226, 231)";
   };
 
-  // reset state on page leave
   useEffect(() => {
     return () => reset();
   }, [reset]);
+
+  useEffect(() => {
+    setNameError(firstName, setFirstNameError, "first", firstEditFirstName);
+  }, [firstName]);
 
   return (
     <div className={styles.mainDiv}>
@@ -267,7 +296,7 @@ export default function SignupPage() {
               <img className={styles.eye} src={showPassword ? eye : eyeClosed} />
             </button>
           </div>
-          {match === true ? (
+          {match ? (
             <div className={styles.spacerDiv} />
           ) : (
             <p className={styles.error}>Passwords do not match.</p>
@@ -275,24 +304,27 @@ export default function SignupPage() {
 
           <input
             className={styles.name}
-            placeholder="First Name"
-            type={showPassword ? "text" : "password"}
-            autoComplete="current-password"
-            onChange={(e) => {
-              const newPassword2 = e.target.value;
-              setPassword2(newPassword2);
-              if (!firstEdit2) setMatch(password1 === newPassword2);
+            style={{
+              borderColor: firstEditFirstName
+                ? ""
+                : firstNameError == ""
+                  ? "hsl(138, 100%, 40%)"
+                  : "rgb(255, 53, 53)",
             }}
-            onBlur={() => {
-              setFocusPassword2(false);
-              setMatch(password1 === password2);
-              setFirstEdit2(false);
+            placeholder="First Name"
+            onChange={(e) => {
+              const currFirstName = e.target.value;
+              setFirstName(currFirstName);
+            }}
+            onBlur={(e) => {
+              setFirstEditFirstName(false);
+              setNameError(e.target.value, setFirstNameError, "first", false);
             }}
           />
-          {match === true ? (
+          {firstNameError === "" && firstEditFirstName ? (
             <div className={styles.spacerDiv} />
           ) : (
-            <p className={styles.error}>First Name Required</p>
+            <p className={styles.error}>{firstNameError}</p>
           )}
 
           <button className={styles.loginButton} type="submit">

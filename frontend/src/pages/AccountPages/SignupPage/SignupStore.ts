@@ -7,8 +7,8 @@ export interface SignupStoreType {
   firstName: string;
   lastName: string;
   emailValid: boolean;
-  firstNameValid: boolean;
-  lastNameValid: boolean;
+  firstNameError: string;
+  lastNameError: string;
   showPassword: boolean;
   focusPassword1: boolean;
   focusPassword2: boolean;
@@ -26,8 +26,8 @@ export interface SignupStoreType {
   setFirstName: (firstName: string) => void;
   setLastName: (lastName: string) => void;
   setEmailValid: (emailValid: boolean) => void;
-  setFirstNameValid: (firstNameValid: boolean) => void;
-  setLastNameValid: (lastNameValid: boolean) => void;
+  setFirstNameError: (firstNameError: string) => void;
+  setLastNameError: (lastNameError: string) => void;
   setShowPassword: () => void;
   setFocusPassword1: (focusPassword1: boolean) => void;
   setFocusPassword2: (focusPassword2: boolean) => void;
@@ -49,8 +49,8 @@ export const signupStore = create<SignupStoreType>((set) => ({
   firstName: "",
   lastName: "",
   emailValid: true,
-  firstNameValid: true,
-  lastNameValid: true,
+  firstNameError: "",
+  lastNameError: "",
   showPassword: false,
   focusPassword1: false,
   focusPassword2: false,
@@ -68,8 +68,8 @@ export const signupStore = create<SignupStoreType>((set) => ({
   setFirstName: (firstName: string) => set(() => ({ firstName })),
   setLastName: (lastName: string) => set(() => ({ lastName })),
   setEmailValid: (emailValid: boolean) => set(() => ({ emailValid })),
-  setFirstNameValid: (firstNameValid: boolean) => set(() => ({ firstNameValid })),
-  setLastNameValid: (firstNameValid: boolean) => set(() => ({ firstNameValid })),
+  setFirstNameError: (firstNameError: string) => set(() => ({ firstNameError })),
+  setLastNameError: (firstNameError: string) => set(() => ({ firstNameError })),
 
   setShowPassword: () => {
     set((state) => ({
@@ -94,8 +94,8 @@ export const signupStore = create<SignupStoreType>((set) => ({
       firstName: "",
       lastName: "",
       emailValid: true,
-      firstNameValid: true,
-      lastNameValid: true,
+      firstNameError: "",
+      lastNameError: "",
       showPassword: false,
       focusPassword1: false,
       focusPassword2: false,
