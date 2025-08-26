@@ -8,7 +8,7 @@ export interface SignupStoreType {
   lastName: string;
   emailValid: boolean;
   firstNameValid: boolean;
-  lastNameValid: boolean; 
+  lastNameValid: boolean;
   showPassword: boolean;
   focusPassword1: boolean;
   focusPassword2: boolean;
@@ -25,7 +25,9 @@ export interface SignupStoreType {
   setPassword2: (password: string) => void;
   setFirstName: (firstName: string) => void;
   setLastName: (lastName: string) => void;
-  setEmailValid: (emailError: boolean) => void;
+  setEmailValid: (emailValid: boolean) => void;
+  setFirstNameValid: (firstNameValid: boolean) => void;
+  setLastNameValid: (lastNameValid: boolean) => void;
   setShowPassword: () => void;
   setFocusPassword1: (focusPassword1: boolean) => void;
   setFocusPassword2: (focusPassword2: boolean) => void;
@@ -37,7 +39,8 @@ export interface SignupStoreType {
   setFirstEditFirstName: (firstEditFirstName: boolean) => void;
   setFirstEditLastName: (firstEditLastName: boolean) => void;
 
-  reset: () => void; 
+  reset: () => void;
+}
 
 export const signupStore = create<SignupStoreType>((set) => ({
   email: "",
@@ -46,7 +49,8 @@ export const signupStore = create<SignupStoreType>((set) => ({
   firstName: "",
   lastName: "",
   emailValid: true,
-  firstNameValid:
+  firstNameValid: true,
+  lastNameValid: true,
   showPassword: false,
   focusPassword1: false,
   focusPassword2: false,
@@ -55,11 +59,18 @@ export const signupStore = create<SignupStoreType>((set) => ({
   firstEdit1: true,
   firstEdit2: true,
   firstEditEmail: true,
+  firstEditFirstName: true,
+  firstEditLastName: true,
 
   setEmail: (email: string) => set(() => ({ email })),
   setPassword1: (password1: string) => set(() => ({ password1 })),
   setPassword2: (password2: string) => set(() => ({ password2 })),
+  setFirstName: (firstName: string) => set(() => ({ firstName })),
+  setLastName: (lastName: string) => set(() => ({ lastName })),
   setEmailValid: (emailValid: boolean) => set(() => ({ emailValid })),
+  setFirstNameValid: (firstNameValid: boolean) => set(() => ({ firstNameValid })),
+  setLastNameValid: (firstNameValid: boolean) => set(() => ({ firstNameValid })),
+
   setShowPassword: () => {
     set((state) => ({
       showPassword: !state.showPassword,
@@ -72,13 +83,19 @@ export const signupStore = create<SignupStoreType>((set) => ({
   setFirstEdit1: (firstEdit1) => set({ firstEdit1 }),
   setFirstEdit2: (firstEdit2) => set({ firstEdit2 }),
   setFirstEditEmail: (firstEditEmail) => set({ firstEditEmail }),
+  setFirstEditFirstName: (firstEditFirstName) => set({ firstEditFirstName }),
+  setFirstEditLastName: (firstEditLastName) => set({ firstEditLastName }),
 
   reset: () =>
     set({
       email: "",
       password1: "",
       password2: "",
+      firstName: "",
+      lastName: "",
       emailValid: true,
+      firstNameValid: true,
+      lastNameValid: true,
       showPassword: false,
       focusPassword1: false,
       focusPassword2: false,
@@ -87,5 +104,7 @@ export const signupStore = create<SignupStoreType>((set) => ({
       firstEdit1: true,
       firstEdit2: true,
       firstEditEmail: true,
+      firstEditFirstName: true,
+      firstEditLastName: true,
     }),
 }));
