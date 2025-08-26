@@ -4,7 +4,11 @@ export interface SignupStoreType {
   email: string;
   password1: string;
   password2: string;
+  firstName: string;
+  lastName: string;
   emailValid: boolean;
+  firstNameValid: boolean;
+  lastNameValid: boolean; 
   showPassword: boolean;
   focusPassword1: boolean;
   focusPassword2: boolean;
@@ -13,10 +17,14 @@ export interface SignupStoreType {
   firstEdit1: boolean;
   firstEdit2: boolean;
   firstEditEmail: boolean;
+  firstEditFirstName: boolean;
+  firstEditLastName: boolean;
 
   setEmail: (email: string) => void;
   setPassword1: (password: string) => void;
   setPassword2: (password: string) => void;
+  setFirstName: (firstName: string) => void;
+  setLastName: (lastName: string) => void;
   setEmailValid: (emailError: boolean) => void;
   setShowPassword: () => void;
   setFocusPassword1: (focusPassword1: boolean) => void;
@@ -26,15 +34,19 @@ export interface SignupStoreType {
   setFirstEdit1: (firstEdit1: boolean) => void;
   setFirstEdit2: (firstEdit2: boolean) => void;
   setFirstEditEmail: (firstEditEmail: boolean) => void;
+  setFirstEditFirstName: (firstEditFirstName: boolean) => void;
+  setFirstEditLastName: (firstEditLastName: boolean) => void;
 
-  reset: () => void; // <-- add this line
-}
+  reset: () => void; 
 
 export const signupStore = create<SignupStoreType>((set) => ({
   email: "",
   password1: "",
   password2: "",
+  firstName: "",
+  lastName: "",
   emailValid: true,
+  firstNameValid:
   showPassword: false,
   focusPassword1: false,
   focusPassword2: false,

@@ -60,7 +60,6 @@ export default function SignupPage() {
     }
   };
 
-  // valid password
   const regexUpper = /[A-Z]/;
   const regexLower = /[a-z]/;
   const regexNumber = /[0-9]/;
@@ -273,6 +272,29 @@ export default function SignupPage() {
           ) : (
             <p className={styles.error}>Passwords do not match.</p>
           )}
+
+          <input
+            className={styles.name}
+            placeholder="First Name"
+            type={showPassword ? "text" : "password"}
+            autoComplete="current-password"
+            onChange={(e) => {
+              const newPassword2 = e.target.value;
+              setPassword2(newPassword2);
+              if (!firstEdit2) setMatch(password1 === newPassword2);
+            }}
+            onBlur={() => {
+              setFocusPassword2(false);
+              setMatch(password1 === password2);
+              setFirstEdit2(false);
+            }}
+          />
+          {match === true ? (
+            <div className={styles.spacerDiv} />
+          ) : (
+            <p className={styles.error}>First Name Required</p>
+          )}
+
           <button className={styles.loginButton} type="submit">
             Sign up
           </button>

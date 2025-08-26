@@ -52,7 +52,8 @@
 .password,
 .loginButton,
 .showPasswordButton,
-.showPasswordButtonFocus {
+.showPasswordButtonFocus,
+.name {
   display: inline-block;
   color: black;
   box-sizing: border-box;
@@ -114,7 +115,8 @@
 }
 
 .email:focus,
-.password:focus {
+.password:focus,
+.name:focus {
   border-color: rgb(175, 176, 191);
   outline: none;
 }
