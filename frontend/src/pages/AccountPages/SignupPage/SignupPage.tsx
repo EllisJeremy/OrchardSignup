@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import eye from "../../../assets/eye.svg";
 import eyeClosed from "../../../assets/eyeClosed.svg";
-import { EmailInput } from "../components/EmailInput";
+import EmailInputSignup from "../components/EmailInputSignup";
 import { createUser } from "./signupNetwork";
 
 export default function SignupPage() {
@@ -209,7 +209,7 @@ export default function SignupPage() {
           }}
           noValidate
         >
-          <EmailInput
+          <EmailInputSignup
             value={email}
             onChange={setEmail}
             onValidChange={setEmailValid}

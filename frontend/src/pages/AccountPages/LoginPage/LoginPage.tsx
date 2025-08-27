@@ -4,7 +4,7 @@ import orchardLogo from "../../../assets/OrchardLogoGray.png";
 import { Link } from "react-router-dom";
 import eye from "../../../assets/eye.svg";
 import eyeClosed from "../../../assets/eyeClosed.svg";
-import { EmailInput } from "../components/EmailInput";
+import EmailInput from "../components/EmailInput";
 import { useEffect } from "react";
 
 export default function LoginPage() {
@@ -13,14 +13,10 @@ export default function LoginPage() {
     password,
     showPassword,
     focusPassword,
-    firstEditEmail,
-    emailValid,
     setEmail,
     setPassword,
     setShowPassword,
     setFocusPassword,
-    setFirstEditEmail,
-    setEmailValid,
     reset,
   } = loginStore();
 
@@ -45,15 +41,8 @@ export default function LoginPage() {
           }}
           noValidate
         >
-          <EmailInput
-            value={email}
-            onChange={setEmail}
-            onValidChange={setEmailValid}
-            firstEdit={firstEditEmail}
-            setFirstEdit={setFirstEditEmail}
-            emailValid={emailValid}
-          />
-
+          <EmailInput value={email} onChange={setEmail} />
+          <div className={styles.spacerDiv} />
           <div className={styles.inputDiv}>
             <input
               className={styles.password}
@@ -64,6 +53,7 @@ export default function LoginPage() {
               onFocus={() => setFocusPassword(true)}
               onBlur={() => setFocusPassword(false)}
             />
+
             <button
               type="button"
               className={focusPassword ? styles.showPasswordButtonFocus : styles.showPasswordButton}
@@ -76,6 +66,11 @@ export default function LoginPage() {
           <button className={styles.loginButton} type="submit">
             Log in
           </button>
+          {firstNameError === "" && firstEditFirstName ? (
+            <div className={styles.spacerDiv} />
+          ) : (
+            <p className={styles.error}>{firstNameError}</p>
+          )}
         </form>
       </div>
 

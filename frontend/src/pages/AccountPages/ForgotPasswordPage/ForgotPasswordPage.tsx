@@ -3,12 +3,11 @@ import { signupStore } from "./ForgotPasswordStore";
 import orchardLogo from "../../../assets/OrchardLogoGray.png";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { EmailInput } from "../components/EmailInput";
+import EmailInput from "../components/EmailInput";
 
 export default function ForgotPasswordPage() {
   // store
-  const { email, emailValid, firstEditEmail, setEmail, setEmailValid, setFirstEditEmail, reset } =
-    signupStore();
+  const { email, emailValid, setEmail, reset } = signupStore();
 
   // submit
   const testSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -35,15 +34,8 @@ export default function ForgotPasswordPage() {
           }}
           noValidate
         >
-          <EmailInput
-            value={email}
-            onChange={setEmail}
-            onValidChange={setEmailValid}
-            firstEdit={firstEditEmail}
-            setFirstEdit={setFirstEditEmail}
-            emailValid={emailValid}
-          />
-
+          <EmailInput value={email} onChange={setEmail} />
+          <div className={styles.spacerDiv} />
           <button className={styles.loginButton} type="submit">
             Send Email
           </button>

@@ -5,15 +5,13 @@ export interface loginStoreType {
   password: string;
   showPassword: boolean;
   focusPassword: boolean;
-  emailValid: boolean;
-  firstEditEmail: boolean;
+  loginFailed: boolean;
 
   setEmail: (email: string) => void;
   setPassword: (password: string) => void;
   setShowPassword: () => void;
   setFocusPassword: (focusPassword: boolean) => void;
-  setEmailValid: (emailError: boolean) => void;
-  setFirstEditEmail: (firstEditEmail: boolean) => void;
+  setLoginFailed: (loginFailed: boolean) => void;
   reset: () => void;
 }
 
@@ -22,8 +20,7 @@ export const loginStore = create<loginStoreType>((set) => ({
   password: "",
   showPassword: false,
   focusPassword: false,
-  emailValid: true,
-  firstEditEmail: true,
+  loginFailed: false,
 
   setEmail: (email: string) => set(() => ({ email })),
   setPassword: (password: string) => set(() => ({ password })),
@@ -33,15 +30,12 @@ export const loginStore = create<loginStoreType>((set) => ({
     }));
   },
   setFocusPassword: (focusPassword) => set({ focusPassword }),
-  setEmailValid: (emailValid: boolean) => set(() => ({ emailValid })),
-  setFirstEditEmail: (firstEditEmail) => set({ firstEditEmail }),
+  setLoginFailed: (loginFailed: boolean) => set(() => ({ loginFailed })),
   reset: () =>
     set({
       email: "",
       password: "",
       showPassword: false,
       focusPassword: false,
-      emailValid: true,
-      firstEditEmail: true,
     }),
 }));
