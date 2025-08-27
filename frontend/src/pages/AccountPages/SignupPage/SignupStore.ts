@@ -48,7 +48,7 @@ export const signupStore = create<SignupStoreType>((set) => ({
   password2: "",
   firstName: "",
   lastName: "",
-  emailValid: true,
+  emailValid: false,
   firstNameError: "",
   lastNameError: "",
   showPassword: false,

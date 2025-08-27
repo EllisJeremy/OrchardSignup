@@ -58,6 +58,8 @@ export default function SignupPage() {
       email !== "" &&
       password1 !== "" &&
       password2 !== "" &&
+      firstName !== "" &&
+      lastName !== "" &&
       // no email error
       emailValid === true &&
       // no password error
@@ -66,7 +68,7 @@ export default function SignupPage() {
       password1 === password2
     ) {
       (async () => {
-        const res = await createUser(email, password1, "john");
+        const res = await createUser(email, password1, firstName, lastName);
         console.log(res);
       })();
     }
@@ -127,16 +129,16 @@ export default function SignupPage() {
 
   const setNameError = (
     name: string,
-    setNameError: (error: string) => void,
+    setError: (error: string) => void,
     nameType: string,
     firstEdit: boolean,
   ) => {
     if (name.length == 0 && !firstEdit) {
-      setNameError(`${nameType} name is required.`);
+      setError(`${nameType} name is required.`);
     } else if (name.length > 40 && !firstEdit) {
-      setNameError(`${nameType} name must be no longer than 40 characters.`);
+      setError(`${nameType} name must be no longer than 40 characters.`);
     } else {
-      setNameError("");
+      setError("");
     }
   };
 
@@ -185,12 +187,14 @@ export default function SignupPage() {
         </div>
         <form
           onSubmit={(e) => {
+            if (email.length == 0) {
+              setEmailValid(false);
+            }
             setFirstEditEmail(false);
             setFirstEdit1(false);
             setFirstEdit2(false);
             setFirstEditFirstName(false);
             setFirstEditLastName(false);
-            setEmailValid(false);
             setNameError(firstName, setFirstNameError, "first", false);
             setNameError(lastName, setLastNameError, "last", false);
             validPassword(password1);

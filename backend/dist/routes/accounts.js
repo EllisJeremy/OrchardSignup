@@ -29,12 +29,12 @@ router.get("/by-email", (req, res) => __awaiter(void 0, void 0, void 0, function
     }
 }));
 router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { email, password, name } = req.body;
+    const { email, password, firstName, lastName } = req.body;
     try {
         const obfuscatedPassword = yield bcrypt_1.default.hash(password, 10);
         const [result] = yield index_1.pool.query(`INSERT INTO accounts 
-        (accountEmail, accountPassword, accountName, accountIsAdmin) 
-       VALUES (?, ?, ?, ?)`, [email, obfuscatedPassword, firstName, lastName, false]);
+        (accountEmail, accountPassword, accountFirstName, accountLastName, accountIsAdmin) 
+       VALUES (?, ?, ?, ?, ?)`, [email, obfuscatedPassword, firstName, lastName, false]);
         res.status(201).json({ success: true, insertId: result.insertId });
     }
     catch (error) {

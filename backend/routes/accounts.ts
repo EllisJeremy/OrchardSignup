@@ -18,15 +18,15 @@ router.get("/by-email", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { email, password, name } = req.body;
+  const { email, password, firstName, lastName } = req.body;
 
   try {
     const obfuscatedPassword = await bcrypt.hash(password, 10);
 
     const [result] = await pool.query(
       `INSERT INTO accounts 
-        (accountEmail, accountPassword, accountName, accountIsAdmin) 
-       VALUES (?, ?, ?, ?)`,
+        (accountEmail, accountPassword, accountFirstName, accountLastName, accountIsAdmin) 
+       VALUES (?, ?, ?, ?, ?)`,
       [email, obfuscatedPassword, firstName, lastName, false]
     );
 
