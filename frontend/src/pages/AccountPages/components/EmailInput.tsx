@@ -11,6 +11,9 @@ interface Props {
   className?: string;
 }
 
+// custom regex: requires "@" and at least one "." after it (email type doesnt do this be default)
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export function EmailInput({
   value,
   onChange,
@@ -33,12 +36,12 @@ export function EmailInput({
           const newVal = e.target.value;
           onChange(newVal);
           if (!firstEdit) {
-            onValidChange(e.target.validity.valid);
+            onValidChange(emailRegex.test(newVal));
           }
         }}
         onBlur={(e) => {
           setFirstEdit(false);
-          onValidChange(e.target.validity.valid);
+          onValidChange(emailRegex.test(e.target.value));
         }}
         style={{ borderColor: getBorderColorSimple(firstEdit, emailValid) }}
       />

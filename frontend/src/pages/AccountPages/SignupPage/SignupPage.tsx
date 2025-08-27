@@ -185,6 +185,15 @@ export default function SignupPage() {
         </div>
         <form
           onSubmit={(e) => {
+            setFirstEditEmail(false);
+            setFirstEdit1(false);
+            setFirstEdit2(false);
+            setFirstEditFirstName(false);
+            setFirstEditLastName(false);
+            setEmailValid(false);
+            setNameError(firstName, setFirstNameError, "first", false);
+            setNameError(lastName, setLastNameError, "last", false);
+            validPassword(password1);
             testSubmit(e);
           }}
           noValidate
