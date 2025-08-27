@@ -2,13 +2,18 @@ this file keeps track of the schema for each database
 this is kind of a crude way of doing this, but it works for a small project like this
 
 CREATE TABLE accounts (
-    accountId INT PRIMARY KEY AUTO_INCREMENT,
-    accountEmail VARCHAR(320) NOT NULL UNIQUE,
-    accountPassword VARCHAR(255) NOT NULL,
-    accountName VARCHAR(64) NOT NULL,
-    accountIsAdmin BOOLEAN NOT NULL DEFAULT FALSE,
-    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  accountId INT AUTO_INCREMENT PRIMARY KEY,
+  
+  accountEmail VARCHAR(320) NOT NULL UNIQUE,
+  accountPassword VARCHAR(320) NOT NULL,
+  
+  accountFirstName VARCHAR(40) NOT NULL,
+  accountLastName VARCHAR(40) NOT NULL,
+  
+  accountIsAdmin BOOLEAN NOT NULL DEFAULT FALSE,
+
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE tasks (

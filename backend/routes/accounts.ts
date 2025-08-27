@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
       `INSERT INTO accounts 
         (accountEmail, accountPassword, accountName, accountIsAdmin) 
        VALUES (?, ?, ?, ?)`,
-      [email, obfuscatedPassword, name, false]
+      [email, obfuscatedPassword, firstName, lastName, false]
     );
 
     res.status(201).json({ success: true, insertId: (result as any).insertId });
