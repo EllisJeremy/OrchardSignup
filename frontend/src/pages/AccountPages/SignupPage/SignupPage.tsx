@@ -173,6 +173,10 @@ export default function SignupPage() {
     setNameError(firstName, setFirstNameError, "first", firstEditFirstName);
   }, [firstName]);
 
+  useEffect(() => {
+    setNameError(lastName, setLastNameError, "last", firstEditLastName);
+  }, [lastName]);
+
   return (
     <div className={styles.mainDiv}>
       <div className={styles.loginDiv}>
@@ -325,6 +329,31 @@ export default function SignupPage() {
             <div className={styles.spacerDiv} />
           ) : (
             <p className={styles.error}>{firstNameError}</p>
+          )}
+
+          <input
+            className={styles.name}
+            style={{
+              borderColor: firstEditLastName
+                ? ""
+                : lastNameError == ""
+                  ? "hsl(138, 100%, 40%)"
+                  : "rgb(255, 53, 53)",
+            }}
+            placeholder="Last Name"
+            onChange={(e) => {
+              const currLastName = e.target.value;
+              setLastName(currLastName);
+            }}
+            onBlur={(e) => {
+              setFirstEditLastName(false);
+              setNameError(e.target.value, setLastNameError, "last", false);
+            }}
+          />
+          {lastNameError === "" && firstEditLastName ? (
+            <div className={styles.spacerDiv} />
+          ) : (
+            <p className={styles.error}>{lastNameError}</p>
           )}
 
           <button className={styles.loginButton} type="submit">

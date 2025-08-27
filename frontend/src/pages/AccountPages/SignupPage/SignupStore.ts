@@ -32,7 +32,7 @@ export interface SignupStoreType {
   setFocusPassword1: (focusPassword1: boolean) => void;
   setFocusPassword2: (focusPassword2: boolean) => void;
   setPasswordError: (passwordError: string) => void;
-  setMatch: (passwordError: boolean) => void;
+  setMatch: (match: boolean) => void;
   setFirstEdit1: (firstEdit1: boolean) => void;
   setFirstEdit2: (firstEdit2: boolean) => void;
   setFirstEditEmail: (firstEditEmail: boolean) => void;
@@ -69,7 +69,7 @@ export const signupStore = create<SignupStoreType>((set) => ({
   setLastName: (lastName: string) => set(() => ({ lastName })),
   setEmailValid: (emailValid: boolean) => set(() => ({ emailValid })),
   setFirstNameError: (firstNameError: string) => set(() => ({ firstNameError })),
-  setLastNameError: (firstNameError: string) => set(() => ({ firstNameError })),
+  setLastNameError: (lastNameError: string) => set(() => ({ lastNameError })),
 
   setShowPassword: () => {
     set((state) => ({
