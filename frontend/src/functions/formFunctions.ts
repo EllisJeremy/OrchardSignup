@@ -9,5 +9,5 @@ export const getBorderColorSimple = (firstEdit1: boolean, compare1: boolean) => 
     return "hsl(138, 100%, 40%)";
   }
   // normal
-  return "rgb(225, 226, 231)";
+  return "";
 };
