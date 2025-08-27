@@ -216,6 +216,8 @@ export default function SignupPage() {
             firstEdit={firstEditEmail}
             setFirstEdit={setFirstEditEmail}
             emailValid={emailValid}
+            emailUsed={emailUsed}
+            setEmailUsed={setEmailUsed}
           />
 
           <div className={styles.inputDiv}>

@@ -9,6 +9,8 @@ interface Props {
   setFirstEdit: (val: boolean) => void;
   emailValid: boolean;
   className?: string;
+  emailUsed?: boolean; // optional
+  setEmailUsed?: (emailUsed: boolean) => void; // optional
 }
 
 // custom regex: requires "@" and at least one "." after it (email type doesnt do this be default)
@@ -22,6 +24,8 @@ export function EmailInput({
   setFirstEdit,
   emailValid,
   className = "",
+  emailUsed = false,
+  setEmailUsed = () => {},
 }: Props) {
   return (
     <>
@@ -33,6 +37,7 @@ export function EmailInput({
         className={`${styles.email} ${className}`}
         value={value}
         onChange={(e) => {
+          setEmailUsed(false);
           const newVal = e.target.value;
           onChange(newVal);
           if (!firstEdit) {
@@ -43,7 +48,9 @@ export function EmailInput({
           setFirstEdit(false);
           onValidChange(emailRegex.test(e.target.value));
         }}
-        style={{ borderColor: getBorderColorSimple(firstEdit, emailValid) }}
+        style={{
+          borderColor: getBorderColorSimple(firstEdit, emailValid, emailUsed),
+        }}
       />
       {emailValid === true ? (
         <div className={styles.spacerDiv} />
