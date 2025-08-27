@@ -7,6 +7,7 @@ export interface SignupStoreType {
   firstName: string;
   lastName: string;
   emailValid: boolean;
+  emailUsed: boolean;
   firstNameError: string;
   lastNameError: string;
   showPassword: boolean;
@@ -26,6 +27,7 @@ export interface SignupStoreType {
   setFirstName: (firstName: string) => void;
   setLastName: (lastName: string) => void;
   setEmailValid: (emailValid: boolean) => void;
+  setEmailUsed: (emailUsed: boolean) => void;
   setFirstNameError: (firstNameError: string) => void;
   setLastNameError: (lastNameError: string) => void;
   setShowPassword: () => void;
@@ -49,6 +51,7 @@ export const signupStore = create<SignupStoreType>((set) => ({
   firstName: "",
   lastName: "",
   emailValid: false,
+  emailUsed: false,
   firstNameError: "",
   lastNameError: "",
   showPassword: false,
@@ -68,6 +71,7 @@ export const signupStore = create<SignupStoreType>((set) => ({
   setFirstName: (firstName: string) => set(() => ({ firstName })),
   setLastName: (lastName: string) => set(() => ({ lastName })),
   setEmailValid: (emailValid: boolean) => set(() => ({ emailValid })),
+  setEmailUsed: (emailUsed: boolean) => set(() => ({ emailUsed })),
   setFirstNameError: (firstNameError: string) => set(() => ({ firstNameError })),
   setLastNameError: (lastNameError: string) => set(() => ({ lastNameError })),
 
@@ -94,6 +98,7 @@ export const signupStore = create<SignupStoreType>((set) => ({
       firstName: "",
       lastName: "",
       emailValid: true,
+      emailUsed: false,
       firstNameError: "",
       lastNameError: "",
       showPassword: false,

@@ -17,6 +17,7 @@ export default function SignupPage() {
     firstName,
     lastName,
     emailValid,
+    emailUsed,
     firstNameError,
     lastNameError,
     showPassword,
@@ -35,6 +36,7 @@ export default function SignupPage() {
     setFirstName,
     setLastName,
     setEmailValid,
+    setEmailUsed,
     setFirstNameError,
     setLastNameError,
     setShowPassword,
@@ -69,7 +71,12 @@ export default function SignupPage() {
     ) {
       (async () => {
         const res = await createUser(email, password1, firstName, lastName);
-        console.log(res);
+        if (res) {
+          console.error(res);
+          if (res.error === "Email already exists") {
+            setEmailUsed(true);
+          }
+        }
       })();
     }
   };
@@ -372,6 +379,12 @@ export default function SignupPage() {
           <button className={styles.loginButton} type="submit">
             Sign up
           </button>
+          {emailUsed && (
+            <p className={styles.error}>
+              The email you have entered is already in use by an account. &nbsp; Go to login or use
+              a different email.
+            </p>
+          )}
         </form>
       </div>
 
