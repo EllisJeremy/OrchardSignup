@@ -3,6 +3,7 @@ import express from "express";
 import { pool } from "../index";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { requireAuth } from "../middleware/requireAuth";
 
 const router = express.Router();
 
@@ -61,6 +62,13 @@ router.post("/", async (req, res) => {
     console.error(err);
     res.status(500).json({ success: false, error: "Internal server error" });
   }
+});
+
+router.get("/me", requireAuth, (req, res) => {
+  console.log("hit endpoint");
+  console.log("JWT from cookie:", req.cookies.jwt);
+
+  res.json({ user: (req as any).user });
 });
 
 export default router;

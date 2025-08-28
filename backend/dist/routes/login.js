@@ -17,6 +17,7 @@ const express_1 = __importDefault(require("express"));
 const index_1 = require("../index");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const requireAuth_1 = require("../middleware/requireAuth");
 const router = express_1.default.Router();
 const JWT_SECRET = process.env.JWT_SECRET || "dev_secret";
 const JWT_EXPIRES_IN = "1h";
@@ -60,4 +61,9 @@ router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(500).json({ success: false, error: "Internal server error" });
     }
 }));
+router.get("/me", requireAuth_1.requireAuth, (req, res) => {
+    console.log("hit endpoint");
+    console.log("JWT from cookie:", req.cookies.jwt);
+    res.json({ user: req.user });
+});
 exports.default = router;

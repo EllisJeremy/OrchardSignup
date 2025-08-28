@@ -6,8 +6,14 @@ import MenuPage from "./pages/MenuPage/MenuPage";
 import LoginPage from "./pages/AccountPages/LoginPage/LoginPage";
 import SignupPage from "./pages/AccountPages/SignupPage/SignupPage";
 import ForgotPasswordPage from "./pages/AccountPages/ForgotPasswordPage/ForgotPasswordPage";
+import { useAuthStore } from "./globalStores/useAuthStore";
+import { useEffect } from "react";
 
 export default function App() {
+  const { checkAuth } = useAuthStore();
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
   return (
     <Router>
       <Layout>

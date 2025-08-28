@@ -1,6 +1,6 @@
 import styles from "../accountPages.module.css";
 import { loginStore } from "./LoginStore";
-import { AuthStore } from "../../../globalStores/authStore";
+import { useAuthStore } from "../../../globalStores/useAuthStore";
 import orchardLogo from "../../../assets/OrchardLogoGray.png";
 import { Link } from "react-router-dom";
 import eye from "../../../assets/eye.svg";
@@ -9,7 +9,7 @@ import EmailInput from "../components/EmailInput";
 import { useEffect } from "react";
 
 export default function LoginPage() {
-  const { login } = AuthStore();
+  const { login, user } = useAuthStore();
   const {
     email,
     password,
@@ -82,6 +82,7 @@ export default function LoginPage() {
       </div>
 
       <div className={styles.signupDiv}>
+        <button onClick={() => console.log(user)}>show user</button>
         <Link className={styles.loginButton} to="/ForgotPassword">
           Forgot Password
         </Link>
