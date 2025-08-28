@@ -53,7 +53,7 @@ export default function SignupPage() {
   } = signupStore();
 
   // submit
-  const testSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const attemptSignUp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
       // fields are not blank
@@ -205,7 +205,7 @@ export default function SignupPage() {
             setNameError(firstName, setFirstNameError, "first", false);
             setNameError(lastName, setLastNameError, "last", false);
             validPassword(password1);
-            testSubmit(e);
+            attemptSignUp(e);
           }}
           noValidate
         >

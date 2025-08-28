@@ -13,16 +13,36 @@ export default function LoginPage() {
     password,
     showPassword,
     focusPassword,
+    loginFailed,
     setEmail,
     setPassword,
     setShowPassword,
     setFocusPassword,
+    setLoginFailed,
     reset,
   } = loginStore();
 
-  const testSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const attemptLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(email, password);
+    try {
+      const res = await fetch("http://localhost:8080/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!res.ok) {
+        setLoginFailed(true);
+        return;
+      }
+
+      const data = await res.json(); // { token, user }
+      // TODO: store token (Zustand, localStorage, etc.)
+      console.log("Logged in:", data);
+    } catch (err) {
+      console.error(err);
+      setLoginFailed(true);
+    }
   };
 
   useEffect(() => {
@@ -37,7 +57,7 @@ export default function LoginPage() {
         </div>
         <form
           onSubmit={(e) => {
-            testSubmit(e);
+            attemptLogin(e);
           }}
           noValidate
         >
@@ -66,10 +86,10 @@ export default function LoginPage() {
           <button className={styles.loginButton} type="submit">
             Log in
           </button>
-          {firstNameError === "" && firstEditFirstName ? (
+          {!loginFailed ? (
             <div className={styles.spacerDiv} />
           ) : (
-            <p className={styles.error}>{firstNameError}</p>
+            <p className={styles.error}>Email or password is incorrect</p>
           )}
         </form>
       </div>
