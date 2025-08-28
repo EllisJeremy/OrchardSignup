@@ -8,21 +8,35 @@ const express_1 = __importDefault(require("express"));
 const promise_1 = __importDefault(require("mysql2/promise"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
+// routes
 const tasks_1 = __importDefault(require("./routes/tasks"));
 const signup_1 = __importDefault(require("./routes/signup"));
+const login_1 = __importDefault(require("./routes/login"));
 dotenv_1.default.config();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8080;
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)());
+// ----- MIDDLEWARE -----
 app.use(express_1.default.json());
+app.use((0, cookie_parser_1.default)());
+// Allow frontend at :5173 to talk to backend at :8080
+app.use((0, cors_1.default)({
+    origin: "http://localhost:5173", // must be exact, not "*"
+    credentials: true, // allow cookies
+}));
+// ----- DATABASE -----
 exports.pool = promise_1.default.createPool({
-    host: "localhost",
-    user: "root",
-    password: process.env.mySQLPassword,
-    database: "orchard",
+    host: process.env.DB_HOST || "localhost",
+    user: process.env.DB_USER || "root",
+    password: process.env.mySQLPassword, // from .env
+    database: process.env.DB_NAME || "orchard",
 });
+// ----- ROUTES -----
 app.use("/tasks", tasks_1.default);
 app.use("/accounts", signup_1.default);
+app.use("/login", login_1.default);
+// optional: logout route here too
+// ----- START -----
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
