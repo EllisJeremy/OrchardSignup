@@ -2,7 +2,6 @@ import express from "express";
 const router = express.Router();
 import { pool } from "../index";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 
 const SALT_ROUNDS = 10;
 

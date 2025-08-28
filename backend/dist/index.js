@@ -9,7 +9,7 @@ const promise_1 = __importDefault(require("mysql2/promise"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
 const tasks_1 = __importDefault(require("./routes/tasks"));
-const accounts_1 = __importDefault(require("./routes/accounts"));
+const signup_1 = __importDefault(require("./routes/signup"));
 dotenv_1.default.config();
 const port = process.env.PORT || 8000;
 const app = (0, express_1.default)();
@@ -22,7 +22,7 @@ exports.pool = promise_1.default.createPool({
     database: "orchard",
 });
 app.use("/tasks", tasks_1.default);
-app.use("/accounts", accounts_1.default);
+app.use("/accounts", signup_1.default);
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
