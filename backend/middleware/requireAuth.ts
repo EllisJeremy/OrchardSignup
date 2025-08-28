@@ -11,7 +11,7 @@ export function requireAuth(req, res, next) {
     console.log(token);
     const decoded = jwt.verify(token, JWT_SECRET);
     console.log("after decode");
-    req.user = decoded; // { sub, email, isAdmin, iat, exp }
+    req.user = decoded; // { id, email, isAdmin, iat, exp }
     next();
   } catch {
     return res.status(401).json({ error: "Invalid or expired token" });

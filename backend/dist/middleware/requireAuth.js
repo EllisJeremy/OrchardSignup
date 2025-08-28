@@ -15,7 +15,7 @@ function requireAuth(req, res, next) {
         console.log(token);
         const decoded = jsonwebtoken_1.default.verify(token, JWT_SECRET);
         console.log("after decode");
-        req.user = decoded; // { sub, email, isAdmin, iat, exp }
+        req.user = decoded; // { id, email, isAdmin, iat, exp }
         next();
     }
     catch (_a) {
