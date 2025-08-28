@@ -21,8 +21,6 @@ const requireAuth_1 = require("../middleware/requireAuth");
 const router = express_1.default.Router();
 router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const JWT_SECRET = process.env.JWT_SECRET;
-    console.log("login");
-    console.log(JWT_SECRET);
     const JWT_EXPIRES_IN = "1h";
     const { email, password } = req.body;
     try {
@@ -64,8 +62,6 @@ router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 }));
 router.get("/me", requireAuth_1.requireAuth, (req, res) => {
-    console.log("hit endpoint");
-    console.log("JWT from cookie:", req.cookies.jwt);
     res.json({ user: req.user });
 });
 exports.default = router;

@@ -9,8 +9,6 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   const JWT_SECRET = process.env.JWT_SECRET;
-  console.log("login");
-  console.log(JWT_SECRET);
   const JWT_EXPIRES_IN = "1h";
 
   const { email, password } = req.body;
@@ -67,9 +65,6 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/me", requireAuth, (req, res) => {
-  console.log("hit endpoint");
-  console.log("JWT from cookie:", req.cookies.jwt);
-
   res.json({ user: (req as any).user });
 });
 

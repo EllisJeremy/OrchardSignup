@@ -8,9 +8,7 @@ export function requireAuth(req, res, next) {
   if (!token) return;
 
   try {
-    console.log(token);
     const decoded = jwt.verify(token, JWT_SECRET);
-    console.log("after decode");
     req.user = decoded; // { id, email, isAdmin, iat, exp }
     next();
   } catch {

@@ -3,7 +3,6 @@ import { RawTask } from "../calendarTypes/rawTask";
 
 export function buildTaskDatabaseFromRaw(rawTasks: RawTask[]): Map<string, TaskClass[]> {
   const taskMap = new Map<string, TaskClass[]>();
-  console.log(rawTasks);
   for (const raw of rawTasks) {
     const {
       taskId,
