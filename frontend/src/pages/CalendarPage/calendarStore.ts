@@ -116,8 +116,6 @@ export class TaskClass {
 //task store
 
 export interface taskStoreType {
-  admin: boolean;
-
   date: string;
   title: string;
   startHour: string;
@@ -133,12 +131,8 @@ export interface taskStoreType {
   repeat: string;
 
   taskError: string;
-  render: boolean;
-
   taskDatabase: Map<string, TaskClass[]>;
   databaseReload: number;
-
-  setAdmin: () => void;
 
   setDate: (title: string) => void;
   setTitle: (setTime: string) => void;
@@ -155,7 +149,6 @@ export interface taskStoreType {
   setRepeat: (repeat: string) => void;
 
   setTaskError: (type: string) => void;
-  setRender: () => void;
 
   setTaskDatabase: (taskDatabase: Map<string, TaskClass[]>) => void;
   triggerDatabaseReload: () => void;
@@ -164,7 +157,6 @@ export interface taskStoreType {
 }
 
 export const taskStore = create<taskStoreType>((set) => ({
-  admin: true,
   date: "",
   title: "",
   startHour: "",
@@ -180,12 +172,9 @@ export const taskStore = create<taskStoreType>((set) => ({
   repeat: "null",
 
   taskError: "",
-  render: true,
 
   taskDatabase: new Map(),
   databaseReload: 0,
-
-  setAdmin: () => set((state) => ({ admin: !state.admin })),
 
   setDate: (date: string) => set(() => ({ date })),
   setTitle: (title: string) => set(() => ({ title })),
@@ -202,7 +191,6 @@ export const taskStore = create<taskStoreType>((set) => ({
   setRepeat: (repeat: string) => set(() => ({ repeat })),
 
   setTaskError: (taskError: string) => set(() => ({ taskError })),
-  setRender: () => set((state) => ({ render: !state.render })),
 
   setTaskDatabase: (taskDatabase: Map<string, TaskClass[]>) => set(() => ({ taskDatabase })),
   triggerDatabaseReload: () => set((state) => ({ databaseReload: state.databaseReload + 1 })),

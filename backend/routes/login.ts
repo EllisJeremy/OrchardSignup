@@ -48,6 +48,8 @@ router.post("/", async (req, res) => {
     });
 
     // 5. Respond with safe user info
+    const isAdmin = user.isAdmin == 1 ? true : false;
+
     res.json({
       success: true,
       user: {
@@ -55,7 +57,7 @@ router.post("/", async (req, res) => {
         email: user.accountEmail,
         firstName: user.accountFirstName,
         lastName: user.accountLastName,
-        isAdmin: user.accountIsAdmin,
+        isAdmin: isAdmin,
       },
     });
   } catch (err) {

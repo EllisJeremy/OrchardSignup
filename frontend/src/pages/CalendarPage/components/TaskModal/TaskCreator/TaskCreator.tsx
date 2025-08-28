@@ -1,5 +1,6 @@
 import styles from "./TaskCreator.module.css";
 import { taskStore } from "../../../calendarStore";
+import { useAuthStore } from "../../../../../globalStores/useAuthStore";
 import plus from "../../../../../assets/+.svg";
 import TimeInput from "./components/TimeInput";
 import { to24Hour } from "../../../functions/timeFormat";
@@ -12,7 +13,6 @@ export default function TaskCreator() {
     description,
     color,
     type,
-    admin,
     startHour,
     startMinute,
     startMeridiem,
@@ -39,7 +39,9 @@ export default function TaskCreator() {
     resetTaskVariables,
   } = taskStore();
 
-  if (admin) {
+  const { user } = useAuthStore();
+  console.log(user);
+  if (user?.isAdmin) {
     return (
       <div className={styles.taskCreatorDiv}>
         <input

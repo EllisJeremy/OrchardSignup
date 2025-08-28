@@ -1,5 +1,6 @@
 import styles from "./Task.module.css";
 import { taskStore } from "../../../calendarStore";
+import { useAuthStore } from "../../../../../globalStores/useAuthStore";
 import trash from "../../../../../assets/trash.svg";
 import check from "../../../../../assets/check.svg";
 import edit from "../../../../../assets/edit.svg";
@@ -8,37 +9,39 @@ import { colorMap } from "./colorMap";
 import { deleteTask } from "../../../functions/network";
 
 export default function Task() {
-  const { date, taskDatabase, setRender, triggerDatabaseReload } = taskStore();
+  const { date, taskDatabase, triggerDatabaseReload } = taskStore();
+  const { user } = useAuthStore();
 
   if (taskDatabase.has(date)) {
     const tasks = taskDatabase.get(date)!;
-
     return (
       <>
         {tasks.map((task, index) => (
           <div key={index} className={styles.taskCardDiv}>
-            <div className={styles.adminBarDiv}>
-              <button
-                className={styles.editButton}
-                title="Edit"
-                onClick={async () => {
-                  await deleteTask(task.id);
-                  triggerDatabaseReload();
-                }}
-              >
-                <img className={styles.trash} src={edit} />
-              </button>
-              <button
-                className={styles.trashButton}
-                title="Delate"
-                onClick={async () => {
-                  await deleteTask(task.id);
-                  triggerDatabaseReload();
-                }}
-              >
-                <img className={styles.trash} src={trash} />
-              </button>
-            </div>
+            {user?.isAdmin && (
+              <div className={styles.adminBarDiv}>
+                <button
+                  className={styles.editButton}
+                  title="Edit"
+                  onClick={async () => {
+                    await deleteTask(task.id);
+                    triggerDatabaseReload();
+                  }}
+                >
+                  <img className={styles.trash} src={edit} />
+                </button>
+                <button
+                  className={styles.trashButton}
+                  title="Delate"
+                  onClick={async () => {
+                    await deleteTask(task.id);
+                    triggerDatabaseReload();
+                  }}
+                >
+                  <img className={styles.trash} src={trash} />
+                </button>
+              </div>
+            )}
             {task.type === "event" ? (
               <div>
                 <div className={styles.eventDiv}>
@@ -71,7 +74,7 @@ export default function Task() {
                           className={styles.selectButton}
                           onClick={() => {
                             // TODO add user to task
-                            setRender();
+                            console.log("sign up");
                           }}
                         >
                           signup

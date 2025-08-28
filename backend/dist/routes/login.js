@@ -45,6 +45,7 @@ router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             maxAge: 1000 * 60 * 60, // 1 hour
         });
         // 5. Respond with safe user info
+        const isAdmin = user.isAdmin == 1 ? true : false;
         res.json({
             success: true,
             user: {
@@ -52,7 +53,7 @@ router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 email: user.accountEmail,
                 firstName: user.accountFirstName,
                 lastName: user.accountLastName,
-                isAdmin: user.accountIsAdmin,
+                isAdmin: isAdmin,
             },
         });
     }
