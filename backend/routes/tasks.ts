@@ -67,7 +67,7 @@ router.post("/", async (req, res) => {
   try {
     const [result] = await pool.query(
       `INSERT INTO tasks 
-        (taskDate, taskTitle, taskStartTime, taskEndTime, taskDescription, taskColor, taskOwner, taskType, taskRepeat) 
+        (taskDate, taskTitle, taskStartTime, taskEndTime, taskDescription, taskColor, taskOwnerId, taskType, taskRepeat) 
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         taskDate,

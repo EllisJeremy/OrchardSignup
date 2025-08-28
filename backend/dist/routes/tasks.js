@@ -61,7 +61,7 @@ router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { taskDate, taskTitle, taskStartTime, taskEndTime, taskDescription, taskColor, taskOwner, taskType, taskRepeat, } = req.body;
     try {
         const [result] = yield index_1.pool.query(`INSERT INTO tasks 
-        (taskDate, taskTitle, taskStartTime, taskEndTime, taskDescription, taskColor, taskOwner, taskType, taskRepeat) 
+        (taskDate, taskTitle, taskStartTime, taskEndTime, taskDescription, taskColor, taskOwnerId, taskType, taskRepeat) 
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`, [
             taskDate,
             taskTitle,
