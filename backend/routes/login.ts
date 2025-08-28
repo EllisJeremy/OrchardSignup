@@ -7,10 +7,12 @@ import { requireAuth } from "../middleware/requireAuth";
 
 const router = express.Router();
 
-const JWT_SECRET = process.env.JWT_SECRET || "dev_secret";
-const JWT_EXPIRES_IN = "1h";
-
 router.post("/", async (req, res) => {
+  const JWT_SECRET = process.env.JWT_SECRET;
+  console.log("login");
+  console.log(JWT_SECRET);
+  const JWT_EXPIRES_IN = "1h";
+
   const { email, password } = req.body;
 
   try {

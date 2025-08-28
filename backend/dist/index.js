@@ -14,7 +14,7 @@ const tasks_1 = __importDefault(require("./routes/tasks"));
 const signup_1 = __importDefault(require("./routes/signup"));
 const login_1 = __importDefault(require("./routes/login"));
 dotenv_1.default.config();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT;
 const app = (0, express_1.default)();
 // ----- MIDDLEWARE -----
 app.use(express_1.default.json());

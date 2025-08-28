@@ -19,9 +19,11 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const requireAuth_1 = require("../middleware/requireAuth");
 const router = express_1.default.Router();
-const JWT_SECRET = process.env.JWT_SECRET || "dev_secret";
-const JWT_EXPIRES_IN = "1h";
 router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const JWT_SECRET = process.env.JWT_SECRET;
+    console.log("login");
+    console.log(JWT_SECRET);
+    const JWT_EXPIRES_IN = "1h";
     const { email, password } = req.body;
     try {
         // 1. Get user from DB

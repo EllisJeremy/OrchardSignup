@@ -10,7 +10,7 @@ import signupRoute from "./routes/signup";
 import loginRoute from "./routes/login";
 
 dotenv.config();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT;
 
 const app = express();
 
