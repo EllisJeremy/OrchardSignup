@@ -1,5 +1,6 @@
 import styles from "../accountPages.module.css";
 import { loginStore } from "./LoginStore";
+import { AuthStore } from "../../../globalStores/authStore";
 import orchardLogo from "../../../assets/OrchardLogoGray.png";
 import { Link } from "react-router-dom";
 import eye from "../../../assets/eye.svg";
@@ -8,6 +9,7 @@ import EmailInput from "../components/EmailInput";
 import { useEffect } from "react";
 
 export default function LoginPage() {
+  const { login } = AuthStore();
   const {
     email,
     password,
@@ -24,23 +26,8 @@ export default function LoginPage() {
 
   const attemptLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      const res = await fetch("http://localhost:8080/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!res.ok) {
-        setLoginFailed(true);
-        return;
-      }
-
-      const data = await res.json(); // { token, user }
-      // TODO: store token (Zustand, localStorage, etc.)
-      console.log("Logged in:", data);
-    } catch (err) {
-      console.error(err);
+    const success = await login(email, password);
+    if (!success) {
       setLoginFailed(true);
     }
   };
