@@ -129,6 +129,14 @@
   font-size: 13px;
 }
 
+.success {
+  color: hsl(138, 100%, 40%);
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
 .eye {
   height: 50%;
 }

@@ -13,6 +13,6 @@ export async function createUser(
   });
   if (!res.ok) {
     console.error("Failed to create user");
-    return await res.json();
   }
+  return await res.json();
 }

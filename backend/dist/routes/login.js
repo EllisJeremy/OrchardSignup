@@ -61,6 +61,7 @@ router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(500).json({ success: false, error: "Internal server error" });
     }
 }));
+// this is the res when a user has the cookie in their browser after refresh
 router.get("/me", requireAuth_1.requireAuth, (req, res) => {
     res.json({ user: req.user });
 });

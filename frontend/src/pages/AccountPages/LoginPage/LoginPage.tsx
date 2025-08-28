@@ -7,6 +7,7 @@ import eye from "../../../assets/eye.svg";
 import eyeClosed from "../../../assets/eyeClosed.svg";
 import EmailInput from "../components/EmailInput";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
   const { login, user } = useAuthStore();
@@ -23,6 +24,13 @@ export default function LoginPage() {
     setLoginFailed,
     reset,
   } = loginStore();
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (user) {
+      navigate("/menu");
+    }
+  }, [user, navigate]);
 
   const attemptLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

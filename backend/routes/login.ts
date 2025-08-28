@@ -64,6 +64,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+// this is the res when a user has the cookie in their browser after refresh
 router.get("/me", requireAuth, (req, res) => {
   res.json({ user: (req as any).user });
 });

@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
       [email, obfuscatedPassword, firstName, lastName, false]
     );
 
-    res.status(201).json({ success: true, insertId: (result as any).insertId });
+    return res.status(201).json({ success: true });
   } catch (error: any) {
     if (error.code === "ER_DUP_ENTRY") {
       return res.status(400).json({

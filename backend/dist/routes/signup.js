@@ -24,7 +24,7 @@ router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const [result] = yield index_1.pool.query(`INSERT INTO accounts 
         (accountEmail, accountPassword, accountFirstName, accountLastName, accountIsAdmin) 
        VALUES (?, ?, ?, ?, ?)`, [email, obfuscatedPassword, firstName, lastName, false]);
-        res.status(201).json({ success: true, insertId: result.insertId });
+        return res.status(201).json({ success: true });
     }
     catch (error) {
         if (error.code === "ER_DUP_ENTRY") {

@@ -30,6 +30,7 @@ export default function SignupPage() {
     firstEditEmail,
     firstEditFirstName,
     firstEditLastName,
+    success,
     setEmail,
     setPassword1,
     setPassword2,
@@ -49,11 +50,12 @@ export default function SignupPage() {
     setFirstEditEmail,
     setFirstEditFirstName,
     setFirstEditLastName,
+    setSuccess,
     reset,
   } = signupStore();
 
   // submit
-  const attemptSignUp = (e: React.FormEvent<HTMLFormElement>) => {
+  const attemptSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
       // fields are not blank
@@ -71,11 +73,12 @@ export default function SignupPage() {
     ) {
       (async () => {
         const res = await createUser(email, password1, firstName, lastName);
-        if (res) {
+        if (res.error === "Email already exists") {
+          setEmailUsed(true);
+        } else if (res.success) {
+          setSuccess(true);
+        } else {
           console.error(res);
-          if (res.error === "Email already exists") {
-            setEmailUsed(true);
-          }
         }
       })();
     }
@@ -386,6 +389,9 @@ export default function SignupPage() {
               The email you have entered is already in use by an account. &nbsp; Go to login or use
               a different email.
             </p>
+          )}
+          {success && (
+            <p className={styles.success}>Account created! Return to login to continue</p>
           )}
         </form>
       </div>
