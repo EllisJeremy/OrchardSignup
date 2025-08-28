@@ -40,7 +40,6 @@ export default function TaskCreator() {
   } = taskStore();
 
   const { user } = useAuthStore();
-  console.log(user);
   if (user?.isAdmin) {
     return (
       <div className={styles.taskCreatorDiv}>

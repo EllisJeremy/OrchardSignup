@@ -36,7 +36,7 @@ router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             return res.status(401).json({ success: false, error: "Invalid email or password" });
         }
         // 3. Create JWT
-        const token = jsonwebtoken_1.default.sign({ id: user.accountId, email: user.accountEmail, isAdmin: user.accountIsAdmin }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
+        const token = jsonwebtoken_1.default.sign({ id: user.accountId, email: user.accountEmail, isAdmin: user.isAdmin == 1 ? true : false }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
         // 4. Send JWT in HttpOnly cookie
         res.cookie("jwt", token, {
             httpOnly: true,
@@ -45,7 +45,6 @@ router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             maxAge: 1000 * 60 * 60, // 1 hour
         });
         // 5. Respond with safe user info
-        const isAdmin = user.isAdmin == 1 ? true : false;
         res.json({
             success: true,
             user: {
@@ -53,7 +52,7 @@ router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 email: user.accountEmail,
                 firstName: user.accountFirstName,
                 lastName: user.accountLastName,
-                isAdmin: isAdmin,
+                isAdmin: user.isAdmin == 1 ? true : false,
             },
         });
     }
