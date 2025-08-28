@@ -8,12 +8,9 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 function requireAuth(req, res, next) {
     // env access MUST run inside functions to prevent them from loading before index.ts
     const JWT_SECRET = process.env.JWT_SECRET;
-    console.log(JWT_SECRET);
-    //console.log("here we are");
     const token = req.cookies.jwt;
-    //console.log(token);
     if (!token)
-        return res.status(401).json({ error: "Not logged in" });
+        return;
     try {
         console.log(token);
         const decoded = jsonwebtoken_1.default.verify(token, JWT_SECRET);
