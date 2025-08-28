@@ -33,3 +33,10 @@ CREATE TABLE tasks (
 );
 
 
+admin user:
+
+UPDATE accounts
+SET accountIsAdmin = 1
+WHERE accountId = 70;
+
+

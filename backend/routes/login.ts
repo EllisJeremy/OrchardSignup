@@ -34,7 +34,11 @@ router.post("/", async (req, res) => {
 
     // 3. Create JWT
     const token = jwt.sign(
-      { id: user.accountId, email: user.accountEmail, isAdmin: user.isAdmin == 1 ? true : false },
+      {
+        id: user.accountId,
+        email: user.accountEmail,
+        isAdmin: user.accountIsAdmin === 1 ? true : false,
+      },
       JWT_SECRET,
       { expiresIn: JWT_EXPIRES_IN }
     );
@@ -55,7 +59,7 @@ router.post("/", async (req, res) => {
         email: user.accountEmail,
         firstName: user.accountFirstName,
         lastName: user.accountLastName,
-        isAdmin: user.isAdmin == 1 ? true : false,
+        isAdmin: user.accountIsAdmin === 1 ? true : false,
       },
     });
   } catch (err) {

@@ -1,3 +1,3 @@
-ALTER TABLE accounts
-  RENAME COLUMN firstName TO accountFirstName,
-  RENAME COLUMN lastName TO accountLastName;
+UPDATE accounts
+SET accountIsAdmin = 1
+WHERE accountId = 70;

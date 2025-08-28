@@ -119,5 +119,6 @@ export const signupStore = create<SignupStoreType>((set) => ({
       firstEditEmail: true,
       firstEditFirstName: true,
       firstEditLastName: true,
+      success: false,
     }),
 }));

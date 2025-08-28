@@ -90,7 +90,6 @@ export default function LoginPage() {
       </div>
 
       <div className={styles.signupDiv}>
-        <button onClick={() => console.log(user)}>show user</button>
         <Link className={styles.loginButton} to="/ForgotPassword">
           Forgot Password
         </Link>
