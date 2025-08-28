@@ -33,7 +33,7 @@ router.get("/by-month", (req, res) => __awaiter(void 0, void 0, void 0, function
       t.taskType,
       t.taskRepeat,
       a.accountId AS ownerId,
-      a.accountName AS ownerName,
+      CONCAT(a.accountFirstName, ' ', a.accountLastName) AS ownerName,
       a.accountEmail AS ownerEmail
    FROM tasks t
    LEFT JOIN accounts a ON t.taskOwnerId = a.accountId
