@@ -1,6 +1,7 @@
 import express from "express";
 const router = express.Router();
 import { pool } from "../index";
+import { requireAuth } from "../middleware/requireAuth";
 
 router.get("/by-month", async (req, res) => {
   try {
@@ -39,9 +40,11 @@ router.get("/by-month", async (req, res) => {
   }
 });
 
-router.delete("/:taskId", async (req, res) => {
+router.delete("/:taskId", requireAuth, async (req, res) => {
+  if (!req.user.isAdmin) {
+    return res.status(403).json({ error: "Forbidden" });
+  }
   const { taskId } = req.params;
-
   try {
     const [result] = await pool.query("DELETE FROM tasks WHERE taskId = ?", [taskId]);
     res.sendStatus(204);

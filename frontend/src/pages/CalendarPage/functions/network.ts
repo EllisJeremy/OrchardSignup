@@ -44,6 +44,7 @@ export async function createTask(task: {
 export async function deleteTask(taskId: number) {
   const res = await fetch(`http://localhost:8080/tasks/${taskId}`, {
     method: "DELETE",
+    credentials: "include",
   });
 
   if (!res.ok) {

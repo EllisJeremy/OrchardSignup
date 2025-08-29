@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router();
 const index_1 = require("../index");
+const requireAuth_1 = require("../middleware/requireAuth");
 router.get("/by-month", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const year = req.query.year;
@@ -46,7 +47,10 @@ router.get("/by-month", (req, res) => __awaiter(void 0, void 0, void 0, function
         res.status(500).json({ error: "Database error" });
     }
 }));
-router.delete("/:taskId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.delete("/:taskId", requireAuth_1.requireAuth, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    if (!req.user.isAdmin) {
+        return res.status(403).json({ error: "Forbidden" });
+    }
     const { taskId } = req.params;
     try {
         const [result] = yield index_1.pool.query("DELETE FROM tasks WHERE taskId = ?", [taskId]);
