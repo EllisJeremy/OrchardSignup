@@ -9,7 +9,7 @@ import { colorMap } from "./colorMap";
 import { deleteTask, joinTask, dropTask } from "../../../functions/taskNetwork";
 
 export default function Task() {
-  const { date, taskDatabase, triggerDatabaseReload } = taskStore();
+  const { date, taskDatabase, triggerReload } = taskStore();
   const { user } = useAuthStore();
 
   if (taskDatabase.has(date)) {
@@ -25,7 +25,7 @@ export default function Task() {
                   title="Edit"
                   onClick={async () => {
                     await deleteTask(task.id);
-                    triggerDatabaseReload();
+                    triggerReload();
                   }}
                 >
                   <img className={styles.trash} src={edit} />
@@ -35,7 +35,7 @@ export default function Task() {
                   title="Delate"
                   onClick={async () => {
                     await deleteTask(task.id);
-                    triggerDatabaseReload();
+                    triggerReload();
                   }}
                 >
                   <img className={styles.trash} src={trash} />
@@ -72,8 +72,9 @@ export default function Task() {
                       {taskDatabase.get(date)![index].ownerId === null && (
                         <button
                           className={styles.selectButton}
-                          onClick={() => {
-                            joinTask(task.id);
+                          onClick={async () => {
+                            await joinTask(task.id);
+                            triggerReload();
                           }}
                         >
                           signup
@@ -83,8 +84,9 @@ export default function Task() {
                       {taskDatabase.get(date)![index].ownerId === user?.id && (
                         <button
                           className={styles.selectButton}
-                          onClick={() => {
-                            dropTask(task.id);
+                          onClick={async () => {
+                            await dropTask(task.id);
+                            triggerReload();
                           }}
                         >
                           drop task

@@ -35,7 +35,7 @@ export default function TaskCreator() {
     setTaskError,
     setRepeat,
     setOwner,
-    triggerDatabaseReload,
+    triggerReload,
     resetTaskVariables,
   } = taskStore();
 
@@ -174,7 +174,7 @@ export default function TaskCreator() {
               taskRepeat: repeatOrNull,
             });
 
-            triggerDatabaseReload();
+            triggerReload();
             resetTaskVariables();
           }}
         >

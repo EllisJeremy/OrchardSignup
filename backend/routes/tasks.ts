@@ -135,12 +135,11 @@ router.patch("/:taskId/drop", requireAuth, async (req, res) => {
     }
 
     const currentOwnerId = rows[0].taskOwnerId;
-    console.log(currentOwnerId);
-    console.log();
+
     if (currentOwnerId !== req.user.id) {
       return res.status(403).json({ error: "Forbidden" });
     }
-    console.log("dropping");
+
     const [result] = await pool.query("UPDATE tasks SET taskOwnerId = NULL WHERE taskId = ?", [
       taskId,
     ]);

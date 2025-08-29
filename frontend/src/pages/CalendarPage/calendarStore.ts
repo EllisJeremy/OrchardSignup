@@ -132,7 +132,7 @@ export interface taskStoreType {
 
   taskError: string;
   taskDatabase: Map<string, TaskClass[]>;
-  databaseReload: number;
+  reload: number;
 
   setDate: (title: string) => void;
   setTitle: (setTime: string) => void;
@@ -151,7 +151,7 @@ export interface taskStoreType {
   setTaskError: (type: string) => void;
 
   setTaskDatabase: (taskDatabase: Map<string, TaskClass[]>) => void;
-  triggerDatabaseReload: () => void;
+  triggerReload: () => void;
 
   resetTaskVariables: () => void;
 }
@@ -174,7 +174,7 @@ export const taskStore = create<taskStoreType>((set) => ({
   taskError: "",
 
   taskDatabase: new Map(),
-  databaseReload: 0,
+  reload: 0,
 
   setDate: (date: string) => set(() => ({ date })),
   setTitle: (title: string) => set(() => ({ title })),
@@ -193,7 +193,7 @@ export const taskStore = create<taskStoreType>((set) => ({
   setTaskError: (taskError: string) => set(() => ({ taskError })),
 
   setTaskDatabase: (taskDatabase: Map<string, TaskClass[]>) => set(() => ({ taskDatabase })),
-  triggerDatabaseReload: () => set((state) => ({ databaseReload: state.databaseReload + 1 })),
+  triggerReload: () => set((state) => ({ reload: state.reload + 1 })),
 
   resetTaskVariables: () =>
     set(() => {

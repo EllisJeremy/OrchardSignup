@@ -10,13 +10,13 @@ import { useEffect } from "react";
 import { fetchTasks } from "./functions/taskNetwork.ts";
 
 export default function CalendarPage() {
-  const { setTaskDatabase, databaseReload } = taskStore();
+  const { setTaskDatabase, reload } = taskStore();
   const { month, year } = dateStore();
   const padMonth = month.toString().padStart(2, "0");
 
   useEffect(() => {
     fetchTasks(year, padMonth, setTaskDatabase);
-  }, [year, month, databaseReload]);
+  }, [year, month, reload]);
 
   return (
     <>
