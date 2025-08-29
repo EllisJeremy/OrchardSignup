@@ -1,23 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+
+.navLinks a,
+.sideMenu a {
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-size: 10px;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+
+.sideMenu a {
+}
+
 .headerDiv {
+  background-color: #265555;
   padding: 10px 16px;
-  height: 46px;
-  margin-bottom: 20px;
-  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
-  background-color: rgb(37, 85, 85);
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  transition: 0.3s ease-in-out;
 }
 
 .headerDivFlex {
-  height: 100%;
-  text-align: left;
   display: flex;
-  padding-left: 20px;
   align-items: center;
   justify-content: space-between;
 }
 
 .headerLogo {
-  height: 70%;
+  height: 30px;
+  padding: 8px 0px;
+}
+
+.navLinks {
+  display: flex;
+  gap: 2rem;
+}
+
+.navLinks a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* Social Icons */
+.socials {
+  display: flex;
+  gap: 1rem;
+}
+
+.socials img {
+  height: 20px;
+}
+
+/* Burger Button (hidden desktop) */
+.burgerButton {
+  font-size: 28px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none;
+}
+
+/* Side Menu */
+.sideMenu {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #406869;
+  display: flex;
+  flex-direction: column;
+  padding-top: 53px;
+  transition: right 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.sideMenu a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.showMenu {
+  right: 0;
+}
+
+@media (max-width: 1000px) {
+  .navLinks {
+    display: none;
+  }
+
+  .socials {
+    display: none;
+  }
+
+  .burgerButton {
+    display: block;
+  }
 }
