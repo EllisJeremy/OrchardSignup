@@ -5,6 +5,8 @@ import plus from "../../../../../assets/+.svg";
 import TimeInput from "./components/TimeInput";
 import { to24Hour } from "../../../functions/timeFormat";
 import { createTask } from "../../../functions/taskNetwork";
+import { useEffect } from "react";
+import { fetchAccounts } from "../../../../AccountPages/functions/accountNetwork";
 
 export default function TaskCreator() {
   const {
@@ -22,6 +24,7 @@ export default function TaskCreator() {
     taskError,
     repeat,
     owner,
+    accounts,
     setTitle,
     setDescription,
     setColor,
@@ -37,7 +40,19 @@ export default function TaskCreator() {
     setOwner,
     triggerReload,
     resetTaskVariables,
+    setAccounts,
   } = taskStore();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await fetchAccounts();
+        setAccounts(data);
+      } catch (err) {
+        console.error("Failed to load accounts", err);
+      }
+    })();
+  }, [setAccounts]);
 
   const { user } = useAuthStore();
   if (user?.isAdmin) {
@@ -84,12 +99,15 @@ export default function TaskCreator() {
           <select
             id="options"
             className={styles.colorSelect}
-            onChange={(e) => setOwner(parseInt(e.target.value))}
+            onChange={(e) => setOwner(parseInt(e.target.value, 10))}
             value={owner}
           >
             <option value={-1}>Anyone</option>
-            <option value={1}>John Smith</option>
-            <option value={2}>Doug Ellis</option>
+            {accounts.map((account) => (
+              <option key={account.accountId} value={account.accountId}>
+                {account.accountFirstName} {account.accountLastName}
+              </option>
+            ))}
           </select>
         )}
         <textarea

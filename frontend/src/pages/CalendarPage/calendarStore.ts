@@ -115,6 +115,12 @@ export class TaskClass {
 
 //task store
 
+type Account = {
+  accountId: number;
+  accountFirstName: string;
+  accountLastName: string;
+};
+
 export interface taskStoreType {
   date: string;
   title: string;
@@ -134,6 +140,8 @@ export interface taskStoreType {
   taskDatabase: Map<string, TaskClass[]>;
   reload: number;
 
+  accounts: Account[];
+
   setDate: (title: string) => void;
   setTitle: (setTime: string) => void;
   setStartHour: (startHour: string) => void;
@@ -149,9 +157,10 @@ export interface taskStoreType {
   setRepeat: (repeat: string) => void;
 
   setTaskError: (type: string) => void;
-
   setTaskDatabase: (taskDatabase: Map<string, TaskClass[]>) => void;
   triggerReload: () => void;
+
+  setAccounts: (accounts: Account[]) => void;
 
   resetTaskVariables: () => void;
 }
@@ -172,9 +181,10 @@ export const taskStore = create<taskStoreType>((set) => ({
   repeat: "null",
 
   taskError: "",
-
   taskDatabase: new Map(),
   reload: 0,
+
+  accounts: [],
 
   setDate: (date: string) => set(() => ({ date })),
   setTitle: (title: string) => set(() => ({ title })),
@@ -195,6 +205,8 @@ export const taskStore = create<taskStoreType>((set) => ({
   setTaskDatabase: (taskDatabase: Map<string, TaskClass[]>) => set(() => ({ taskDatabase })),
   triggerReload: () => set((state) => ({ reload: state.reload + 1 })),
 
+  setAccounts: (accounts) => set({ accounts }),
+
   resetTaskVariables: () =>
     set(() => {
       return {
@@ -210,6 +222,7 @@ export const taskStore = create<taskStoreType>((set) => ({
         endMinute: "",
         startMeridiem: "AM",
         endMeridiem: "AM",
+        accounts: [],
       };
     }),
 }));
