@@ -109,7 +109,6 @@ router.patch("/:taskId/join", requireAuth_1.requireAuth, (req, res) => __awaiter
 exports.default = router;
 router.patch("/:taskId/drop", requireAuth_1.requireAuth, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { taskId } = req.params;
-    console.log("trying");
     try {
         const [rows] = yield index_1.pool.query("SELECT taskOwnerId FROM tasks WHERE taskId = ?", [
             taskId,

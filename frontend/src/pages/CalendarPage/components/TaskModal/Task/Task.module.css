@@ -20,7 +20,8 @@
   gap: 10px;
 }
 
-.selectButton {
+.selectButton,
+.dropButton {
   display: flex;
   height: 50px;
   width: 100%;
@@ -30,12 +31,14 @@
   font-size: 15px;
 }
 
-.selectButton:active {
+.selectButton:active,
+.dropButton:active {
   transform: scale(0.97);
   transition: 0.25s;
 }
 
-.selectButton {
+.selectButton,
+.dropButton {
   background-color: rgb(255, 255, 255);
   border: 2px solid rgb(239, 241, 245);
   border-radius: 5px;
@@ -44,10 +47,15 @@
     border-color 0.4s;
 }
 
-.selectButton:hover {
+.selectButton:hover,
+.dropButton:hover {
   background-color: rgba(0, 204, 61, 0.7);
   border-color: rgb(255, 255, 255);
   cursor: pointer;
+}
+
+.dropButton:hover {
+  background-color: rgba(255, 0, 0, 0.5);
 }
 
 .plus {

@@ -4,13 +4,16 @@ import { useAuthStore } from "../../../../../globalStores/useAuthStore";
 import trash from "../../../../../assets/trash.svg";
 import check from "../../../../../assets/check.svg";
 import edit from "../../../../../assets/edit.svg";
+import XFat from "../../../../../assets/XFat.svg";
 import { to12Hour } from "../../../functions/timeFormat";
 import { colorMap } from "./colorMap";
 import { deleteTask, joinTask, dropTask } from "../../../functions/taskNetwork";
+import { useNavigate } from "react-router-dom";
 
 export default function Task() {
   const { date, taskDatabase, triggerReload } = taskStore();
   const { user } = useAuthStore();
+  const navigate = useNavigate();
 
   if (taskDatabase.has(date)) {
     const tasks = taskDatabase.get(date)!;
@@ -73,6 +76,9 @@ export default function Task() {
                         <button
                           className={styles.selectButton}
                           onClick={async () => {
+                            if (!user) {
+                              navigate("/");
+                            }
                             await joinTask(task.id);
                             triggerReload();
                           }}
@@ -83,14 +89,14 @@ export default function Task() {
                       )}
                       {taskDatabase.get(date)![index].ownerId === user?.id && (
                         <button
-                          className={styles.selectButton}
+                          className={styles.dropButton}
                           onClick={async () => {
                             await dropTask(task.id);
                             triggerReload();
                           }}
                         >
                           drop task
-                          <img className={styles.plus} src={check} />
+                          <img className={styles.plus} src={XFat} />
                         </button>
                       )}
                     </div>

@@ -124,7 +124,7 @@ export default router;
 
 router.patch("/:taskId/drop", requireAuth, async (req, res) => {
   const { taskId } = req.params;
-  console.log("trying");
+
   try {
     const [rows]: any = await pool.query("SELECT taskOwnerId FROM tasks WHERE taskId = ?", [
       taskId,
