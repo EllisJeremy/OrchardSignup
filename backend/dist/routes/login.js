@@ -19,7 +19,7 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const requireAuth_1 = require("../middleware/requireAuth");
 const router = express_1.default.Router();
-router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const JWT_SECRET = process.env.JWT_SECRET;
     const JWT_EXPIRES_IN = "1h";
     const { email, password } = req.body;
@@ -66,7 +66,7 @@ router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 }));
 // this is the res when a user has the cookie in their browser after refresh
-router.get("/me", requireAuth_1.requireAuth, (req, res) => {
+router.get("/login/me", requireAuth_1.requireAuth, (req, res) => {
     res.json({ user: req.user });
 });
 exports.default = router;

@@ -88,8 +88,8 @@ export default function TaskCreator() {
             value={owner}
           >
             <option value="">Anyone</option>
-            <option value="john@gmail.com">John Smith</option>
-            <option value="doug@theorchardchurch.net">Doug Ellis</option>
+            <option value="0">John Smith</option>
+            <option value="1">Doug Ellis</option>
           </select>
         )}
         <textarea

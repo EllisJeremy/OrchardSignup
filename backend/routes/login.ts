@@ -7,7 +7,7 @@ import { requireAuth } from "../middleware/requireAuth";
 
 const router = express.Router();
 
-router.post("/", async (req, res) => {
+router.post("/login", async (req, res) => {
   const JWT_SECRET = process.env.JWT_SECRET;
   const JWT_EXPIRES_IN = "1h";
 
@@ -69,7 +69,7 @@ router.post("/", async (req, res) => {
 });
 
 // this is the res when a user has the cookie in their browser after refresh
-router.get("/me", requireAuth, (req, res) => {
+router.get("/login/me", requireAuth, (req, res) => {
   res.json({ user: (req as any).user });
 });
 

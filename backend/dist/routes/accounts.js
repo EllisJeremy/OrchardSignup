@@ -13,32 +13,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const router = express_1.default.Router();
 const index_1 = require("../index");
-const bcrypt_1 = __importDefault(require("bcrypt"));
-const SALT_ROUNDS = 10;
-router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { email, password, firstName, lastName } = req.body;
+const requireAuth_1 = require("../middleware/requireAuth");
+const router = express_1.default.Router();
+router.get("/", requireAuth_1.requireAuth, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const obfuscatedPassword = yield bcrypt_1.default.hash(password, 10);
-        const [result] = yield index_1.pool.query(`INSERT INTO accounts 
-        (accountEmail, accountPassword, accountFirstName, accountLastName, accountIsAdmin) 
-       VALUES (?, ?, ?, ?, ?)`, [email, obfuscatedPassword, firstName, lastName, false]);
-        res.status(201).json({ success: true, insertId: result.insertId });
+        if (!req.user.isAdmin) {
+            return res.status(403).json({ error: "Forbidden" });
+        }
+        const [rows] = yield index_1.pool.query("SELECT accountId, accountFirstName, accountLastName FROM accounts");
+        res.json(rows);
     }
-    catch (error) {
-        if (error.code === "ER_DUP_ENTRY") {
-            return res.status(400).json({
-                success: false,
-                error: "Email already exists",
-            });
-        }
-        else {
-            res.status(500).json({
-                success: false,
-                error: "Internal server error",
-            });
-        }
+    catch (err) {
+        console.error("Fetch accounts error:", err);
+        res.status(500).json({ error: "Internal server error" });
     }
 }));
 exports.default = router;

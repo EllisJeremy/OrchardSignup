@@ -4,7 +4,7 @@ export async function createUser(
   firstName: string,
   lastName: string,
 ) {
-  const res = await fetch("http://localhost:8080/accounts", {
+  const res = await fetch("http://localhost:8080/accounts/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

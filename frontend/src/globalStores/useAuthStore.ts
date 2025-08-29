@@ -19,7 +19,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   user: null,
 
   login: async (email, password) => {
-    const res = await fetch("http://localhost:8080/login", {
+    const res = await fetch("http://localhost:8080/accounts/login", {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
@@ -34,7 +34,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   },
 
   logout: async () => {
-    await fetch("http://localhost:8080/login/logout", {
+    await fetch("http://localhost:8080/accounts/logout", {
       method: "POST",
       credentials: "include",
     });
@@ -43,7 +43,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   checkAuth: async () => {
     // ask backend if cookie is valid + get user info
-    const res = await fetch("http://localhost:8080/login/me", {
+    const res = await fetch("http://localhost:8080/accounts/login/me", {
       method: "GET",
       credentials: "include",
     });

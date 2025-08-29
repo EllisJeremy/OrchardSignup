@@ -17,7 +17,7 @@ const router = express_1.default.Router();
 const index_1 = require("../index");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const SALT_ROUNDS = 10;
-router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password, firstName, lastName } = req.body;
     try {
         const obfuscatedPassword = yield bcrypt_1.default.hash(password, 10);

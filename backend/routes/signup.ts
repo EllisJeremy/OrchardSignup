@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 
 const SALT_ROUNDS = 10;
 
-router.post("/", async (req, res) => {
+router.post("/signup", async (req, res) => {
   const { email, password, firstName, lastName } = req.body;
 
   try {
