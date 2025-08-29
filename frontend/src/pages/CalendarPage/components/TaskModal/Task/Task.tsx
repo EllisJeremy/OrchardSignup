@@ -6,7 +6,7 @@ import check from "../../../../../assets/check.svg";
 import edit from "../../../../../assets/edit.svg";
 import { to12Hour } from "../../../functions/timeFormat";
 import { colorMap } from "./colorMap";
-import { deleteTask, joinTask } from "../../../functions/network";
+import { deleteTask, joinTask, dropTask } from "../../../functions/taskNetwork";
 
 export default function Task() {
   const { date, taskDatabase, triggerDatabaseReload } = taskStore();
@@ -77,6 +77,17 @@ export default function Task() {
                           }}
                         >
                           signup
+                          <img className={styles.plus} src={check} />
+                        </button>
+                      )}
+                      {taskDatabase.get(date)![index].ownerId === user?.id && (
+                        <button
+                          className={styles.selectButton}
+                          onClick={() => {
+                            dropTask(task.id);
+                          }}
+                        >
+                          drop task
                           <img className={styles.plus} src={check} />
                         </button>
                       )}

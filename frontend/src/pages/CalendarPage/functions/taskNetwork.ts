@@ -62,3 +62,13 @@ export async function joinTask(taskId: number) {
   if (!res.ok) throw new Error("Failed to join task");
   return await res.json();
 }
+
+export async function dropTask(taskId: number) {
+  const res = await fetch(`http://localhost:8080/tasks/${taskId}/drop`, {
+    method: "PATCH",
+    credentials: "include",
+  });
+
+  if (!res.ok) throw new Error("Failed to drop task");
+  return await res.json();
+}

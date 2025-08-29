@@ -7,7 +7,7 @@ import LoginModal from "./components/LoginModal/LoginModal.tsx";
 import { taskStore } from "./calendarStore.ts";
 import { dateStore } from "./calendarStore.ts";
 import { useEffect } from "react";
-import { fetchTasks } from "./functions/network.ts";
+import { fetchTasks } from "./functions/taskNetwork.ts";
 
 export default function CalendarPage() {
   const { setTaskDatabase, databaseReload } = taskStore();

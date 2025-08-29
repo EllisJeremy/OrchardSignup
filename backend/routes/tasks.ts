@@ -121,3 +121,33 @@ router.patch("/:taskId/join", requireAuth, async (req, res) => {
   }
 });
 export default router;
+
+router.patch("/:taskId/drop", requireAuth, async (req, res) => {
+  const { taskId } = req.params;
+  console.log("trying");
+  try {
+    const [rows]: any = await pool.query("SELECT taskOwnerId FROM tasks WHERE taskId = ?", [
+      taskId,
+    ]);
+
+    if (rows.length === 0) {
+      return res.status(404).json({ error: "Task not found" });
+    }
+
+    const currentOwnerId = rows[0].taskOwnerId;
+    console.log(currentOwnerId);
+    console.log();
+    if (currentOwnerId !== req.user.id) {
+      return res.status(403).json({ error: "Forbidden" });
+    }
+    console.log("dropping");
+    const [result] = await pool.query("UPDATE tasks SET taskOwnerId = NULL WHERE taskId = ?", [
+      taskId,
+    ]);
+
+    res.status(200).json({ success: true });
+  } catch (error) {
+    console.error("Drop task error:", error);
+    res.status(500).json({ success: false, error: "Internal server error" });
+  }
+});

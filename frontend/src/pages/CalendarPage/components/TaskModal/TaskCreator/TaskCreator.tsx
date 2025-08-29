@@ -4,7 +4,7 @@ import { useAuthStore } from "../../../../../globalStores/useAuthStore";
 import plus from "../../../../../assets/+.svg";
 import TimeInput from "./components/TimeInput";
 import { to24Hour } from "../../../functions/timeFormat";
-import { createTask } from "../../../functions/network";
+import { createTask } from "../../../functions/taskNetwork";
 
 export default function TaskCreator() {
   const {
