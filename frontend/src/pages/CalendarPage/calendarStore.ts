@@ -126,7 +126,7 @@ export interface taskStoreType {
   endMeridiem: string;
   description: string;
   color: string;
-  owner: string;
+  owner: number;
   type: string;
   repeat: string;
 
@@ -144,7 +144,7 @@ export interface taskStoreType {
   setEndMeridiem: (endMeridiem: string) => void;
   setDescription: (description: string) => void;
   setColor: (color: string) => void;
-  setOwner: (description: string) => void;
+  setOwner: (owner: number) => void;
   setType: (type: string) => void;
   setRepeat: (repeat: string) => void;
 
@@ -167,7 +167,7 @@ export const taskStore = create<taskStoreType>((set) => ({
   endMeridiem: "AM",
   description: "",
   color: "red",
-  owner: "",
+  owner: -1,
   type: "event",
   repeat: "null",
 
@@ -186,7 +186,7 @@ export const taskStore = create<taskStoreType>((set) => ({
   setEndMeridiem: (endMeridiem: string) => set(() => ({ endMeridiem })),
   setDescription: (description: string) => set(() => ({ description })),
   setColor: (color: string) => set(() => ({ color })),
-  setOwner: (owner: string) => set(() => ({ owner })),
+  setOwner: (owner: number) => set(() => ({ owner })),
   setType: (type: string) => set(() => ({ type })),
   setRepeat: (repeat: string) => set(() => ({ repeat })),
 
@@ -203,7 +203,7 @@ export const taskStore = create<taskStoreType>((set) => ({
         color: "red",
         type: "event",
         repeat: "null",
-        owner: "",
+        owner: -1,
         startHour: "",
         startMinute: "",
         endHour: "",

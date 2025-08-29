@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import eye from "../../../assets/eye.svg";
 import eyeClosed from "../../../assets/eyeClosed.svg";
 import EmailInputSignup from "../components/EmailInputSignup";
-import { createUser } from "./signupNetwork";
+import { createUser } from "../functions/accountNetwork";
 
 export default function SignupPage() {
   // store

@@ -84,12 +84,12 @@ export default function TaskCreator() {
           <select
             id="options"
             className={styles.colorSelect}
-            onChange={(e) => setOwner(e.target.value)}
+            onChange={(e) => setOwner(parseInt(e.target.value))}
             value={owner}
           >
-            <option value="">Anyone</option>
-            <option value="0">John Smith</option>
-            <option value="1">Doug Ellis</option>
+            <option value={-1}>Anyone</option>
+            <option value={1}>John Smith</option>
+            <option value={2}>Doug Ellis</option>
           </select>
         )}
         <textarea
@@ -160,7 +160,7 @@ export default function TaskCreator() {
             const startTime = to24Hour(startHour, startMinute, startMeridiem);
             const endTimeOrNull =
               type === "event" ? to24Hour(endHour, endMinute, endMeridiem) : null;
-            const ownerOrNull = type === "task" && owner !== "" ? owner : null;
+            const ownerOrNull = type === "task" && owner !== -1 ? owner : null;
             const repeatOrNull = repeat !== "null" ? repeat : null;
             await createTask({
               taskDate: date,

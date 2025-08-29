@@ -25,7 +25,7 @@ export async function createTask(task: {
   taskEndTime: string | null;
   taskDescription: string;
   taskColor: string;
-  taskOwner: string | null;
+  taskOwner: number | null;
   taskType: string;
   taskRepeat: string | null;
 }) {
