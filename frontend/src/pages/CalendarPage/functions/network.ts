@@ -52,3 +52,13 @@ export async function deleteTask(taskId: number) {
     throw new Error("Failed to delete task");
   }
 }
+
+export async function joinTask(taskId: number) {
+  const res = await fetch(`http://localhost:8080/tasks/${taskId}/join`, {
+    method: "PATCH",
+    credentials: "include",
+  });
+
+  if (!res.ok) throw new Error("Failed to join task");
+  return await res.json();
+}

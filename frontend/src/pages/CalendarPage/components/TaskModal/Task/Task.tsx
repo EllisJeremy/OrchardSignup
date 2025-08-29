@@ -6,7 +6,7 @@ import check from "../../../../../assets/check.svg";
 import edit from "../../../../../assets/edit.svg";
 import { to12Hour } from "../../../functions/timeFormat";
 import { colorMap } from "./colorMap";
-import { deleteTask } from "../../../functions/network";
+import { deleteTask, joinTask } from "../../../functions/network";
 
 export default function Task() {
   const { date, taskDatabase, triggerDatabaseReload } = taskStore();
@@ -73,8 +73,7 @@ export default function Task() {
                         <button
                           className={styles.selectButton}
                           onClick={() => {
-                            // TODO add user to task
-                            console.log("sign up");
+                            joinTask(task.id);
                           }}
                         >
                           signup

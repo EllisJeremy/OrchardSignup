@@ -95,4 +95,29 @@ router.post("/", requireAuth, async (req, res) => {
   }
 });
 
+router.patch("/:taskId/join", requireAuth, async (req, res) => {
+  if (!req.user) {
+    return res.status(403).json({ error: "Forbidden" });
+  }
+
+  const { taskId } = req.params;
+
+  try {
+    const [result] = await pool.query(
+      `UPDATE tasks 
+       SET taskOwnerId = ? 
+       WHERE taskId = ?`,
+      [req.user.id, taskId]
+    );
+
+    if ((result as any).affectedRows === 0) {
+      return res.status(404).json({ error: "Task not found" });
+    }
+
+    res.status(200).json({ success: true });
+  } catch (error) {
+    console.error("Update error:", error);
+    res.status(500).json({ success: false, error: "Internal server error" });
+  }
+});
 export default router;

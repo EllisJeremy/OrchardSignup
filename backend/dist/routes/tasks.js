@@ -87,4 +87,23 @@ router.post("/", requireAuth_1.requireAuth, (req, res) => __awaiter(void 0, void
         res.status(500).json({ success: false, error: "Internal server error" });
     }
 }));
+router.patch("/:taskId/join", requireAuth_1.requireAuth, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    if (!req.user) {
+        return res.status(403).json({ error: "Forbidden" });
+    }
+    const { taskId } = req.params;
+    try {
+        const [result] = yield index_1.pool.query(`UPDATE tasks 
+       SET taskOwnerId = ? 
+       WHERE taskId = ?`, [req.user.id, taskId]);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: "Task not found" });
+        }
+        res.status(200).json({ success: true });
+    }
+    catch (error) {
+        console.error("Update error:", error);
+        res.status(500).json({ success: false, error: "Internal server error" });
+    }
+}));
 exports.default = router;
