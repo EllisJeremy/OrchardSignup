@@ -61,7 +61,10 @@ router.delete("/:taskId", requireAuth_1.requireAuth, (req, res) => __awaiter(voi
         res.status(500).json({ success: false, error: "Internal server error" });
     }
 }));
-router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/", requireAuth_1.requireAuth, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    if (!req.user.isAdmin) {
+        return res.status(403).json({ error: "Forbidden" });
+    }
     const { taskDate, taskTitle, taskStartTime, taskEndTime, taskDescription, taskColor, taskOwner, taskType, taskRepeat, } = req.body;
     try {
         const [result] = yield index_1.pool.query(`INSERT INTO tasks 

@@ -54,7 +54,10 @@ router.delete("/:taskId", requireAuth, async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", requireAuth, async (req, res) => {
+  if (!req.user.isAdmin) {
+    return res.status(403).json({ error: "Forbidden" });
+  }
   const {
     taskDate,
     taskTitle,
