@@ -9,13 +9,10 @@
   text-decoration: none;
 }
 
-.sideMenu a {
-}
-
 .headerDiv {
   background-color: #265555;
   padding: 10px 16px;
-  transition: 0.3s ease-in-out;
+  transition: 0.4s cubic-bezier(0.93, 0.02, 0.67, 0.81);
 }
 
 .headerDivFlex {
@@ -31,13 +28,22 @@
 
 .navLinks {
   display: flex;
-  gap: 2rem;
+  gap: 5px;
+}
+
+.navLinks a,
+.sideMenu a {
+  display: flex;
+  align-items: center;
+  padding: 8px 11.2px;
+  height: 26px;
+  border-radius: 0px;
+  transition: 0.25s;
 }
 
 .navLinks a:hover {
   background-color: rgba(255, 255, 255, 0.15);
-  padding: 5px 10px;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 /* Social Icons */
@@ -64,15 +70,19 @@
 .sideMenu {
   position: fixed;
   top: 0;
-  right: -250px;
-  width: 250px;
+  right: -300px;
+  width: 300px;
   height: 100%;
   background-color: #406869;
   display: flex;
   flex-direction: column;
   padding-top: 53px;
-  transition: right 0.3s ease-in-out;
-  z-index: 1000;
+  transition: right 0.4s cubic-bezier(0.93, 0.02, 0.67, 0.81);
+  z-index: 1001;
+}
+
+.sideMenu a {
+  margin: 5px 16px 0px;
 }
 
 .sideMenu a:hover {

@@ -9,7 +9,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className={styles.headerDiv} style={menuOpen ? { paddingRight: "300px" } : {}}>
+    <header className={styles.headerDiv} style={menuOpen ? { paddingRight: "350px" } : {}}>
       <div className={styles.headerDivFlex}>
         {/* Logo */}
         <img className={styles.headerLogo} src={orchardLogo} alt="The Orchard" />
@@ -22,6 +22,12 @@ export default function Header() {
           <a href="/media.php">MEDIA</a>
           <a href="/otherchurches.php">OTHER CHURCHES</a>
           <a href="/contact.php">CONTACT US</a>
+          <a
+            href="/contact.php"
+            style={{ backgroundColor: "rgba(255, 255, 255, 0.15)", borderRadius: "3px" }}
+          >
+            CALENDAR
+          </a>
         </nav>
         {!menuOpen && (
           <div className={styles.socials}>
@@ -51,6 +57,12 @@ export default function Header() {
         <a href="/media.php">MEDIA</a>
         <a href="/otherchurches.php">OTHER CHURCHES</a>
         <a href="/contact.php">CONTACT US</a>
+        <a
+          href="/contact.php"
+          style={{ backgroundColor: "rgba(255, 255, 255, 0.3)", borderRadius: "3px" }}
+        >
+          CALENDAR
+        </a>
       </div>
     </header>
   );
