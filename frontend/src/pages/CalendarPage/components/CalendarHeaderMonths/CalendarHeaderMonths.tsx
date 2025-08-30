@@ -1,15 +1,14 @@
 import styles from "./CalendarHeaderMonths.module.css";
-import { dateStore, taskStore, modalStore } from "../../calendarStore";
+import { dateStore } from "../../calendarStore";
 import monthToString from "../../functions/monthToString";
 import arrowLeft from "../../../../assets/arrowLeft.svg";
 import arrowRight from "../../../../assets/arrowRight.svg";
 
+import { Link } from "react-router-dom";
+import returnIcon from "../../../../assets/return.svg";
+
 export default function CalendarHeader() {
-  const { setOwner } = taskStore();
-
   const { month, year, decrementMonth, incrementMonth } = dateStore();
-
-  const { openCloseLoginModal } = modalStore();
 
   return (
     <div className={styles.monthsDiv}>
@@ -26,7 +25,6 @@ export default function CalendarHeader() {
           className={styles.buttonRight}
           onClick={() => {
             incrementMonth();
-            setOwner("jeremy");
           }}
         >
           <img className={styles.arrow} src={arrowRight} />
@@ -34,9 +32,10 @@ export default function CalendarHeader() {
       </div>
 
       <div className={styles.logInDiv}>
-        <button className={styles.buttonLogin} onClick={openCloseLoginModal}>
-          Login
-        </button>
+        <Link to="/menu" className={styles.buttonLogin}>
+          <img src={returnIcon} />
+          Menu
+        </Link>
       </div>
     </div>
   );

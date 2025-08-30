@@ -46,24 +46,16 @@ export const dateStore = create<dateStoreType>((set) => ({
 
 export interface modalStoreType {
   taskModal: boolean;
-  loginModal: boolean;
 
   openCloseTaskModal: () => void;
-  openCloseLoginModal: () => void;
 }
 
 export const modalStore = create<modalStoreType>((set) => ({
   taskModal: false,
-  loginModal: false,
 
   openCloseTaskModal: () => {
     set((state) => ({
       taskModal: !state.taskModal,
-    }));
-  },
-  openCloseLoginModal: () => {
-    set((state) => ({
-      loginModal: !state.loginModal,
     }));
   },
 }));
