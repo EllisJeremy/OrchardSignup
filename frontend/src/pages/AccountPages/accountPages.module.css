@@ -111,7 +111,6 @@
 .loginButton:active {
   transform: scale(0.97);
   transition: 0.125;
-  background-color: rgb(224, 226, 238);
 }
 
 .email:focus,

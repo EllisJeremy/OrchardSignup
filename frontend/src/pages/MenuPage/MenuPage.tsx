@@ -14,6 +14,7 @@ export default function Menu() {
         <div className={styles.topBar}>
           <h1 className={styles.titleLarge}>Welcome {user ? user.firstName : "Guest"}</h1>
           <button className={styles.logoutButtonTop}>
+            {user ? "log out" : "log in"}
             <img src={logoutIcon} alt="Logout" className={styles.logoutIcon} />
           </button>
         </div>

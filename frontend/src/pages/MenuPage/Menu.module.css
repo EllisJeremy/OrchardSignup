@@ -39,21 +39,6 @@
   object-fit: contain;
 }
 
-.logoutButtonTop {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-  transition: 0.15s;
-}
-.logoutButtonTop:hover {
-  transform: scale(1.1);
-}
-.logoutIcon {
-  height: 22px;
-  filter: grayscale(100%);
-}
-
 .tileDiv {
   background-color: white;
   padding: 20px;
@@ -113,17 +98,35 @@
   gap: 8px;
   width: 100%;
 }
-.legacyLinks a {
+.legacyLinks a,
+.logoutButtonTop {
+  background-color: rgb(240, 241, 245);
   text-decoration: none;
   color: black;
   font-size: 14px;
   padding: 8px;
-  border: 2px solid rgb(225, 226, 231);
   border-radius: 5px;
   transition: 0.125s;
   text-align: center;
 }
-.legacyLinks a:hover {
-  border-color: rgb(175, 176, 191);
-  background-color: rgb(240, 241, 245);
+.legacyLinks a:hover,
+.logoutButtonTop:hover {
+  background-color: rgb(224, 226, 238);
+  cursor: pointer;
+}
+
+.legacyLinks a:active,
+.logoutButtonTop:active {
+  transform: scale(0.97);
+}
+
+.logoutButtonTop {
+  border: none;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.logoutIcon {
+  height: 22px;
 }
