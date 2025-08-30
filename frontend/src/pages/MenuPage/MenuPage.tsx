@@ -40,7 +40,11 @@ export default function MenuPage() {
           <div className={styles.calendarImageDiv}>
             <div className={styles.calendarHeaderDiv}>
               <h2>Calendar</h2>
-              <img src={calendar} style={{ height: "27px", marginLeft: "40px" }} />
+              <img
+                className={styles.icon}
+                src={calendar}
+                style={{ height: "27px", marginLeft: "40px" }}
+              />
             </div>
             <Link to="/menu/calendar">
               <img className={styles.calendarImage} src={calendarScreenshot} alt="Calendar" />
@@ -61,22 +65,22 @@ export default function MenuPage() {
               guest ? (
                 <>
                   <Link to="/" className={styles.accountItemDiv}>
-                    <img src={logIn} style={{ height: "50%" }} />
+                    <img className={styles.icon} src={logIn} />
                     <h2 style={{ fontSize: "20px" }}>Log In</h2>
                   </Link>
                   <Link to="/signUp" className={styles.accountItemDiv}>
-                    <img src={signUp} style={{ height: "50%" }} />
+                    <img className={styles.icon} src={signUp} />
                     <h2 style={{ fontSize: "20px" }}>Sign Up</h2>
                   </Link>
                 </>
               ) : (
                 <>
                   <Link to="/" className={styles.accountItemDiv}>
-                    <img src={logIn} style={{ height: "50%" }} />
+                    <img className={styles.icon} src={logIn} />
                     <h2 style={{ fontSize: "20px" }}>Log Out</h2>
                   </Link>
                   <Link to="/" className={styles.accountItemDiv}>
-                    <img src={unlock} style={{ height: "60%" }} />
+                    <img className={styles.icon} src={unlock} />
                     <h2 style={{ fontSize: "20px" }}>Request Admin</h2>
                   </Link>
                 </>
@@ -93,11 +97,11 @@ export default function MenuPage() {
           </div>
           <div className={styles.ContainerDiv} style={{ height: "calc(100% - 50px)" }}>
             <Link to="/menu/calendar" className={styles.messagesItemDiv}>
-              <img src={paperStack} style={{ height: "40%" }} />
+              <img className={styles.icon} src={paperStack} />
               <h2 style={{ fontSize: "20px" }}>All Messages</h2>
             </Link>
             <Link to="/menu/calendar" className={styles.messagesItemDiv}>
-              <img src={clock} style={{ height: "40%" }} />
+              <img className={styles.icon} src={clock} />
               <div className={styles.doubleHeaderDiv}>
                 <h2 style={{ fontSize: "20px" }}>Recent Message</h2>
                 <h2 style={{ fontSize: "15px" }}>{mostRecentMessage}</h2>
@@ -116,15 +120,15 @@ export default function MenuPage() {
           <div className={styles.ContainerDiv}>
             <Link to="/menu/calendar" className={styles.financeItemDiv}>
               <h2 style={{ fontSize: "20px" }}>Financial Summary</h2>
-              <img src={dollar} style={{ height: "50%" }} />
+              <img className={styles.icon} src={dollar} />
             </Link>
             <Link to="/menu/calendar" className={styles.financeItemDiv}>
               <h2 style={{ fontSize: "20px" }}>Weekly Contributions</h2>
-              <img src={week} style={{ height: "50%" }} />
+              <img className={styles.icon} src={week} />
             </Link>
             <Link to="/menu/calendar" className={styles.financeItemDiv}>
               <h2 style={{ fontSize: "20px" }}>Budget Status</h2>
-              <img src={paper} style={{ height: "50%" }} />
+              <img className={styles.icon} src={paper} />
             </Link>
           </div>
         </div>
@@ -137,11 +141,11 @@ export default function MenuPage() {
           <div className={styles.ContainerDiv}>
             <Link to="/menu/calendar" className={styles.miscItemDiv}>
               <h2 style={{ fontSize: "20px" }}>Request Disbursements</h2>
-              <img src={refund} style={{ height: "40%" }} />
+              <img className={styles.icon} src={refund} />
             </Link>
             <Link to="/menu/calendar" className={styles.miscItemDiv}>
               <h2 style={{ fontSize: "20px" }}>Bylaws</h2>
-              <img src={scroll} style={{ height: "40%" }} />
+              <img className={styles.icon} src={scroll} />
             </Link>
           </div>
         </div>
@@ -153,7 +157,7 @@ export default function MenuPage() {
               <h2>Admin Access Required to Use</h2>
             </div>
             <div className={styles.ContainerDiv} style={{ paddingTop: "50px" }}>
-              <img src={x} style={{ height: "40%" }} />
+              <img className={styles.icon} src={x} />
             </div>
           </div>
         )}
@@ -164,23 +168,23 @@ export default function MenuPage() {
           </div>
           <div className={styles.ContainerDiv}>
             <Link to="/menu/calendar" className={styles.adminItemDiv}>
-              <img src={mag} style={{ height: "80%" }} />
+              <img className={styles.icon} src={mag} />
               View Contributions
             </Link>
             <Link to="/menu/calendar" className={styles.adminItemDiv}>
-              <img src={check} style={{ height: "80%" }} />
+              <img className={styles.icon} src={check} />
               Approve Disbursements
             </Link>
             <Link to="/menu/calendar" className={styles.adminItemDiv}>
-              <img src={handMoney} style={{ height: "80%" }} />
+              <img className={styles.icon} src={handMoney} />
               Pay Disbursements
             </Link>
             <Link to="/menu/calendar" className={styles.adminItemDiv}>
-              <img src={review} style={{ height: "80%" }} />
+              <img className={styles.icon} src={review} />
               Review Disbursements
             </Link>
             <Link to="/menu/calendar" className={styles.adminItemDiv}>
-              <img src={dollarBill} style={{ height: "80%" }} />
+              <img className={styles.icon} src={dollarBill} />
               Review Payments
             </Link>
           </div>

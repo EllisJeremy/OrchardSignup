@@ -2,21 +2,25 @@
   display: flex;
   justify-content: center;
   padding-top: 20px;
+  margin: 0px 20px;
 }
-/*160px 350px 290px; */
+
 .mainDiv {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 220px 290px 290px;
-  width: 1200px;
-  max-width: 85%;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 15px;
+  width: 100%;
+  max-width: 1200px;
   padding: 10px;
   border-radius: 20px;
 }
+@media (min-width: 1200px) {
+  .mainDiv {
+    grid-template-columns: 1fr 1fr 1fr; /* fixed 3 columns */
+  }
+}
 
-/* tiles */
-
+/* -------------------- Tiles -------------------- */
 .calendarDiv,
 .financeDiv,
 .miscDiv,
@@ -31,6 +35,7 @@
   padding: 20px;
 }
 
+/* Calendar (big tile on desktop) */
 .calendarDiv {
   grid-column: span 2;
   grid-row: span 2;
@@ -38,6 +43,14 @@
   border: 2px solid #d0eeff;
 }
 
+@media (max-width: 900px) {
+  .calendarDiv {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+/* Finance */
 .financeDiv {
   background-color: #ebf5ec;
   border: 2px solid #bfe1c4;
@@ -46,11 +59,13 @@
   background-color: #ebf5ec;
 }
 
+/* Misc */
 .miscDiv {
-  background-color: #fff8e1;
-  border: 2px solid #ffe9b3;
+  background-color: #fff2e0;
+  border: 2px solid #ffcc99;
 }
 
+/* Bylaws (not currently used, kept for future) */
 .bylawsDiv {
   background-color: #fff0e0;
   border: 2px solid #ffdab5;
@@ -62,6 +77,7 @@
   transform: scale(0.98);
 }
 
+/* Messages */
 .messagesDiv {
   background-color: #f3f0ff;
   border: 2px solid #e0daff;
@@ -69,12 +85,11 @@
   overflow: hidden;
 }
 
+/* Admin */
 .adminDiv {
   background-color: #ffeded;
   border: 2px solid #fec8c8;
   overflow: hidden;
-  grid-column: 3 / 4;
-  grid-row: 3 / 4;
 }
 
 .accountDiv {
@@ -82,8 +97,7 @@
   border: 2px solid rgb(224, 226, 238);
 }
 
-/* calendar */
-
+/* -------------------- Headers -------------------- */
 .headerDiv {
   margin-bottom: 20px;
   height: 30px;
@@ -93,7 +107,6 @@
   margin-bottom: 10px;
   height: 30px;
   border: 2px solid rgb(224, 226, 238);
-
   border-radius: 20px;
 }
 
@@ -103,6 +116,7 @@ h3 {
   font-weight: normal;
 }
 
+/* -------------------- Calendar Image -------------------- */
 .calendarImageDiv {
   border-radius: 15px;
   overflow: hidden;
@@ -123,11 +137,11 @@ h3 {
   border-left: none;
   border-bottom-right-radius: 15px;
   pointer-events: none;
-
   transition: 0.5s;
   display: flex;
   align-items: center;
 }
+
 .calendarImageDiv:active {
   transition: 0.25s;
   transform: scale(0.99);
@@ -149,6 +163,11 @@ h3 {
   box-shadow: none;
 }
 
+img {
+  height: 100%;
+}
+
+/* -------------------- Items -------------------- */
 .financeItemDiv,
 .miscItemDiv,
 .adminItemDiv,
@@ -166,85 +185,82 @@ h3 {
   box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
 }
 
+/* Messages */
 .messagesItemDiv {
   height: 45%;
   background-color: #e7e1ff;
   border: 2px solid #e0daff;
 }
-
 .messagesItemDiv:hover {
   background-color: #e0daff;
   border-radius: 10px;
 }
-
 .messagesItemDiv:active {
   transform: scale(0.98);
 }
 
+/* Account */
 .accountItemDiv {
   background-color: hsl(220, 23%, 93%);
   height: 45%;
 }
-
 .accountItemDiv:hover {
   background-color: rgb(224, 226, 238);
   border-radius: 10px;
 }
-
 .accountItemDiv:active {
   transform: scale(0.98);
 }
 
+/* Finance */
 .financeItemDiv {
   height: 27%;
   background-color: #d1ead3;
   border: 2px solid #bfe1c4;
 }
+.financeItemDiv:hover {
+  border-radius: 10px;
+  background-color: #bfe1c4;
+}
+.financeItemDiv:active {
+  transform: scale(0.985);
+}
 
+/* Misc */
 .miscItemDiv {
   height: 45%;
-  background-color: #fff1c1;
-  border: 2px solid #ffe9b3;
+  background-color: #fee5bf;
+  border: 2px solid #ffcc99;
+  box-shadow: 0px 2px 3px 1px rgba(255, 180, 80, 0.4);
 }
-
 .miscItemDiv:hover {
-  background-color: hsl(43, 100%, 86%);
+  background-color: #ffe0b1;
   border-radius: 10px;
 }
-
 .miscItemDiv:active {
   transform: scale(0.98);
 }
 
+/* Admin */
 .adminItemDiv {
   height: 14%;
   background-color: #ffd3d3;
   border: 2px solid #fec8c8;
 }
-
-.financeItemDiv:hover {
+.adminItemDiv:hover {
   border-radius: 10px;
-  background-color: #bfe1c4;
+  background-color: #fec8c8;
+}
+.adminItemDiv:active {
+  transform: scale(0.99);
 }
 
-.financeItemDiv:active {
-  transform: scale(0.985);
-}
-
+/* -------------------- Containers -------------------- */
 .ContainerDiv {
   height: calc(100% - 50px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-.adminItemDiv:hover {
-  border-radius: 10px;
-  background-color: #fec8c8;
-}
-
-.adminItemDiv:active {
-  transform: scale(0.99);
 }
 
 .accountContainerDiv {
@@ -253,74 +269,47 @@ h3 {
   gap: 10px;
 }
 
-img {
-  height: 100%;
-}
-
+/* -------------------- Admin Auth Overlay -------------------- */
 .adminAuthDiv {
   background-color: rgba(255, 211, 211, 0.5);
   border: 2px solid #ffbaba;
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 20px;
-
-  grid-column: 3 / 4;
-  grid-row: 3 / 4;
   overflow: hidden;
 }
 
 .authHeaderDiv {
   text-align: right;
   padding: 20px;
-
   background-color: rgb(255, 211, 211);
   border-radius: 20px;
 }
 
+/* -------------------- Shadows refinements -------------------- */
 .calendarImageDiv {
   box-shadow: 0px 2px 3px 1px rgba(160, 200, 255, 0.6);
 }
-
 .calendarHeaderDiv {
   box-shadow: 0px 2px 3px 1px rgba(160, 200, 255, 0.5);
 }
-
 .financeItemDiv {
   box-shadow: 0px 2px 3px 1px rgba(140, 190, 150, 0.6);
 }
-
 .miscItemDiv {
-  box-shadow: 0px 2px 3px 1px rgba(255, 216, 100, 0.6);
+  box-shadow: 0px 2px 3px 1px rgba(255, 180, 80, 0.6);
 }
-
 .adminItemDiv {
   box-shadow: 0px 2px 3px 1px rgba(255, 145, 145, 0.6);
 }
-
 .messagesItemDiv {
   box-shadow: 0px 2px 3px 1px rgba(180, 160, 255, 0.6);
 }
-
 .accountItemDiv {
   box-shadow: 0px 2px 3px 1px rgba(160, 165, 200, 0.6);
   background-color: hsl(220, 23%, 93%);
 }
-.miscDiv {
-  background-color: #fff2e0;
-  border-color: #ffcc99;
-}
 
-.miscItemDiv {
-  background-color: #fee5bf;
-  border-color: #ffcc99;
-  box-shadow: 0px 2px 3px 1px rgba(255, 180, 80, 0.4);
-}
-
-.miscItemDiv:hover {
-  background-color: #ffe0b1;
-  border-radius: 10px;
-}
-
-.miscItemDiv:active {
-  transform: scale(0.98);
+.icon {
+  height: 20px;
 }
