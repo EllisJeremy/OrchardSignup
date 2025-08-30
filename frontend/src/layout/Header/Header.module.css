@@ -127,6 +127,7 @@
 
 .sideMenu a:hover {
   background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
 }
 
 .showMenu {
@@ -178,45 +179,41 @@
   position: relative;
   left: 0;
   opacity: 1;
-  transition: all 0.35s ease-out;
+
   transform-origin: center left;
   border-radius: 3px;
 }
 
 /* Default positions */
 .navbarToggler span:nth-child(1) {
+  transition: 0.2s ease-out;
   transform: translate(0%, 0%) rotate(0deg);
+  transition-delay: 0.5s;
 }
 .navbarToggler span:nth-child(2) {
   opacity: 1;
-}
-.navbarToggler span:nth-child(3) {
-  transform: translate(0%, 0%) rotate(0deg);
-}
-
-.navbarToggler span:nth-child(2) {
+  transition-delay: 0.5s;
   width: 17px;
   transition: width 0.35s ease-out;
 }
+.navbarToggler span:nth-child(3) {
+  transition: 0.2s ease-out;
+  transform: translate(0%, 0%) rotate(0deg);
+  transition-delay: 0.5s;
+}
 
+/* hover */
 .navbarToggler:hover span:nth-child(2) {
   width: 22px;
 }
 
-/* When NOT collapsed = X state */
+/* X state */
 .navbarToggler:not(.collapsed) span:nth-child(1) {
   transform: translate(15%, -33%) rotate(43deg);
 }
 .navbarToggler:not(.collapsed) span:nth-child(2) {
   opacity: 0;
-  transition-delay: 0.5s;
 }
 .navbarToggler:not(.collapsed) span:nth-child(3) {
   transform: translate(15%, 33%) rotate(-43deg);
-}
-
-.navbarToggler span:nth-child(1),
-.navbarToggler span:nth-child(2),
-.navbarToggler span:nth-child(3) {
-  transition-delay: 0.5s;
 }

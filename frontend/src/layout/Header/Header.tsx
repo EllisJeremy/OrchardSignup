@@ -86,7 +86,7 @@ export default function Header() {
           <a href="https://beyondsunday.org/media.php">MEDIA</a>
           <a href="https://beyondsunday.org/otherchurches.php">OTHER CHURCHES</a>
           <a href="https://beyondsunday.org/contact.php">CONTACT US</a>
-          <a href="/" style={{ backgroundColor: "rgba(255, 255, 255, 0.3)", borderRadius: "3px" }}>
+          <a href="/" style={{ backgroundColor: "rgba(255, 255, 255, 0.15)", borderRadius: "3px" }}>
             LOG IN
           </a>
         </div>
