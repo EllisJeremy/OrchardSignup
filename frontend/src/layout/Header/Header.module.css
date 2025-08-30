@@ -72,11 +72,28 @@
 /* Social Icons */
 .socials {
   display: flex;
-  gap: 1rem;
+  gap: 5px;
+  width: 135px;
+  justify-content: space-between;
+}
+
+.socials div {
+  height: 26px;
+  padding: 8px 11.2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .socials img {
-  height: 20px;
+  transition: 0.25s;
+  border-radius: 0px;
+  height: 18px;
+}
+
+.socials div:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
 }
 
 /* Burger Button (hidden desktop) */

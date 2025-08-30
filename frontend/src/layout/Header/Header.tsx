@@ -19,29 +19,42 @@ export default function Header() {
 
         {/* Desktop Nav */}
         <nav className={styles.navLinks}>
-          <a href="/index.php">HOME</a>
-          <a href="/about.php">ABOUT US</a>
-          <a href="/visit.php">VISIT US</a>
-          <a href="/media.php">MEDIA</a>
-          <a href="/otherchurches.php">OTHER CHURCHES</a>
-          <a href="/contact.php">CONTACT US</a>
-          <a
-            href="/contact.php"
-            style={{ backgroundColor: "rgba(255, 255, 255, 0.15)", borderRadius: "3px" }}
-          >
+          <a href="https://beyondsunday.org/index.php">HOME</a>
+          <a href="https://beyondsunday.org/about.php">ABOUT US</a>
+          <a href="https://beyondsunday.org/visit.php">VISIT US</a>
+          <a href="https://beyondsunday.org/media.php">MEDIA</a>
+          <a href="https://beyondsunday.org/otherchurches.php">OTHER CHURCHES</a>
+          <a href="https://beyondsunday.org/contact.php">CONTACT US</a>
+          <a href="/" style={{ backgroundColor: "rgba(255, 255, 255, 0.15)", borderRadius: "3px" }}>
             LOG IN
           </a>
         </nav>
         {!menuOpen && (
           <div className={styles.socials}>
-            <a href="https://twitter.com" target="_blank" rel="noreferrer">
-              <img src={twitter} alt="Twitter" />
+            <a href="https://x.com/waybeyondsunday" target="_blank" rel="noreferrer">
+              <div>
+                <img src={twitter} alt="Twitter" />
+              </div>
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer">
-              <img src={instagram} alt="Instagram" />
+
+            <a
+              href="https://www.instagram.com/orchardbeyondsunday/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div>
+                <img src={instagram} alt="Instagram" />
+              </div>
             </a>
-            <a href="https://podcasts.com" target="_blank" rel="noreferrer">
-              <img src={podcast} alt="Podcast" />
+
+            <a
+              href="https://podcasts.apple.com/us/podcast/messages-of-the-orchard-church/id317760786"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div>
+                <img src={podcast} alt="Podcast" />
+              </div>
             </a>
           </div>
         )}
@@ -59,7 +72,7 @@ export default function Header() {
         <a href="/visit.php">VISIT US</a>
         <a href="/media.php">MEDIA</a>
         <a href="/otherchurches.php">OTHER CHURCHES</a>
-        <a href="/contact.php">CONTACT US</a>
+        <a href="/">CONTACT US</a>
         <a
           href="/contact.php"
           style={{ backgroundColor: "rgba(255, 255, 255, 0.3)", borderRadius: "3px" }}
