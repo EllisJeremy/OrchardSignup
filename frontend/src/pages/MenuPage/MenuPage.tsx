@@ -3,20 +3,35 @@ import styles from "./Menu.module.css";
 import calendarScreenshot from "../../assets/calendarScreenshot.png";
 import logoutIcon from "../../assets/logIn.svg";
 import { useAuthStore } from "../../globalStores/useAuthStore";
+import { useNavigate } from "react-router-dom";
 
 export default function Menu() {
-  const { user } = useAuthStore();
-  console.log(user);
+  const { user, logout } = useAuthStore();
+  const navigate = useNavigate();
+
+  const logOutOrIn = async () => {
+    if (user) {
+      await logout();
+    }
+    navigate("/");
+  };
   return (
     <div className={styles.bodyDiv}>
       <div className={styles.mainDiv}>
         {/* Top Bar */}
         <div className={styles.topBar}>
           <h1 className={styles.titleLarge}>Welcome {user ? user.firstName : "Guest"}</h1>
-          <button className={styles.logoutButtonTop}>
-            {user ? "log out" : "log in"}
-            <img src={logoutIcon} alt="Logout" className={styles.logoutIcon} />
-          </button>
+          {user ? (
+            <button className={styles.logoutButtonTop} onClick={logOutOrIn}>
+              log out
+              <img src={logoutIcon} alt="Logout" className={styles.logoutIcon} />
+            </button>
+          ) : (
+            <button className={styles.logoutButtonTop} onClick={logOutOrIn}>
+              log in
+              <img src={logoutIcon} alt="Logout" className={styles.logoutIcon} />
+            </button>
+          )}
         </div>
 
         {/* Calendar (dominant tile) */}

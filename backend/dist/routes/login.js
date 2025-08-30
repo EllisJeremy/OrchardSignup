@@ -71,4 +71,12 @@ router.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, function* 
 router.get("/login/me", requireAuth_1.requireAuth, (req, res) => {
     res.json({ user: req.user });
 });
+router.post("/logout", (req, res) => {
+    res.clearCookie("jwt", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    });
+    res.json({ success: true });
+});
 exports.default = router;

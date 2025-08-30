@@ -75,4 +75,13 @@ router.get("/login/me", requireAuth, (req, res) => {
   res.json({ user: (req as any).user });
 });
 
+router.post("/logout", (req, res) => {
+  res.clearCookie("jwt", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+  });
+  res.json({ success: true });
+});
+
 export default router;
