@@ -37,6 +37,8 @@ router.post("/login", async (req, res) => {
       {
         id: user.accountId,
         email: user.accountEmail,
+        firstName: user.accountFirstName,
+        lastName: user.accountLastName,
         isAdmin: user.accountIsAdmin === 1 ? true : false,
       },
       JWT_SECRET,

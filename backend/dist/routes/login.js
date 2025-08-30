@@ -39,6 +39,8 @@ router.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, function* 
         const token = jsonwebtoken_1.default.sign({
             id: user.accountId,
             email: user.accountEmail,
+            firstName: user.accountFirstName,
+            lastName: user.accountLastName,
             isAdmin: user.accountIsAdmin === 1 ? true : false,
         }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
         // 4. Send JWT in HttpOnly cookie
