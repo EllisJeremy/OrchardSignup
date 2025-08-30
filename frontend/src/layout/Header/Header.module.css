@@ -192,9 +192,12 @@
 }
 .navbarToggler span:nth-child(2) {
   opacity: 1;
-  transition-delay: 0.5s;
+
   width: 17px;
-  transition: width 0.35s ease-out;
+  transition:
+    opacity ease 0.5s,
+    width 0.35s ease-out;
+  transition-delay: 0.5s;
 }
 .navbarToggler span:nth-child(3) {
   transition: 0.2s ease-out;
