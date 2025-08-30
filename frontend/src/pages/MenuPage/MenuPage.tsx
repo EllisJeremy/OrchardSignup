@@ -49,11 +49,7 @@ export default function Menu() {
         <div className={styles.tileDiv}>
           <h2 className={styles.title}>Miscellaneous</h2>
           <div className={styles.legacyLinks}>
-            <a
-              href="https://www.247christianity.org/secure/community.php?p=series"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href="https://247christianity.org/" target="_blank" rel="noreferrer">
               Messages
               <img src={paperStack} />
             </a>
@@ -75,19 +71,11 @@ export default function Menu() {
         <div className={styles.tileDiv} style={{ backgroundColor: "#ffffffff" }}>
           <h2 className={styles.title}>Finances</h2>
           <div className={styles.legacyLinks}>
-            <a
-              href="https://www.247christianity.org/secure/admin.php?p=report"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href="https://247christianity.org/" target="_blank" rel="noreferrer">
               Financial Summary
               <img src={dollar} />
             </a>
-            <a
-              href="https://www.247christianity.org/secure/admin.php?p=summary"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href="https://247christianity.org/" target="_blank" rel="noreferrer">
               Weekly Contributions
               <img src={week} />
             </a>
