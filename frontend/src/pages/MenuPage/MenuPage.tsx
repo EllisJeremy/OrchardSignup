@@ -4,6 +4,12 @@ import calendarScreenshot from "../../assets/calendarScreenshot.png";
 import logoutIcon from "../../assets/logIn.svg";
 import { useAuthStore } from "../../globalStores/useAuthStore";
 import { useNavigate } from "react-router-dom";
+import paperStack from "../../assets/paperStack.svg";
+import refund from "../../assets/refund.svg";
+import scroll from "../../assets/scroll.svg";
+import dollar from "../../assets/dollar.svg";
+import week from "../../assets/week.svg";
+import paper from "../../assets/paper.svg";
 
 export default function Menu() {
   const { user, logout } = useAuthStore();
@@ -41,76 +47,37 @@ export default function Menu() {
         </div>
 
         <div className={styles.tileDiv}>
-          <h2 className={styles.title}>Looking for a Legacy Service?</h2>
+          <h2 className={styles.title}>Miscellaneous</h2>
           <div className={styles.legacyLinks}>
             <a href="https://247christianity.org/" target="_blank" rel="noreferrer">
-              Legacy Page 1
+              Messages
+              <img src={paperStack} />
             </a>
             <a href="https://247christianity.org/" target="_blank" rel="noreferrer">
-              Legacy Page 2
+              Request Disbursements
+              <img src={refund} />
             </a>
             <a href="https://247christianity.org/" target="_blank" rel="noreferrer">
-              Legacy Page 3
+              ByLaws
+              <img src={scroll} />
             </a>
           </div>
         </div>
 
-        <div className={styles.tileDiv}>
-          <h2 className={styles.title}>Looking for a Legacy Service?</h2>
+        <div className={styles.tileDiv} style={{ backgroundColor: "#ffffffff" }}>
+          <h2 className={styles.title}>Finances</h2>
           <div className={styles.legacyLinks}>
             <a href="https://247christianity.org/" target="_blank" rel="noreferrer">
-              Legacy Page 1
+              Financial Summary
+              <img src={dollar} />
             </a>
             <a href="https://247christianity.org/" target="_blank" rel="noreferrer">
-              Legacy Page 2
+              Weekly Contributions
+              <img src={week} />
             </a>
             <a href="https://247christianity.org/" target="_blank" rel="noreferrer">
-              Legacy Page 3
-            </a>
-          </div>
-        </div>
-
-        <div className={styles.tileDiv}>
-          <h2 className={styles.title}>Looking for a Legacy Service?</h2>
-          <div className={styles.legacyLinks}>
-            <a href="https://247christianity.org/" target="_blank" rel="noreferrer">
-              Legacy Page 1
-            </a>
-            <a href="https://247christianity.org/" target="_blank" rel="noreferrer">
-              Legacy Page 2
-            </a>
-            <a href="https://247christianity.org/" target="_blank" rel="noreferrer">
-              Legacy Page 3
-            </a>
-          </div>
-        </div>
-
-        <div className={styles.tileDiv}>
-          <h2 className={styles.title}>Looking for a Legacy Service?</h2>
-          <div className={styles.legacyLinks}>
-            <a href="https://247christianity.org/" target="_blank" rel="noreferrer">
-              Legacy Page 1
-            </a>
-            <a href="https://247christianity.org/" target="_blank" rel="noreferrer">
-              Legacy Page 2
-            </a>
-            <a href="https://247christianity.org/" target="_blank" rel="noreferrer">
-              Legacy Page 3
-            </a>
-          </div>
-        </div>
-
-        <div className={styles.tileDiv}>
-          <h2 className={styles.title}>Looking for a Legacy Service?</h2>
-          <div className={styles.legacyLinks}>
-            <a href="https://247christianity.org/" target="_blank" rel="noreferrer">
-              Legacy Page 1
-            </a>
-            <a href="https://247christianity.org/" target="_blank" rel="noreferrer">
-              Legacy Page 2
-            </a>
-            <a href="https://247christianity.org/" target="_blank" rel="noreferrer">
-              Legacy Page 3
+              Budget Status
+              <img src={paper} />
             </a>
           </div>
         </div>
