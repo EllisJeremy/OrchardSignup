@@ -7,7 +7,8 @@ const router = express.Router();
 router.get("/", requireAuth, async (req, res) => {
   try {
     if (!req.user.isAdmin) {
-      return res.status(403).json({ error: "Forbidden" });
+      // dont show 403 cuz it shows up for normal users
+      return; //res.status(403).json({ error: "Forbidden" });
     }
 
     const [rows]: any = await pool.query(

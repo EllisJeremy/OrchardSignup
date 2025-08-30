@@ -19,7 +19,8 @@ const router = express_1.default.Router();
 router.get("/", requireAuth_1.requireAuth, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         if (!req.user.isAdmin) {
-            return res.status(403).json({ error: "Forbidden" });
+            // dont show 403 cuz it shows up for normal users
+            return; //res.status(403).json({ error: "Forbidden" });
         }
         const [rows] = yield index_1.pool.query("SELECT accountId, accountFirstName, accountLastName FROM accounts");
         res.json(rows);

@@ -25,6 +25,7 @@ export async function fetchAccounts() {
     credentials: "include",
   });
 
-  if (!res.ok) throw new Error("Failed to fetch accounts");
+  // dont give 403 here cuz otherwise it shows up for every user
+  if (!res.ok) return;
   return await res.json();
 }
