@@ -67,8 +67,14 @@ export default function Header() {
           )}
 
           {/* Burger (mobile only) */}
-          <button className={styles.burgerButton} onClick={() => setMenuOpen(!menuOpen)}>
-            {menuOpen ? "✕" : "☰"}
+          <button
+            className={`${styles.navbarToggler} ${menuOpen ? "" : styles.collapsed}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle navigation"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
           </button>
         </div>
 
