@@ -1,12 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 import orchardLogo from "../../assets/OrchardLogoHeader.png";
 import twitter from "../../assets/twitter.svg";
 import instagram from "../../assets/instagram.svg";
 import podcast from "../../assets/podcast.svg";
 
+function useMediaQuery(query: string): boolean {
+  const [matches, setMatches] = useState(() => window.matchMedia(query).matches);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    const listener = () => setMatches(media.matches);
+    media.addEventListener("change", listener);
+    return () => media.removeEventListener("change", listener);
+  }, [query]);
+
+  return matches;
+}
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const isDesktop = useMediaQuery("(min-width: 991px)");
+
+  useEffect(() => {
+    if (isDesktop) {
+      setMenuOpen(false);
+    }
+  }, [isDesktop]);
 
   return (
     <>
@@ -17,11 +38,10 @@ export default function Header() {
           className={styles.headerDivFlex}
           style={menuOpen ? { transform: "translateX(-300px)" } : {}}
         >
-          {/* Logo */}
           <a href="https://beyondsunday.org/" style={{ height: "46px" }}>
             <img className={styles.headerLogo} src={orchardLogo} alt="The Orchard" />
           </a>
-          {/* Desktop Nav */}
+
           <nav className={styles.navLinks}>
             <a href="https://beyondsunday.org/index.php">HOME</a>
             <a href="https://beyondsunday.org/about.php">ABOUT US</a>
@@ -66,7 +86,6 @@ export default function Header() {
             </div>
           )}
 
-          {/* Burger (mobile only) */}
           <button
             className={`${styles.navbarToggler} ${menuOpen ? "" : styles.collapsed}`}
             onClick={() => setMenuOpen(!menuOpen)}
@@ -78,7 +97,6 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Side Menu */}
         <div className={`${styles.sideMenu} ${menuOpen ? styles.showMenu : ""}`}>
           <a href="https://beyondsunday.org/index.php">HOME</a>
           <a href="https://beyondsunday.org/about.php">ABOUT US</a>

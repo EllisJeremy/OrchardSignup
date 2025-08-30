@@ -96,17 +96,6 @@
   border-radius: 3px;
 }
 
-/* Burger Button (hidden desktop) */
-.burgerButton {
-  font-size: 28px;
-  color: white;
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: none;
-}
-
-/* Side Menu */
 .sideMenu {
   position: fixed;
   top: 0;
@@ -147,6 +136,11 @@
     display: block;
   }
 }
+@media (min-width: 990px) {
+  .navbarToggler {
+    display: none !important;
+  }
+}
 
 .overlay {
   position: fixed;
@@ -171,7 +165,7 @@
 
 .navbarToggler span {
   display: block;
-  background-color: #ffffff; /* or #4f4f4f */
+  background-color: #ffffff;
   height: 1px;
   width: 22px;
   margin-top: calc(18px / 6);
@@ -188,21 +182,21 @@
 .navbarToggler span:nth-child(1) {
   transition: 0.2s ease-out;
   transform: translate(0%, 0%) rotate(0deg);
-  transition-delay: 0.5s;
+  transition-delay: 0.6s;
 }
 .navbarToggler span:nth-child(2) {
   opacity: 1;
 
   width: 17px;
   transition:
-    opacity ease 0.5s,
+    opacity ease 0s,
     width 0.35s ease-out;
-  transition-delay: 0.5s;
+  transition-delay: 0.6s;
 }
 .navbarToggler span:nth-child(3) {
   transition: 0.2s ease-out;
   transform: translate(0%, 0%) rotate(0deg);
-  transition-delay: 0.5s;
+  transition-delay: 0.6s;
 }
 
 /* hover */
