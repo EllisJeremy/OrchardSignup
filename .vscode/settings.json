@@ -13,6 +13,20 @@
       "database": "orchard",
       "username": "root",
       "password": "HKj1!aW9"
+    },
+    {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "previewLimit": 50,
+      "server": "database-1.cre2wo6uwkvk.us-east-2.rds.amazonaws.com",
+      "port": 3306,
+      "driver": "MySQL",
+      "password": "75Pmr#SVb48.1.O:gP)Gq|o1ZJTi",
+      "name": "AWS",
+      "username": "admin",
+      "database": "database-1"
     }
   ]
 }
