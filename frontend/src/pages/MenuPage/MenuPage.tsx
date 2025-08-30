@@ -7,7 +7,7 @@ export default function Menu() {
     <div className={styles.bodyDiv}>
       <div className={styles.mainDiv}>
         {/* Calendar */}
-        <div className={styles.tileDiv}>
+        <div className={`${styles.tileDiv} ${styles.calendarDiv}`}>
           <h2 className={styles.title}>Calendar</h2>
           <Link to="/menu/calendar">
             <img className={styles.calendarImg} src={calendarScreenshot} alt="Calendar" />
