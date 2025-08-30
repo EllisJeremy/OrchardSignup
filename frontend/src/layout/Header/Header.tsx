@@ -9,8 +9,11 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className={styles.headerDiv} style={menuOpen ? { paddingRight: "350px" } : {}}>
-      <div className={styles.headerDivFlex}>
+    <header className={styles.headerDiv}>
+      <div
+        className={styles.headerDivFlex}
+        style={menuOpen ? { transform: "translateX(-300px)" } : {}}
+      >
         {/* Logo */}
         <img className={styles.headerLogo} src={orchardLogo} alt="The Orchard" />
 
@@ -26,7 +29,7 @@ export default function Header() {
             href="/contact.php"
             style={{ backgroundColor: "rgba(255, 255, 255, 0.15)", borderRadius: "3px" }}
           >
-            CALENDAR
+            LOG IN
           </a>
         </nav>
         {!menuOpen && (
@@ -61,7 +64,7 @@ export default function Header() {
           href="/contact.php"
           style={{ backgroundColor: "rgba(255, 255, 255, 0.3)", borderRadius: "3px" }}
         >
-          CALENDAR
+          LOG IN
         </a>
       </div>
     </header>
