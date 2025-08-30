@@ -17,9 +17,21 @@
   box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
 }
 
+@media (min-width: 930px) {
+  .mainDiv {
+    margin-top: 100px;
+  }
+}
+
 @media (min-width: 1200px) {
   .mainDiv {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .mainDiv {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -65,14 +77,11 @@
 }
 
 /* Calendar Dominant background-color: rgba(153, 217, 255, 0.5);*/
-.calendarDiv {
-  grid-column: span 2;
-  grid-row: span 2;
-}
-@medi (max-width: 1199px) {
+
+@media (min-width: 610px) {
   .calendarDiv {
-    grid-column: auto;
-    grid-row: auto;
+    grid-column: span 2;
+    grid-row: span 2;
   }
 }
 
