@@ -13,12 +13,20 @@ dotenv.config();
 const port = process.env.PORT || 8080;
 
 const app = express();
-
 const allowedOrigins = ["http://localhost:5173", "https://beyondsunday.org"];
 
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: (origin, callback) => {
+      // allow REST tools like Postman (no origin header)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );

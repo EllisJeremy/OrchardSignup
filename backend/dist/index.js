@@ -25,6 +25,21 @@ const accounts_1 = __importDefault(require("./routes/accounts"));
 dotenv_1.default.config();
 const port = process.env.PORT || 8080;
 const app = (0, express_1.default)();
+const allowedOrigins = ["http://localhost:5173", "https://beyondsunday.org"];
+app.use((0, cors_1.default)({
+    origin: (origin, callback) => {
+        // allow REST tools like Postman (no origin header)
+        if (!origin)
+            return callback(null, true);
+        if (allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        }
+        else {
+            return callback(new Error("Not allowed by CORS"));
+        }
+    },
+    credentials: true,
+}));
 // ----- MIDDLEWARE -----
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
@@ -35,10 +50,6 @@ app.get("/", (req, res) => {
 app.get("/env", (req, res) => {
     res.send(`${process.env.DB_HOST} ${process.env.DB_USER} ${process.env.DB_PASS} ${process.env.DB_NAME}`);
 });
-app.use((0, cors_1.default)({
-    origin: "http://localhost:5173",
-    credentials: true,
-}));
 // ----- DATABASE -----
 exports.pool = promise_1.default.createPool({
     host: process.env.DB_HOST || "localhost",
