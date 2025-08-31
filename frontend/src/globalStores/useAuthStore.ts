@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { API_URL } from "../../config.ts";
 
-console.log(API_URL);
 interface User {
   id: number;
   email: string;
