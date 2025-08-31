@@ -1,22 +1,21 @@
+.bodyDiv {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0px;
+  margin: 0px 20px;
+}
+
 .mainDiv {
-  position: fixed;
-  margin-top: 100px;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-top: 8vh;
   width: 450px;
   padding: 10px;
   background-color: rgba(240, 241, 245, 1);
   border-radius: 20px;
-  max-width: 85%;
-  overflow: auto;
-  box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
-}
 
-.mainDiv {
+  box-shadow: 0px 2px 5px 1px rgb(195, 196, 200);
   scrollbar-width: thin;
-  /* Makes the scrollbar thinner */
+
   scrollbar-color: rgb(210, 210, 220) #f1f1f1;
-  /* thumb color and track color */
 }
 
 .headerDiv {

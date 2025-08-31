@@ -23,29 +23,31 @@ export default function ForgotPasswordPage() {
   }, [reset]);
 
   return (
-    <div className={styles.mainDiv}>
-      <div className={styles.loginDiv}>
-        <div className={styles.headerDiv}>
-          <img className={styles.orchardLogo} src={orchardLogo} />
+    <div className={styles.bodyDiv}>
+      <div className={styles.mainDiv}>
+        <div className={styles.loginDiv}>
+          <div className={styles.headerDiv}>
+            <img className={styles.orchardLogo} src={orchardLogo} />
+          </div>
+          <form
+            onSubmit={(e) => {
+              testSubmit(e);
+            }}
+            noValidate
+          >
+            <EmailInput value={email} onChange={setEmail} />
+            <div className={styles.spacerDiv} />
+            <button className={styles.loginButton} type="submit">
+              Send Email
+            </button>
+          </form>
         </div>
-        <form
-          onSubmit={(e) => {
-            testSubmit(e);
-          }}
-          noValidate
-        >
-          <EmailInput value={email} onChange={setEmail} />
-          <div className={styles.spacerDiv} />
-          <button className={styles.loginButton} type="submit">
-            Send Email
-          </button>
-        </form>
-      </div>
 
-      <div className={styles.signupDiv}>
-        <Link className={styles.loginButton} to="/">
-          Return To Log in
-        </Link>
+        <div className={styles.signupDiv}>
+          <Link className={styles.loginButton} to="/">
+            Return To Log in
+          </Link>
+        </div>
       </div>
     </div>
   );
