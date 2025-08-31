@@ -44,6 +44,16 @@ export const pool = mysql.createPool({
   database: process.env.DB_NAME || "orchard",
 });
 
+app.get("/health/db", async (req, res) => {
+  try {
+    const [rows] = await pool.query("SELECT NOW() AS now");
+    res.json({ status: "ok", dbTime: rows[0].now });
+  } catch (err: any) {
+    console.error("DB connection failed:", err.message);
+    res.status(500).json({ status: "error", message: err.message });
+  }
+});
+
 // ----- ROUTES -----
 app.use("/tasks", tasksRoute);
 app.use("/accounts", signupRoute);
