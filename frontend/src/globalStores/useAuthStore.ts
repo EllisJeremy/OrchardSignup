@@ -1,5 +1,7 @@
 import { create } from "zustand";
+import { API_URL } from "../../config.ts";
 
+console.log(API_URL);
 interface User {
   id: number;
   email: string;
@@ -19,7 +21,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   user: null,
 
   login: async (email, password) => {
-    const res = await fetch("http://localhost:8080/accounts/login", {
+    const res = await fetch(`${API_URL}/accounts/login`, {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
@@ -34,7 +36,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   },
 
   logout: async () => {
-    await fetch("http://localhost:8080/accounts/logout", {
+    await fetch(`${API_URL}/accounts/logout`, {
       method: "POST",
       credentials: "include",
     });
@@ -43,7 +45,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   checkAuth: async () => {
     // ask backend if cookie is valid + get user info
-    const res = await fetch("http://localhost:8080/accounts/login/me", {
+    const res = await fetch(`${API_URL}/accounts/login/me`, {
       method: "GET",
       credentials: "include",
     });

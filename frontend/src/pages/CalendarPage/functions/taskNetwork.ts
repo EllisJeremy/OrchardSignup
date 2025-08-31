@@ -1,6 +1,7 @@
 import { RawTask } from "../calendarTypes/rawTask";
 import { buildTaskDatabaseFromRaw } from "./buildTaskDatabaseFromRaw";
 import { TaskClass } from "../calendarStore";
+import { API_URL } from "../../../../config";
 
 export const fetchTasks = async (
   year: number,
@@ -8,7 +9,7 @@ export const fetchTasks = async (
   setTaskDatabase: (taskMap: Map<string, TaskClass[]>) => void,
 ) => {
   try {
-    const res = await fetch(`http://localhost:8080/tasks/by-month/?year=${year}&month=${month}`);
+    const res = await fetch(`${API_URL}/tasks/by-month/?year=${year}&month=${month}`);
     const data: RawTask[] = await res.json();
 
     const groupedTasks = buildTaskDatabaseFromRaw(data);
@@ -29,7 +30,7 @@ export async function createTask(task: {
   taskType: string;
   taskRepeat: string | null;
 }) {
-  const res = await fetch("http://localhost:8080/tasks", {
+  const res = await fetch(`${API_URL}/tasks`, {
     method: "POST",
     credentials: "include",
     headers: {
@@ -43,7 +44,7 @@ export async function createTask(task: {
 }
 
 export async function deleteTask(taskId: number) {
-  const res = await fetch(`http://localhost:8080/tasks/${taskId}`, {
+  const res = await fetch(`${API_URL}/tasks/${taskId}`, {
     method: "DELETE",
     credentials: "include",
   });
@@ -54,7 +55,7 @@ export async function deleteTask(taskId: number) {
 }
 
 export async function joinTask(taskId: number) {
-  const res = await fetch(`http://localhost:8080/tasks/${taskId}/join`, {
+  const res = await fetch(`${API_URL}/tasks/${taskId}/join`, {
     method: "PATCH",
     credentials: "include",
   });
@@ -64,7 +65,7 @@ export async function joinTask(taskId: number) {
 }
 
 export async function dropTask(taskId: number) {
-  const res = await fetch(`http://localhost:8080/tasks/${taskId}/drop`, {
+  const res = await fetch(`${API_URL}/tasks/${taskId}/drop`, {
     method: "PATCH",
     credentials: "include",
   });

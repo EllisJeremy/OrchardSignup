@@ -1,4 +1,5 @@
 // if ur looking for the login network function, its in useAuthStore.ts
+import { API_URL } from "../../../../config";
 
 export async function createUser(
   email: string,
@@ -6,7 +7,7 @@ export async function createUser(
   firstName: string,
   lastName: string,
 ) {
-  const res = await fetch("http://localhost:8080/accounts/signup", {
+  const res = await fetch(`${API_URL}/accounts/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -20,7 +21,7 @@ export async function createUser(
 }
 
 export async function fetchAccounts() {
-  const res = await fetch("http://localhost:8080/accounts", {
+  const res = await fetch(`${API_URL}/accounts`, {
     method: "GET",
     credentials: "include",
   });
