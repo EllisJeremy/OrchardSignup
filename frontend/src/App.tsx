@@ -15,7 +15,7 @@ export default function App() {
     checkAuth();
   }, [checkAuth]);
   return (
-    <Router>
+    <Router basename="/account">
       <Layout>
         <Routes>
           <Route path="/" element={<LoginPage />} />
