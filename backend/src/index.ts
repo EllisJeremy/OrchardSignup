@@ -10,7 +10,7 @@ import loginRoute from "./routes/login";
 import accountsRoute from "./routes/accounts";
 
 dotenv.config();
-const port = process.env.PORT;
+const port = process.env.PORT || 8080;
 
 const app = express();
 
@@ -19,6 +19,10 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Allow frontend at :5173 to talk to backend at :8080
+app.get("/", (req, res) => {
+  res.send("Orchard backend is running!");
+});
+
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -30,7 +34,7 @@ app.use(
 export const pool = mysql.createPool({
   host: process.env.DB_HOST || "localhost",
   user: process.env.DB_USER || "root",
-  password: process.env.mySQLPassword,
+  password: process.env.DB_PASS,
   database: process.env.DB_NAME || "orchard",
 });
 
