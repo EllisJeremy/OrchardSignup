@@ -23,6 +23,12 @@ app.get("/", (req, res) => {
   res.send("Orchard backend is running!");
 });
 
+app.get("/env", (req, res) => {
+  res.send(
+    `${process.env.DB_HOST} ${process.env.DB_USER} ${process.env.DB_PASS} ${process.env.DB_NAME}`
+  );
+});
+
 app.use(
   cors({
     origin: "http://localhost:5173",

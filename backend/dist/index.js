@@ -23,6 +23,9 @@ app.use((0, cookie_parser_1.default)());
 app.get("/", (req, res) => {
     res.send("Orchard backend is running!");
 });
+app.get("/env", (req, res) => {
+    res.send(`${process.env.DB_HOST} ${process.env.DB_USER} ${process.env.DB_PASS} ${process.env.DB_NAME}`);
+});
 app.use((0, cors_1.default)({
     origin: "http://localhost:5173",
     credentials: true,
