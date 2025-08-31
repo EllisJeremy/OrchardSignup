@@ -48,7 +48,7 @@ router.post("/login", async (req, res) => {
     // 4. Send JWT in HttpOnly cookie
     res.cookie("jwt", token, {
       httpOnly: true,
-      secure: false,
+      secure: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       maxAge: 1000 * 60 * 60, // 1 hour
     });
@@ -78,7 +78,7 @@ router.get("/login/me", requireAuth, (req, res) => {
 router.post("/logout", (req, res) => {
   res.clearCookie("jwt", {
     httpOnly: true,
-    secure: false,
+    secure: process.env.NODE_ENV === "production",
     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
   });
   res.json({ success: true });

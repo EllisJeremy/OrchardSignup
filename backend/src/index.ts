@@ -14,9 +14,11 @@ const port = process.env.PORT || 8080;
 
 const app = express();
 
+const allowedOrigins = ["http://localhost:5173", "https://beyondsunday.org"];
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: allowedOrigins,
     credentials: true,
   })
 );
