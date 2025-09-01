@@ -3,7 +3,7 @@ const router = express.Router();
 import { pool } from "../index";
 import { requireAuth } from "../middleware/requireAuth";
 import { sendEmail } from "../email/sendEmail";
-import { formatTaskEmail } from "../email/emailFormatter";
+import formatTaskEmail from "../email/emailFormatter";
 
 router.get("/by-month", async (req, res) => {
   try {
@@ -126,16 +126,15 @@ router.patch("/:taskId/join", requireAuth, async (req, res) => {
     const task = (tasks as any)[0];
 
     try {
-      const message = formatTaskEmail(
+      const { text, html } = formatTaskEmail(
         req.user.firstName,
         task.taskTitle,
         task.taskDescription,
         task.taskDate,
-        task.taskStartTime // due time
+        task.taskStartTime
       );
 
-      await sendEmail(req.user.email, "Task Signup Confirmation", message);
-      console.log("Signup email sent");
+      await sendEmail(req.user.email, "Task Signup Confirmation", text, html);
     } catch (err) {
       console.error("Failed to send signup email:", err);
     }

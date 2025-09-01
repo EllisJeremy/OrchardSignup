@@ -23,13 +23,14 @@ const transporter = nodemailer_1.default.createTransport({
         pass: process.env.EMAIL_PASS,
     },
 });
-function sendEmail(to, subject, text) {
+function sendEmail(to, subject, text, html) {
     return __awaiter(this, void 0, void 0, function* () {
         return transporter.sendMail({
             from: '"The Orchard" <whatshappening@beyondsunday.org>',
             to,
             subject,
             text,
+            html,
         });
     });
 }

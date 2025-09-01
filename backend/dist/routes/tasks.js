@@ -17,7 +17,7 @@ const router = express_1.default.Router();
 const index_1 = require("../index");
 const requireAuth_1 = require("../middleware/requireAuth");
 const sendEmail_1 = require("../email/sendEmail");
-const emailFormatter_1 = require("../email/emailFormatter");
+const emailFormatter_1 = __importDefault(require("../email/emailFormatter"));
 router.get("/by-month", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const year = req.query.year;
@@ -106,10 +106,8 @@ router.patch("/:taskId/join", requireAuth_1.requireAuth, (req, res) => __awaiter
        WHERE taskId = ?`, [taskId]);
         const task = tasks[0];
         try {
-            const message = (0, emailFormatter_1.formatTaskEmail)(req.user.firstName, task.taskTitle, task.taskDescription, task.taskDate, task.taskStartTime // due time
-            );
-            yield (0, sendEmail_1.sendEmail)(req.user.email, "Task Signup Confirmation", message);
-            console.log("Signup email sent");
+            const { text, html } = (0, emailFormatter_1.default)(req.user.firstName, task.taskTitle, task.taskDescription, task.taskDate, task.taskStartTime);
+            yield (0, sendEmail_1.sendEmail)(req.user.email, "Task Signup Confirmation", text, html);
         }
         catch (err) {
             console.error("Failed to send signup email:", err);
