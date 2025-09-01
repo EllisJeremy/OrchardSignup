@@ -44,7 +44,7 @@ Thanks for your contribution!
     <p style="font-size:15px;line-height:1.5;">${taskDescription}</p>
 
     <p style="font-size:15px;margin:15px 0;">
-      <strong>📅 Due by:</strong>
+      <strong>Due by:</strong>
       <span style="color:#000;">${timeStr} ${dateStr}</span>
     </p>
     <br>

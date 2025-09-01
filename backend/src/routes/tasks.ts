@@ -166,7 +166,7 @@ router.patch("/:taskId/join", requireAuth, async (req, res) => {
         task.taskStartTime
       );
 
-      sendEmail(owner.accountEmail, "New Task Assigned to You", text, html).catch((err) =>
+      sendEmail(req.user.email, "New Task Assigned to You", text, html).catch((err) =>
         console.error("Email error:", err)
       );
     } catch (err) {

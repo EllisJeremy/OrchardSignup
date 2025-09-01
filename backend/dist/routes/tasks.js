@@ -126,7 +126,7 @@ router.patch("/:taskId/join", requireAuth_1.requireAuth, (req, res) => __awaiter
         const task = tasks[0];
         try {
             const { text, html } = (0, emailFormatter_1.default)(req.user.firstName, task.taskTitle, task.taskDescription, task.taskDate, task.taskStartTime);
-            (0, sendEmail_1.sendEmail)(owner.accountEmail, "New Task Assigned to You", text, html).catch((err) => console.error("Email error:", err));
+            (0, sendEmail_1.sendEmail)(req.user.email, "New Task Assigned to You", text, html).catch((err) => console.error("Email error:", err));
         }
         catch (err) {
             console.error("Failed to send signup email:", err);
