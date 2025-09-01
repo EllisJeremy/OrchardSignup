@@ -16,6 +16,8 @@ const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router();
 const index_1 = require("../index");
 const requireAuth_1 = require("../middleware/requireAuth");
+const sendEmail_1 = require("../email/sendEmail");
+const emailFormatter_1 = require("../email/emailFormatter");
 router.get("/by-month", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const year = req.query.year;
@@ -99,14 +101,27 @@ router.patch("/:taskId/join", requireAuth_1.requireAuth, (req, res) => __awaiter
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: "Task not found" });
         }
-        res.status(200).json({ success: true });
+        const [tasks] = yield index_1.pool.query(`SELECT taskTitle, taskDescription, taskDate, taskStartTime, taskEndTime
+       FROM tasks
+       WHERE taskId = ?`, [taskId]);
+        const task = tasks[0];
+        try {
+            const message = (0, emailFormatter_1.formatTaskEmail)(req.user.firstName, task.taskTitle, task.taskDescription, task.taskDate, task.taskStartTime // due time
+            );
+            yield (0, sendEmail_1.sendEmail)(req.user.email, "Task Signup Confirmation", message);
+            console.log("Signup email sent");
+        }
+        catch (err) {
+            console.error("Failed to send signup email:", err);
+        }
+        // 4. Respond to client
+        res.status(200).json({ success: true, task });
     }
     catch (error) {
         console.error("Update error:", error);
         res.status(500).json({ success: false, error: "Internal server error" });
     }
 }));
-exports.default = router;
 router.patch("/:taskId/drop", requireAuth_1.requireAuth, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { taskId } = req.params;
     try {
@@ -130,3 +145,4 @@ router.patch("/:taskId/drop", requireAuth_1.requireAuth, (req, res) => __awaiter
         res.status(500).json({ success: false, error: "Internal server error" });
     }
 }));
+exports.default = router;

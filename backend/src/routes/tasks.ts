@@ -2,6 +2,8 @@ import express from "express";
 const router = express.Router();
 import { pool } from "../index";
 import { requireAuth } from "../middleware/requireAuth";
+import { sendEmail } from "../email/sendEmail";
+import { formatTaskEmail } from "../email/emailFormatter";
 
 router.get("/by-month", async (req, res) => {
   try {
@@ -114,13 +116,37 @@ router.patch("/:taskId/join", requireAuth, async (req, res) => {
       return res.status(404).json({ error: "Task not found" });
     }
 
-    res.status(200).json({ success: true });
+    const [tasks] = await pool.query(
+      `SELECT taskTitle, taskDescription, taskDate, taskStartTime, taskEndTime
+       FROM tasks
+       WHERE taskId = ?`,
+      [taskId]
+    );
+
+    const task = (tasks as any)[0];
+
+    try {
+      const message = formatTaskEmail(
+        req.user.firstName,
+        task.taskTitle,
+        task.taskDescription,
+        task.taskDate,
+        task.taskStartTime // due time
+      );
+
+      await sendEmail(req.user.email, "Task Signup Confirmation", message);
+      console.log("Signup email sent");
+    } catch (err) {
+      console.error("Failed to send signup email:", err);
+    }
+
+    // 4. Respond to client
+    res.status(200).json({ success: true, task });
   } catch (error) {
     console.error("Update error:", error);
     res.status(500).json({ success: false, error: "Internal server error" });
   }
 });
-export default router;
 
 router.patch("/:taskId/drop", requireAuth, async (req, res) => {
   const { taskId } = req.params;
@@ -150,3 +176,5 @@ router.patch("/:taskId/drop", requireAuth, async (req, res) => {
     res.status(500).json({ success: false, error: "Internal server error" });
   }
 });
+
+export default router;

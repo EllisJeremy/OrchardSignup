@@ -10,7 +10,6 @@ import tasksRoute from "./routes/tasks";
 import signupRoute from "./routes/signup";
 import loginRoute from "./routes/login";
 import accountsRoute from "./routes/accounts";
-import { sendEmail } from "./email/testEmail";
 
 const port = process.env.PORT || 8080;
 
