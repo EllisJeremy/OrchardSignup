@@ -67,22 +67,41 @@ router.post("/", requireAuth_1.requireAuth, (req, res) => __awaiter(void 0, void
     if (!req.user.isAdmin) {
         return res.status(403).json({ error: "Forbidden" });
     }
-    const { taskDate, taskTitle, taskStartTime, taskEndTime, taskDescription, taskColor, taskOwner, taskType, taskRepeat, } = req.body;
+    const { taskDate, taskTitle, taskStartTime, taskDescription, taskColor, taskOwner, // accountId of assigned owner (can be null)
+    taskType, taskRepeat, } = req.body;
     try {
+        // 1. Insert task
         const [result] = yield index_1.pool.query(`INSERT INTO tasks 
-        (taskDate, taskTitle, taskStartTime, taskEndTime, taskDescription, taskColor, taskOwnerId, taskType, taskRepeat) 
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`, [
+        (taskDate, taskTitle, taskStartTime, taskDescription, taskColor, taskOwnerId, taskType, taskRepeat) 
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, [
             taskDate,
             taskTitle,
             taskStartTime,
-            taskEndTime,
             taskDescription,
             taskColor,
             taskOwner,
             taskType,
             taskRepeat,
         ]);
-        res.status(201).json({ success: true, insertId: result.insertId });
+        const insertId = result.insertId;
+        // 2. If a taskOwner was assigned, fetch their info and email them
+        if (taskOwner) {
+            const [accounts] = yield index_1.pool.query(`SELECT accountFirstName, accountEmail 
+         FROM accounts
+         WHERE accountId = ?`, [taskOwner]);
+            const owner = accounts[0];
+            if (owner) {
+                try {
+                    const { text, html } = (0, emailFormatter_1.default)(owner.accountFirstName, taskTitle, taskDescription, taskDate, taskStartTime);
+                    (0, sendEmail_1.sendEmail)(owner.accountEmail, "New Task Assigned to You", text, html).catch((err) => console.error("Email error:", err));
+                }
+                catch (err) {
+                    console.error(" Failed to send assignment email:", err);
+                }
+            }
+        }
+        // 3. Respond
+        res.status(201).json({ success: true, insertId });
     }
     catch (error) {
         console.error("Insert error:", error);
@@ -107,12 +126,11 @@ router.patch("/:taskId/join", requireAuth_1.requireAuth, (req, res) => __awaiter
         const task = tasks[0];
         try {
             const { text, html } = (0, emailFormatter_1.default)(req.user.firstName, task.taskTitle, task.taskDescription, task.taskDate, task.taskStartTime);
-            yield (0, sendEmail_1.sendEmail)(req.user.email, "Task Signup Confirmation", text, html);
+            (0, sendEmail_1.sendEmail)(owner.accountEmail, "New Task Assigned to You", text, html).catch((err) => console.error("Email error:", err));
         }
         catch (err) {
             console.error("Failed to send signup email:", err);
         }
-        // 4. Respond to client
         res.status(200).json({ success: true, task });
     }
     catch (error) {

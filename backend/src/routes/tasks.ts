@@ -60,28 +60,28 @@ router.post("/", requireAuth, async (req, res) => {
   if (!req.user.isAdmin) {
     return res.status(403).json({ error: "Forbidden" });
   }
+
   const {
     taskDate,
     taskTitle,
     taskStartTime,
-    taskEndTime,
     taskDescription,
     taskColor,
-    taskOwner,
+    taskOwner, // accountId of assigned owner (can be null)
     taskType,
     taskRepeat,
   } = req.body;
 
   try {
+    // 1. Insert task
     const [result] = await pool.query(
       `INSERT INTO tasks 
-        (taskDate, taskTitle, taskStartTime, taskEndTime, taskDescription, taskColor, taskOwnerId, taskType, taskRepeat) 
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        (taskDate, taskTitle, taskStartTime, taskDescription, taskColor, taskOwnerId, taskType, taskRepeat) 
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         taskDate,
         taskTitle,
         taskStartTime,
-        taskEndTime,
         taskDescription,
         taskColor,
         taskOwner,
@@ -90,7 +90,39 @@ router.post("/", requireAuth, async (req, res) => {
       ]
     );
 
-    res.status(201).json({ success: true, insertId: (result as any).insertId });
+    const insertId = (result as any).insertId;
+
+    // 2. If a taskOwner was assigned, fetch their info and email them
+    if (taskOwner) {
+      const [accounts] = await pool.query(
+        `SELECT accountFirstName, accountEmail 
+         FROM accounts
+         WHERE accountId = ?`,
+        [taskOwner]
+      );
+
+      const owner = (accounts as any)[0];
+      if (owner) {
+        try {
+          const { text, html } = formatTaskEmail(
+            owner.accountFirstName,
+            taskTitle,
+            taskDescription,
+            taskDate,
+            taskStartTime
+          );
+
+          sendEmail(owner.accountEmail, "New Task Assigned to You", text, html).catch((err) =>
+            console.error("Email error:", err)
+          );
+        } catch (err) {
+          console.error(" Failed to send assignment email:", err);
+        }
+      }
+    }
+
+    // 3. Respond
+    res.status(201).json({ success: true, insertId });
   } catch (error) {
     console.error("Insert error:", error);
     res.status(500).json({ success: false, error: "Internal server error" });
@@ -134,12 +166,13 @@ router.patch("/:taskId/join", requireAuth, async (req, res) => {
         task.taskStartTime
       );
 
-      await sendEmail(req.user.email, "Task Signup Confirmation", text, html);
+      sendEmail(owner.accountEmail, "New Task Assigned to You", text, html).catch((err) =>
+        console.error("Email error:", err)
+      );
     } catch (err) {
       console.error("Failed to send signup email:", err);
     }
 
-    // 4. Respond to client
     res.status(200).json({ success: true, task });
   } catch (error) {
     console.error("Update error:", error);
