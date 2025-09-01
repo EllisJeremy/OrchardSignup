@@ -1,6 +1,8 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import mysql from "mysql2/promise";
-import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
@@ -8,8 +10,8 @@ import tasksRoute from "./routes/tasks";
 import signupRoute from "./routes/signup";
 import loginRoute from "./routes/login";
 import accountsRoute from "./routes/accounts";
+import { sendEmail } from "./email/testEmail";
 
-dotenv.config();
 const port = process.env.PORT || 8080;
 
 const app = express();
