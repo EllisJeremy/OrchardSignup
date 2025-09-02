@@ -23,16 +23,18 @@ export default function Task() {
           <div key={index} className={styles.taskCardDiv}>
             {user?.isAdmin && (
               <div className={styles.adminBarDiv}>
+                {/* 
                 <button
                   className={styles.editButton}
                   title="Edit"
                   onClick={async () => {
-                    await deleteTask(task.id);
-                    triggerReload();
+                    // await deleteTask(task.id);
+                    // triggerReload();
                   }}
                 >
                   <img className={styles.trash} src={edit} />
                 </button>
+                */}
                 <button
                   className={styles.trashButton}
                   title="Delate"
