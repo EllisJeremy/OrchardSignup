@@ -67,16 +67,15 @@ router.post("/", requireAuth_1.requireAuth, (req, res) => __awaiter(void 0, void
     if (!req.user.isAdmin) {
         return res.status(403).json({ error: "Forbidden" });
     }
-    const { taskDate, taskTitle, taskStartTime, taskDescription, taskColor, taskOwner, // accountId of assigned owner (can be null)
-    taskType, taskRepeat, } = req.body;
+    const { taskDate, taskTitle, taskStartTime, taskEndTime, taskDescription, taskColor, taskOwner, taskType, taskRepeat, } = req.body;
     try {
-        // 1. Insert task
         const [result] = yield index_1.pool.query(`INSERT INTO tasks 
-        (taskDate, taskTitle, taskStartTime, taskDescription, taskColor, taskOwnerId, taskType, taskRepeat) 
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, [
+        (taskDate, taskTitle, taskStartTime, taskEndTime, taskDescription, taskColor, taskOwnerId, taskType, taskRepeat) 
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`, [
             taskDate,
             taskTitle,
             taskStartTime,
+            taskEndTime,
             taskDescription,
             taskColor,
             taskOwner,
@@ -84,7 +83,6 @@ router.post("/", requireAuth_1.requireAuth, (req, res) => __awaiter(void 0, void
             taskRepeat,
         ]);
         const insertId = result.insertId;
-        // 2. If a taskOwner was assigned, fetch their info and email them
         if (taskOwner) {
             const [accounts] = yield index_1.pool.query(`SELECT accountFirstName, accountEmail 
          FROM accounts

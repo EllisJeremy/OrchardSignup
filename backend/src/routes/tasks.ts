@@ -65,23 +65,24 @@ router.post("/", requireAuth, async (req, res) => {
     taskDate,
     taskTitle,
     taskStartTime,
+    taskEndTime,
     taskDescription,
     taskColor,
-    taskOwner, // accountId of assigned owner (can be null)
+    taskOwner,
     taskType,
     taskRepeat,
   } = req.body;
 
   try {
-    // 1. Insert task
     const [result] = await pool.query(
       `INSERT INTO tasks 
-        (taskDate, taskTitle, taskStartTime, taskDescription, taskColor, taskOwnerId, taskType, taskRepeat) 
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+        (taskDate, taskTitle, taskStartTime, taskEndTime, taskDescription, taskColor, taskOwnerId, taskType, taskRepeat) 
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         taskDate,
         taskTitle,
         taskStartTime,
+        taskEndTime,
         taskDescription,
         taskColor,
         taskOwner,
@@ -92,7 +93,6 @@ router.post("/", requireAuth, async (req, res) => {
 
     const insertId = (result as any).insertId;
 
-    // 2. If a taskOwner was assigned, fetch their info and email them
     if (taskOwner) {
       const [accounts] = await pool.query(
         `SELECT accountFirstName, accountEmail 
