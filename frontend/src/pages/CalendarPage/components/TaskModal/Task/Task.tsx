@@ -3,7 +3,7 @@ import { taskStore } from "../../../calendarStore";
 import { useAuthStore } from "../../../../../globalStores/useAuthStore";
 import trash from "../../../../../assets/trash.svg";
 import check from "../../../../../assets/check.svg";
-import edit from "../../../../../assets/edit.svg";
+// import edit from "../../../../../assets/edit.svg";
 import XFat from "../../../../../assets/XFat.svg";
 import { to12Hour } from "../../../functions/timeFormat";
 import { colorMap } from "./colorMap";
