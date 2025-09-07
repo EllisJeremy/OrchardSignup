@@ -1,4 +1,3 @@
-// routes/login.ts
 import express from "express";
 import { pool } from "../index";
 import bcrypt from "bcrypt";
@@ -14,7 +13,6 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // 1. Get user from DB
     const [rows]: any = await pool.query(
       "SELECT accountId, accountEmail, accountPassword, accountFirstName, accountLastName, accountIsAdmin FROM accounts WHERE accountEmail = ?",
       [email]
@@ -26,13 +24,11 @@ router.post("/login", async (req, res) => {
 
     const user = rows[0];
 
-    // 2. Verify password
     const passwordMatch = await bcrypt.compare(password, user.accountPassword);
     if (!passwordMatch) {
       return res.status(401).json({ success: false, error: "Invalid email or password" });
     }
 
-    // 3. Create JWT
     const token = jwt.sign(
       {
         id: user.accountId,
@@ -45,15 +41,13 @@ router.post("/login", async (req, res) => {
       { expiresIn: JWT_EXPIRES_IN }
     );
 
-    // 4. Send JWT in HttpOnly cookie
     res.cookie("jwt", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-      maxAge: 1000 * 60 * 60, // 1 hour
+      maxAge: 1000 * 60 * 60,
     });
 
-    // 5. Respond with safe user info
     res.json({
       success: true,
       user: {
