@@ -12,7 +12,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// routes/login.ts
 const express_1 = __importDefault(require("express"));
 const index_1 = require("../index");
 const bcrypt_1 = __importDefault(require("bcrypt"));
@@ -24,18 +23,15 @@ router.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, function* 
     const JWT_EXPIRES_IN = "1h";
     const { email, password } = req.body;
     try {
-        // 1. Get user from DB
         const [rows] = yield index_1.pool.query("SELECT accountId, accountEmail, accountPassword, accountFirstName, accountLastName, accountIsAdmin FROM accounts WHERE accountEmail = ?", [email]);
         if (rows.length === 0) {
             return res.status(401).json({ success: false, error: "Invalid email or password" });
         }
         const user = rows[0];
-        // 2. Verify password
         const passwordMatch = yield bcrypt_1.default.compare(password, user.accountPassword);
         if (!passwordMatch) {
             return res.status(401).json({ success: false, error: "Invalid email or password" });
         }
-        // 3. Create JWT
         const token = jsonwebtoken_1.default.sign({
             id: user.accountId,
             email: user.accountEmail,
@@ -43,14 +39,12 @@ router.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, function* 
             lastName: user.accountLastName,
             isAdmin: user.accountIsAdmin === 1 ? true : false,
         }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
-        // 4. Send JWT in HttpOnly cookie
         res.cookie("jwt", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-            maxAge: 1000 * 60 * 60, // 1 hour
+            maxAge: 1000 * 60 * 60,
         });
-        // 5. Respond with safe user info
         res.json({
             success: true,
             user: {

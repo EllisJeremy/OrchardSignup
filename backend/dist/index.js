@@ -28,7 +28,6 @@ const app = (0, express_1.default)();
 const allowedOrigins = ["http://localhost:5173", "https://beyondsunday.org"];
 app.use((0, cors_1.default)({
     origin: (origin, callback) => {
-        // allow REST tools like Postman (no origin header)
         if (!origin)
             return callback(null, true);
         if (allowedOrigins.includes(origin)) {
@@ -40,17 +39,11 @@ app.use((0, cors_1.default)({
     },
     credentials: true,
 }));
-// ----- MIDDLEWARE -----
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
-// Allow frontend at :5173 to talk to backend at :8080
 app.get("/", (req, res) => {
     res.send("Orchard backend is running!");
 });
-app.get("/env", (req, res) => {
-    res.send(`${process.env.DB_HOST} ${process.env.DB_USER} ${process.env.DB_PASS} ${process.env.DB_NAME}`);
-});
-// ----- DATABASE -----
 exports.pool = promise_1.default.createPool({
     host: process.env.DB_HOST || "localhost",
     user: process.env.DB_USER || "root",
@@ -67,12 +60,10 @@ app.get("/health/db", (req, res) => __awaiter(void 0, void 0, void 0, function* 
         res.status(500).json({ status: "error", message: err.message });
     }
 }));
-// ----- ROUTES -----
 app.use("/tasks", tasks_1.default);
 app.use("/accounts", signup_1.default);
 app.use("/accounts", login_1.default);
 app.use("/accounts", accounts_1.default);
-// ----- START -----
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
