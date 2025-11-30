@@ -46,16 +46,24 @@ export const dateStore = create<dateStoreType>((set) => ({
 
 export interface modalStoreType {
   taskModal: boolean;
+  editTaskModal: boolean;
 
   openCloseTaskModal: () => void;
+  openCloseEditTaskModal: () => void;
 }
 
 export const modalStore = create<modalStoreType>((set) => ({
   taskModal: false,
+  editTaskModal: false,
 
   openCloseTaskModal: () => {
     set((state) => ({
       taskModal: !state.taskModal,
+    }));
+  },
+  openCloseEditTaskModal: () => {
+    set((state) => ({
+      editTaskModal: !state.editTaskModal,
     }));
   },
 }));

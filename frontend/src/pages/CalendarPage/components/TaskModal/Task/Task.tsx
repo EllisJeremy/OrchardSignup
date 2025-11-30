@@ -3,15 +3,34 @@ import { taskStore } from "../../../calendarStore";
 import { useAuthStore } from "../../../../../globalStores/useAuthStore";
 import trash from "../../../../../assets/trash.svg";
 import check from "../../../../../assets/check.svg";
-// import edit from "../../../../../assets/edit.svg";
+import edit from "../../../../../assets/edit.svg";
 import XFat from "../../../../../assets/XFat.svg";
 import { to12Hour } from "../../../functions/timeFormat";
 import { colorMap } from "./colorMap";
 import { deleteTask, joinTask, dropTask } from "../../../functions/taskNetwork";
 import { useNavigate } from "react-router-dom";
+import { modalStore } from "../../../calendarStore";
 
 export default function Task() {
-  const { date, taskDatabase, triggerReload } = taskStore();
+  const {
+    date,
+    taskDatabase,
+    triggerReload,
+    setDate,
+    setTitle,
+    setStartHour,
+    setStartMinute,
+    setEndHour,
+    setEndMinute,
+    setStartMeridiem,
+    setEndMeridiem,
+    setDescription,
+    setColor,
+    setOwner,
+    setType,
+    setRepeat,
+  } = taskStore();
+  const { openCloseEditTaskModal, openCloseTaskModal } = modalStore();
   const { user } = useAuthStore();
   const navigate = useNavigate();
 
@@ -23,18 +42,6 @@ export default function Task() {
           <div key={index} className={styles.taskCardDiv}>
             {user?.isAdmin && (
               <div className={styles.adminBarDiv}>
-                {/* 
-                <button
-                  className={styles.editButton}
-                  title="Edit"
-                  onClick={async () => {
-                    // await deleteTask(task.id);
-                    // triggerReload();
-                  }}
-                >
-                  <img className={styles.trash} src={edit} />
-                </button>
-                */}
                 <button
                   className={styles.trashButton}
                   title="Delate"
@@ -44,6 +51,31 @@ export default function Task() {
                   }}
                 >
                   <img className={styles.trash} src={trash} />
+                </button>
+                <button
+                  className={styles.editButton}
+                  title="Edit"
+                  onClick={async () => {
+                    console.log(task.startTime);
+                    console.log(task.endTime);
+                    openCloseEditTaskModal();
+                    openCloseTaskModal();
+                    //setDate(task.date);
+                    setTitle(task.title);
+                    //setStartHour(task.startTime)
+                    //setStartMinute,
+                    //setEndHour,
+                    //setEndMinute,
+                    //setStartMeridiem,
+                    //setEndMeridiem,
+                    setDescription(task.description);
+                    setColor(task.color);
+                    setOwner(task.ownerId ?? -1);
+                    setType(task.type);
+                    setRepeat(task.repeat ?? "null");
+                  }}
+                >
+                  <img className={styles.trash} src={edit} />
                 </button>
               </div>
             )}
