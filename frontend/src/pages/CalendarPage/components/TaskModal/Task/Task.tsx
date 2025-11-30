@@ -16,7 +16,6 @@ export default function Task() {
     date,
     taskDatabase,
     triggerReload,
-    setDate,
     setTitle,
     setStartHour,
     setStartMinute,
@@ -56,18 +55,25 @@ export default function Task() {
                   className={styles.editButton}
                   title="Edit"
                   onClick={async () => {
-                    console.log(task.startTime);
-                    console.log(task.endTime);
+                    const convertedStartTime = to12Hour(task.startTime);
+                    const [hAndM, newStartMeridiem] = convertedStartTime.split(" ");
+                    const [newStartHour, newStartMin] = hAndM.split(":");
+                    setStartHour(newStartHour);
+                    setStartMinute(newStartMin);
+                    setStartMeridiem(newStartMeridiem);
+
+                    if (task.endTime !== null) {
+                      const convertedEndTime = to12Hour(task.endTime!);
+                      const [hAndM, newEndMeridiem] = convertedEndTime.split(" ");
+                      const [newEndHour, newEndMin] = hAndM.split(":");
+                      setEndHour(newEndHour);
+                      setEndMinute(newEndMin);
+                      setEndMeridiem(newEndMeridiem);
+                    }
+
                     openCloseEditTaskModal();
                     openCloseTaskModal();
-                    //setDate(task.date);
                     setTitle(task.title);
-                    //setStartHour(task.startTime)
-                    //setStartMinute,
-                    //setEndHour,
-                    //setEndMinute,
-                    //setStartMeridiem,
-                    //setEndMeridiem,
                     setDescription(task.description);
                     setColor(task.color);
                     setOwner(task.ownerId ?? -1);
