@@ -7,6 +7,8 @@ import { to24Hour } from "../../../functions/timeFormat";
 import { createTask } from "../../../functions/taskNetwork";
 import { useEffect } from "react";
 import { fetchAccounts } from "../../../../AccountPages/functions/accountNetwork";
+import { deleteTask } from "../../../functions/taskNetwork";
+import { modalStore } from "../../../calendarStore";
 
 export default function TaskCreator() {
   const {
@@ -25,6 +27,7 @@ export default function TaskCreator() {
     repeat,
     owner,
     accounts,
+    editTaskId,
     setTitle,
     setDescription,
     setColor,
@@ -42,6 +45,8 @@ export default function TaskCreator() {
     resetTaskVariables,
     setAccounts,
   } = taskStore();
+
+  const { openCloseEditTaskModal, openCloseTaskModal } = modalStore();
 
   useEffect(() => {
     (async () => {
@@ -180,6 +185,9 @@ export default function TaskCreator() {
               type === "event" ? to24Hour(endHour, endMinute, endMeridiem) : null;
             const ownerOrNull = type === "task" && owner !== -1 ? owner : null;
             const repeatOrNull = repeat !== "null" ? repeat : null;
+            if (editTaskId !== -1) {
+              await deleteTask(editTaskId);
+            }
             await createTask({
               taskDate: date,
               taskTitle: title || "No Title",
@@ -191,7 +199,10 @@ export default function TaskCreator() {
               taskType: type,
               taskRepeat: repeatOrNull,
             });
-
+            if (editTaskId !== -1) {
+              openCloseEditTaskModal();
+              openCloseTaskModal();
+            }
             triggerReload();
             resetTaskVariables();
           }}

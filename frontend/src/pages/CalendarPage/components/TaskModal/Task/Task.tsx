@@ -28,6 +28,7 @@ export default function Task() {
     setOwner,
     setType,
     setRepeat,
+    setEditTaskId,
   } = taskStore();
   const { openCloseEditTaskModal, openCloseTaskModal } = modalStore();
   const { user } = useAuthStore();
@@ -79,6 +80,7 @@ export default function Task() {
                     setOwner(task.ownerId ?? -1);
                     setType(task.type);
                     setRepeat(task.repeat ?? "null");
+                    setEditTaskId(task.id);
                   }}
                 >
                   <img className={styles.trash} src={edit} />

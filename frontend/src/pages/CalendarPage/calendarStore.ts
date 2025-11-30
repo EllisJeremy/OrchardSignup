@@ -142,6 +142,8 @@ export interface taskStoreType {
 
   accounts: Account[];
 
+  editTaskId: number;
+
   setDate: (title: string) => void;
   setTitle: (setTime: string) => void;
   setStartHour: (startHour: string) => void;
@@ -161,6 +163,8 @@ export interface taskStoreType {
   triggerReload: () => void;
 
   setAccounts: (accounts: Account[]) => void;
+
+  setEditTaskId: (editTaskId: number) => void;
 
   resetTaskVariables: () => void;
 }
@@ -186,6 +190,8 @@ export const taskStore = create<taskStoreType>((set) => ({
 
   accounts: [],
 
+  editTaskId: -1,
+
   setDate: (date: string) => set(() => ({ date })),
   setTitle: (title: string) => set(() => ({ title })),
   setStartHour: (startHour: string) => set(() => ({ startHour })),
@@ -207,6 +213,8 @@ export const taskStore = create<taskStoreType>((set) => ({
 
   setAccounts: (accounts) => set({ accounts }),
 
+  setEditTaskId: (editTaskId: number) => set({ editTaskId }),
+
   resetTaskVariables: () =>
     set(() => {
       return {
@@ -223,6 +231,7 @@ export const taskStore = create<taskStoreType>((set) => ({
         startMeridiem: "AM",
         endMeridiem: "AM",
         accounts: [],
+        editTaskId: -1,
       };
     }),
 }));
