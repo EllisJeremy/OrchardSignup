@@ -4,8 +4,9 @@ import { pool } from "../index";
 import { requireAuth } from "../middleware/requireAuth";
 import { sendEmail } from "../email/sendEmail";
 import formatTaskEmail from "../email/emailFormatter";
+import { Request, Response } from "express";
 
-router.get("/by-month", async (req, res) => {
+router.get("/by-month", async (req: Request, res: Response) => {
   try {
     const year = req.query.year as string;
     const month = req.query.month as string;
@@ -33,7 +34,7 @@ router.get("/by-month", async (req, res) => {
    LEFT JOIN accounts a ON t.taskOwnerId = a.accountId
    WHERE t.taskDate BETWEEN ? AND ?
    ORDER BY t.taskDate, t.taskStartTime`,
-      [start, end]
+      [start, end],
     );
     res.json(rows);
   } catch (error) {
@@ -42,9 +43,10 @@ router.get("/by-month", async (req, res) => {
   }
 });
 
-router.delete("/:taskId", requireAuth, async (req, res) => {
+router.delete("/:taskId", requireAuth, async (req: Request, res: Response) => {
   if (!req.user.isAdmin) {
-    return res.status(403).json({ error: "Forbidden" });
+    res.status(403).json({ error: "Forbidden" });
+    return;
   }
   const { taskId } = req.params;
   try {
@@ -56,9 +58,10 @@ router.delete("/:taskId", requireAuth, async (req, res) => {
   }
 });
 
-router.post("/", requireAuth, async (req, res) => {
+router.post("/", requireAuth, async (req: Request, res: Response) => {
   if (!req.user.isAdmin) {
-    return res.status(403).json({ error: "Forbidden" });
+    res.status(403).json({ error: "Forbidden" });
+    return;
   }
 
   const {
@@ -88,7 +91,7 @@ router.post("/", requireAuth, async (req, res) => {
         taskOwner,
         taskType,
         taskRepeat,
-      ]
+      ],
     );
 
     const insertId = (result as any).insertId;
@@ -98,7 +101,7 @@ router.post("/", requireAuth, async (req, res) => {
         `SELECT accountFirstName, accountEmail 
          FROM accounts
          WHERE accountId = ?`,
-        [taskOwner]
+        [taskOwner],
       );
 
       const owner = (accounts as any)[0];
@@ -109,11 +112,11 @@ router.post("/", requireAuth, async (req, res) => {
             taskTitle,
             taskDescription,
             taskDate,
-            taskStartTime
+            taskStartTime,
           );
 
           sendEmail(owner.accountEmail, "New Task Assigned to You", text, html).catch((err) =>
-            console.error("Email error:", err)
+            console.error("Email error:", err),
           );
         } catch (err) {
           console.error(" Failed to send assignment email:", err);
@@ -129,9 +132,10 @@ router.post("/", requireAuth, async (req, res) => {
   }
 });
 
-router.patch("/:taskId/join", requireAuth, async (req, res) => {
+router.patch("/:taskId/join", requireAuth, async (req: Request, res: Response) => {
   if (!req.user) {
-    return res.status(403).json({ error: "Forbidden" });
+    res.status(403).json({ error: "Forbidden" });
+    return;
   }
 
   const { taskId } = req.params;
@@ -141,18 +145,19 @@ router.patch("/:taskId/join", requireAuth, async (req, res) => {
       `UPDATE tasks 
        SET taskOwnerId = ? 
        WHERE taskId = ?`,
-      [req.user.id, taskId]
+      [req.user.id, taskId],
     );
 
     if ((result as any).affectedRows === 0) {
-      return res.status(404).json({ error: "Task not found" });
+      res.status(404).json({ error: "Task not found" });
+      return;
     }
 
     const [tasks] = await pool.query(
       `SELECT taskTitle, taskDescription, taskDate, taskStartTime, taskEndTime
        FROM tasks
        WHERE taskId = ?`,
-      [taskId]
+      [taskId],
     );
 
     const task = (tasks as any)[0];
@@ -163,11 +168,11 @@ router.patch("/:taskId/join", requireAuth, async (req, res) => {
         task.taskTitle,
         task.taskDescription,
         task.taskDate,
-        task.taskStartTime
+        task.taskStartTime,
       );
 
       sendEmail(req.user.email, "New Task Assigned to You", text, html).catch((err) =>
-        console.error("Email error:", err)
+        console.error("Email error:", err),
       );
     } catch (err) {
       console.error("Failed to send signup email:", err);
@@ -189,13 +194,15 @@ router.patch("/:taskId/drop", requireAuth, async (req, res) => {
     ]);
 
     if (rows.length === 0) {
-      return res.status(404).json({ error: "Task not found" });
+      res.status(404).json({ error: "Task not found" });
+      return;
     }
 
     const currentOwnerId = rows[0].taskOwnerId;
 
     if (currentOwnerId !== req.user.id) {
-      return res.status(403).json({ error: "Forbidden" });
+      res.status(403).json({ error: "Forbidden" });
+      return;
     }
 
     const [result] = await pool.query("UPDATE tasks SET taskOwnerId = NULL WHERE taskId = ?", [

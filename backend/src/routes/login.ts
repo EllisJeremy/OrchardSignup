@@ -7,7 +7,7 @@ import { requireAuth } from "../middleware/requireAuth";
 const router = express.Router();
 
 router.post("/login", async (req, res) => {
-  const JWT_SECRET = process.env.JWT_SECRET;
+  const JWT_SECRET = process.env.JWT_SECRET!;
   const JWT_EXPIRES_IN = "1h";
 
   const { email, password } = req.body;
@@ -15,18 +15,20 @@ router.post("/login", async (req, res) => {
   try {
     const [rows]: any = await pool.query(
       "SELECT accountId, accountEmail, accountPassword, accountFirstName, accountLastName, accountIsAdmin FROM accounts WHERE accountEmail = ?",
-      [email]
+      [email],
     );
 
     if (rows.length === 0) {
-      return res.status(401).json({ success: false, error: "Invalid email or password" });
+      res.status(401).json({ success: false, error: "Invalid email or password" });
+      return;
     }
 
     const user = rows[0];
 
     const passwordMatch = await bcrypt.compare(password, user.accountPassword);
     if (!passwordMatch) {
-      return res.status(401).json({ success: false, error: "Invalid email or password" });
+      res.status(401).json({ success: false, error: "Invalid email or password" });
+      return;
     }
 
     const token = jwt.sign(
@@ -38,7 +40,7 @@ router.post("/login", async (req, res) => {
         isAdmin: user.accountIsAdmin === 1 ? true : false,
       },
       JWT_SECRET,
-      { expiresIn: JWT_EXPIRES_IN }
+      { expiresIn: JWT_EXPIRES_IN },
     );
 
     res.cookie("jwt", token, {

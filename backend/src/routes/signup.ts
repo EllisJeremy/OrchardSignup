@@ -2,10 +2,11 @@ import express from "express";
 const router = express.Router();
 import { pool } from "../index";
 import bcrypt from "bcrypt";
+import { Request, Response } from "express";
 
 const SALT_ROUNDS = 10;
 
-router.post("/signup", async (req, res) => {
+router.post("/signup", async (req: Request, res: Response) => {
   const { email, password, firstName, lastName } = req.body;
 
   try {
@@ -15,13 +16,13 @@ router.post("/signup", async (req, res) => {
       `INSERT INTO accounts 
         (accountEmail, accountPassword, accountFirstName, accountLastName, accountIsAdmin) 
        VALUES (?, ?, ?, ?, ?)`,
-      [email, obfuscatedPassword, firstName, lastName, false]
+      [email, obfuscatedPassword, firstName, lastName, false],
     );
 
-    return res.status(201).json({ success: true });
+    res.status(201).json({ success: true });
   } catch (error: any) {
     if (error.code === "ER_DUP_ENTRY") {
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
         error: "Email already exists",
       });

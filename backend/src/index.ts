@@ -28,7 +28,7 @@ app.use(
       }
     },
     credentials: true,
-  })
+  }),
 );
 
 app.use(express.json());
@@ -48,6 +48,7 @@ export const pool = mysql.createPool({
 app.get("/health/db", async (req, res) => {
   try {
     const [rows] = await pool.query("SELECT NOW() AS now");
+
     res.json({ status: "ok", dbTime: rows[0].now });
   } catch (err: any) {
     console.error("DB connection failed:", err.message);
