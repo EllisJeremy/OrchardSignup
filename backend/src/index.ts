@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import express from "express";
-import mysql from "mysql2/promise";
+import mysql, { RowDataPacket } from "mysql2/promise";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
@@ -47,7 +47,7 @@ export const pool = mysql.createPool({
 
 app.get("/health/db", async (req, res) => {
   try {
-    const [rows] = await pool.query("SELECT NOW() AS now");
+    const [rows] = await pool.query<RowDataPacket[]>("SELECT NOW() AS now");
 
     res.json({ status: "ok", dbTime: rows[0].now });
   } catch (err: any) {

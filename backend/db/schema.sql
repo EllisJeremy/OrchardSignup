@@ -1,6 +1,3 @@
-this file keeps track of the schema for each database
-this is kind of a crude way of doing this, but it works for a small project like this
-
 CREATE TABLE accounts (
   accountId INT AUTO_INCREMENT PRIMARY KEY,
   
@@ -24,19 +21,12 @@ CREATE TABLE tasks (
     taskEndTime TIME,
     taskDescription VARCHAR(500) NOT NULL, 
     taskColor VARCHAR(15) NOT NULL, 
-    taskOwnerId INT NULL, -- foreign key reference to accounts
+    taskOwnerId INT NULL, 
     taskType ENUM('event', 'task') NOT NULL,
     taskRepeat VARCHAR(25),
     CONSTRAINT fk_task_owner 
         FOREIGN KEY (taskOwnerId) REFERENCES accounts(accountId)
         ON DELETE SET NULL
 );
-
-
-admin user:
-
-UPDATE accounts
-SET accountIsAdmin = 1
-WHERE accountId = 70;
 
 

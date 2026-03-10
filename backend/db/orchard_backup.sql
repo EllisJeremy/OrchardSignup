@@ -1,8 +1,23 @@
 -- Orchard Database Backup
 -- Tables: accounts, tasks
 
+CREATE DATABASE IF NOT EXISTS orchard;
+USE orchard;
 
-
+-- ----------------------------
+-- Table: accounts
+-- ----------------------------
+CREATE TABLE IF NOT EXISTS `accounts` (
+  `accountId` int NOT NULL AUTO_INCREMENT,
+  `accountEmail` varchar(255) NOT NULL,
+  `accountPassword` varchar(255) NOT NULL,
+  `accountFirstName` varchar(255),
+  `accountLastName` varchar(255),
+  `accountIsAdmin` tinyint(1) DEFAULT 0,
+  `createdAt` datetime,
+  `updatedAt` datetime,
+  PRIMARY KEY (`accountId`)
+);
 
 INSERT INTO `accounts` VALUES
 (2,'therealjeremyellis@gmail.com','$2b$10$NsZFzDTptWtf0vcSyiqaAuzJ3mMk/LeVkTlmmdkeZNqkLIh61vrvW','Jeremy','Ellis',1,'2025-08-31 15:32:01','2025-08-31 15:37:16'),
@@ -18,7 +33,25 @@ INSERT INTO `accounts` VALUES
 (25,'verisol@comcast.net','$2b$10$I.CK8UGeZbh0/tRVIIJJTewXkd5qSX/yBJpAmmWcphPhGBiiTBI52','Veronica','Siles',0,'2025-10-12 23:33:40','2025-10-12 23:33:40'),
 (26,'blsobande@gmail.com','$2b$10$8BdkU02SCGXxlsx3vq4O0.psZmhW607wIlamwvJ9n9mRvB2uNvpCG','Bola','Soabnde',0,'2025-12-14 02:22:42','2025-12-14 02:22:42');
 
-
+-- ----------------------------
+-- Table: tasks
+-- ----------------------------
+CREATE TABLE IF NOT EXISTS `tasks` (
+  `taskId` int NOT NULL AUTO_INCREMENT,
+  `taskDate` date NOT NULL,
+  `taskTitle` varchar(50) NOT NULL,
+  `taskStartTime` time NOT NULL,
+  `taskEndTime` time DEFAULT NULL,
+  `taskDescription` varchar(500) NOT NULL,
+  `taskColor` varchar(15) NOT NULL,
+  `taskOwnerId` int DEFAULT NULL,
+  `taskType` ENUM('event', 'task') NOT NULL,
+  `taskRepeat` varchar(25) DEFAULT NULL,
+  PRIMARY KEY (`taskId`),
+  CONSTRAINT `fk_task_owner`
+    FOREIGN KEY (`taskOwnerId`) REFERENCES `accounts`(`accountId`)
+    ON DELETE SET NULL
+);
 
 INSERT INTO `tasks` VALUES
 (9,'2025-09-07','Prayer Time','09:45:00',NULL,'Leading Prayer time from 945 to 1015','red',NULL,'task',NULL),
@@ -172,4 +205,3 @@ INSERT INTO `tasks` VALUES
 (196,'2026-01-21','Turkey & Swiss - Karen','17:30:00',NULL,'15 sandwiches - thank you!','red',18,'task',NULL),
 (197,'2026-01-30','730 - Romans Bible Study','19:30:00','21:00:00','','red',NULL,'event',NULL),
 (198,'2026-01-19','Building Projects','10:00:00','16:00:00','All Welcome - we are working on several projects to spruce things up:\n-Painting 2 rooms\n- Fixing the Sound Board\n- Cleaning Chairs\n- Organizing Table Clothes','orange',NULL,'event',NULL);
-
