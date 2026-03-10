@@ -10,3 +10,6 @@ backend/node_modules/
 .env
 
 frontend/dist/
+backend/orchard_backup.sql
+backend/orchard-local   .session.sql
+backend/dist
