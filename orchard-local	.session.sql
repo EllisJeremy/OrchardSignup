@@ -20,7 +20,8 @@ INSERT INTO `accounts` VALUES
 
 
 
-INSERT INTO `tasks` VALUES
+INSERT INTO `tasks` (taskId, taskDate, taskTitle, taskStartTime, taskEndTime, taskDescription, taskColor, taskOwnerId, taskType, taskRepeat) VALUES
+
 (9,'2025-09-07','Prayer Time','09:45:00',NULL,'Leading Prayer time from 945 to 1015','red',NULL,'task',NULL),
 (16,'2025-09-14','Prayer Time','09:45:00',NULL,'Leading Prayer time from 945 to 1015','red',NULL,'task',NULL),
 (17,'2025-09-21','Prayer Time','09:45:00',NULL,'Leading Prayer time from 945 to 1015','red',NULL,'task',NULL),
