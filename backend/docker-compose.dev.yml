@@ -1,0 +1,8 @@
+services:
+  backend:
+    volumes:
+      - .:/app
+    command: npm run dev
+  db:
+    ports:
+      - "3306:3306"

@@ -12,9 +12,6 @@ services:
       - mysqldata:/var/lib/mysql
       - ./db/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
       #- ./db/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql
-    ports:
-      - "3306:3306"
-
   backend:
     build: .
     container_name: orchard_backend
@@ -27,9 +24,7 @@ services:
       DB_HOST: db
       DATABASE_URL: ${DATABASE_URL}
       NODE_ENV: ${NODE_ENV}
-    volumes:
-      - .:/app
-    command: npm run dev
+    command: npm start
     env_file: .env
 
 volumes:
