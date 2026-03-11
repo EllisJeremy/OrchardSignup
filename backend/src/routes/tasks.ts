@@ -5,6 +5,7 @@ import { requireAuth } from "../middleware/requireAuth";
 import { sendEmail } from "../email/sendEmail";
 import formatTaskEmail from "../email/emailFormatter";
 import { Request, Response } from "express";
+import { generateRecurringTasks } from "../chron/weeklyTasks";
 
 router.get("/by-month", async (req: Request, res: Response) => {
   try {
@@ -214,6 +215,11 @@ router.patch("/:taskId/drop", requireAuth, async (req, res) => {
     console.error("Drop task error:", error);
     res.status(500).json({ success: false, error: "Internal server error" });
   }
+});
+
+router.post("/admin/generate-tasks", async (req, res) => {
+  await generateRecurringTasks();
+  res.json({ message: "done" });
 });
 
 export default router;

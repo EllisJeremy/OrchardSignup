@@ -24,9 +24,13 @@ CREATE TABLE tasks (
     taskOwnerId INT NULL, 
     taskType ENUM('event', 'task') NOT NULL,
     taskRepeat VARCHAR(25),
-    CONSTRAINT fk_task_owner 
+    parentTaskId INT DEFAULT NULL,
+    CONSTRAINT fk_task_owner
         FOREIGN KEY (taskOwnerId) REFERENCES accounts(accountId)
-        ON DELETE SET NULL
+        ON DELETE SET NULL,
+    CONSTRAINT fk_parent_task
+        FOREIGN KEY (parentTaskId) REFERENCES tasks(taskId)
+        ON DELETE CASCADE
 );
 
 
