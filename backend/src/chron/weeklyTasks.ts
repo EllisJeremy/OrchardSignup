@@ -19,8 +19,7 @@ async function generateRecurringTasks() {
   const [templates] = await pool.query<Task[]>(
     `SELECT * FROM tasks WHERE taskRepeat IS NOT NULL AND parentTaskId IS NULL`
   );
-  console.log("here")
-  console.log(templates);
+
 
   const lookahead = new Date();
   lookahead.setMonth(lookahead.getMonth() + 2);
