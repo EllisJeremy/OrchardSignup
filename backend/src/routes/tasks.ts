@@ -95,6 +95,10 @@ router.post("/", requireAuth, async (req: Request, res: Response) => {
       ],
     );
 
+    if (taskRepeat !== null) {
+      await generateRecurringTasks();
+    }
+
     const insertId = (result as any).insertId;
 
     if (taskOwner) {
@@ -125,7 +129,6 @@ router.post("/", requireAuth, async (req: Request, res: Response) => {
       }
     }
 
-    // 3. Respond
     res.status(201).json({ success: true, insertId });
   } catch (error) {
     console.error("Insert error:", error);
@@ -218,6 +221,10 @@ router.patch("/:taskId/drop", requireAuth, async (req, res) => {
 });
 
 router.post("/admin/generate-tasks", async (req, res) => {
+  if (!req.user.isAdmin) {
+    res.status(403).json({ error: "Forbidden" });
+    return;
+  }
   await generateRecurringTasks();
   res.json({ message: "done" });
 });

@@ -20,6 +20,7 @@ async function generateRecurringTasks() {
     `SELECT * FROM tasks WHERE taskRepeat IS NOT NULL AND parentTaskId IS NULL`,
   );
 
+
   const lookahead = new Date();
   lookahead.setMonth(lookahead.getMonth() + 2);
 
