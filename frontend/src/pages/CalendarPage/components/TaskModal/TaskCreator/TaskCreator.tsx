@@ -130,6 +130,8 @@ export default function TaskCreator() {
         >
           <option value={"null"}>No repeat</option>
           <option value="weekly">Repeat weekly</option>
+          <option value="biweekly">Repeat biweekly</option>
+          <option value="weekly">Repeat month</option>
         </select>
 
         <select

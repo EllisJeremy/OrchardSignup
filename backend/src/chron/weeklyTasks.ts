@@ -17,7 +17,7 @@ interface Task extends RowDataPacket {
 
 async function generateRecurringTasks() {
   const [templates] = await pool.query<Task[]>(
-    `SELECT * FROM tasks WHERE taskRepeat IS NOT NULL AND parentTaskId IS NULL`
+    `SELECT * FROM tasks WHERE taskRepeat IS NOT NULL AND parentTaskId IS NULL`,
   );
 
   const lookahead = new Date();
@@ -29,6 +29,8 @@ async function generateRecurringTasks() {
     while (next <= lookahead) {
       if (task.taskRepeat === "weekly") {
         next.setDate(next.getDate() + 7);
+      } else if (task.taskRepeat === "biweekly") {
+        next.setDate(next.getDate() + 14);
       } else if (task.taskRepeat === "monthly") {
         next.setMonth(next.getMonth() + 1);
       } else {
@@ -41,7 +43,7 @@ async function generateRecurringTasks() {
 
       const [existing] = await pool.query<RowDataPacket[]>(
         `SELECT taskId FROM tasks WHERE parentTaskId = ? AND taskDate = ?`,
-        [task.taskId, nextDate]
+        [task.taskId, nextDate],
       );
 
       if ((existing as RowDataPacket[]).length === 0) {
@@ -59,7 +61,7 @@ async function generateRecurringTasks() {
             null,
             task.taskType,
             task.taskId,
-          ]
+          ],
         );
       }
     }
