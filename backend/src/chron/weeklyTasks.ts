@@ -14,12 +14,24 @@ interface Task extends RowDataPacket {
   taskType: "event" | "task";
   taskRepeat: string | null;
 }
+function nextNthWeekdayOfMonth(date: Date): Date {
+  const dayOfWeek = date.getDay(); // 0=Sun, 1=Mon, etc.
+  const nth = Math.ceil(date.getDate() / 7); // which occurrence (1st, 2nd, 3rd...)
+
+  // Move to the 1st of next month
+  const next = new Date(date.getFullYear(), date.getMonth() + 1, 1);
+
+  // Find the first occurrence of that weekday in the new month
+  const firstOccurrence = (dayOfWeek - next.getDay() + 7) % 7;
+  next.setDate(1 + firstOccurrence + (nth - 1) * 7);
+
+  return next;
+}
 
 async function generateRecurringTasks() {
   const [templates] = await pool.query<Task[]>(
     `SELECT * FROM tasks WHERE taskRepeat IS NOT NULL AND parentTaskId IS NULL`,
   );
-
 
   const lookahead = new Date();
   lookahead.setMonth(lookahead.getMonth() + 2);
@@ -33,7 +45,7 @@ async function generateRecurringTasks() {
       } else if (task.taskRepeat === "biweekly") {
         next.setDate(next.getDate() + 14);
       } else if (task.taskRepeat === "monthly") {
-        next.setMonth(next.getMonth() + 1);
+        next = nextNthWeekdayOfMonth(next);
       } else {
         break;
       }
