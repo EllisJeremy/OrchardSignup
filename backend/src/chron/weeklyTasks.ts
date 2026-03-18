@@ -15,13 +15,11 @@ interface Task extends RowDataPacket {
   taskRepeat: string | null;
 }
 function nextNthWeekdayOfMonth(date: Date): Date {
-  const dayOfWeek = date.getDay(); // 0=Sun, 1=Mon, etc.
-  const nth = Math.ceil(date.getDate() / 7); // which occurrence (1st, 2nd, 3rd...)
+  const dayOfWeek = date.getDay();
+  const nth = Math.ceil(date.getDate() / 7);
 
-  // Move to the 1st of next month
   const next = new Date(date.getFullYear(), date.getMonth() + 1, 1);
 
-  // Find the first occurrence of that weekday in the new month
   const firstOccurrence = (dayOfWeek - next.getDay() + 7) % 7;
   next.setDate(1 + firstOccurrence + (nth - 1) * 7);
 
